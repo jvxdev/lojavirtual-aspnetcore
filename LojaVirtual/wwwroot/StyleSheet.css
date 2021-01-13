@@ -1,0 +1,8 @@
+﻿body {
+}
+
+.field-validation-error {
+    margin-top: 2px;
+    color: red;
+    display: block;
+}
