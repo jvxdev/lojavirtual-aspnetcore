@@ -7,32 +7,32 @@ using System.Threading.Tasks;
 
 namespace LojaVirtual.Libraries.Login
 {
-    public class ColaboratorLogin
+    public class CollaboratorLogin
     {
-        private string Key = "Colaborator.Login";
+        private string Key = "Collaborator.Login";
         private Session.Session _session;
 
-        public ColaboratorLogin(Session.Session session)
+        public CollaboratorLogin(Session.Session session)
         {
             _session = session;
         }
 
-        public void Login(Colaborator colaborator)
+        public void Login(Collaborator collaborator)
         {
             //serializar
-            string colaboratorJson = JsonConvert.SerializeObject(colaborator);
+            string colaboratorJson = JsonConvert.SerializeObject(collaborator);
 
             _session.Create(Key, colaboratorJson);
         }
 
-        public Colaborator getColaborator()
+        public Collaborator getColaborator()
         {
             if (_session.Exist(Key))
             {
-                string colaboratorJson = _session.Read(Key);
+                string collaboratorJson = _session.Read(Key);
 
                 //deserializar
-                return JsonConvert.DeserializeObject<Colaborator>(colaboratorJson);
+                return JsonConvert.DeserializeObject<Collaborator>(collaboratorJson);
             }
             else
             {

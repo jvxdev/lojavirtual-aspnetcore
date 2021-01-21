@@ -3,12 +3,30 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LojaVirtual.Migrations
 {
-    public partial class Colaboratos : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Clients");
+            migrationBuilder.CreateTable(
+                name: "Categories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Slug = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FatherCategoryId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categories", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Categories_Categories_FatherCategoryId",
+                        column: x => x.FatherCategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Clients",
@@ -30,7 +48,7 @@ namespace LojaVirtual.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Colaborators",
+                name: "Collaborators",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -42,36 +60,41 @@ namespace LojaVirtual.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Colaborators", x => x.Id);
+                    table.PrimaryKey("PK_Collaborators", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "NewsletterEmails",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NewsletterEmails", x => x.Id);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Categories_FatherCategoryId",
+                table: "Categories",
+                column: "FatherCategoryId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Categories");
+
+            migrationBuilder.DropTable(
                 name: "Clients");
 
             migrationBuilder.DropTable(
-                name: "Colaborators");
+                name: "Collaborators");
 
-            migrationBuilder.CreateTable(
-                name: "Clients",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Sex = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CPF = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Clients", x => x.Id);
-                });
+            migrationBuilder.DropTable(
+                name: "NewsletterEmails");
         }
     }
 }

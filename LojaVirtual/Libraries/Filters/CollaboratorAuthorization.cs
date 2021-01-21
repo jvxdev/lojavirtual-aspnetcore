@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace LojaVirtual.Libraries.Filters
 {
-    public class ColaboratorAuthorization : Attribute, IAuthorizationFilter
+    public class CollaboratorAuthorization : Attribute, IAuthorizationFilter
     {
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            ColaboratorLogin _colaboratorLogin;
+            CollaboratorLogin _colaboratorLogin;
 
-            _colaboratorLogin = (ColaboratorLogin)context.HttpContext.RequestServices.GetService(typeof(ColaboratorLogin));
+            _colaboratorLogin = (CollaboratorLogin)context.HttpContext.RequestServices.GetService(typeof(CollaboratorLogin));
 
-            Colaborator colaborator = _colaboratorLogin.getColaborator();
+            Collaborator colaborator = _colaboratorLogin.getColaborator();
 
             if (colaborator == null)
             

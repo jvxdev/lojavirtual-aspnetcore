@@ -10,13 +10,18 @@ namespace LojaVirtual.Repositories.Contracts
     {
         void Create(Client client);
 
+
         Client Read(int Id);
+
 
         IEnumerable<Client> ReadAll();
 
+
         void Update(Client client);
 
+
         void Delete(int Id);
+
 
         Client Login(string Email, string Password);
     }

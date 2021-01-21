@@ -34,7 +34,8 @@ namespace LojaVirtual
 
             services.AddHttpContextAccessor();
             services.AddScoped<IClientRepository, ClientRepository>();
-            services.AddScoped<IColaboratorRepository, ColaboratorRepository>();
+            services.AddScoped<ICollaboratorRepository, CollaboratorRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<INewsletterRepository, NewsletterRepository>();
 
             services.AddMemoryCache();
@@ -45,7 +46,7 @@ namespace LojaVirtual
 
             services.AddScoped<Session>();
             services.AddScoped<ClientLogin>();
-            services.AddScoped<ColaboratorLogin>();
+            services.AddScoped<CollaboratorLogin>();
 
             string connection = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=LojaVirtual;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 

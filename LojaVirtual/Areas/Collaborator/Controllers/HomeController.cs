@@ -7,42 +7,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LojaVirtual.Areas.Colaborator.Controllers
+namespace LojaVirtual.Areas.Collaborator.Controllers
 {
     public class HomeController : Controller
     {
-        private IColaboratorRepository _colaboratorRepository;
-        private ColaboratorLogin _colaboratorLogin;
+        private ICollaboratorRepository _collaboratorRepository;
+        private CollaboratorLogin _collaboratorLogin;
 
 
-        public HomeController(IColaboratorRepository colaboratorRepository, ColaboratorLogin colaboratorLogin)
+        public HomeController(ICollaboratorRepository collaboratorRepository, CollaboratorLogin collaboratorLogin)
         {
-            _colaboratorRepository = colaboratorRepository;
-            _colaboratorLogin = colaboratorLogin;
+            _collaboratorRepository = collaboratorRepository;
+            _collaboratorLogin = collaboratorLogin;
         }
 
 
-        [Area("Colaborator")]
+        [Area("Collaborator")]
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
-        [Area("Colaborator")]
+        [Area("Collaborator")]
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
 
-        [Area("Colaborator")]
+        [Area("Collaborator")]
         [HttpPost]
-        public IActionResult Register([FromForm] Models.Colaborator colaborator)
+        public IActionResult Register([FromForm] Models.Collaborator collaborator)
         {
             if (ModelState.IsValid)
             {
-                _colaboratorRepository.Create(colaborator);
+                _collaboratorRepository.Create(collaborator);
 
                 TempData["MSG_S"] = "Cadastro realizado com sucesso!";
 
@@ -52,15 +52,15 @@ namespace LojaVirtual.Areas.Colaborator.Controllers
         }
 
 
-        [Area("Colaborator")]
+        [Area("Collaborator")]
         [HttpPost]
-        public IActionResult Login([FromForm] Models.Colaborator colaborator)
+        public IActionResult Login([FromForm] Models.Collaborator collaborator)
         {
-            Models.Colaborator colaboratorDB = _colaboratorRepository.Login(colaborator.Email, colaborator.Password);
+            Models.Collaborator collaboratorDB = _collaboratorRepository.Login(collaborator.Email, collaborator.Password);
 
-            if (colaboratorDB != null)
+            if (collaboratorDB != null)
             {
-                _colaboratorLogin.Login(colaboratorDB);
+                _collaboratorLogin.Login(collaboratorDB);
 
                 return new RedirectResult(Url.Action(nameof(Panel)));
             }
@@ -72,18 +72,18 @@ namespace LojaVirtual.Areas.Colaborator.Controllers
             }
         }
 
-        [Area("Colaborator")]
-        [ColaboratorAuthorization]
+        [Area("Collaborator")]
+        [CollaboratorAuthorization]
         public IActionResult Logout()
         {
-            _colaboratorLogin.Logout();
+            _collaboratorLogin.Logout();
 
             return RedirectToAction("Login", "Home");
         }
 
 
-        [Area("Colaborator")]
-        [ColaboratorAuthorization]
+        [Area("Collaborator")]
+        [CollaboratorAuthorization]
         public IActionResult Panel()
         {
             return View();

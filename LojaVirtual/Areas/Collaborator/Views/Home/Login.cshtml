@@ -1,4 +1,4 @@
-﻿@model Colaborator
+﻿@model Collaborator
 
 @{
     ViewData["title"] = "Login do Colaborador";
@@ -12,6 +12,7 @@
         <aside class="col-sm-5 center">
             <div class="card">
                 <article class="card-body">
+                    <a class="float-right btn btn-outline-primary" asp-action="register" asp-controller="Home">Criar conta</a>
                     <h4 class="card-title mb-4 mt-1">Login de Colaborador</h4>
                     <form method="post">
                         <div class="form-group">

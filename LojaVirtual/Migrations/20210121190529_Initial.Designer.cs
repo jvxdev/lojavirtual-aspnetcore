@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LojaVirtual.Migrations
 {
     [DbContext(typeof(LojaVirtualContext))]
-    [Migration("20201214205758_Colaboratos")]
-    partial class Colaboratos
+    [Migration("20210121190529_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,6 +21,29 @@ namespace LojaVirtual.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
+            modelBuilder.Entity("LojaVirtual.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int?>("FatherCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Slug")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FatherCategoryId");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("LojaVirtual.Models.Client", b =>
                 {
                     b.Property<int>("Id")
@@ -28,7 +51,8 @@ namespace LojaVirtual.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<DateTime>("BirthDate")
+                    b.Property<DateTime?>("BirthDate")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CPF")
@@ -60,7 +84,7 @@ namespace LojaVirtual.Migrations
                     b.ToTable("Clients");
                 });
 
-            modelBuilder.Entity("LojaVirtual.Models.Colaborator", b =>
+            modelBuilder.Entity("LojaVirtual.Models.Collaborator", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -76,12 +100,12 @@ namespace LojaVirtual.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Positions")
+                    b.Property<string>("Position")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Colaborators");
+                    b.ToTable("Collaborators");
                 });
 
             modelBuilder.Entity("LojaVirtual.Models.NewsletterEmail", b =>
@@ -98,6 +122,15 @@ namespace LojaVirtual.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("NewsletterEmails");
+                });
+
+            modelBuilder.Entity("LojaVirtual.Models.Category", b =>
+                {
+                    b.HasOne("LojaVirtual.Models.Category", "FatherCategory")
+                        .WithMany()
+                        .HasForeignKey("FatherCategoryId");
+
+                    b.Navigation("FatherCategory");
                 });
 #pragma warning restore 612, 618
         }
