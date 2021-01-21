@@ -1,7 +1,8 @@
 ﻿@model Client
 
 @{ 
-    ViewData["title"] = "Cadastro";
+    ViewData["title"] = "Cadastro de colaborador";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <form asp-action="Register" asp-controller="Home" method="post">
@@ -13,13 +14,13 @@
                 <div id="code_register_1">
                     <div class="card">
                         <header class="card-header">
-                            <a class="float-right btn btn-outline-primary mt-1" asp-action="login" asp-controller="Home">Já tenho uma conta!</a>
+                            <a class="float-right btn btn-outline-primary mt-1" asp-action="Login" asp-controller="Home">Já tenho uma conta!</a>
                             <h4 class="card-title mt-2">Faça teu cadastro</h4>
                         </header>
                         <article class="card-body">
                             @if (TempData["MSG_S"] != null)
                             {
-                                <p class="alert alert-success text-center">@TempData["MSG_S"] <a asp-action="login">Clique aqui para <b>Entrar!</b></a></p>
+                                <p class="alert alert-success text-center">@TempData["MSG_S"] <a asp-action="Login">Clique aqui para <b>Entrar!</b></a></p>
                             }
                             <div class="form-group">
                                 <label for="name">Nome</label>

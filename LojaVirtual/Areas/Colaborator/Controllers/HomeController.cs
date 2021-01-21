@@ -29,6 +29,28 @@ namespace LojaVirtual.Areas.Colaborator.Controllers
             return View();
         }
 
+        [Area("Colaborator")]
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [Area("Colaborator")]
+        [HttpPost]
+        public IActionResult Register([FromForm] Models.Colaborator colaborator)
+        {
+            if (ModelState.IsValid)
+            {
+                _colaboratorRepository.Create(colaborator);
+
+                TempData["MSG_S"] = "Cadastro realizado com sucesso!";
+
+                return RedirectToAction(nameof(Register));
+            }
+            return View();
+        }
+
 
         [Area("Colaborator")]
         [HttpPost]

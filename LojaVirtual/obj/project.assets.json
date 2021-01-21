@@ -8602,19 +8602,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jvxdev\\.nuget\\packages\\": {}
+    "C:\\Users\\imintheclouds\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jvxdev\\source\\repos\\LojaVirtual\\LojaVirtual\\LojaVirtual.csproj",
+      "projectUniqueName": "D:\\BACK UP\\DEV\\repos\\LojaVirtual\\LojaVirtual\\LojaVirtual.csproj",
       "projectName": "LojaVirtual",
-      "projectPath": "C:\\Users\\jvxdev\\source\\repos\\LojaVirtual\\LojaVirtual\\LojaVirtual.csproj",
-      "packagesPath": "C:\\Users\\jvxdev\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jvxdev\\source\\repos\\LojaVirtual\\LojaVirtual\\obj\\",
+      "projectPath": "D:\\BACK UP\\DEV\\repos\\LojaVirtual\\LojaVirtual\\LojaVirtual.csproj",
+      "packagesPath": "C:\\Users\\imintheclouds\\.nuget\\packages\\",
+      "outputPath": "D:\\BACK UP\\DEV\\repos\\LojaVirtual\\LojaVirtual\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\jvxdev\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\imintheclouds\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8681,7 +8681,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
