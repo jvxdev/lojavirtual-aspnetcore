@@ -475,3 +475,12 @@ D:\BACK UP\DEV\repos\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas
 D:\BACK UP\DEV\repos\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Collaborator\Views\_ViewImports.cshtml.g.cs
 D:\BACK UP\DEV\repos\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Collaborator\Views\_ViewStart.cshtml.g.cs
 D:\BACK UP\DEV\repos\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.csprojAssemblyReference.cache
+D:\BACK UP\DEV\repos\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Collaborator\Views\Category\Index.cshtml.g.cs
+D:\BACK UP\DEV\repos\LojaVirtual\LojaVirtual\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+D:\BACK UP\DEV\repos\LojaVirtual\LojaVirtual\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+D:\BACK UP\DEV\repos\LojaVirtual\LojaVirtual\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+D:\BACK UP\DEV\repos\LojaVirtual\LojaVirtual\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+D:\BACK UP\DEV\repos\LojaVirtual\LojaVirtual\bin\Debug\netcoreapp3.1\X.PagedList.dll
+D:\BACK UP\DEV\repos\LojaVirtual\LojaVirtual\bin\Debug\netcoreapp3.1\X.PagedList.Mvc.Core.dll
+D:\BACK UP\DEV\repos\LojaVirtual\LojaVirtual\bin\Debug\netcoreapp3.1\X.PagedList.Web.Common.dll
+D:\BACK UP\DEV\repos\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.MvcApplicationPartsAssemblyInfo.cs

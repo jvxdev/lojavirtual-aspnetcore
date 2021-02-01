@@ -25,7 +25,7 @@ namespace LojaVirtual.Libraries.Login
             _session.Create(Key, colaboratorJson);
         }
 
-        public Collaborator getColaborator()
+        public Collaborator getCollaborator()
         {
             if (_session.Exist(Key))
             {

@@ -17,7 +17,7 @@ namespace LojaVirtual.Libraries.Filters
 
             _colaboratorLogin = (CollaboratorLogin)context.HttpContext.RequestServices.GetService(typeof(CollaboratorLogin));
 
-            Collaborator colaborator = _colaboratorLogin.getColaborator();
+            Collaborator colaborator = _colaboratorLogin.getCollaborator();
 
             if (colaborator == null)
             

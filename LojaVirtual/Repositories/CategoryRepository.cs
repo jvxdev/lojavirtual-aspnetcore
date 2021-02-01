@@ -5,12 +5,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace LojaVirtual.Repositories
 {
     public class CategoryRepository : ICategoryRepository
     {
+        const int registryPerPage = 10;
         LojaVirtualContext _database;
+
 
         public CategoryRepository(LojaVirtualContext database)
         {
@@ -31,9 +34,10 @@ namespace LojaVirtual.Repositories
         }
 
 
-        public IEnumerable<Category> ReadAll()
+        public IPagedList<Category> ReadAll(int? page)
         {
-            return _database.Categories.ToList();
+            int pageNumber = page ?? 1;
+            return _database.Categories.ToPagedList<Category>(pageNumber, registryPerPage);
         }
 
 

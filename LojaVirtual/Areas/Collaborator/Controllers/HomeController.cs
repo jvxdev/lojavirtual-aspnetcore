@@ -29,12 +29,14 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             return View();
         }
 
+
         [Area("Collaborator")]
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
+
 
         [Area("Collaborator")]
         [HttpPost]
@@ -71,6 +73,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
                 return View();
             }
         }
+
 
         [Area("Collaborator")]
         [CollaboratorAuthorization]
