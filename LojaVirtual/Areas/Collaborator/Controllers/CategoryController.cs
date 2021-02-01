@@ -43,7 +43,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
 
         [HttpGet]
-        public IActionResult Update()
+        public IActionResult Update(int Id)
         {
             return View();
         }
