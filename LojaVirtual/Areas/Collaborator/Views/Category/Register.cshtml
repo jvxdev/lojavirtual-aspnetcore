@@ -1,0 +1,29 @@
+﻿@model LojaVirtual.Models.Category
+
+@{
+    ViewData["Title"] = "Cadastrar novo registro";
+}
+
+<h1 class="my-4">Cadastrar novo registro</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Name" class="form-label">Nome<span style="color: red"><b>*</b></span></label>
+        <input asp-for="Name" class="form-control" placeholder="Digite o nome do novo registro">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+         <label for="slug" asp-for="Slug" class="form-label">Slug<span style="color: red"><b>*</b></span></label>
+         <input id="slug" asp-for="Slug" class="form-control" placeholder="Digite o slug do novo registro">
+         <span asp-validation-for="Slug" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+         <label asp-for="FatherCategoryId"></label>
+         <select asp-for="FatherCategoryId" class="form-control" asp-items="@ViewBag.Categories">
+             <option value="">Selecionar</option>
+         </select>
+         <span asp-validation-for="FatherCategoryId" class="text-danger"></span>
+    </div>
+          <button type="submit" class="btn btn-primary">Cadastrar</button>
+          <button asp-action="Index" class="btn btn-secondary">Voltar</button>
+</form>

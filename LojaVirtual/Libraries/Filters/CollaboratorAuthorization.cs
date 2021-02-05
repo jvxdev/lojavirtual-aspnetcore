@@ -22,7 +22,7 @@ namespace LojaVirtual.Libraries.Filters
             if (colaborator == null)
             
             {
-                 context.Result = new ContentResult() { Content = "Você não tem permissão para acessar esta página." };
+                 context.Result = new RedirectToActionResult("Login", "Home", null);
             }
         }
     }

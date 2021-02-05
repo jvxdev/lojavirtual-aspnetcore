@@ -2,6 +2,7 @@
 using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ using X.PagedList;
 namespace LojaVirtual.Areas.Collaborator.Controllers
 {
     [Area("Collaborator")]
-    //[CollaboratorAuthorization]
+    [CollaboratorAuthorization]
     public class CategoryController : Controller
     {
         private ICategoryRepository _categoryRepository;
@@ -30,14 +31,24 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Register()
         {
+            ViewBag.Categories = _categoryRepository.ReadAll().Select(a => new SelectListItem(a.Name, a.Id.ToString()));
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create([FromForm] Category category)
+        public IActionResult Register([FromForm] Category category)
         {
+            if(ModelState.IsValid)
+            {
+                _categoryRepository.Create(category);
+
+                TempData["MSG_S"] = "Registro cadastrado com sucesso!";
+
+                return RedirectToAction(nameof(Index));
+            }
+            ViewBag.Categories = _categoryRepository.ReadAll().Select(a => new SelectListItem(a.Name, a.Id.ToString()));
             return View();
         }
 
@@ -45,13 +56,24 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         [HttpGet]
         public IActionResult Update(int Id)
         {
-            return View();
+            var categoria = _categoryRepository.Read(Id);
+            ViewBag.Categories = _categoryRepository.ReadAll().Where(a => a.Id != Id).Select(a => new SelectListItem(a.Name, a.Id.ToString()));
+            return View(categoria);
         }
 
 
         [HttpPost]
-        public IActionResult Update([FromForm] Category category)
+        public IActionResult Update([FromForm] Category category, int Id)
         {
+            if (ModelState.IsValid)
+            {
+                _categoryRepository.Update(category);
+
+                TempData["MSG_S"] = "Registro atualizado com sucesso!";
+
+                return RedirectToAction(nameof(Index));
+            }
+            ViewBag.Categories = _categoryRepository.ReadAll().Where(a => a.Id != Id).Select(a => new SelectListItem(a.Name, a.Id.ToString()));
             return View();
         }
 
@@ -59,7 +81,11 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         [HttpGet]
         public IActionResult Delete(int Id)
         {
-            return View();
+            _categoryRepository.Delete(Id);
+
+            TempData["MSG_S"] = "Registro removido com sucesso!";
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

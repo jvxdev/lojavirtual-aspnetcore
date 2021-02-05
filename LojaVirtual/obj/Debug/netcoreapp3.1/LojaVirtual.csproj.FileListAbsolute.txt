@@ -484,3 +484,5 @@ D:\BACK UP\DEV\repos\LojaVirtual\LojaVirtual\bin\Debug\netcoreapp3.1\X.PagedList
 D:\BACK UP\DEV\repos\LojaVirtual\LojaVirtual\bin\Debug\netcoreapp3.1\X.PagedList.Mvc.Core.dll
 D:\BACK UP\DEV\repos\LojaVirtual\LojaVirtual\bin\Debug\netcoreapp3.1\X.PagedList.Web.Common.dll
 D:\BACK UP\DEV\repos\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.MvcApplicationPartsAssemblyInfo.cs
+D:\BACK UP\DEV\repos\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Collaborator\Views\Category\Register.cshtml.g.cs
+D:\BACK UP\DEV\repos\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Collaborator\Views\Category\Update.cshtml.g.cs

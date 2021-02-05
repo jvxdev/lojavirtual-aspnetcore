@@ -1,23 +1,28 @@
 ﻿@model PagedList<LojaVirtual.Models.Category>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Categorias";
 }
 
-<h1>Categorias</h1>
+<h1 class="my-4">Categorias</h1>
+
+<a asp-action="Register" class="btn btn-success mb-3">Cadastrar novo registro</a>
+
+@if (TempData["MSG_S"] != null)
+{
+    <p class="alert alert-success">@TempData["MSG_S"]</p>
+}
 
 @if (Model.Count > 0)
 {
-
-    <a asp-action="Create" class="btn btn-success my-3">Cadastrar</a>
 
     <div class="table-responsive">
         <table class="table">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">Código</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Categoria pai</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.First().Id)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.First().Name)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.First().FatherCategoryId)</th>
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
@@ -27,9 +32,18 @@
                     <tr>
                         <th scope="row">@category.Id</th>
                         <td>@category.Name</td>
-                        <td>@category.FatherCategoryId</td>
                         <td>
-                            <a asp-action="Update" asp-route-id="@category.Id" class="btn btn-info">Editar</a>
+                            @if (category.FatherCategory != null)
+                            {
+                                <span>@category.FatherCategoryId - @category.FatherCategory.Name</span>
+                            }
+                            else
+                            {
+                                <span>----------------</span>
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="Update" asp-route-id="@category.Id" class="btn btn-primary">Editar</a>
                             <a asp-action="Delete" asp-route-id="@category.Id" class="btn btn-danger">Remover</a>
                         </td>
                     </tr>

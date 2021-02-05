@@ -61,7 +61,7 @@ namespace LojaVirtual.Libraries.Lang {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo {0} é obrigatório!.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Este campo é obrigatório!.
         /// </summary>
         public static string MSG_E001 {
             get {
@@ -70,7 +70,7 @@ namespace LojaVirtual.Libraries.Lang {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo {0} deve ter no mínimo {1} caracteres!.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Este campo deve ter no mínimo {1} caracteres!.
         /// </summary>
         public static string MSG_E002 {
             get {
@@ -79,7 +79,7 @@ namespace LojaVirtual.Libraries.Lang {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo {0} deve ter no máximo {1} caracteres!.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Este campo deve ter no máximo {1} caracteres!.
         /// </summary>
         public static string MSG_E003 {
             get {
@@ -88,7 +88,7 @@ namespace LojaVirtual.Libraries.Lang {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo {0} não é válido!.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Este campo não é válido!.
         /// </summary>
         public static string MSG_E004 {
             get {

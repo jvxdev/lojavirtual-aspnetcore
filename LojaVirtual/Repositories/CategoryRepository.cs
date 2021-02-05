@@ -1,6 +1,7 @@
 ﻿using LojaVirtual.Database;
 using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,10 +35,16 @@ namespace LojaVirtual.Repositories
         }
 
 
+        public IEnumerable<Category> ReadAll()
+        {
+            return _database.Categories;
+        }
+
+
         public IPagedList<Category> ReadAll(int? page)
         {
             int pageNumber = page ?? 1;
-            return _database.Categories.ToPagedList<Category>(pageNumber, registryPerPage);
+            return _database.Categories.Include(a=>a.FatherCategory).ToPagedList<Category>(pageNumber, registryPerPage);
         }
 
 

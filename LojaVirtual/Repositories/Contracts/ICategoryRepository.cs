@@ -15,6 +15,8 @@ namespace LojaVirtual.Repositories.Contracts
         Category Read(int Id);
 
 
+        IEnumerable<Category> ReadAll();
+
         IPagedList<Category> ReadAll(int? page);
 
 
