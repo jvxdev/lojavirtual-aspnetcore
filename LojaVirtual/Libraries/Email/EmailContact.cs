@@ -18,11 +18,11 @@ namespace LojaVirtual.Libraries.Email
             smtp.EnableSsl = true;
 
             //Mensagem exemplo enviada para e-mail
-            string corpoMsg = string.Format("<h3>Olá <b>" + contact.Nome + ",</b></h3>Como vai? " +
+            string corpoMsg = string.Format("<h3>Olá <b>" + contact.Name + ",</b></h3>Como vai? " +
                 "Esses foram os dados enviados via formulário de contato: <br/><br/>" + 
-                "<b>Nome:</b> " + contact.Nome + "<br/>" +
+                "<b>Nome:</b> " + contact.Name + "<br/>" +
                 "<b>E-mail:</b> " + contact.Email + "<br/>" +
-                "<b>Texto:</b> " + contact.Nome + "<br/>" +
+                "<b>Texto:</b> " + contact.Name + "<br/>" +
                 "<br/>Essa mensagem foi enviada automaticamente do site LojaVirtual!");
 
             MailMessage mensagem = new MailMessage();

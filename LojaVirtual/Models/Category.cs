@@ -16,14 +16,14 @@ namespace LojaVirtual.Models
 
 
         [Display(Name = "Nome")]
-        [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
-        [MinLength(2, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E002")]
+        [Required(ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E005")]
+        [MinLength(2, ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E002")]
         public String Name { get; set; }
 
 
         [Display(Name = "Slug")]
-        [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
-        [MinLength(2, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E002")]
+        [Required(ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E005")]
+        [MinLength(2, ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E002")]
         public String Slug { get; set; }
 
 

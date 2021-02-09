@@ -9,10 +9,13 @@ namespace LojaVirtual.Models
 {
     public class NewsletterEmail
     {
+        [Display(Name = "Código")]
         public int Id { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
-        [EmailAddress(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E004")]
+        [Required(ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E005")]
+        [EmailAddress(ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E004")]
+
+
         public string Email { get; set; }
     }
 }

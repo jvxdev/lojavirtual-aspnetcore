@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Libraries.Filters;
+using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             _categoryRepository = categoryRepository;
         }
 
+
         public IActionResult Index(int? page)
         {
             var categories = _categoryRepository.ReadAll(page);
@@ -37,6 +39,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             return View();
         }
 
+
         [HttpPost]
         public IActionResult Register([FromForm] Category category)
         {
@@ -44,7 +47,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             {
                 _categoryRepository.Create(category);
 
-                TempData["MSG_S"] = "Registro cadastrado com sucesso!";
+                TempData["MSG_S"] = Menssage.MSG_S001;
 
                 return RedirectToAction(nameof(Index));
             }
@@ -69,7 +72,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             {
                 _categoryRepository.Update(category);
 
-                TempData["MSG_S"] = "Registro atualizado com sucesso!";
+                TempData["MSG_S"] = Menssage.MSG_S003;
 
                 return RedirectToAction(nameof(Index));
             }
@@ -83,7 +86,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         {
             _categoryRepository.Delete(Id);
 
-            TempData["MSG_S"] = "Registro removido com sucesso!";
+            TempData["MSG_S"] = Menssage.MSG_S002;
 
             return RedirectToAction(nameof(Index));
         }

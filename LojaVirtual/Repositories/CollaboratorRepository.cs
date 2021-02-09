@@ -1,20 +1,22 @@
 ﻿using LojaVirtual.Database;
 using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
-using System;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using X.PagedList;
 
 namespace LojaVirtual.Repositories
 {
     public class CollaboratorRepository : ICollaboratorRepository
     {
+        private IConfiguration _conf;
         private LojaVirtualContext _database;
 
-        public CollaboratorRepository(LojaVirtualContext database)
+        public CollaboratorRepository(LojaVirtualContext database, IConfiguration configuration)
         {
             _database = database;
+            _conf = configuration;
         }
 
 
@@ -31,9 +33,12 @@ namespace LojaVirtual.Repositories
         }
 
 
-        public IEnumerable<Collaborator> ReadAll()
+        public IPagedList<Collaborator> ReadAll(int? page)
         {
-            return _database.Collaborators.ToList();
+            int registryPerPage = _conf.GetValue<int>("registryPerPage");
+            int pageNumber = page ?? 1;
+
+            return _database.Collaborators.Where(a => a.Position != "G").ToPagedList<Collaborator>(pageNumber, registryPerPage);
         }
 
 

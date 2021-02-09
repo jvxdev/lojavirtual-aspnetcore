@@ -14,6 +14,10 @@
                         <a class="float-right btn btn-outline-primary" asp-action="register" asp-controller="Home">Criar conta</a>
                         <h4 class="card-title mb-4 mt-1">Entre com sua conta</h4>
                         <form method="post">
+                            @if (TempData["MSG_S"] != null)
+                            {
+                                <p class="alert alert-success">@TempData["MSG_S"]</p>
+                            }
                             <div class="form-group">
                                 <label for="email">E-mail</label>
                                 <input asp-for="Email" id="email" class="form-control" placeholder="exemplo@email.com" type="email" required>

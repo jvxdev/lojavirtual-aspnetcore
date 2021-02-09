@@ -36,6 +36,7 @@ namespace LojaVirtual.Controllers
             return View();
         }
 
+
         [HttpPost]
         public IActionResult Index([FromForm] NewsletterEmail newsletter)
         {
@@ -54,10 +55,12 @@ namespace LojaVirtual.Controllers
             }
         }
 
+
         public IActionResult Contact()
         {
             return View();
         }
+
 
         [HttpGet]
         public IActionResult Login()
@@ -94,6 +97,7 @@ namespace LojaVirtual.Controllers
             }
         }
 
+
         [HttpGet]
         [ClientAuthorization]
         public IActionResult Panel()
@@ -101,11 +105,13 @@ namespace LojaVirtual.Controllers
             return new ContentResult() { Content = "Seja bem-vindo ao Painel do Cliente!" };
         }
 
+
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
+
 
         [HttpPost]
         public IActionResult Register([FromForm] Client client)
@@ -114,12 +120,13 @@ namespace LojaVirtual.Controllers
             {
                 _clientRepository.Create(client);
 
-                TempData["MSG_S"] = "Cadastro realizado com sucesso!";
+                TempData["MSG_S"] = "Cadastro realizado com sucesso! Entre com a sua nova conta!";
 
-                return RedirectToAction(nameof(Register));
+                return RedirectToAction(nameof(Login));
             }
             return View();
         }
+
 
         [ClientAuthorization]
         public IActionResult ShoppingKart()
@@ -127,15 +134,16 @@ namespace LojaVirtual.Controllers
             return View();
         }
 
+
         public IActionResult ContactPost()
         {
             try
             {
                 Contact contact = new Contact();
 
-                contact.Nome = HttpContext.Request.Form["name"];
+                contact.Name = HttpContext.Request.Form["name"];
                 contact.Email = HttpContext.Request.Form["email"];
-                contact.Texto = HttpContext.Request.Form["text"];
+                contact.Menssage = HttpContext.Request.Form["text"];
 
                 var showMensage = new List<ValidationResult>();
                 var contexto = new ValidationContext(contact);
@@ -165,6 +173,7 @@ namespace LojaVirtual.Controllers
             }
             return View("Contact");
         }
+
 
         public IActionResult Read()
         {

@@ -14,6 +14,10 @@
                 <article class="card-body">
                     <a class="float-right btn btn-outline-primary" asp-action="register" asp-controller="Home">Criar conta</a>
                     <h4 class="card-title mb-4 mt-1">Login de Colaborador</h4>
+                    @if (TempData["MSG_S"] != null)
+                    {
+                        <p class="alert alert-success">@TempData["MSG_S"]</p>
+                    }
                     <form method="post">
                         <div class="form-group">
                             <label for="email">E-mail</label>

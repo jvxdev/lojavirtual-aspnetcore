@@ -1,0 +1,35 @@
+﻿@model LojaVirtual.Models.Collaborator
+
+@{
+    ViewData["Title"] = "Editar registro";
+}
+
+<h1 class="my-4">Editar registro</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="Position" />
+    <div class="form-group">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control">
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Password" class="form-label"></label>
+        <input type="password" asp-for="Password" class="form-control" placeholder="Digite a nova senha">
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PasswordConfirmation" class="form-label"></label>
+        <input type="password" asp-for="PasswordConfirmation" class="form-control" placeholder="Confirme a nova senha">
+        <span asp-validation-for="PasswordConfirmation" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <button asp-action="Index" class="btn btn-secondary">Voltar</button>
+</form>

@@ -17,10 +17,6 @@
                             <h4 class="card-title mt-2">Faça teu cadastro</h4>
                         </header>
                         <article class="card-body">
-                            @if (TempData["MSG_S"] != null)
-                            {
-                                <p class="alert alert-success text-center">@TempData["MSG_S"] <a asp-action="login">Clique aqui para <b>Entrar!</b></a></p>
-                            }
                             <div class="form-group">
                                 <label for="name">Nome</label>
                                 <input type="text" asp-for="Name" id="name" name="name" class="form-control" placeholder="Nome completo.">

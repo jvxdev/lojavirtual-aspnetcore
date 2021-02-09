@@ -46,9 +46,9 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             {
                 _collaboratorRepository.Create(collaborator);
 
-                TempData["MSG_S"] = "Cadastro realizado com sucesso!";
+                TempData["MSG_S"] = "Cadastro realizado com sucesso! Entre com a sua nova conta!";
 
-                return RedirectToAction(nameof(Register));
+                return RedirectToAction(nameof(Login));
             }
             return View();
         }

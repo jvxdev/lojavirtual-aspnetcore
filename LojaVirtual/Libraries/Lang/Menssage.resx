@@ -132,4 +132,16 @@
   <data name="MSG_E005" xml:space="preserve">
     <value>Este campo não pode ficar em branco!</value>
   </data>
+  <data name="MSG_E006" xml:space="preserve">
+    <value>As senhas estão diferentes!</value>
+  </data>
+  <data name="MSG_S001" xml:space="preserve">
+    <value>Registro cadastrado com sucesso!</value>
+  </data>
+  <data name="MSG_S002" xml:space="preserve">
+    <value>Registro excluido com sucesso!</value>
+  </data>
+  <data name="MSG_S003" xml:space="preserve">
+    <value>Registro atualizado com sucesso!</value>
+  </data>
 </root>

@@ -1,0 +1,52 @@
+﻿@model PagedList<LojaVirtual.Models.Collaborator>
+
+@{
+    ViewData["Title"] = "Colaboradores";
+}
+
+<h1 class="my-4">Colaboradores</h1>
+
+<a asp-action="Register" class="btn btn-success mb-3">Cadastrar novo colaborador</a>
+
+@if (TempData["MSG_S"] != null)
+{
+    <p class="alert alert-success">@TempData["MSG_S"]</p>
+}
+
+@if (Model.Count > 0)
+{
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">@Html.DisplayNameFor(model => model.First().Id)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.First().Name)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.First().Email)</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Collaborator collaborator in Model)
+                {
+                    <tr>
+                        <th scope="row">@collaborator.Id</th>
+                        <td>@collaborator.Name</td>
+                        <td>@collaborator.Email</td>
+                        <td>
+                            <a asp-action="Update" asp-route-id="@collaborator.Id" class="btn btn-primary">Editar</a>
+                            <a asp-action="Delete" asp-route-id="@collaborator.Id" class="btn btn-danger">Remover</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+}
+else
+{
+    <p>Nenhum colaborador cadastrado.</p>
+}
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

@@ -22,14 +22,14 @@ namespace LojaVirtual.Libraries.Lang {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Message {
+    public class Menssage {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Message() {
+        internal Menssage() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace LojaVirtual.Libraries.Lang {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LojaVirtual.Libraries.Lang.Message", typeof(Message).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LojaVirtual.Libraries.Lang.Menssage", typeof(Menssage).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -102,6 +102,42 @@ namespace LojaVirtual.Libraries.Lang {
         public static string MSG_E005 {
             get {
                 return ResourceManager.GetString("MSG_E005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a As senhas estão diferentes!.
+        /// </summary>
+        public static string MSG_E006 {
+            get {
+                return ResourceManager.GetString("MSG_E006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Registro cadastrado com sucesso!.
+        /// </summary>
+        public static string MSG_S001 {
+            get {
+                return ResourceManager.GetString("MSG_S001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Registro excluido com sucesso!.
+        /// </summary>
+        public static string MSG_S002 {
+            get {
+                return ResourceManager.GetString("MSG_S002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Registro atualizado com sucesso!.
+        /// </summary>
+        public static string MSG_S003 {
+            get {
+                return ResourceManager.GetString("MSG_S003", resourceCulture);
             }
         }
     }
