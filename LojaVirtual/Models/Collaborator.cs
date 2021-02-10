@@ -15,26 +15,24 @@ namespace LojaVirtual.Models
 
 
         [Display(Name = "Nome")]
-        [Required(ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E005")]
-        [MinLength(4, ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E002")]
+        [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
+        [MinLength(4, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E002")]
         public string Name { get; set; }
 
 
         [Display(Name = "E-mail")]
-        [Required(ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E005")]
-        [MinLength(4, ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E002")]
+        [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
+        [MinLength(4, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E002")]
         public string Email { get; set; }
         
         
         [Display(Name = "Senha")]
-        [Required(ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E005")]
-        [MinLength(4, ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E002")]
+        [MinLength(4, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E002")]
         public string Password { get; set; }
 
         [Display(Name = "Confirmação de senha")]
         [NotMapped]
-        [Required(ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E005")]
-        [Compare("Password", ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E006")]
+        [Compare("Password", ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E006")]
         public string PasswordConfirmation { get; set;}
 
 

@@ -22,14 +22,14 @@ namespace LojaVirtual.Libraries.Lang {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Menssage {
+    public class Message {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Menssage() {
+        internal Message() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace LojaVirtual.Libraries.Lang {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LojaVirtual.Libraries.Lang.Menssage", typeof(Menssage).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LojaVirtual.Libraries.Lang.Message", typeof(Message).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -138,6 +138,15 @@ namespace LojaVirtual.Libraries.Lang {
         public static string MSG_S003 {
             get {
                 return ResourceManager.GetString("MSG_S003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Nova senha gerada e enviada com sucesso!.
+        /// </summary>
+        public static string MSG_S004 {
+            get {
+                return ResourceManager.GetString("MSG_S004", resourceCulture);
             }
         }
     }

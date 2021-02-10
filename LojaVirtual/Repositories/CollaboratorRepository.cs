@@ -45,6 +45,19 @@ namespace LojaVirtual.Repositories
         public void Update(Collaborator collaborator)
         {
             _database.Update(collaborator);
+            _database.Entry(collaborator).Property(a => a.Password).IsModified = false;
+
+            _database.SaveChanges();
+        }
+
+
+        public void UpdatePassword(Collaborator collaborator)
+        {
+            _database.Update(collaborator);
+            _database.Entry(collaborator).Property(a => a.Name).IsModified = false;
+            _database.Entry(collaborator).Property(a => a.Email).IsModified = false;
+            _database.Entry(collaborator).Property(a => a.Position).IsModified = false;
+
             _database.SaveChanges();
         }
 
@@ -62,5 +75,7 @@ namespace LojaVirtual.Repositories
             Collaborator colaborator = _database.Collaborators.Where(x => x.Email == Email && x.Password == Password).FirstOrDefault();
             return colaborator;
         }
+
+       
     }
 }

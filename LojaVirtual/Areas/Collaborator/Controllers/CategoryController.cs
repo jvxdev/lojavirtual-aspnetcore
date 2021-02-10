@@ -47,7 +47,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             {
                 _categoryRepository.Create(category);
 
-                TempData["MSG_S"] = Menssage.MSG_S001;
+                TempData["MSG_S"] = Message.MSG_S001;
 
                 return RedirectToAction(nameof(Index));
             }
@@ -72,7 +72,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             {
                 _categoryRepository.Update(category);
 
-                TempData["MSG_S"] = Menssage.MSG_S003;
+                TempData["MSG_S"] = Message.MSG_S003;
 
                 return RedirectToAction(nameof(Index));
             }
@@ -86,7 +86,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         {
             _categoryRepository.Delete(Id);
 
-            TempData["MSG_S"] = Menssage.MSG_S002;
+            TempData["MSG_S"] = Message.MSG_S002;
 
             return RedirectToAction(nameof(Index));
         }

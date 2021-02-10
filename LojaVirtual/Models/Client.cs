@@ -14,39 +14,39 @@ namespace LojaVirtual.Models
 
 
         [Display(Name = "Nome")]
-        [Required(ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E005")]
-        [MinLength(4, ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E002")]
+        [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
+        [MinLength(4, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E002")]
         public string Name { get; set; }
 
 
         [Display(Name = "Data de nascimento")]
-        [Required(ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E005")]
+        [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
         public DateTime? BirthDate { get; set; }
 
 
         [Display(Name = "Sexo")]
-        [Required(ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E005")]
+        [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
         public string Sex { get; set; }
 
 
-        [Required(ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E005")]
-        [MinLength(11, ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E002")]
+        [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
+        [MinLength(11, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E002")]
         public string CPF { get; set; }
 
 
         [Display(Name = "Telefone")]
-        [Required(ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E005")]
-        [MinLength(11, ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E002")]
+        [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
+        [MinLength(11, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E002")]
         public string Phone { get; set; }
 
 
-        [Required(ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E005")]
-        [EmailAddress(ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E004")]
+        [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
+        [EmailAddress(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E004")]
         public string Email { get; set; }
 
 
         [Display(Name = "Senha")]
-        [Required(ErrorMessageResourceType = typeof(Menssage), ErrorMessageResourceName = "MSG_E005")]
+        [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
         public string Password { get; set; }
     }
 }

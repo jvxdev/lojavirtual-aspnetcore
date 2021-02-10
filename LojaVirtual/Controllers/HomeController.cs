@@ -20,13 +20,15 @@ namespace LojaVirtual.Controllers
         private IClientRepository _clientRepository;
         private INewsletterRepository _newsletterRepository;
         private ClientLogin _clientLogin;
+        private EmailManage _emailManage;
 
 
-        public HomeController(IClientRepository clientRepository, INewsletterRepository newsletterRepository, ClientLogin clientLogin)
+        public HomeController(IClientRepository clientRepository, INewsletterRepository newsletterRepository, ClientLogin clientLogin, EmailManage emailManage)
         {
             _clientRepository = clientRepository;
             _newsletterRepository = newsletterRepository;
             _clientLogin = clientLogin;
+            _emailManage = emailManage;
         }
 
 
@@ -151,7 +153,7 @@ namespace LojaVirtual.Controllers
 
                 if (isValid)
                 {
-                    EmailContact.Contact(contact);
+                    _emailManage.NewEmail(contact);
 
                     ViewData["MSG_S"] = "Mensagem enviada com sucesso!";
                 } 
@@ -172,12 +174,6 @@ namespace LojaVirtual.Controllers
                 ViewData["MSG_E"] = "Algo de errado aconteceu... Tente novamente mais tarde!";
             }
             return View("Contact");
-        }
-
-
-        public IActionResult Read()
-        {
-            return View();
         }
     }
 }

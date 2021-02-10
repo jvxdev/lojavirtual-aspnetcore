@@ -1,4 +1,6 @@
-﻿using LojaVirtual.Libraries.Lang;
+﻿using LojaVirtual.Libraries.Email;
+using LojaVirtual.Libraries.Lang;
+using LojaVirtual.Libraries.Text;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -14,11 +16,13 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
     public class CollaboratorController : Controller
     {
         private ICollaboratorRepository _collaboratorRepository;
+        private EmailManage _emailManage;
 
 
-        public CollaboratorController(ICollaboratorRepository collaboratorRepository)
+        public CollaboratorController(ICollaboratorRepository collaboratorRepository, EmailManage emailManage)
         {
             _collaboratorRepository = collaboratorRepository;
+            _emailManage = emailManage;
         }
 
 
@@ -41,12 +45,15 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         [HttpPost]
         public IActionResult Register([FromForm] Models.Collaborator collaborator)
         {
+            ModelState.Remove("Password");
+
             if (ModelState.IsValid)
             {
                 collaborator.Position = "C";
+                collaborator.Password = KeyGenerator.GetUniqueKey(8);
                 _collaboratorRepository.Create(collaborator);
 
-                TempData["MSG_S"] = Menssage.MSG_S001;
+                TempData["MSG_S"] = Message.MSG_S001;
 
                 return RedirectToAction(nameof(Index));
             }
@@ -65,11 +72,13 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         [HttpPost]
         public IActionResult Update([FromForm] Models.Collaborator collaborator, int Id)
         {
+            ModelState.Remove("Password");
+
             if (ModelState.IsValid)
             {
                 _collaboratorRepository.Update(collaborator);
 
-                TempData["MSG_S"] = Menssage.MSG_S003;
+                TempData["MSG_S"] = Message.MSG_S003;
 
                 return RedirectToAction(nameof(Index));
             }
@@ -78,11 +87,26 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
 
         [HttpGet]
+        public IActionResult NewPasswordGenerator(int Id)
+        {
+            Models.Collaborator collaborator =_collaboratorRepository.Read(Id);
+            collaborator.Password = KeyGenerator.GetUniqueKey(8);
+            _collaboratorRepository.UpdatePassword(collaborator);
+
+            _emailManage.NewPasswordEmail(collaborator);
+
+            TempData["MSG_S"] = Message.MSG_S004;
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        [HttpGet]
         public IActionResult Delete(int Id)
         {
             _collaboratorRepository.Delete(Id);
 
-            TempData["MSG_S"] = Menssage.MSG_S002;
+            TempData["MSG_S"] = Message.MSG_S002;
 
             return RedirectToAction(nameof(Index));
         }
