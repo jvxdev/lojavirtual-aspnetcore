@@ -1,18 +1,15 @@
 ﻿using LojaVirtual.Libraries.Email;
+using LojaVirtual.Libraries.Filters;
 using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Libraries.Text;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using X.PagedList;
 
 namespace LojaVirtual.Areas.Collaborator.Controllers
 {
     [Area("Collaborator")]
+    [CollaboratorAuthorization("G")]
     public class CollaboratorController : Controller
     {
         private ICollaboratorRepository _collaboratorRepository;
