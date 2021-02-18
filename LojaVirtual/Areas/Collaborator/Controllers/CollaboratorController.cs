@@ -23,7 +23,6 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         }
 
 
-        [HttpGet]
         public IActionResult Index(int? page)
         {
             IPagedList<Models.Collaborator> collaborators = _collaboratorRepository.ReadAll(page);
@@ -84,6 +83,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
 
         [HttpGet]
+        [HttpReferer]
         public IActionResult NewPasswordGenerator(int Id)
         {
             Models.Collaborator collaborator =_collaboratorRepository.Read(Id);
@@ -99,6 +99,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
 
         [HttpGet]
+        [HttpReferer]
         public IActionResult Delete(int Id)
         {
             _collaboratorRepository.Delete(Id);

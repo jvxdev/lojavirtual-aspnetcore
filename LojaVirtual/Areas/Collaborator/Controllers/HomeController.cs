@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Libraries.Filters;
+using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Libraries.Login;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace LojaVirtual.Areas.Collaborator.Controllers
 {
+    [Area("Collaborator")]
     public class HomeController : Controller
     {
         private ICollaboratorRepository _collaboratorRepository;
@@ -22,7 +24,6 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         }
 
 
-        [Area("Collaborator")]
         [HttpGet]
         public IActionResult Login()
         {
@@ -30,7 +31,6 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         }
 
 
-        [Area("Collaborator")]
         [HttpGet]
         public IActionResult Register()
         {
@@ -38,7 +38,6 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         }
 
 
-        [Area("Collaborator")]
         [HttpPost]
         public IActionResult Register([FromForm] Models.Collaborator collaborator)
         {
@@ -46,7 +45,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             {
                 _collaboratorRepository.Create(collaborator);
 
-                TempData["MSG_S"] = "Cadastro realizado com sucesso! Entre com a sua nova conta!";
+                TempData["MSG_S"] = Message.MSG_S005;
 
                 return RedirectToAction(nameof(Login));
             }
@@ -54,7 +53,6 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         }
 
 
-        [Area("Collaborator")]
         [HttpPost]
         public IActionResult Login([FromForm] Models.Collaborator collaborator)
         {
@@ -75,8 +73,8 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         }
 
 
-        [Area("Collaborator")]
         [CollaboratorAuthorization]
+        [HttpReferer]
         public IActionResult Logout()
         {
             _collaboratorLogin.Logout();
@@ -85,7 +83,6 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         }
 
 
-        [Area("Collaborator")]
         [CollaboratorAuthorization]
         public IActionResult Panel()
         {

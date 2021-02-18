@@ -147,4 +147,7 @@
   <data name="MSG_S004" xml:space="preserve">
     <value>Nova senha gerada e enviada com sucesso!</value>
   </data>
+  <data name="MSG_S005" xml:space="preserve">
+    <value>Cadastro realizado com sucesso!</value>
+  </data>
 </root>
