@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Libraries.Lang;
+using LojaVirtual.Libraries.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -21,18 +22,16 @@ namespace LojaVirtual.Models
 
 
         [Display(Name = "E-mail")]
-        [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
-        [MinLength(4, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E002")]
+        [UniqueEmail]
         public string Email { get; set; }
         
         
         [Display(Name = "Senha")]
-        [MinLength(4, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E002")]
         public string Password { get; set; }
+
 
         [Display(Name = "Confirmação de senha")]
         [NotMapped]
-        [Compare("Password", ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E006")]
         public string PasswordConfirmation { get; set;}
 
 

@@ -17,6 +17,7 @@ namespace LojaVirtual.Repositories.Contracts
 
         IPagedList<Collaborator> ReadAll(int? page);
 
+        List<Collaborator> GetCollaboratorEmail(string email);
 
         void UpdatePassword(Collaborator collaborator);
 

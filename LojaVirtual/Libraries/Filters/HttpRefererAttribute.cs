@@ -8,7 +8,12 @@ using System.Threading.Tasks;
 namespace LojaVirtual.Libraries.Filters
 {
     public class HttpRefererAttribute : Attribute, IActionFilter
-    { 
+    {
+        public void OnActionExecuted(ActionExecutedContext context)
+        {
+            throw new NotImplementedException();
+        }
+
         public void OnActionExecuting(ActionExecutingContext context)
         {
             string referer = context.HttpContext.Request.Headers["Referer"].ToString();
@@ -29,12 +34,6 @@ namespace LojaVirtual.Libraries.Filters
                     context.Result = new ContentResult() { Content = "Você não tem permissão para acessar esta página." };
                 }
             }
-        }
-
-
-        public void OnActionExecuted(ActionExecutedContext context)
-        {
-            throw new NotImplementedException();
         }
     }
 }

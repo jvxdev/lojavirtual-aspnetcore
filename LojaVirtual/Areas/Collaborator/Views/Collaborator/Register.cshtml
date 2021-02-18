@@ -1,13 +1,12 @@
 ﻿@model LojaVirtual.Models.Collaborator
 
 @{
-    ViewData["Title"] = "Cadastrar novo colaborator";
+    ViewData["Title"] = "Cadastrar novo colaborador";
 }
 
-<h1 class="my-4">Cadastrar novo registro</h1>
+<h1 class="my-4">Cadastrar novo colaborador</h1>
 
 <form method="post">
-    <div asp-validation-summary="All"></div>
     <div class="form-group">
         <label asp-for="Name" class="form-label"></label>
         <input asp-for="Name" class="form-control" placeholder="Digite o nome">

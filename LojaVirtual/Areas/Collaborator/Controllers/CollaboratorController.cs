@@ -99,7 +99,6 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
 
         [HttpGet]
-        [HttpReferer]
         public IActionResult Delete(int Id)
         {
             _collaboratorRepository.Delete(Id);

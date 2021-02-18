@@ -1,6 +1,7 @@
 ﻿using LojaVirtual.Database;
 using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,12 @@ namespace LojaVirtual.Repositories
         public Collaborator Read(int Id)
         {
             return _database.Collaborators.Find(Id);
+        }
+
+
+        public List<Collaborator> GetCollaboratorEmail(string email)
+        {
+            return _database.Collaborators.Where(a => a.Email == email).AsNoTracking().ToList();
         }
 
 
