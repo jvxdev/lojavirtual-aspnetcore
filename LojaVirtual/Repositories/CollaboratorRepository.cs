@@ -1,5 +1,6 @@
 ﻿using LojaVirtual.Database;
 using LojaVirtual.Models;
+using LojaVirtual.Models.Const;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +14,7 @@ namespace LojaVirtual.Repositories
     {
         private IConfiguration _conf;
         private LojaVirtualContext _database;
+
 
         public CollaboratorRepository(LojaVirtualContext database, IConfiguration configuration)
         {
@@ -45,7 +47,7 @@ namespace LojaVirtual.Repositories
             int registryPerPage = _conf.GetValue<int>("registryPerPage");
             int pageNumber = page ?? 1;
 
-            return _database.Collaborators.Where(a => a.Position != "G").ToPagedList<Collaborator>(pageNumber, registryPerPage);
+            return _database.Collaborators.Where(a => a.Position != CollaboratorPositionConst.Manager).ToPagedList<Collaborator>(pageNumber, registryPerPage);
         }
 
 

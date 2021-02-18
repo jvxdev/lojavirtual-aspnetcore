@@ -20,21 +20,28 @@ using LojaVirtual.Models;
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\intheclouds\Documents\lojavirtual-aspnetcore\LojaVirtual\Areas\Collaborator\Views\_ViewImports.cshtml"
-using X.PagedList.Mvc.Core;
+#line 4 "C:\Users\intheclouds\Documents\lojavirtual-aspnetcore\LojaVirtual\Areas\Collaborator\Views\_ViewImports.cshtml"
+using LojaVirtual.Models.Const;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 6 "C:\Users\intheclouds\Documents\lojavirtual-aspnetcore\LojaVirtual\Areas\Collaborator\Views\_ViewImports.cshtml"
+using X.PagedList.Mvc.Core;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "C:\Users\intheclouds\Documents\lojavirtual-aspnetcore\LojaVirtual\Areas\Collaborator\Views\_ViewImports.cshtml"
 using X.PagedList;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4d352a1043993a4803502b634b0981c3b412a7fa", @"/Areas/Collaborator/Views/Home/Login.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"588cc0c4ce1058679dea8b5f8d085b84844d5328", @"/Areas/Collaborator/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f9694f54ed8c1dea27e98148d52653a17afc4d7e", @"/Areas/Collaborator/Views/_ViewImports.cshtml")]
     public class Areas_Collaborator_Views_Home_Login : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Collaborator>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("float-right btn btn-outline-primary"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -90,7 +97,7 @@ using X.PagedList;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n<main role=\"main\">\r\n    <br />\r\n    <br />\r\n    <section class=\"container my-5\">\r\n        <aside class=\"col-sm-5 center\">\r\n            <div class=\"card\">\r\n                <article class=\"card-body\">\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4d352a1043993a4803502b634b0981c3b412a7fa9235", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4d352a1043993a4803502b634b0981c3b412a7fa9459", async() => {
                 WriteLiteral("Criar conta");
             }
             );
@@ -134,9 +141,9 @@ using X.PagedList;
 #line hidden
 #nullable disable
             WriteLiteral("                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4d352a1043993a4803502b634b0981c3b412a7fa11692", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4d352a1043993a4803502b634b0981c3b412a7fa11916", async() => {
                 WriteLiteral("\r\n                        <div class=\"form-group\">\r\n                            <label for=\"email\">E-mail</label>\r\n                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4d352a1043993a4803502b634b0981c3b412a7fa12100", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4d352a1043993a4803502b634b0981c3b412a7fa12324", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -170,7 +177,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                             <a class=""float-right"" href=""#"">Esqueceu sua senha?</a>
                             <label for=""password"">Senha</label>
                             ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4d352a1043993a4803502b634b0981c3b412a7fa14682", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4d352a1043993a4803502b634b0981c3b412a7fa14906", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -224,7 +231,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
 #line hidden
 #nullable disable
                 WriteLiteral("                        <div class=\"form-group\">\r\n                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4d352a1043993a4803502b634b0981c3b412a7fa18074", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4d352a1043993a4803502b634b0981c3b412a7fa18298", async() => {
                     WriteLiteral(" Entrar ");
                 }
                 );

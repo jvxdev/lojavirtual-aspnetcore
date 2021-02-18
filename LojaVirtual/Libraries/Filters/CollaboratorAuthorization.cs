@@ -1,5 +1,6 @@
 ﻿using LojaVirtual.Libraries.Login;
 using LojaVirtual.Models;
+using LojaVirtual.Models.Const;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
@@ -10,7 +11,8 @@ namespace LojaVirtual.Libraries.Filters
     {
         private string _authorizedCollaborator;
 
-        public CollaboratorAuthorization(string AuthorizedCollaborator = "C")
+
+        public CollaboratorAuthorization(string AuthorizedCollaborator = CollaboratorPositionConst.Commun)
         {
             _authorizedCollaborator = AuthorizedCollaborator;
         }
@@ -22,7 +24,7 @@ namespace LojaVirtual.Libraries.Filters
 
             _colaboratorLogin = (CollaboratorLogin)context.HttpContext.RequestServices.GetService(typeof(CollaboratorLogin));
 
-            Collaborator collaborator = _colaboratorLogin.getCollaborator();
+            Collaborator collaborator = _colaboratorLogin.GetCollaborator();
 
             if (collaborator == null)
             
@@ -31,7 +33,7 @@ namespace LojaVirtual.Libraries.Filters
             }
             else
             {
-                if(collaborator.Position == "C" && _authorizedCollaborator == "G")
+                if(collaborator.Position == CollaboratorPositionConst.Commun && _authorizedCollaborator == CollaboratorPositionConst.Manager)
                 {
                     context.Result = new ForbidResult();
                 }

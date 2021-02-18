@@ -12,6 +12,7 @@ namespace LojaVirtual.Libraries.Login
         private string Key = "Collaborator.Login";
         private Session.Session _session;
 
+
         public CollaboratorLogin(Session.Session session)
         {
             _session = session;
@@ -25,7 +26,7 @@ namespace LojaVirtual.Libraries.Login
             _session.Create(Key, colaboratorJson);
         }
 
-        public Collaborator getCollaborator()
+        public Collaborator GetCollaborator()
         {
             if (_session.Exist(Key))
             {

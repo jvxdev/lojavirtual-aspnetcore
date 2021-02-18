@@ -2,6 +2,7 @@
 using LojaVirtual.Libraries.Filters;
 using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Libraries.Text;
+using LojaVirtual.Models.Const;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
@@ -9,7 +10,7 @@ using X.PagedList;
 namespace LojaVirtual.Areas.Collaborator.Controllers
 {
     [Area("Collaborator")]
-    [CollaboratorAuthorization("G")]
+    [CollaboratorAuthorization(CollaboratorPositionConst.Manager)]
     public class CollaboratorController : Controller
     {
         private ICollaboratorRepository _collaboratorRepository;
@@ -45,7 +46,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
             if (ModelState.IsValid)
             {
-                collaborator.Position = "C";
+                collaborator.Position = CollaboratorPositionConst.Commun;
                 collaborator.Password = KeyGenerator.GetUniqueKey(8);
                 _collaboratorRepository.Create(collaborator);
 
@@ -61,6 +62,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         public IActionResult Update(int Id)
         {
             var categoria = _collaboratorRepository.Read(Id);
+
             return View(categoria);
         }
 
@@ -87,7 +89,9 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         public IActionResult NewPasswordGenerator(int Id)
         {
             Models.Collaborator collaborator =_collaboratorRepository.Read(Id);
+
             collaborator.Password = KeyGenerator.GetUniqueKey(8);
+
             _collaboratorRepository.UpdatePassword(collaborator);
 
             _emailManage.NewPasswordEmail(collaborator);
@@ -99,6 +103,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
 
         [HttpGet]
+        [HttpReferer]
         public IActionResult Delete(int Id)
         {
             _collaboratorRepository.Delete(Id);

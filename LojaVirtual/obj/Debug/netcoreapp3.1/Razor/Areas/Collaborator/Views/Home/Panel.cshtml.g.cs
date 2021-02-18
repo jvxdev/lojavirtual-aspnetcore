@@ -20,21 +20,28 @@ using LojaVirtual.Models;
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\intheclouds\Documents\lojavirtual-aspnetcore\LojaVirtual\Areas\Collaborator\Views\_ViewImports.cshtml"
-using X.PagedList.Mvc.Core;
+#line 4 "C:\Users\intheclouds\Documents\lojavirtual-aspnetcore\LojaVirtual\Areas\Collaborator\Views\_ViewImports.cshtml"
+using LojaVirtual.Models.Const;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 6 "C:\Users\intheclouds\Documents\lojavirtual-aspnetcore\LojaVirtual\Areas\Collaborator\Views\_ViewImports.cshtml"
+using X.PagedList.Mvc.Core;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "C:\Users\intheclouds\Documents\lojavirtual-aspnetcore\LojaVirtual\Areas\Collaborator\Views\_ViewImports.cshtml"
 using X.PagedList;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7aa01078a7ba5a8ec60f34e70c609e98b38644bc", @"/Areas/Collaborator/Views/Home/Panel.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"588cc0c4ce1058679dea8b5f8d085b84844d5328", @"/Areas/Collaborator/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f9694f54ed8c1dea27e98148d52653a17afc4d7e", @"/Areas/Collaborator/Views/_ViewImports.cshtml")]
     public class Areas_Collaborator_Views_Home_Panel : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998
