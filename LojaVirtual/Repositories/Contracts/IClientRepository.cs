@@ -15,7 +15,7 @@ namespace LojaVirtual.Repositories.Contracts
         Client Read(int Id);
 
 
-        IPagedList<Client> ReadAll(int? page);
+        IPagedList<Client> ReadAll(int? Page, string Search);
 
 
         void Update(Client client);

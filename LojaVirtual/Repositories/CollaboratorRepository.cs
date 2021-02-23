@@ -84,7 +84,5 @@ namespace LojaVirtual.Repositories
             Collaborator colaborator = _database.Collaborators.Where(x => x.Email == Email && x.Password == Password).FirstOrDefault();
             return colaborator;
         }
-
-       
     }
 }

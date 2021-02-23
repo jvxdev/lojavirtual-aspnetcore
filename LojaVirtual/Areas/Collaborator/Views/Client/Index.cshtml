@@ -2,9 +2,21 @@
 
 @{
     ViewData["Title"] = "Clientes";
+    var Search = Context.Request.Query["Search"];
 }
 
 <h1 class="my-4">Clientes</h1>
+
+<form method="get">
+    <div class="form-group">
+        <label for="Search" class="form-label"></label>
+        <input type="text" for="Search" name="Search" value="@Search" id="Search" class="form-control" placeholder="Digite o nome ou e-mail do cliente.">
+    </div>
+    <button type="submit" class="btn btn-primary">Pesquisar</button>
+</form>
+
+<br />
+<br />
 
 @if (TempData["MSG_S"] != null)
 {
@@ -53,4 +65,4 @@ else
     <p>Nenhum cliente cadastrado.</p>
 }
 
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page = Page, Search = Search }))

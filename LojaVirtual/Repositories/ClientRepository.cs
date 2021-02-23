@@ -36,12 +36,20 @@ namespace LojaVirtual.Repositories.Contracts
         }
 
 
-        public IPagedList<Client> ReadAll(int? page)
+        public IPagedList<Client> ReadAll(int? Page, string Search)
         {
             int registryPerPage = _conf.GetValue<int>("registryPerPage");
-            int pageNumber = page ?? 1;
+            int pageNumber = Page ?? 1;
 
-            return _database.Clients.ToPagedList<Client>(pageNumber, registryPerPage);       }
+            var databaseClient = _database.Clients.AsQueryable();
+
+            if (!string.IsNullOrEmpty(Search))
+            {
+                databaseClient = databaseClient.Where(a => a.Name.Contains(Search.Trim()) || a.Email.Contains(Search.Trim()));
+            }
+
+            return databaseClient.ToPagedList<Client>(pageNumber, registryPerPage);       
+        }
 
 
         public void Update(Client client)

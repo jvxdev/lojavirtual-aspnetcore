@@ -25,9 +25,9 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         }
 
 
-        public IActionResult Index(int? page)
+        public IActionResult Index(int? Page, string Search)
         {
-            IPagedList<Client> clients = _clientRepository.ReadAll(page);
+            IPagedList<Client> clients = _clientRepository.ReadAll(Page, Search);
             return View(clients);
         }
 

@@ -24,9 +24,9 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         }
 
 
-        public IActionResult Index(int? page)
+        public IActionResult Index(int? Page)
         {
-            IPagedList<Models.Collaborator> collaborators = _collaboratorRepository.ReadAll(page);
+            IPagedList<Models.Collaborator> collaborators = _collaboratorRepository.ReadAll(Page);
 
             return View(collaborators);
         }
