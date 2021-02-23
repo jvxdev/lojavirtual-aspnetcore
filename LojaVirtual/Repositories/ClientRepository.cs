@@ -1,19 +1,24 @@
 ﻿using LojaVirtual.Database;
 using LojaVirtual.Models;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace LojaVirtual.Repositories.Contracts
 {
     public class ClientRepository : IClientRepository
     {
         private LojaVirtualContext _database;
+        private IConfiguration _conf;
 
-        public ClientRepository(LojaVirtualContext database)
+
+        public ClientRepository(LojaVirtualContext database, IConfiguration conf)
         {
             _database = database;
+            _conf = conf;
         }
 
     
@@ -31,10 +36,12 @@ namespace LojaVirtual.Repositories.Contracts
         }
 
 
-        public IEnumerable<Client> ReadAll()
+        public IPagedList<Client> ReadAll(int? page)
         {
-            return _database.Clients.ToList();
-        }
+            int registryPerPage = _conf.GetValue<int>("registryPerPage");
+            int pageNumber = page ?? 1;
+
+            return _database.Clients.ToPagedList<Client>(pageNumber, registryPerPage);       }
 
 
         public void Update(Client client)

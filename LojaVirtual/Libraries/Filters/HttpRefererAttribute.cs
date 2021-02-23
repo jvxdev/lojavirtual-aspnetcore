@@ -7,13 +7,8 @@ using System.Threading.Tasks;
 
 namespace LojaVirtual.Libraries.Filters
 {
-    public class HttpRefererAttribute : Attribute, IActionFilter
+    public class HttpRefererAttribute : Attribute
     {
-        public void OnActionExecuted(ActionExecutedContext context)
-        {
-            throw new NotImplementedException();
-        }
-
         public void OnActionExecuting(ActionExecutingContext context)
         {
             string referer = context.HttpContext.Request.Headers["Referer"].ToString();

@@ -12,8 +12,8 @@ namespace LojaVirtual.Repositories
 {
     public class CollaboratorRepository : ICollaboratorRepository
     {
-        private IConfiguration _conf;
         private LojaVirtualContext _database;
+        private IConfiguration _conf;
 
 
         public CollaboratorRepository(LojaVirtualContext database, IConfiguration configuration)

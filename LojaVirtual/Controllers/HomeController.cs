@@ -104,7 +104,7 @@ namespace LojaVirtual.Controllers
         [ClientAuthorization]
         public IActionResult Panel()
         {
-            return new ContentResult() { Content = "Seja bem-vindo ao Painel do Cliente!" };
+            return View();
         }
 
 

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -48,5 +49,14 @@ namespace LojaVirtual.Models
         [Display(Name = "Senha")]
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
         public string Password { get; set; }
+
+
+        [Display(Name = "Confirmação de senha")]
+        [NotMapped]
+        public string PasswordConfirmation { get; set; }
+
+
+        [Display(Name = "Situação da conta")]
+        public string Situation { get; set; }
     }
 }

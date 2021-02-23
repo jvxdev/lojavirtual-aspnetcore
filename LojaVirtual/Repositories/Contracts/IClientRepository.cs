@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace LojaVirtual.Repositories.Contracts
 {
@@ -14,7 +15,7 @@ namespace LojaVirtual.Repositories.Contracts
         Client Read(int Id);
 
 
-        IEnumerable<Client> ReadAll();
+        IPagedList<Client> ReadAll(int? page);
 
 
         void Update(Client client);
