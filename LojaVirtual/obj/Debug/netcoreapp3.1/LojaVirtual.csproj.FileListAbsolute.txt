@@ -663,3 +663,4 @@ C:\Users\intheclouds\Documents\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netc
 C:\Users\intheclouds\Documents\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Collaborator\Views\Collaborator\Update.cshtml.g.cs
 C:\Users\intheclouds\Documents\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.Libraries.Lang.Message.resources
 C:\Users\intheclouds\Documents\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Collaborator\Views\Client\Index.cshtml.g.cs
+C:\Users\intheclouds\Documents\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Collaborator\Views\Product\Index.cshtml.g.cs

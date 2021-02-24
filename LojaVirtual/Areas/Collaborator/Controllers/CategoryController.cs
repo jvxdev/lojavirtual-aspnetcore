@@ -25,9 +25,9 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         }
 
 
-        public IActionResult Index(int? page)
+        public IActionResult Index(int? Page)
         {
-            var categories = _categoryRepository.ReadAll(page);
+            var categories = _categoryRepository.ReadAll(Page);
             return View(categories);
         }
 

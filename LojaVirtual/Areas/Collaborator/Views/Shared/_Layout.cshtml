@@ -72,27 +72,27 @@
                                 Categorias
                             </a>
                         </li>
-
-                        @if (collaborator.GetCollaborator().Position == CollaboratorPositionConst.Manager)
-                        { 
                         <li class="nav-item">
-                            <a class="nav-link" asp-action="Index" asp-controller="Collaborator">
-                                <span data-feather="users"></span>
-                                Colaboradores
+                            <a class="nav-link" asp-action="Index" asp-controller="Product">
+                                <span data-feather="layers"></span>
+                                Produtos
                             </a>
                         </li>
+
+                        @if (collaborator.GetCollaborator() != null && collaborator.GetCollaborator().Position == CollaboratorPositionConst.Manager)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-action="Index" asp-controller="Collaborator">
+                                    <span data-feather="users"></span>
+                                    Colaboradores
+                                </a>
+                            </li>
                         }
 
                         <li class="nav-item">
                             <a class="nav-link" asp-action="Index" asp-controller="Client">
                                 <span data-feather="users"></span>
                                 Clientes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="layers"></span>
-                                Integrations
                             </a>
                         </li>
                     </ul>

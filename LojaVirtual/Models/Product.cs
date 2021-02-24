@@ -48,11 +48,10 @@ namespace LojaVirtual.Models
         public int CategoryId { get; set; }
 
 
-        [ForeignKey("CategoryId")]
+        [Display(Name = "Categoria")]
         public virtual Category Category { get; set; }
 
 
-        [Display(Name = "Imagem")]
         public virtual ICollection<Image> Images { get; set; }
     }
 }

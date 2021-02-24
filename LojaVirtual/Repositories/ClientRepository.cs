@@ -15,10 +15,10 @@ namespace LojaVirtual.Repositories.Contracts
         private IConfiguration _conf;
 
 
-        public ClientRepository(LojaVirtualContext database, IConfiguration conf)
+        public ClientRepository(LojaVirtualContext database, IConfiguration configuration)
         {
             _database = database;
-            _conf = conf;
+            _conf = configuration;
         }
 
     
