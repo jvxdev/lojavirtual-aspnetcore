@@ -18,13 +18,13 @@ namespace LojaVirtual.Repositories.Contracts
 
         public void Create(NewsletterEmail newsletter)
         {
-            _database.NewsletterEmails.Add(newsletter);
+            _database.Newsletter.Add(newsletter);
             _database.SaveChanges();
         }
 
         public IEnumerable<NewsletterEmail> ReadAll()
         {
-            return _database.NewsletterEmails.ToList();
+            return _database.Newsletter.ToList();
         }
     }
 }

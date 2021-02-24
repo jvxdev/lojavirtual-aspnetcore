@@ -17,12 +17,18 @@ namespace LojaVirtual.Database
         public DbSet<Client> Clients { get; set; }
 
 
-        public DbSet<NewsletterEmail> NewsletterEmails { get; set; }
+        public DbSet<NewsletterEmail> Newsletter { get; set; }
 
 
         public DbSet<Collaborator> Collaborators { get; set; }
 
 
         public DbSet<Category> Categories { get; set; }
+
+
+        public DbSet<Product> Products { get; set; }
+
+
+        public DbSet<Image> Images { get; set; }
     }
 }
