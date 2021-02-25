@@ -43,7 +43,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         [HttpPost]
         public IActionResult Register([FromForm] Category category)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _categoryRepository.Create(category);
 

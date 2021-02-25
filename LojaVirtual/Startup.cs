@@ -44,6 +44,8 @@ namespace LojaVirtual
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IImageRepository, ImageRepository>();
 
+            services.AddRazorPages().AddRazorRuntimeCompilation();
+
             /*
              * SMTP
              */
@@ -83,6 +85,7 @@ namespace LojaVirtual
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
             }
             else
             {
@@ -96,6 +99,7 @@ namespace LojaVirtual
             app.UseStaticFiles();
             app.UseSession();
             app.UseMiddleware<AntiForgeryTokenMiddleware>();
+
 
             app.UseRouting();
 
@@ -112,6 +116,8 @@ namespace LojaVirtual
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
         }
     }
 }

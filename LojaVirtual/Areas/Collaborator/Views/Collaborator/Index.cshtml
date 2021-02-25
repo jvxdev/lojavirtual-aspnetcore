@@ -6,12 +6,12 @@
 
 <h1 class="my-4">Colaboradores</h1>
 
-<a asp-action="Register" class="btn btn-success mb-3">Cadastrar novo colaborador</a>
-
 @if (TempData["MSG_S"] != null)
 {
     <p class="alert alert-success">@TempData["MSG_S"]</p>
 }
+
+<a asp-action="Register" class="btn btn-success mb-3">Cadastrar novo colaborador</a>
 
 @if (Model.Count > 0)
 {

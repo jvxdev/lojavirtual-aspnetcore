@@ -1,0 +1,30 @@
+﻿body {
+}
+
+.field-validation-error {
+    margin-top: 2px;
+    color: red;
+    display: block;
+}
+
+div .btn-image {
+    width: 100%;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+div .right-border {
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
+div .left-border {
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+}
+
+.Images div img {
+    width: 100%;
+    text-align: center;
+}
+

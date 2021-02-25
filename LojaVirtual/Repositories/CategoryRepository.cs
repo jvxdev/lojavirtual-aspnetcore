@@ -13,8 +13,8 @@ namespace LojaVirtual.Repositories
 {
     public class CategoryRepository : ICategoryRepository
     {
-        private IConfiguration _conf;
         private LojaVirtualContext _database;
+        private IConfiguration _conf;
 
 
         public CategoryRepository(LojaVirtualContext database, IConfiguration configuration)

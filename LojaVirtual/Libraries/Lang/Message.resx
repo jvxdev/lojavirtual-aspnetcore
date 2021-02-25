@@ -135,6 +135,9 @@
   <data name="MSG_E006" xml:space="preserve">
     <value>As senhas estão diferentes!</value>
   </data>
+  <data name="MSG_E007" xml:space="preserve">
+    <value>O valor enviado não está entre o mínimo ({1}) nem o máximo ({2}) necessários!</value>
+  </data>
   <data name="MSG_S001" xml:space="preserve">
     <value>Registro cadastrado com sucesso!</value>
   </data>

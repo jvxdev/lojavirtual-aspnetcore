@@ -145,7 +145,7 @@ namespace LojaVirtual.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("NewsletterEmails");
+                    b.ToTable("Newsletter");
                 });
 
             modelBuilder.Entity("LojaVirtual.Models.Product", b =>
@@ -162,6 +162,7 @@ namespace LojaVirtual.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Height")
@@ -171,6 +172,7 @@ namespace LojaVirtual.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")

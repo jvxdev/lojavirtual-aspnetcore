@@ -31,7 +31,7 @@ namespace LojaVirtual.Repositories
         public void Delete(int Id)
         {
             Image image = _database.Images.Find(Id);
-            _database.Remove(Id);
+            _database.Remove(image);
             _database.SaveChanges();
         }
 

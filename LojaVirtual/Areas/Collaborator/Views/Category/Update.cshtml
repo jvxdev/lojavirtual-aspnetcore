@@ -1,7 +1,7 @@
 ﻿@model LojaVirtual.Models.Category
 
 @{
-    ViewData["Title"] = "Editar registro";
+    ViewData["Title"] = "Editar categoria";
 }
 
 <h1 class="my-4">Editar registro</h1>
@@ -26,6 +26,6 @@
         <span asp-validation-for="FatherCategoryId" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary">Salvar</button>
-    <button asp-action="Index" class="btn btn-secondary">Voltar</button>
+    <button type="submit" class="btn btn-secondary">Salvar</button>
+    <button asp-action="Index" class="btn btn-primary">Voltar</button>
 </form>
