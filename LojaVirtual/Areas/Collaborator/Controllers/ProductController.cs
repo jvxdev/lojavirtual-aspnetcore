@@ -22,7 +22,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
-        }
+        }   
 
 
         public IActionResult Index(int? Page, string Search)

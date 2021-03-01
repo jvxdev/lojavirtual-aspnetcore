@@ -5,17 +5,17 @@
     var Search = Context.Request.Query["Search"];
 }
 
-<h1 class="my-4">Produtos</h1>
+<h1 class="my-4 display-4">Produtos</h1>
 
 <form method="get">
-    <div class="form-group">
+    <div>
         <label for="Search" class="form-label"></label>
         <input type="text" for="Search" name="Search" value="@Search" id="Search" class="form-control" placeholder="Digite o nome do produto.">
     </div>
-    <button type="submit" class="btn btn-primary">Pesquisar</button>
+    <button type="submit" class="btn btn-primary mt-3">Buscar produto</button>
 </form>
 
-<a asp-action="Register" class="btn btn-success my-4">Cadastrar novo produto</a>
+<a asp-action="Register" class="btn btn-success my-3">Cadastrar novo produto</a>
 
 @if (TempData["MSG_S"] != null)
 {

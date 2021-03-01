@@ -1,10 +1,10 @@
 ﻿@model LojaVirtual.Models.Product
 
 @{
-    ViewData["Title"] = "Cadastrar novo produto";
+    ViewData["Title"] = "Cadastrar produto";
 }
 
-<h1 class="my-4">Cadastrar novo produto</h1>
+<h1 class="my-4 display-4">Cadastrar produto</h1>
 
 <form method="post">
     <div class="row">
@@ -92,11 +92,13 @@
     <h3 class="my-3">Imagens do produto</h3>
 
     <div class="row Images">
-        @for (int i = 0; i < 8; i++)
+        @for (int i = 0; i < 12; i++)
         {
         <div class="col-md-3 my-3">
-            <img src="~/img/image-example.png" class="img-product img-thumbnail"/>
-            <div class="btn btn-danger btn-image mt-0">APAGAR</div>
+            <input type="file" class="input-upload"/>
+            <img src="~/img/img-example.png" class="img-upload"/>
+            <div class="btn btn-danger btn-delete-image btn-hidden">APAGAR</div>
+            <input type="text" name="image" value="" />
         </div>
         }
     </div>

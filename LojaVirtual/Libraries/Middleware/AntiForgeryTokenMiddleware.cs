@@ -22,10 +22,14 @@ namespace LojaVirtual.Libraries.Middleware
 
         public async Task Invoke(HttpContext context)
         {
-            if (HttpMethods.IsPost(context.Request.Method))
+            var Header = context.Request.Headers["x-requested-with"];
+            bool Ajax = (Header == "XMLHttpRequest");
+
+            if (HttpMethods.IsPost(context.Request.Method) && !(context.Request.Form.Files.Count == 1 && Ajax))
             {
-                await _antiforgery.ValidateRequestAsync(context);
+                    await _antiforgery.ValidateRequestAsync(context);
             }
+
             await _next(context);
         }
     }
