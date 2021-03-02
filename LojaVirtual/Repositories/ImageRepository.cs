@@ -28,6 +28,18 @@ namespace LojaVirtual.Repositories
         }
 
 
+        public void ImagesUpload(List<Image> imagesList, int ProductId)
+        {
+            if (imagesList != null && imagesList.Count > 0)
+            {
+                foreach (var image in imagesList)
+                {
+                    Create(image);
+                }
+            }
+        }
+
+
         public void Delete(int Id)
         {
             Image image = _database.Images.Find(Id);
@@ -36,14 +48,15 @@ namespace LojaVirtual.Repositories
         }
 
 
-        public void DeleteProductImages(int ProductId)
+        public void DeleteAllProductImages(int ProductId)
         {
-            IList<Image> images = _database.Images.Where(a => a.ProductId == ProductId).ToList();
+            List<Image> images = _database.Images.Where(a => a.ProductId == ProductId).ToList();
 
             foreach(Image image in images)
             {
-                _database.Remove(images);
+                _database.Remove(image);
             }
+
             _database.SaveChanges();
         }
     }

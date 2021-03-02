@@ -11,9 +11,12 @@ namespace LojaVirtual.Repositories.Contracts
         void Create(Image image);
 
 
+        void ImagesUpload(List<Image> imagesList, int ProductId);
+
+
         void Delete(int Id);
 
 
-        void DeleteProductImages(int ProductId);
+        void DeleteAllProductImages(int ProductId);
     }
 }

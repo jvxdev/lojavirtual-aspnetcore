@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using LojaVirtual.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace LojaVirtual.Libraries.Files
             return Path.Combine("/uploads/temp", FileName).Replace("\\", "/");
         }
 
+
         public static bool DeleteProductImage(string path)
         {
             string ImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", path.TrimStart('/'));
@@ -36,6 +38,62 @@ namespace LojaVirtual.Libraries.Files
             {
                 return false;
             }
+        }
+
+
+        public static List<Image> MoveProductImage(List<string> tempPathList, int ProductId)
+        {
+            var defProductDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", ProductId.ToString());
+            
+            if (!Directory.Exists(defProductDirectory))
+            {
+                Directory.CreateDirectory(defProductDirectory);
+            }
+
+            List<Image> imagesList = new List<Image>();
+
+            foreach (var tempPath in tempPathList)
+            {
+                if (!string.IsNullOrEmpty(tempPath))
+                {
+                    var imageName = Path.GetFileName(tempPath);
+
+                    var defPath = Path.Combine("/uploads", ProductId.ToString(), imageName).Replace("\\", "/");
+
+                    if (defPath != tempPath)
+                    {
+                        var tempAbsolutePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads/temp", imageName);
+                        var defAbsolutePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", ProductId.ToString(), imageName);
+
+                        if (System.IO.File.Exists(tempAbsolutePath))
+                        {
+                            if (System.IO.File.Exists(defAbsolutePath))
+                            {
+                                System.IO.File.Delete(defAbsolutePath);
+                            }
+
+                            System.IO.File.Copy(tempAbsolutePath, defAbsolutePath);
+
+                            if (System.IO.File.Exists(defAbsolutePath))
+                            {
+                                System.IO.File.Delete(tempAbsolutePath);
+                            }
+
+                            imagesList.Add(new Image() { Path = Path.Combine("/uploads", ProductId.ToString(), imageName).Replace("\\", "/"), ProductId = ProductId });
+                        }
+                            else
+                            {
+                                return null;
+                            }
+                    }
+                    else
+                    {
+                        imagesList.Add(new Image() { Path = Path.Combine("/uploads", ProductId.ToString(), imageName).Replace("\\", "/"), ProductId = ProductId });
+                    }
+                }
+            }
+
+            return imagesList;
         }
     }
 }
