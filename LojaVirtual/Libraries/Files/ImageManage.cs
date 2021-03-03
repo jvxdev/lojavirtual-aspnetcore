@@ -40,6 +40,24 @@ namespace LojaVirtual.Libraries.Files
             }
         }
 
+        public static void DeleteAllProductImage(List<Image> ImageList)
+        {
+            int ProductId = 0;
+
+            foreach(var Image in ImageList)
+            {
+                DeleteProductImage(Image.Path);
+                ProductId = Image.ProductId;
+            }
+
+            var productDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", ProductId.ToString());
+
+            if (Directory.Exists(productDirectory))
+            {
+                Directory.Delete(productDirectory);
+            }
+        }
+
 
         public static List<Image> MoveProductImage(List<string> tempPathList, int ProductId)
         {

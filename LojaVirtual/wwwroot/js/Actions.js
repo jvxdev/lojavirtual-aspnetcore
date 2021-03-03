@@ -47,6 +47,11 @@ function AjaxUploadProductImage() {
         var Image = $(this).parent().find(".img-upload");
         var btnDelete = $(this).parent().find(".btn-delete-image");
 
+
+        //Loading IMG
+        Image.attr("src", "/img/loading.gif")
+
+        //AJAX Request
         $.ajax({
             type: "POST",
             url: "/Collaborator/Image/Upload",
@@ -54,7 +59,8 @@ function AjaxUploadProductImage() {
             contentType: false,
             processData: false,
             error: function () {
-                alert("Sinto muito. Algo de errado aconteceu.")
+                alert("Sinto muito. Algo de errado aconteceu.");
+                Image.attr("src", "/img/img-example.png");
             },
             success: function (data) {
                 var path = data.path;

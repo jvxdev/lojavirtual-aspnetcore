@@ -27,8 +27,23 @@ div .left-border {
     border-bottom-left-radius: 0px !important;
 }
 
-.Images div img {
+.Images div {
     width: 100%;
+    text-align: center;
+}
+
+.img-thumbnail{
+    border: 1px solid grey !important;
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
+.Images .img-thumbnail {
+    width: 100%;
+}
+
+.Images .container-thumbnail-img {
+    border-radius: 4px 4px 0px 0px;
 }
 
 .input-upload {
@@ -38,3 +53,4 @@ div .left-border {
 .img-upload {
     cursor: pointer;
 }
+

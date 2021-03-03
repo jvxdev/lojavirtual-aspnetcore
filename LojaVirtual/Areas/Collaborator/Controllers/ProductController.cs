@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 namespace LojaVirtual.Areas.Collaborator.Controllers
 {
     [Area("Collaborator")]
+    [CollaboratorAuthorization]
     public class ProductController : Controller
     {
         private IProductRepository _productRepository;
@@ -87,9 +88,10 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
                 List<Image> defImagesList = ImageManage.MoveProductImage(new List<string>(Request.Form["image"]), product.Id);
 
                 _imageRepository.DeleteAllProductImages(product.Id);
+
                 _imageRepository.ImagesUpload(defImagesList, product.Id);
 
-                TempData["MSG_S"] = Message.MSG_S001;
+                TempData["MSG_S"] = Message.MSG_S003;
 
                 return RedirectToAction(nameof(Index));
             }
@@ -108,6 +110,12 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         [HttpReferer]
         public IActionResult Delete(int Id)
         {
+            Product product = _productRepository.Read(Id);
+
+            ImageManage.DeleteAllProductImage(product.Images.ToList());
+
+            _imageRepository.DeleteAllProductImages(Id);
+
             _productRepository.Delete(Id);
 
             TempData["MSG_S"] = Message.MSG_S002;
