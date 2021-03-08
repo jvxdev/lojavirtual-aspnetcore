@@ -9860,19 +9860,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\intheclouds\\.nuget\\packages\\": {}
+    "C:\\Users\\emotionalboys\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\intheclouds\\Documents\\lojavirtual-aspnetcore\\LojaVirtual\\LojaVirtual.csproj",
+      "projectUniqueName": "C:\\Users\\emotionalboys\\Source\\Repos\\lojavirtual-aspnetcore\\LojaVirtual\\LojaVirtual.csproj",
       "projectName": "LojaVirtual",
-      "projectPath": "C:\\Users\\intheclouds\\Documents\\lojavirtual-aspnetcore\\LojaVirtual\\LojaVirtual.csproj",
-      "packagesPath": "C:\\Users\\intheclouds\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\intheclouds\\Documents\\lojavirtual-aspnetcore\\LojaVirtual\\obj\\",
+      "projectPath": "C:\\Users\\emotionalboys\\Source\\Repos\\lojavirtual-aspnetcore\\LojaVirtual\\LojaVirtual.csproj",
+      "packagesPath": "C:\\Users\\emotionalboys\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\emotionalboys\\Source\\Repos\\lojavirtual-aspnetcore\\LojaVirtual\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\intheclouds\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\emotionalboys\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9951,7 +9951,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -15,14 +15,14 @@
 
 function AjaxUploadProductImage() {
     $(".img-upload").click(function () {
-        $(this).parent().find(".input-upload").click();
+        $(this).parent().parent().find(".input-file").click();
     });
 
     $(".btn-delete-image").click(function () {
         var hiddenInput = $(this).parent().find("input[name=image]");
         var Image = $(this).parent().find(".img-upload");
         var btnDelete = $(this).parent().find(".btn-delete-image");
-        var inputUpload = $(this).parent().find(".input-upload");
+        var inputFile = $(this).parent().find(".input-file");
 
         $.ajax({
             type: "GET",
@@ -33,12 +33,12 @@ function AjaxUploadProductImage() {
                 Image.attr("src", "/img/img-example.png");
                 btnDelete.addClass("btn-hidden");
                 hiddenInput.val("");
-                inputUpload.val("");
+                inputFile.val("");
             }
         })
     });
 
-    $(".input-upload").change(function () {
+    $(".input-file").change(function () {
         var Binary = $(this)[0].files[0];
         var Form = new FormData();
         Form.append("file", Binary);

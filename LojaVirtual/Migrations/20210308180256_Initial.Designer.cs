@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LojaVirtual.Migrations
 {
     [DbContext(typeof(LojaVirtualContext))]
-    [Migration("20210225211635_Initial")]
+    [Migration("20210308180256_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -157,33 +157,40 @@ namespace LojaVirtual.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("Amount")
+                    b.Property<int?>("Amount")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Height")
+                    b.Property<int?>("Height")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int>("Lenght")
+                    b.Property<int?>("Lenght")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
+                    b.Property<decimal?>("Price")
+                        .IsRequired()
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<double>("Weight")
+                    b.Property<double?>("Weight")
+                        .IsRequired()
                         .HasColumnType("float");
 
-                    b.Property<int>("Width")
+                    b.Property<int?>("Width")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("Id");

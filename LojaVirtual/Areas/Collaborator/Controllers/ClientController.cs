@@ -4,10 +4,6 @@ using LojaVirtual.Models;
 using LojaVirtual.Models.Const;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using X.PagedList;
 
 namespace LojaVirtual.Areas.Collaborator.Controllers
@@ -39,7 +35,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
             if (client.Situation == SituationConst.Active)
             {
-                client.Situation = SituationConst.Disabled;
+                client.Situation = SituationConst.Deactivate;
             }
             else
             {

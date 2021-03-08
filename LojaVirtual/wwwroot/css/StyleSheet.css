@@ -14,7 +14,7 @@ div .btn-delete-image {
 }
 
 div .btn-hidden {
-    display:none;
+    display: none;
 }
 
 div .right-border {
@@ -28,25 +28,36 @@ div .left-border {
 }
 
 .Images div {
-    width: 100%;
     text-align: center;
 }
 
-.img-thumbnail{
-    border: 1px solid grey !important;
-    border-bottom-left-radius: 0px !important;
-    border-bottom-right-radius: 0px !important;
+.img-thumbnail {
+    border: none !important;
+}
+
+.Images .img-default {
+    height: 100%;
+    border: 1px solid #CCC;
+    max-height: 235px
 }
 
 .Images .img-thumbnail {
+    object-fit: contain;
+    max-height: 250px;
+}
+
+.Images .container-img-thumbnail {
     width: 100%;
-}
-
-.Images .container-thumbnail-img {
+    height: 100%;
+    max-height: 235px;
     border-radius: 4px 4px 0px 0px;
+    white-space: nowrap;
+    text-align: center;
+    margin: 1em 0;
+    margin-bottom: 0px;
 }
 
-.input-upload {
+.input-file {
     display: none;
 }
 

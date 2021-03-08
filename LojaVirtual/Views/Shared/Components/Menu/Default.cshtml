@@ -1,0 +1,40 @@
+﻿@model List<Category>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand mr-4" asp-action="" asp-controller="Home"> Loja Virtual</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link mr-2" asp-action="Index" asp-controller="Home"><i class="fas fa-home mr-1"></i> Página Inicial <span class="sr-only">(current)</span></a>
+                </li>
+
+                @if(Model != null && Model.Count > 0)
+                { 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categorias
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @foreach (var category in Model)
+                            {
+                                <a class="dropdown-item" href="#">@category.Name</a>
+                            }
+                    </div>
+                </li>
+                }
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <a class="nav-link" asp-action="Contact" asp-controller="Home"><i class="fas fa-envelope mr-1"></i> Entre em contato!</a>
+                <a class="nav-link" asp-action="login" asp-controller="Home"><i class="fas fa-user-alt mr-1"></i> Entrar</a>
+                <a class="nav-link" asp-action="shoppingkart" asp-controller="Home"><i class="fas fa-shopping-cart mr-1"></i> Carrinho</a>
+            </form>
+        </div>
+    </nav>
+</header>
