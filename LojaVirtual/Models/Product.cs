@@ -27,7 +27,7 @@ namespace LojaVirtual.Models
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
         [Display(Name = "Preço")]
         [Column(TypeName = "decimal(18,2)")]
-        public decimal? Price { get; set; }
+        public decimal Price { get; set; }
 
 
         [Range(0, 1000, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E007")]

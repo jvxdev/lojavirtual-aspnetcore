@@ -80,6 +80,7 @@ namespace LojaVirtual.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Situation")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

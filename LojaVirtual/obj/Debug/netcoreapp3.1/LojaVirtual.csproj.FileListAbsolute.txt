@@ -1391,3 +1391,4 @@ C:\Users\emotionalboys\Source\Repos\lojavirtual-aspnetcore\LojaVirtual\obj\Debug
 C:\Users\emotionalboys\Source\Repos\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.pdb
 C:\Users\emotionalboys\Source\Repos\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.genruntimeconfig.cache
 C:\Users\emotionalboys\Source\Repos\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Menu\Default.cshtml.g.cs
+C:\Users\emotionalboys\Source\Repos\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Menu\_Submenu.cshtml.g.cs

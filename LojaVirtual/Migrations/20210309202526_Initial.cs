@@ -41,7 +41,7 @@ namespace LojaVirtual.Migrations
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Situation = table.Column<string>(type: "nvarchar(max)", nullable: true, defaultValue: "A")
+                    Situation = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
