@@ -2,10 +2,10 @@
 
 <html lang="pt-br">
 <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
 
-    <meta charset="utf-8">
     <meta name="description" content="Loja Virtual em ASP.NET">
     <link rel="stylesheet" href="/resources/lib/bootstrap-4.2.1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/resources/lib/caroussel/carousel.css" />
@@ -14,11 +14,12 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
           crossorigin="anonymous">
 
-    <link rel="stylesheet" href="~/StyleSheet.css" />
+    <link rel="stylesheet" href="~/css/StyleSheet.css" />
 </head>
+
 <body>
     <header>
-        @await Component.InvokeAsync("Menu")
+        <vc:menu></vc:menu>
     </header>
 
     <div>
@@ -61,6 +62,5 @@
     <script src="/resources/lib/jquery3.3.1/jquery-3.3.1.min.js"></script>
     <script src="/resources/lib/popper1.14.6/popper.min.js"></script>
     <script src="/resources/lib/bootstrap-4.2.1-dist/js/bootstrap.min.js"></script>
-
 </body>
 </html>

@@ -13,14 +13,14 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 3 "C:\Users\emotionalboys\Source\Repos\lojavirtual-aspnetcore\LojaVirtual\Views\_ViewImports.cshtml"
+#line 4 "C:\Users\emotionalboys\Source\Repos\lojavirtual-aspnetcore\LojaVirtual\Views\_ViewImports.cshtml"
 using LojaVirtual.Models;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7091c65830b0329e613be026ede8a57552863778", @"/Views/_ViewStart.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c14ce1da0f302608dfa3476ea8e48247d504f9e0", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ccbbda318616ff4f925ffa5bddfd681cecc6cd09", @"/Views/_ViewImports.cshtml")]
     public class Views__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

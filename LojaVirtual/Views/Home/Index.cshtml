@@ -67,32 +67,7 @@
 
     <div class="container" id="code_prod_complex">
         <div class="row">
-            @foreach (var product in Model.productList)
-            {
-                <div class="col-md-4">
-                    <figure class="card card-product">
-                        <div class="img-wrap">
-                        @if (product.Images != null && product.Images.Count() > 0)
-                        {
-                            <img src="@product.Images.ElementAt(0).Path"/>
-                        }
-                        else
-                        {
-                            <img src="~/img/img-product-example.png"/>
-                        }
-                        </div>
-                        <figcaption class="info-wrap">
-                            <h4 class="title">@product.Name</h4>
-                        </figcaption>
-                        <div class="bottom-wrap">
-                            <a href="" class="btn btn-sm btn-primary float-right">Colocar no carrinho</a>
-                            <div class="price-wrap h5">
-                                <span class="price-new">@product.Price.ToString("C")</span>
-                            </div>
-                        </div>
-                    </figure>
-                </div>
-            }
+            
         </div>
     </div>
 </main>
