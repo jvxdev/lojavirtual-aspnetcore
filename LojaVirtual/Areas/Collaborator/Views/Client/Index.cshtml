@@ -59,10 +59,10 @@
         </table>
     </div>
 
+@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page = Page, Search = Search }))
+
 }
 else
 {
     <p>Nenhum cliente cadastrado.</p>
 }
-
-@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page = Page, Search = Search }))

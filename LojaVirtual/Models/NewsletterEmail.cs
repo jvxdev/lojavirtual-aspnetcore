@@ -16,6 +16,7 @@ namespace LojaVirtual.Models
         [EmailAddress(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E004")]
 
 
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
     }
 }

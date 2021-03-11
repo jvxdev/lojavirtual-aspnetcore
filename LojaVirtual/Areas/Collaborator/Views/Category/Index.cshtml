@@ -53,10 +53,10 @@
         </table>
     </div>
 
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
 }
 else
 {
     <p>Nenhum produto cadastrado.</p>
 }
-
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

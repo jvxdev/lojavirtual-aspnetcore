@@ -35,6 +35,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Collaborator\Models\" />
+    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\resources\lib\jquerymask\" />
     <Folder Include="wwwroot\uploads\temp\" />
   </ItemGroup>

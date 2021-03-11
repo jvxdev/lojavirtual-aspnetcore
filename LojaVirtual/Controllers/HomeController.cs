@@ -12,19 +12,22 @@ using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Http;
 using LojaVirtual.Libraries.Login;
 using LojaVirtual.Libraries.Filters;
+using LojaVirtual.Models.ViewModel;
 
 namespace LojaVirtual.Controllers
 {
     public class HomeController : Controller
     {
+        private IProductRepository _productRepository;
         private IClientRepository _clientRepository;
         private INewsletterRepository _newsletterRepository;
         private ClientLogin _clientLogin;
         private EmailManage _emailManage;
 
 
-        public HomeController(IClientRepository clientRepository, INewsletterRepository newsletterRepository, ClientLogin clientLogin, EmailManage emailManage)
+        public HomeController(IProductRepository productRepository, IClientRepository clientRepository, INewsletterRepository newsletterRepository, ClientLogin clientLogin, EmailManage emailManage)
         {
+            _productRepository = productRepository;
             _clientRepository = clientRepository;
             _newsletterRepository = newsletterRepository;
             _clientLogin = clientLogin;
@@ -33,14 +36,15 @@ namespace LojaVirtual.Controllers
 
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(int? Page, string Search)
         {
-            return View();
+            var viewModel = new IndexViewModel() { productList = _productRepository.ReadAll(Page, Search) };
+            return View(viewModel);
         }
 
 
         [HttpPost]
-        public IActionResult Index([FromForm] NewsletterEmail newsletter)
+        public IActionResult Index([FromForm] NewsletterEmail newsletter, int? Page, string Search)
         {
             
             if(ModelState.IsValid)
@@ -53,7 +57,8 @@ namespace LojaVirtual.Controllers
             }
             else
             {
-                return View();
+                var viewModel = new IndexViewModel() { productList = _productRepository.ReadAll(Page, Search) };
+                return View(viewModel);
             }
         }
 

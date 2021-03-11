@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\LojaVirtual"
+    "\\LojaVirtual",
+    "\\LojaVirtual\\Controllers",
+    "\\LojaVirtual\\Views",
+    "\\LojaVirtual\\Views\\Shared",
+    "\\LojaVirtual\\Views\\Shared\\Components",
+    "\\LojaVirtual\\Views\\Shared\\Components\\Menu"
   ],
   "SelectedNode": "\\LojaVirtual.sln",
   "PreviewInSolutionExplorer": false

@@ -59,6 +59,7 @@ namespace LojaVirtual.Models
         [Display(Name = "Comprimento")]
         public int? Lenght { get; set; }
 
+
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
         [Display(Name = "Categoria do produto")]
         public int? CategoryId { get; set; }

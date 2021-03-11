@@ -8,7 +8,7 @@ namespace LojaVirtual.Models.ViewModel
 {
     public class IndexViewModel
     {
-        public NewsletterEmail newsletterEmail { get; set; }
+        public NewsletterEmail newsletter { get; set; }
 
         public IPagedList<Product> productList { get; set; }
     }

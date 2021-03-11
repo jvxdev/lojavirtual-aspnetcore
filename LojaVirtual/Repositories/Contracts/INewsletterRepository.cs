@@ -10,6 +10,7 @@ namespace LojaVirtual.Repositories.Contracts
     {
         void Create(NewsletterEmail newsletter);
 
+
         IEnumerable<NewsletterEmail> ReadAll();
     }
 }
