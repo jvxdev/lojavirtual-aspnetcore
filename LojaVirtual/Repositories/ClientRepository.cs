@@ -1,10 +1,7 @@
 ﻿using LojaVirtual.Database;
 using LojaVirtual.Models;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using X.PagedList;
 
 namespace LojaVirtual.Repositories.Contracts
@@ -21,7 +18,7 @@ namespace LojaVirtual.Repositories.Contracts
             _conf = configuration;
         }
 
-    
+
 
         public void Create(Client client)
         {
@@ -48,7 +45,7 @@ namespace LojaVirtual.Repositories.Contracts
                 databaseClient = databaseClient.Where(a => a.Name.Contains(Search.Trim()) || a.Email.Contains(Search.Trim()));
             }
 
-            return databaseClient.ToPagedList<Client>(pageNumber, registryPerPage);       
+            return databaseClient.ToPagedList<Client>(pageNumber, registryPerPage);
         }
 
 

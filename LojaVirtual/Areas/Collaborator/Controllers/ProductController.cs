@@ -5,10 +5,8 @@ using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace LojaVirtual.Areas.Collaborator.Controllers
 {
@@ -26,7 +24,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
             _imageRepository = imageRepository;
-        }   
+        }
 
 
         public IActionResult Index(int? Page, string Search)
@@ -61,7 +59,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             else
             {
                 ViewBag.Categories = _categoryRepository.ReadAll().Select(a => new SelectListItem(a.Name, a.Id.ToString()));
-                
+
                 product.Images = new List<string>(Request.Form["image"]).Where(a => a.Trim().Length > 0).Select(a => new Image() { Path = a }).ToList();
 
                 return View(product);

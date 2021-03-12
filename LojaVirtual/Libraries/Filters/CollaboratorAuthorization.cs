@@ -27,13 +27,13 @@ namespace LojaVirtual.Libraries.Filters
             Collaborator collaborator = _colaboratorLogin.GetCollaborator();
 
             if (collaborator == null)
-            
+
             {
-                 context.Result = new RedirectToActionResult("Login", "Home", null);
+                context.Result = new RedirectToActionResult("Login", "Home", null);
             }
             else
             {
-                if(collaborator.Position == CollaboratorPositionConst.Commun && _authorizedCollaborator == CollaboratorPositionConst.Manager)
+                if (collaborator.Position == CollaboratorPositionConst.Commun && _authorizedCollaborator == CollaboratorPositionConst.Manager)
                 {
                     context.Result = new ForbidResult();
                 }

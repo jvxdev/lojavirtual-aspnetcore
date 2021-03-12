@@ -1,10 +1,6 @@
 ﻿using LojaVirtual.Libraries.Files;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LojaVirtual.Areas.Collaborator.Controllers
 {
@@ -14,7 +10,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         [HttpPost]
         public IActionResult Upload(IFormFile file)
         {
-           var Path = ImageManage.UploadProductImage(file);
+            var Path = ImageManage.UploadProductImage(file);
 
             if (Path.Length > 0)
             {

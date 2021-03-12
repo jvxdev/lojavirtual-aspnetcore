@@ -3,10 +3,6 @@ using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Libraries.Login;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LojaVirtual.Areas.Collaborator.Controllers
 {

@@ -1,25 +1,26 @@
 ﻿@{
     var allCategories = (List<Category>)ViewData["allCategories"];
-    var fCategory = (Category)ViewData["fCategory"];
+    var fatherCategory = (Category)ViewData["fatherCategory"];
 
-    var sCategories = allCategories.Where(a => a.FatherCategoryId == fCategory.Id);
+    var sonCategories = allCategories.Where(a => a.FatherCategoryId == fatherCategory.Id);
 }
 
-@if (sCategories.Count() > 0)
+@if (sonCategories.Count() > 0)
 {
     <li class="dropdown-submenu">
-        <a class="dropdown-item" tabindex="-1" href="#">@fCategory.Name</a>
+        <a class="dropdown-item" tabindex="-1" href="#">@fatherCategory.Name</a>
         <ul class="dropdown-menu">
-            @foreach (var sCategory in sCategories)
+            @foreach (var sonCategory in sonCategories)
             {
-                @if (allCategories.Where(a => a.FatherCategoryId == sCategory.Id).Count() > 0)
+                @if (allCategories.Where(a => a.FatherCategoryId == sonCategory.Id).Count() > 0)
                 {
-                    ViewData.Remove("fCategory");
-                    @await Html.PartialAsync("~/Views/Shared/Components/Menu/_Submenu.cshtml", new ViewDataDictionary(ViewData) { { "fCategory", sCategory } })
+                    ViewData.Remove("fatherCategory");
+
+                    @await Html.PartialAsync("~/Views/Shared/Components/Menu/_Submenu.cshtml", new ViewDataDictionary(ViewData) { { "fatherCategory", sonCategory } })
                 }
                 else
                 {
-                    <li class="dropdown-item"><a href="#">@sCategory.Name</a></li>
+                    <li class="dropdown-item"><a href="#">@sonCategory.Name</a></li>
                 }
             }
         </ul>
@@ -27,5 +28,5 @@
 }
 else
 {
-    <li class="dropdown-item"><a href="#">@fCategory.Name</a></li>
+    <li class="dropdown-item"><a href="#">@fatherCategory.Name</a></li>
 }

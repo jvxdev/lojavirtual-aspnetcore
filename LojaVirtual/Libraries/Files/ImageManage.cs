@@ -1,11 +1,8 @@
 ﻿using LojaVirtual.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LojaVirtual.Libraries.Files
 {
@@ -44,7 +41,7 @@ namespace LojaVirtual.Libraries.Files
         {
             int ProductId = 0;
 
-            foreach(var Image in ImageList)
+            foreach (var Image in ImageList)
             {
                 DeleteProductImage(Image.Path);
                 ProductId = Image.ProductId;
@@ -62,7 +59,7 @@ namespace LojaVirtual.Libraries.Files
         public static List<Image> MoveProductImage(List<string> tempPathList, int ProductId)
         {
             var defProductDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", ProductId.ToString());
-            
+
             if (!Directory.Exists(defProductDirectory))
             {
                 Directory.CreateDirectory(defProductDirectory);
@@ -99,10 +96,10 @@ namespace LojaVirtual.Libraries.Files
 
                             imagesList.Add(new Image() { Path = Path.Combine("/uploads", ProductId.ToString(), imageName).Replace("\\", "/"), ProductId = ProductId });
                         }
-                            else
-                            {
-                                return null;
-                            }
+                        else
+                        {
+                            return null;
+                        }
                     }
                     else
                     {

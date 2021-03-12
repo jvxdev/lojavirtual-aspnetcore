@@ -1,11 +1,7 @@
 ﻿using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Libraries.Validation;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LojaVirtual.Models
 {
@@ -24,15 +20,15 @@ namespace LojaVirtual.Models
         [Display(Name = "E-mail")]
         [UniqueEmail]
         public string Email { get; set; }
-        
-        
+
+
         [Display(Name = "Senha")]
         public string Password { get; set; }
 
 
         [Display(Name = "Confirmação de senha")]
         [NotMapped]
-        public string PasswordConfirmation { get; set;}
+        public string PasswordConfirmation { get; set; }
 
 
         [Display(Name = "Cargo")]

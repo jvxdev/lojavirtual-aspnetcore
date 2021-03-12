@@ -1,8 +1,4 @@
 ﻿using LojaVirtual.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using X.PagedList;
 
 namespace LojaVirtual.Repositories.Contracts
@@ -16,6 +12,9 @@ namespace LojaVirtual.Repositories.Contracts
 
 
         IPagedList<Product> ReadAll(int? Page, string Search);
+
+
+        IPagedList<Product> ReadAll(int? Page, string Search, string Ordination);
 
 
         void Update(Product product);

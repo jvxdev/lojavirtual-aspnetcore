@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Página Inicial";
+    var search = Context.Request.Query["search"];
+    var ordination = Context.Request.Query["ordination"].ToString();
 }
 
 <main role="main">
@@ -65,9 +67,19 @@
         </a>
     </div>
 
+    <h1 class="display-1 text-center text-dark mb-5">
+        Produtos em destaque
+    </h1>
+
+
     @if (Model.productList.Count() > 0)
     {
     <div class="container" id="code_prod_complex">
+        <div class="row mb-5">
+            <div class="offset-md-10 col-md-2">
+                <select class="form-control" asp-for="@ordination" id="ordinationList" asp-items="Model.ordinationList"></select>
+            </div>
+        </div>
         <div class="row">
             @foreach (var product in Model.productList)
             {
@@ -84,24 +96,24 @@
                             }
                         </div>
                         <figcaption class="info-wrap">
-                            <h4 class="title">@product.Name</h4>
+                            <h4 class="title font-weight-light">@product.Name</h4>
                         </figcaption>
                         <div class="bottom-wrap">
-                            <a href="" class="btn btn-sm btn-primary float-right">Adicionar ao carrinho</a>
+                            <a href="" class="btn btn-sm btn-primary float-right"><i class="fas fa-shopping-cart"></i> +</a>
                             <div class="price-wrap h5">
-                                <span class="price-new">@product.Price</span>
+                                <span class="price-new">R$ @product.Price</span>
                             </div>
                         </div>
                     </figure>
                 </div>
             }
         </div>
-        @Html.PagedListPager((IPagedList)Model.productList, page => Url.Action("Index", new { page }))
+        @Html.PagedListPager((IPagedList)Model.productList, page => Url.Action("Index", new { page = page, search = search, ordination = ordination }))
     </div>
     }
 </main>
 
-@using (Html.BeginForm(null, null, null, FormMethod.Post, true, new { @action = Url.Action("index", "home") + "#form" }))
+@using (Html.BeginForm(null, null, null, FormMethod.Post, true, new { @action = Url.Action("Index", "Home") + "#form" }))
 {
 <div class="container mt-5" id="form">
     <div class="row">

@@ -88,7 +88,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         [HttpReferer]
         public IActionResult NewPasswordGenerator(int Id)
         {
-            Models.Collaborator collaborator =_collaboratorRepository.Read(Id);
+            Models.Collaborator collaborator = _collaboratorRepository.Read(Id);
 
             collaborator.Password = KeyGenerator.GetUniqueKey(8);
 

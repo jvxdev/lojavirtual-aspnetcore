@@ -1,12 +1,8 @@
 ﻿using LojaVirtual.Database;
 using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
-using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mime;
-using System.Threading.Tasks;
 
 namespace LojaVirtual.Repositories
 {
@@ -52,7 +48,7 @@ namespace LojaVirtual.Repositories
         {
             List<Image> images = _database.Images.Where(a => a.ProductId == ProductId).ToList();
 
-            foreach(Image image in images)
+            foreach (Image image in images)
             {
                 _database.Remove(image);
             }

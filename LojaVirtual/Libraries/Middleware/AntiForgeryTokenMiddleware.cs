@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace LojaVirtual.Libraries.Middleware
@@ -27,7 +24,7 @@ namespace LojaVirtual.Libraries.Middleware
 
             if (HttpMethods.IsPost(context.Request.Method) && !(context.Request.Form.Files.Count == 1 && Ajax))
             {
-                    await _antiforgery.ValidateRequestAsync(context);
+                await _antiforgery.ValidateRequestAsync(context);
             }
 
             await _next(context);

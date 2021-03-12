@@ -1,24 +1,18 @@
 using LojaVirtual.Database;
+using LojaVirtual.Libraries.Email;
+using LojaVirtual.Libraries.Login;
+using LojaVirtual.Libraries.Middleware;
+using LojaVirtual.Libraries.Session;
+using LojaVirtual.Repositories;
+using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
-using LojaVirtual.Repositories.Contracts;
-using LojaVirtual.Libraries.Session;
-using LojaVirtual.Libraries.Login;
-using LojaVirtual.Repositories;
-using System.Net.Mail;
 using System.Net;
-using LojaVirtual.Libraries.Email;
-using LojaVirtual.Libraries.Middleware;
+using System.Net.Mail;
 
 namespace LojaVirtual
 {

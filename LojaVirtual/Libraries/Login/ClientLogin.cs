@@ -1,8 +1,4 @@
 ﻿using LojaVirtual.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace LojaVirtual.Libraries.Login
@@ -33,7 +29,7 @@ namespace LojaVirtual.Libraries.Login
 
                 //deserializar
                 return JsonConvert.DeserializeObject<Client>(clienteJson);
-            } 
+            }
             else
             {
                 return null;

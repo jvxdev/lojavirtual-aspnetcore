@@ -1,10 +1,7 @@
 ﻿using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LojaVirtual.Libraries.Validation
 {
@@ -18,7 +15,7 @@ namespace LojaVirtual.Libraries.Validation
 
             List<Collaborator> collaborators = _collaboratorRepository.GetCollaboratorEmail(Email);
 
-            Collaborator objCollaborator = (Collaborator) validationContext.ObjectInstance;
+            Collaborator objCollaborator = (Collaborator)validationContext.ObjectInstance;
 
             if (collaborators.Count > 1)
             {

@@ -3,10 +3,7 @@ using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using X.PagedList;
 
 namespace LojaVirtual.Repositories
@@ -33,11 +30,17 @@ namespace LojaVirtual.Repositories
 
         public Product Read(int Id)
         {
-            return _database.Products.Include(a => a.Images).Where(a => a.Id == Id).FirstOrDefault();
+            return _database.Products.Include(a => a.Images).OrderBy(a => a.Name).Where(a => a.Id == Id).FirstOrDefault();
         }
 
 
         public IPagedList<Product> ReadAll(int? Page, string Search)
+        {
+            return ReadAll(Page, Search, "oa");
+        }
+
+
+        public IPagedList<Product> ReadAll(int? Page, string Search, string Ordination)
         {
             int registryPerPage = _conf.GetValue<int>("registryPerPage");
             int pageNumber = Page ?? 1;
@@ -47,6 +50,21 @@ namespace LojaVirtual.Repositories
             if (!string.IsNullOrEmpty(Search))
             {
                 databaseProduct = databaseProduct.Where(a => a.Name.Contains(Search.Trim()));
+            }
+
+            if (Ordination == "oa")
+            {
+                databaseProduct = databaseProduct.OrderBy(a => a.Name);
+            }
+
+            if (Ordination == "mep")
+            {
+                databaseProduct = databaseProduct.OrderBy(a => a.Price);
+            }
+
+            if (Ordination == "map")
+            {
+                databaseProduct = databaseProduct.OrderByDescending(a => a.Price);
             }
 
             return databaseProduct.Include(a => a.Images).ToPagedList<Product>(pageNumber, registryPerPage);
