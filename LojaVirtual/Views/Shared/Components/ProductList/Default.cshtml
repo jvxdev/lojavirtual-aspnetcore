@@ -18,29 +18,31 @@
         <div class="row">
             @foreach (var product in Model.productList)
             {
-                <div class="col-md-3">
-                    <figure class="card card-product">
-                        <div class="img-wrap">
-                            @if (product.Images != null && product.Images.Count() > 0)
-                            {
-                                <img src="@product.Images.ElementAt(0).Path" />
-                            }
-                            else
-                            {
-                                <img src="~/img/img-product-example.png" />
-                            }
-                        </div>
-                        <figcaption class="info-wrap">
-                            <h4 class="title font-weight-light">@product.Name</h4>
-                        </figcaption>
-                        <div class="bottom-wrap">
-                            <a href="" class="btn btn-sm btn-primary float-right"><i class="fas fa-shopping-cart"></i> +</a>
-                            <div class="price-wrap h5">
-                                <span class="price-new">R$ @product.Price</span>
+                <a asp-controller="Product" asp-action="Show" asp-route-id="@product.Id">
+                    <div class="col-md-3">
+                        <figure class="card card-product">
+                            <div class="img-wrap">
+                                @if (product.Images != null && product.Images.Count() > 0)
+                                {
+                                    <img src="@product.Images.ElementAt(0).Path" />
+                                }
+                                else
+                                {
+                                    <img src="~/img/img-product-example.png" />
+                                }
                             </div>
-                        </div>
-                    </figure>
-                </div>
+                            <figcaption class="info-wrap">
+                                <h4 class="title font-weight-light">@product.Name</h4>
+                            </figcaption>
+                            <div class="bottom-wrap">
+                                <a href="" class="btn btn-sm btn-primary float-right"><i class="fas fa-shopping-cart"></i> +</a>
+                                <div class="price-wrap h5">
+                                    <span class="price-new">R$ @product.Price</span>
+                                </div>
+                            </div>
+                        </figure>
+                    </div>
+                </a>
             }
         </div>
         @Html.PagedListPager((IPagedList)Model.productList, page => Url.Action(action, new { page = page, search = search, ordination = ordination }))
@@ -50,7 +52,7 @@ else
 {
     <div class="container my-3">
         <div class="alert alert-info">
-            <strong>Poxa...</strong> Ainda não temos produtos dessa categoria! ;(
+            <strong>Poxa...</strong> Ainda não temos produtos nesta categoria! ;(
         </div>
     </div>
 }

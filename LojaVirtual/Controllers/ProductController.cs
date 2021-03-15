@@ -27,5 +27,11 @@ namespace LojaVirtual.Controllers
         {
             return View(_categoryRepository.Read(slug));
         }
+
+
+        public IActionResult Show(int Id)
+        {
+            return View(_productRepository.Read(Id));
+        }
     }
 }

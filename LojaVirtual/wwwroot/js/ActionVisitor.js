@@ -1,7 +1,16 @@
 ﻿$(document).ready(function () {
-    ChangeOrdination();
     ScrollOrdination();
+    ChangeOrdination();
+    ChangeMainProductImage();
 });
+
+function ChangeMainProductImage() {
+    $(".img-small-wrap img").click(function () {
+        var Path = $(this).attr("src");
+        $(".img-big-wrap img").attr("src", Path);
+        $(".img-big-wrap a").attr("href", Path);
+    });
+}
 
 function ScrollOrdination() {
     if (window.location.hash.length > 0)
@@ -45,4 +54,6 @@ function ChangeOrdination() {
 
         window.location.href = URLWithParameters;
     });
+
+    
 };
