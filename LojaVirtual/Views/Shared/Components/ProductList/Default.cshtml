@@ -1,9 +1,10 @@
 ﻿@model ProductListViewModel
 
 @{
-    ViewData["Title"] = "Listagem de Produtos";
+    ViewData["Title"] = "Produtos";
     var search = Context.Request.Query["search"];
     var ordination = Context.Request.Query["ordination"].ToString();
+    var action = ViewContext.RouteData.Values["action"].ToString();
 }
 
 @if (Model.productList.Count() > 0)
@@ -42,6 +43,14 @@
                 </div>
             }
         </div>
-        @Html.PagedListPager((IPagedList)Model.productList, page => Url.Action("Index", new { page = page, search = search, ordination = ordination }))
+        @Html.PagedListPager((IPagedList)Model.productList, page => Url.Action(action, new { page = page, search = search, ordination = ordination }))
+    </div>
+}
+else
+{
+    <div class="container my-3">
+        <div class="alert alert-info">
+            <strong>Poxa...</strong> Ainda não temos produtos dessa categoria! ;(
+        </div>
     </div>
 }

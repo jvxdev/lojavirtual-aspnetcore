@@ -1,4 +1,6 @@
-﻿using LojaVirtual.Repositories.Contracts;
+﻿using LojaVirtual.Models;
+using LojaVirtual.Models.ViewModel;
+using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,10 +12,12 @@ namespace LojaVirtual.Libraries.Component
     public class ProductListViewComponent : ViewComponent
     {
         private IProductRepository _productRepository;
+        private ICategoryRepository _categoryRepository;
 
-        public ProductListViewComponent (IProductRepository productRepository)
+        public ProductListViewComponent (IProductRepository productRepository, ICategoryRepository categoryRepository)
         {
             _productRepository = productRepository;
+            _categoryRepository = categoryRepository;
         }
 
 
@@ -21,8 +25,8 @@ namespace LojaVirtual.Libraries.Component
         {
             int? Page = 1;
             string Search = "";
-            string Ordination = "oa";
-
+            string Ordination = "Oa";
+            IEnumerable<Category> categories = null;
 
             if (HttpContext.Request.Query.ContainsKey("Page"))
             {
@@ -39,8 +43,16 @@ namespace LojaVirtual.Libraries.Component
                 Ordination = HttpContext.Request.Query["Ordination"].ToString();
             }
 
-            var list = _productRepository.ReadAll(Page, Search, Ordination);
-            return View();
+            if (ViewContext.RouteData.Values.ContainsKey("slug"))
+            {
+                string slug = ViewContext.RouteData.Values["slug"].ToString();
+
+                Category MainCategory = _categoryRepository.Read(slug);
+                categories = _categoryRepository.ReadRecursiveCategories(MainCategory);
+            }
+
+            var viewModel = new ProductListViewModel() { productList = _productRepository.ReadAll(Page, Search, Ordination, categories) };
+            return View(viewModel);
         }
     }
 }

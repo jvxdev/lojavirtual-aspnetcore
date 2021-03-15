@@ -4,6 +4,7 @@ using LojaVirtual.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
+using System.Linq;
 using X.PagedList;
 
 namespace LojaVirtual.Repositories
@@ -31,6 +32,42 @@ namespace LojaVirtual.Repositories
         public Category Read(int Id)
         {
             return _database.Categories.Find(Id);
+        }
+
+
+        public Category Read(string Slug)
+        {
+            return _database.Categories.Where(a => a.Slug == Slug).FirstOrDefault();
+        }
+
+
+        private List<Category> Categories;
+        private List<Category> recursiveCategoryList = new List<Category>();
+        public IEnumerable<Category> ReadRecursiveCategories(Category fatherCategory)
+        {
+            if (Categories == null)
+            {
+                Categories = ReadAll().ToList();
+            } 
+
+            if (!recursiveCategoryList.Exists(a => a.Id == fatherCategory.Id))
+            {
+                recursiveCategoryList.Add(fatherCategory);
+            }
+
+            var sonCategoryList = Categories.Where(a => a.FatherCategoryId == fatherCategory.Id);
+
+            if (sonCategoryList.Count() > 0)
+            {
+                recursiveCategoryList.AddRange(sonCategoryList.ToList());
+
+                foreach (var category in sonCategoryList)
+                {
+                    ReadRecursiveCategories(category);
+                }
+            }
+
+            return recursiveCategoryList;
         }
 
 

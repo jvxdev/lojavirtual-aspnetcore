@@ -60,7 +60,7 @@ namespace LojaVirtual.Models
 
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
         [Display(Name = "Categoria do produto")]
-        public int? CategoryId { get; set; }
+        public int CategoryId { get; set; }
 
 
         [ForeignKey("CategoryId")]

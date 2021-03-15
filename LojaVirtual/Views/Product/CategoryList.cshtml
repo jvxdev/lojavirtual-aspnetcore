@@ -1,0 +1,14 @@
+﻿@model Category
+
+@{
+    ViewData["Title"] = "Categorias";
+}
+
+<h1 class="display-2 my-5 text-center">Categorias</h1>
+<div class="container">
+    <div class="col-md-12">
+        <span id="breadcrumb">Categoria > @Model.Name</span>
+    </div>
+</div>
+
+<vc:product-list></vc:product-list>

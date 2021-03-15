@@ -10,7 +10,7 @@ function ScrollOrdination() {
 
         if (hash == "#productPosition")
         {
-            window.scrollBy(0, 550);
+            window.scrollBy(0, 530);
         }
     }
 };
@@ -20,6 +20,7 @@ function ChangeOrdination() {
         var Page = 1;
         var Search = "";
         var Ordination = $(this).val();
+        var Fragment = "#productPosition";
 
         var QueryString = new URLSearchParams(window.location.search);
 
@@ -33,9 +34,14 @@ function ChangeOrdination() {
             Search = QueryString.get("search");
         }
 
+        if ($("#breadcrumb").length > 0)
+        {
+            Fragment = "";
+        }
+
         var URL = window.location.protocol + "//" + window.location.host + window.location.pathname;
 
-        var URLWithParameters = URL + "?page=" + Page + "&search=" + Search + "&ordination=" + Ordination + "#productPosition";
+        var URLWithParameters = URL + "?page=" + Page + "&search=" + Search + "&ordination=" + Ordination + Fragment;
 
         window.location.href = URLWithParameters;
     });

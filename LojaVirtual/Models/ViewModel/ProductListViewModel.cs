@@ -18,9 +18,9 @@ namespace LojaVirtual.Models.ViewModel
             {
                 return new List<SelectListItem>()
                 {
-                    new SelectListItem("Ordem alfabética", "oa"),
-                    new SelectListItem("Menor preço", "mep"),
-                    new SelectListItem("Maior preço", "map")
+                    new SelectListItem("Ordem alfabética", "Oa"),
+                    new SelectListItem("Menor preço", "Mep"),
+                    new SelectListItem("Maior preço", "Map")
                 };
             }
             private set { }

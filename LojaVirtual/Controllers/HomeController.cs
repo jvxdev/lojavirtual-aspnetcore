@@ -33,15 +33,14 @@ namespace LojaVirtual.Controllers
 
 
         [HttpGet]
-        public IActionResult Index(int? Page, string Search, string Ordination)
+        public IActionResult Index()
         {
-            var viewModel = new IndexViewModel() { productList = _productRepository.ReadAll(Page, Search, Ordination) };
-            return View(viewModel);
+            return View();
         }
 
 
         [HttpPost]
-        public IActionResult Index([FromForm] NewsletterEmail newsletter, int? Page, string Search, string Ordination)
+        public IActionResult Index([FromForm] NewsletterEmail newsletter)
         {
 
             if (ModelState.IsValid)
@@ -54,8 +53,7 @@ namespace LojaVirtual.Controllers
             }
             else
             {
-                var viewModel = new IndexViewModel() { productList = _productRepository.ReadAll(Page, Search, Ordination) };
-                return View(viewModel);
+                return View();
             }
         }
 
