@@ -1,9 +1,7 @@
-﻿@model LojaVirtual.Models.ViewModel.IndexViewModel
+﻿@model NewsletterEmail
 
 @{
     ViewData["Title"] = "Página Inicial";
-    var search = Context.Request.Query["search"];
-    var ordination = Context.Request.Query["ordination"].ToString();
 }
 
 <main role="main">
@@ -72,45 +70,7 @@
     </h1>
 
 
-    @if (Model.productList.Count() > 0)
-    {
-    <div class="container" id="code_prod_complex">
-        <div class="row mb-5">
-            <div class="offset-md-10 col-md-2">
-                <select class="form-control" asp-for="@ordination" id="ordinationList" asp-items="Model.ordinationList"></select>
-            </div>
-        </div>
-        <div class="row">
-            @foreach (var product in Model.productList)
-            {
-                <div class="col-md-3">
-                    <figure class="card card-product">
-                        <div class="img-wrap">
-                            @if (product.Images != null && product.Images.Count() > 0)
-                            {
-                                <img src="@product.Images.ElementAt(0).Path" />
-                            }
-                            else
-                            {
-                                <img src="~/img/img-product-example.png" />
-                            }
-                        </div>
-                        <figcaption class="info-wrap">
-                            <h4 class="title font-weight-light">@product.Name</h4>
-                        </figcaption>
-                        <div class="bottom-wrap">
-                            <a href="" class="btn btn-sm btn-primary float-right"><i class="fas fa-shopping-cart"></i> +</a>
-                            <div class="price-wrap h5">
-                                <span class="price-new">R$ @product.Price</span>
-                            </div>
-                        </div>
-                    </figure>
-                </div>
-            }
-        </div>
-        @Html.PagedListPager((IPagedList)Model.productList, page => Url.Action("Index", new { page = page, search = search, ordination = ordination }))
-    </div>
-    }
+    
 </main>
 
 @using (Html.BeginForm(null, null, null, FormMethod.Post, true, new { @action = Url.Action("Index", "Home") + "#form" }))
@@ -130,9 +90,9 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                     </div>
-                    @Html.EditorFor(m => m.newsletter.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
-                <span style="color: darkred;">@Html.ValidationMessageFor(m => m.newsletter.Email)</span>
+                <span style="color: darkred;">@Html.ValidationMessageFor(m => m.Email)</span>
             </div>
         </div>
         <div class="col-md-2 mt-2">

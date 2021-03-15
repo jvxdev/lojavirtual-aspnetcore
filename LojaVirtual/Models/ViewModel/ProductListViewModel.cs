@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using X.PagedList;
 
 namespace LojaVirtual.Models.ViewModel
 {
-    public class IndexViewModel
+    public class ProductListViewModel
     {
-        public NewsletterEmail newsletter { get; set; }
-
-
         public IPagedList<Product> productList { get; set; }
 
 

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\emotionalboys\\Source\\Repos\\lojavirtual-aspnetcore\\LojaVirtual\\LojaVirtual.csproj": {}
+    "C:\\Users\\emotionalboys\\Documents\\GitHub\\lojavirtual-aspnetcore\\LojaVirtual\\LojaVirtual.csproj": {}
   },
   "projects": {
-    "C:\\Users\\emotionalboys\\Source\\Repos\\lojavirtual-aspnetcore\\LojaVirtual\\LojaVirtual.csproj": {
+    "C:\\Users\\emotionalboys\\Documents\\GitHub\\lojavirtual-aspnetcore\\LojaVirtual\\LojaVirtual.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\emotionalboys\\Source\\Repos\\lojavirtual-aspnetcore\\LojaVirtual\\LojaVirtual.csproj",
+        "projectUniqueName": "C:\\Users\\emotionalboys\\Documents\\GitHub\\lojavirtual-aspnetcore\\LojaVirtual\\LojaVirtual.csproj",
         "projectName": "LojaVirtual",
-        "projectPath": "C:\\Users\\emotionalboys\\Source\\Repos\\lojavirtual-aspnetcore\\LojaVirtual\\LojaVirtual.csproj",
+        "projectPath": "C:\\Users\\emotionalboys\\Documents\\GitHub\\lojavirtual-aspnetcore\\LojaVirtual\\LojaVirtual.csproj",
         "packagesPath": "C:\\Users\\emotionalboys\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\emotionalboys\\Source\\Repos\\lojavirtual-aspnetcore\\LojaVirtual\\obj\\",
+        "outputPath": "C:\\Users\\emotionalboys\\Documents\\GitHub\\lojavirtual-aspnetcore\\LojaVirtual\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\emotionalboys\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -64,7 +64,7 @@
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[3.1.4, )"
+              "version": "[3.1.5, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
