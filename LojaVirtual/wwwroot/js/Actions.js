@@ -3,12 +3,11 @@
         var resultado = confirm("Tem certeza que deseja realizar essa operação?");
         if (resultado == false) {
 
-        e.preventDefault();
+            e.preventDefault();
         }
     });
-        $('.money').mask('000.000.000.000.000,00', { reverse: true });
-        $('#cpf').mask('000.000.000-00');
-        $('#phone').mask('(00) 00000-0000');
+
+    $('.money').mask('000.000.000.000.000,00', { reverse: true });
 
     AjaxUploadProductImage();
 });
