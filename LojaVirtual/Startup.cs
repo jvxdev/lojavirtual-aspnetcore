@@ -1,3 +1,4 @@
+using LojaVirtual.Controllers;
 using LojaVirtual.Database;
 using LojaVirtual.Libraries.Email;
 using LojaVirtual.Libraries.Login;
@@ -58,6 +59,8 @@ namespace LojaVirtual
             });
 
             services.AddScoped<EmailManage>();
+            services.AddScoped<LojaVirtual.Libraries.Cookie.Cookie>();
+            services.AddScoped<ShoppingKartController>();
 
             services.AddSession(options =>
             {
@@ -65,7 +68,6 @@ namespace LojaVirtual
             });
 
             services.AddScoped<Session>();
-            services.AddScoped<LojaVirtual.Libraries.Cookie.Cookie>();
             services.AddScoped<ClientLogin>();
             services.AddScoped<CollaboratorLogin>();
 

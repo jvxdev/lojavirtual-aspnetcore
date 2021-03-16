@@ -130,12 +130,6 @@ namespace LojaVirtual.Controllers
         }
 
 
-        public IActionResult ShoppingKart()
-        {
-            return View();
-        }
-
-
         public IActionResult ContactPost()
         {
             try

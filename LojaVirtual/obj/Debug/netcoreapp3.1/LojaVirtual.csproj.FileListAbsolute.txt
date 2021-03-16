@@ -1832,7 +1832,6 @@ C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\D
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Home\Login.cshtml.g.cs
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Home\Register.cshtml.g.cs
-C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Home\ShoppingKart.cshtml.g.cs
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Menu\Default.cshtml.g.cs
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Menu\_Submenu.cshtml.g.cs
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
@@ -1849,3 +1848,4 @@ C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\D
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\ProductList\Default.cshtml.g.cs
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Product\CategoryList.cshtml.g.cs
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Product\Show.cshtml.g.cs
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Views\ShoppingKart\Index.cshtml.g.cs
