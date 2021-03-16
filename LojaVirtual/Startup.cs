@@ -4,6 +4,7 @@ using LojaVirtual.Libraries.Email;
 using LojaVirtual.Libraries.Login;
 using LojaVirtual.Libraries.Middleware;
 using LojaVirtual.Libraries.Session;
+using LojaVirtual.Libraries.ShoppingKart;
 using LojaVirtual.Repositories;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Builder;
@@ -58,9 +59,10 @@ namespace LojaVirtual
                 return smtp;
             });
 
+            services.AddHttpClient();
             services.AddScoped<EmailManage>();
             services.AddScoped<LojaVirtual.Libraries.Cookie.Cookie>();
-            services.AddScoped<ShoppingKartController>();
+            services.AddScoped<ShoppingKart>();
 
             services.AddSession(options =>
             {

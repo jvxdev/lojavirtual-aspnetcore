@@ -20,8 +20,6 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             {
                 return new StatusCodeResult(500);
             }
-
-            return View();
         }
 
 

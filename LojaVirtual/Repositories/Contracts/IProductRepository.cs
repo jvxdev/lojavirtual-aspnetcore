@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Models;
+using LojaVirtual.Models.ProductAggregator;
 using System.Collections.Generic;
 using X.PagedList;
 

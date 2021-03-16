@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using LojaVirtual.Models.ProductAggregator;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,18 +19,18 @@ namespace LojaVirtual.Libraries.ShoppingKart
         }
 
 
-        public void Create(Item item)
+        public void Create(ProductItem productItem)
         {
-            List<Item> List;
+            List<ProductItem> List;
 
             if (_cookie.Exist(Key))
             {
                 List = Read();
-                var itemLocation = List.SingleOrDefault(a => a.Id == item.Id);
+                var itemLocation = List.SingleOrDefault(a => a.Id == productItem.Id);
 
                 if (itemLocation != null)
                 {
-                    List.Add(item);
+                    List.Add(productItem);
                 }
                 else
                 {
@@ -38,24 +39,24 @@ namespace LojaVirtual.Libraries.ShoppingKart
             }
             else
             {
-                List = new List<Item>();
-                List.Add(item);
+                List = new List<ProductItem>();
+                List.Add(productItem);
             }
 
             Save(List);
         }
 
 
-        public List<Item> Read()
+        public List<ProductItem> Read()
         {
             if(_cookie.Exist(Key))
             {
                 string Value = _cookie.Read(Key);
-                return JsonConvert.DeserializeObject<List<Item>>(Value);
+                return JsonConvert.DeserializeObject<List<ProductItem>>(Value);
             }
             else
             {
-                return new List<Item>();
+                return new List<ProductItem>();
             }
         }
 
@@ -71,23 +72,23 @@ namespace LojaVirtual.Libraries.ShoppingKart
         }
 
 
-        public void Update(Item item)
+        public void Update(ProductItem productItem)
         {
             var List = Read();
-            var itemLocation = List.SingleOrDefault(a => a.Id == item.Id);
+            var itemLocation = List.SingleOrDefault(a => a.Id == productItem.Id);
 
             if (itemLocation != null)
             {
-                itemLocation.Amount = item.Amount;
+                itemLocation.Amount = productItem.Amount;
                 Save(List);
             }
         }
 
 
-        public void Delete(Item item)
+        public void Delete(ProductItem productItem)
         {
             var List = Read();
-            var itemLocation = List.SingleOrDefault(a => a.Id == item.Id);
+            var itemLocation = List.SingleOrDefault(a => a.Id == productItem.Id);
 
             if (itemLocation != null)
             {
@@ -103,17 +104,10 @@ namespace LojaVirtual.Libraries.ShoppingKart
         }
 
 
-        public void Save(List<Item> List)
+        public void Save(List<ProductItem> List)
         {
             string Value = JsonConvert.SerializeObject(List);
             _cookie.Create(Key, Value);
         }
-    }
-
-
-    public class Item
-    {
-        public int? Id { get; set; }
-        public int? Amount { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using LojaVirtual.Libraries.ShoppingKart;
-using LojaVirtual.Models;
+using LojaVirtual.Models.ProductAggregator;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -38,7 +38,7 @@ namespace LojaVirtual.Controllers
             }
             else
             {
-                var Item = new Item() { Id = Id, Amount = 1 };
+                var Item = new ProductItem() { Id = Id, ItensAmount = 1 };
                 _shoppingKart.Create(Item);
 
                 return RedirectToAction(nameof(Index));
@@ -48,7 +48,7 @@ namespace LojaVirtual.Controllers
 
         public IActionResult ChangeAmount(int Id, int Amount)
         {
-            var Item = new Item() { Id = Id, Amount = Amount };
+            var Item = new ProductItem() { Id = Id, ItensAmount = Amount };
 
             _shoppingKart.Update(Item);
 
@@ -58,7 +58,7 @@ namespace LojaVirtual.Controllers
 
         public IActionResult RemoveItem(int Id)
         {
-            _shoppingKart.Delete(new Item() { Id = Id });
+            _shoppingKart.Delete(new ProductItem() { Id = Id });
 
             return RedirectToAction(nameof(Index));
         }
