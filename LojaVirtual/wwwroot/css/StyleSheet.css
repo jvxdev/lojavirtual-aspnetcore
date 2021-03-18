@@ -61,6 +61,10 @@ div .left-border {
     cursor: pointer;
 }
 
+.table {
+    margin-bottom: 0px !important; 
+}
+
 /****** NAV BAR MULTILEVEL ******/
 
 .dropdown-submenu {

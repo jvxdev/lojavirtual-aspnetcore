@@ -2,7 +2,27 @@
     ScrollOrdination();
     ChangeOrdination();
     ChangeMainProductImage();
+    ChangeAmountProductKart();
+    ChangeUnitaryProductAmount();
 });
+
+function ChangeAmountProductKart() {
+    $("#order .btn-secondary").click(function () {
+        var father = $(this).parent().parent();
+        if ($(this).hasClass("btn-less")) {
+            ChangeUnitaryProductAmount("decrease", $(this));
+            //var id = father.find(".input-product-id").val();
+        };
+
+        if ($(this).hasClass("btn-more")) {
+            ChangeUnitaryProductAmount("increase", $(this));
+        };
+    });
+}
+
+function ChangeUnitaryProductAmount(Operation, Button) {
+
+}
 
 function ChangeMainProductImage() {
     $(".img-small-wrap img").click(function () {

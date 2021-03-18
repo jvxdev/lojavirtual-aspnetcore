@@ -28,13 +28,13 @@ namespace LojaVirtual.Libraries.ShoppingKart
                 List = Read();
                 var itemLocation = List.SingleOrDefault(a => a.Id == productItem.Id);
 
-                if (itemLocation != null)
+                if (itemLocation == null)
                 {
                     List.Add(productItem);
                 }
                 else
                 {
-                    itemLocation.Amount = itemLocation.Amount + 1;
+                    itemLocation.ItensKartAmount = itemLocation.ItensKartAmount + 1;
                 }
             }
             else
@@ -79,7 +79,7 @@ namespace LojaVirtual.Libraries.ShoppingKart
 
             if (itemLocation != null)
             {
-                itemLocation.Amount = productItem.Amount;
+                itemLocation.ItensKartAmount = productItem.ItensKartAmount;
                 Save(List);
             }
         }

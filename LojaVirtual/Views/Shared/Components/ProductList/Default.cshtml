@@ -35,7 +35,7 @@
                                 <h4 class="title font-weight-light">@product.Name</h4>
                             </figcaption>
                             <div class="bottom-wrap">
-                                <a href="" class="btn btn-sm btn-primary float-right"><i class="fas fa-shopping-cart"></i> +</a>
+                                <a asp-controller="ShoppingKart" asp-action="AddItem" asp-route-id="@product.Id" class="btn btn-sm btn-primary float-right"><i class="fas fa-shopping-cart"></i> +</a>
                                 <div class="price-wrap h5">
                                     <span class="price-new">R$ @product.Price</span>
                                 </div>

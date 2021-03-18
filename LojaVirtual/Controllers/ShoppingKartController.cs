@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace LojaVirtual.Controllers
 {
@@ -13,12 +14,13 @@ namespace LojaVirtual.Controllers
     {
         private ShoppingKart _shoppingKart;
         private IProductRepository _productRepository;
+        private IMapper _mapper;
 
-
-        public ShoppingKartController(ShoppingKart shoppingKart, IProductRepository productRepository)
+        public ShoppingKartController(ShoppingKart shoppingKart, IProductRepository productRepository, IMapper mapper)
         {
             _shoppingKart = shoppingKart;
             _productRepository = productRepository;
+            _mapper = mapper;
         }
 
 
@@ -32,19 +34,13 @@ namespace LojaVirtual.Controllers
             {
                 Product product = _productRepository.Read(item.Id);
 
-                ProductItem productItem = new ProductItem();
-
-                productItem.Id = product.Id;
-                productItem.Name = product.Name;
-                productItem.Description = product.Description;
-                productItem.Images = product.Images;
-                productItem.Price = product.Price;
+                ProductItem productItem = _mapper.Map<ProductItem>(product);
                 productItem.ItensKartAmount = item.ItensKartAmount;
 
                 productKartItemFull.Add(productItem);
             }
 
-            return View();
+            return View(productKartItemFull);
         }
 
 
@@ -76,7 +72,7 @@ namespace LojaVirtual.Controllers
         }
 
 
-        public IActionResult RemoveItem(int Id)
+        public IActionResult DeleteItem(int Id)
         {
             _shoppingKart.Delete(new ProductItem() { Id = Id });
 

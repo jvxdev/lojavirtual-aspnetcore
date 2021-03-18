@@ -15,6 +15,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Net;
 using System.Net.Mail;
+using AutoMapper;
+using LojaVirtual.Libraries.AutoMapper;
 
 namespace LojaVirtual
 {
@@ -31,6 +33,8 @@ namespace LojaVirtual
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddAutoMapper(config => config.AddProfile<MappingProfile>());
 
             services.AddHttpContextAccessor();
             services.AddScoped<IClientRepository, ClientRepository>();
