@@ -24,6 +24,26 @@ namespace LojaVirtual.Controllers
 
         public IActionResult Index()
         {
+            List<ProductItem> productKartItem = _shoppingKart.Read();
+
+            List<ProductItem> productKartItemFull = new List<ProductItem>();
+
+            foreach(var item in productKartItem)
+            {
+                Product product = _productRepository.Read(item.Id);
+
+                ProductItem productItem = new ProductItem();
+
+                productItem.Id = product.Id;
+                productItem.Name = product.Name;
+                productItem.Description = product.Description;
+                productItem.Images = product.Images;
+                productItem.Price = product.Price;
+                productItem.ItensKartAmount = item.ItensKartAmount;
+
+                productKartItemFull.Add(productItem);
+            }
+
             return View();
         }
 
@@ -38,7 +58,7 @@ namespace LojaVirtual.Controllers
             }
             else
             {
-                var Item = new ProductItem() { Id = Id, ItensAmount = 1 };
+                var Item = new ProductItem() { Id = Id, ItensKartAmount = 1 };
                 _shoppingKart.Create(Item);
 
                 return RedirectToAction(nameof(Index));
@@ -48,7 +68,7 @@ namespace LojaVirtual.Controllers
 
         public IActionResult ChangeAmount(int Id, int Amount)
         {
-            var Item = new ProductItem() { Id = Id, ItensAmount = Amount };
+            var Item = new ProductItem() { Id = Id, ItensKartAmount = Amount };
 
             _shoppingKart.Update(Item);
 

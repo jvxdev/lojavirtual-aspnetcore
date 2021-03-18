@@ -15,13 +15,13 @@ namespace LojaVirtual.Models.ProductAggregator
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
         [Display(Name = "Nome do produto")]
         [JsonIgnore]
-        public string? Name { get; set; }
+        public string Name { get; set; }
 
 
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
         [Display(Name = "Descrição")]
         [JsonIgnore]
-        public string? Description { get; set; }
+        public string Description { get; set; }
 
 
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
