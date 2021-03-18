@@ -6,12 +6,16 @@
     ChangeUnitaryProductAmount();
 });
 
+function numberToReal(numero) {
+    var numero = numero.toFixed(2).split('.');
+    numero[0] = "R$ " + numero[0].split(/(?=(?:...)*$)/).join('.');
+    return numero.join(',');
+}
+
 function ChangeAmountProductKart() {
     $("#order .btn-secondary").click(function () {
-        var father = $(this).parent().parent();
         if ($(this).hasClass("btn-less")) {
             ChangeUnitaryProductAmount("decrease", $(this));
-            //var id = father.find(".input-product-id").val();
         };
 
         if ($(this).hasClass("btn-more")) {
@@ -21,7 +25,41 @@ function ChangeAmountProductKart() {
 }
 
 function ChangeUnitaryProductAmount(Operation, Button) {
+    var father = Button.parent().parent();
+    var productId = father.find(".input-product-id").val();
+    var productStock = parseInt(father.find(".input-product-stock").val());
+    var productUnitaryPrice = parseFloat(father.find(".input-product-unitary-price").val());
 
+    var inputProductAmountKart = father.find(".input-product-amount-kart");
+    var productAmountKart = parseInt(inputProductAmountKart.val());
+
+    var inputProductPrice = Button.parent().parent().parent().parent().parent().find(".price");
+
+    if (Operation == "increase") {
+        if (productAmountKart == productStock) {
+            alert("Desculpe! Não temos mais estoque deste produto.");
+        } else {
+
+        productAmountKart++;
+
+        inputProductAmountKart.val(productAmountKart);
+
+            var result = productUnitaryPrice * productAmountKart;
+            inputProductPrice.text(numberToReal(result));
+        }
+    } else if (Operation == "decrease") {
+        if (productAmountKart == 0) {
+            alert("Não é possível selecionar esta quantidade! Clique em remover caso não queira mais comprar este produto.")
+        } else {
+
+        productAmountKart--;
+
+        inputProductAmountKart.val(productAmountKart);
+
+            var result = productUnitaryPrice * productAmountKart;
+            inputProductPrice.text(numberToReal(result));
+        }
+    }
 }
 
 function ChangeMainProductImage() {
@@ -42,7 +80,7 @@ function ScrollOrdination() {
             window.scrollBy(0, 530);
         }
     }
-};
+}
 
 function ChangeOrdination() {
     $("#ordinationList").change(function () {
@@ -53,18 +91,15 @@ function ChangeOrdination() {
 
         var QueryString = new URLSearchParams(window.location.search);
 
-        if (QueryString.has("page"))
-        {
+        if (QueryString.has("page")) {
             Page = QueryString.get("page");
         }
 
-        if (QueryString.has("search"))
-        {
+        if (QueryString.has("search")) {
             Search = QueryString.get("search");
         }
 
-        if ($("#breadcrumb").length > 0)
-        {
+        if ($("#breadcrumb").length > 0) {
             Fragment = "";
         }
 
@@ -74,6 +109,4 @@ function ChangeOrdination() {
 
         window.location.href = URLWithParameters;
     });
-
-    
-};
+}
