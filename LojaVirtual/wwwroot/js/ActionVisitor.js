@@ -3,7 +3,7 @@
     ChangeOrdination();
     ChangeMainProductImage();
     ChangeAmountProductKart();
-    ChangeUnitaryProductAmount();
+    ActionPlannerProduct();
 });
 
 function numberToReal(numero) {
@@ -15,51 +15,63 @@ function numberToReal(numero) {
 function ChangeAmountProductKart() {
     $("#order .btn-secondary").click(function () {
         if ($(this).hasClass("btn-less")) {
-            ChangeUnitaryProductAmount("decrease", $(this));
+            ActionPlannerProduct("decrease", $(this));
         };
 
         if ($(this).hasClass("btn-more")) {
-            ChangeUnitaryProductAmount("increase", $(this));
+            ActionPlannerProduct("increase", $(this));
         };
     });
 }
 
-function ChangeUnitaryProductAmount(Operation, Button) {
-    var father = Button.parent().parent();
+function ActionPlannerProduct(operation, button) {
+
+    /*
+     * ========== CARREGAMENTO DOS VALORES ==========
+     */
+
+    var father = button.parent().parent();
     var productId = father.find(".input-product-id").val();
     var productStock = parseInt(father.find(".input-product-stock").val());
     var productUnitaryPrice = parseFloat(father.find(".input-product-unitary-price").val());
 
     var inputProductAmountKart = father.find(".input-product-amount-kart");
-    var productAmountKart = parseInt(inputProductAmountKart.val());
+    var inputProductPrice = button.parent().parent().parent().parent().parent().find(".price");
 
-    var inputProductPrice = Button.parent().parent().parent().parent().parent().find(".price");
+    var oldProductAmountKart = parseInt(inputProductAmountKart.val());
 
-    if (Operation == "increase") {
-        if (productAmountKart == productStock) {
-            alert("Desculpe! Não temos mais estoque deste produto.");
+    var product = new ProductAmountAndPrice(productId, productStock, productUnitaryPrice, oldProductAmountKart, 0, inputProductAmountKart, inputProductPrice);
+
+    /*
+     * ========== CHAMADA DE MÉTODOS ==========
+     */
+
+    ChangeProductKartValuesInput(product, operation);
+}
+
+function ChangeProductKartValuesInput(product, operation) {
+    if (operation == "increase") {
+        if (product.oldProductAmountKart == product.productStock) {
+            alert("Desculpe! Estamos sem estoque para a quantidade desejada!");
         } else {
-
-        productAmountKart++;
-
-        inputProductAmountKart.val(productAmountKart);
-
-            var result = productUnitaryPrice * productAmountKart;
-            inputProductPrice.text(numberToReal(result));
+            product.newProductAmountKart = product.oldProductAmountKart + 1;
+            UpdateAmountAndValue(product);
         }
-    } else if (Operation == "decrease") {
-        if (productAmountKart == 0) {
-            alert("Não é possível selecionar esta quantidade! Clique em remover caso não queira mais comprar este produto.")
+    } else if (operation == "decrease") {
+        if (product.oldProductAmountKart == 1) {
+            alert("Não é possível selecionar uma quantidade menor que 1! Clique em remover caso não queira mais comprar este produto.")
         } else {
-
-        productAmountKart--;
-
-        inputProductAmountKart.val(productAmountKart);
-
-            var result = productUnitaryPrice * productAmountKart;
-            inputProductPrice.text(numberToReal(result));
+            product.newProductAmountKart = product.oldProductAmountKart - 1;
+            UpdateAmountAndValue(product);
         }
     }
+}
+
+function UpdateAmountAndValue(product) {
+    product.inputProductAmountKart.val(product.newProductAmountKart);
+
+    var result = product.productUnitaryPrice * product.newProductAmountKart;
+    product.inputProductPrice.text(numberToReal(result));
 }
 
 function ChangeMainProductImage() {
@@ -109,4 +121,22 @@ function ChangeOrdination() {
 
         window.location.href = URLWithParameters;
     });
+}
+
+/*
+ * ========= CLASSES =========
+ */
+
+class ProductAmountAndPrice {
+    constructor(productId, productStock, productUnitaryPrice, oldProductAmountKart, newProductAmountKart, inputProductAmountKart, inputProductPrice) {
+        this.productId = productId;
+        this.productStock = productStock;
+        this.productUnitaryPrice = productUnitaryPrice;
+
+        this.oldProductAmountKart = oldProductAmountKart;
+        this.newProductAmountKart = newProductAmountKart;
+
+        this.inputProductAmountKart = inputProductAmountKart;
+        this.inputProductPrice = inputProductPrice;
+    }
 }
