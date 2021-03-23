@@ -56,6 +56,8 @@ function ChangeProductKartValuesInput(product, operation) {
         } else {
             product.newProductAmountKart = product.oldProductAmountKart + 1;
             UpdateAmountAndValue(product);
+
+            AjaxAmountProductAlteration(product);
         }
     } else if (operation == "decrease") {
         if (product.oldProductAmountKart == 1) {
@@ -63,8 +65,24 @@ function ChangeProductKartValuesInput(product, operation) {
         } else {
             product.newProductAmountKart = product.oldProductAmountKart - 1;
             UpdateAmountAndValue(product);
+
+            AjaxAmountProductAlteration(product);
         }
     }
+}
+
+function AjaxAmountProductAlteration(product) {
+    $.ajax({
+        type: "GET",
+        url: "/ShoppingKart/ChangeAmount?Id=" + product.productId + "&Amount=" + product.newProductAmountKart,
+        error: function (data) {
+            alert("Sinto muito. Algo de errado aconteceu. Detalhes: " + data);
+            product.newProductAmountKart = product.oldProductAmountKart;
+            UpdateAmountAndValue(product);
+        },
+        success: function (data) {
+        }
+    });
 }
 
 function UpdateAmountAndValue(product) {
