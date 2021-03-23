@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using LojaVirtual.Libraries.Lang;
 
 namespace LojaVirtual.Controllers
 {
@@ -64,11 +65,24 @@ namespace LojaVirtual.Controllers
 
         public IActionResult ChangeAmount(int Id, int Amount)
         {
-            var Item = new ProductItem() { Id = Id, ItensKartAmount = Amount };
+            Product product = _productRepository.Read(Id);
+            
+            if(Amount < 1)
+            {
+                return BadRequest(new { message = Message.MSG_E008 });
+            }
+            else if (Amount > product.Amount)
+            {
+                return BadRequest(new { message = Message.MSG_E009 });
+            }
+            else
+            {
+                var Item = new ProductItem() { Id = Id, ItensKartAmount = Amount };
 
-            _shoppingKart.Update(Item);
+                _shoppingKart.Update(Item);
 
-            return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index));
+            }
         }
 
 

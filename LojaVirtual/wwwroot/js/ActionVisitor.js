@@ -51,18 +51,18 @@ function ActionPlannerProduct(operation, button) {
 
 function ChangeProductKartValuesInput(product, operation) {
     if (operation == "increase") {
-        if (product.oldProductAmountKart == product.productStock) {
+        /*if (product.oldProductAmountKart == product.productStock) {
             alert("Desculpe! Estamos sem estoque para a quantidade desejada!");
-        } else {
+        } else */{
             product.newProductAmountKart = product.oldProductAmountKart + 1;
             UpdateAmountAndValue(product);
 
             AjaxAmountProductAlteration(product);
         }
     } else if (operation == "decrease") {
-        if (product.oldProductAmountKart == 1) {
+        /*if (product.oldProductAmountKart == 1) {
             alert("Não é possível selecionar uma quantidade menor que 1! Clique em remover caso não queira mais comprar este produto.")
-        } else {
+        } else */{
             product.newProductAmountKart = product.oldProductAmountKart - 1;
             UpdateAmountAndValue(product);
 
@@ -76,7 +76,8 @@ function AjaxAmountProductAlteration(product) {
         type: "GET",
         url: "/ShoppingKart/ChangeAmount?Id=" + product.productId + "&Amount=" + product.newProductAmountKart,
         error: function (data) {
-            alert("Sinto muito. Algo de errado aconteceu. Detalhes: " + data);
+            alert(data.responseJSON.message);
+            console.info(data);
             product.newProductAmountKart = product.oldProductAmountKart;
             UpdateAmountAndValue(product);
         },

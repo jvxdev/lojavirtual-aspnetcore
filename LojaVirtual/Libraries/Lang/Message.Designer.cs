@@ -124,6 +124,24 @@ namespace LojaVirtual.Libraries.Lang {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a A quantidade escolhida não pode ser menor que 1! Remova o produto se for o caso!.
+        /// </summary>
+        public static string MSG_E008 {
+            get {
+                return ResourceManager.GetString("MSG_E008", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Desculpe! Não temos em estoque a quantidade escolhida..
+        /// </summary>
+        public static string MSG_E009 {
+            get {
+                return ResourceManager.GetString("MSG_E009", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Registro cadastrado com sucesso!.
         /// </summary>
         public static string MSG_S001 {
