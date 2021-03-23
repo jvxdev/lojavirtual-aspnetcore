@@ -25,7 +25,7 @@ function ChangeAmountProductKart() {
 }
 
 function ActionPlannerProduct(operation, button) {
-
+    HiddeErrorMessage();
     /*
      * ========== CARREGAMENTO DOS VALORES ==========
      */
@@ -76,14 +76,23 @@ function AjaxAmountProductAlteration(product) {
         type: "GET",
         url: "/ShoppingKart/ChangeAmount?Id=" + product.productId + "&Amount=" + product.newProductAmountKart,
         error: function (data) {
-            alert(data.responseJSON.message);
-            console.info(data);
+            ShowErrorMessage(data.responseJSON.message);
+
             product.newProductAmountKart = product.oldProductAmountKart;
             UpdateAmountAndValue(product);
         },
         success: function (data) {
         }
     });
+}
+
+function ShowErrorMessage(message) {
+    $(".alert-danger").css("display", "block");
+    $(".alert-danger").text(message);
+}
+
+function HiddeErrorMessage(message) {
+    $(".alert-danger").css("display", "none");
 }
 
 function UpdateAmountAndValue(product) {

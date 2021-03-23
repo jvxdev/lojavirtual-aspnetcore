@@ -139,10 +139,10 @@
     <value>O valor enviado não está entre o mínimo ({1}) nem o máximo ({2}) necessários!</value>
   </data>
   <data name="MSG_E008" xml:space="preserve">
-    <value>A quantidade escolhida não pode ser menor que 1! Remova o produto se for o caso!</value>
+    <value>A quantidade escolhida não pode ser menor do que 1! Remova o produto caso não deseje comprá-lo!</value>
   </data>
   <data name="MSG_E009" xml:space="preserve">
-    <value>Desculpe! Não temos em estoque a quantidade escolhida.</value>
+    <value>Desculpe! Não temos em estoque a quantidade desejada.</value>
   </data>
   <data name="MSG_S001" xml:space="preserve">
     <value>Registro cadastrado com sucesso!</value>
