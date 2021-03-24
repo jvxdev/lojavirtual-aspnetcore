@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using LojaVirtual.Libraries.Security;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +11,13 @@ namespace LojaVirtual.Libraries.Cookie
     public class Cookie
     {
         private IHttpContextAccessor _context;
+        private IConfiguration _configuration;
 
-        public Cookie(IHttpContextAccessor context)
+
+        public Cookie(IHttpContextAccessor context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
 
@@ -21,13 +26,18 @@ namespace LojaVirtual.Libraries.Cookie
             CookieOptions Options = new CookieOptions();
             Options.Expires = DateTime.Now.AddDays(7);
 
-            _context.HttpContext.Response.Cookies.Append(Key, Value, Options);
+            var cryptValue = StringCipher.Encrypt(Value, _configuration.GetValue<string>("KeyCrypt"));
+
+            _context.HttpContext.Response.Cookies.Append(Key, cryptValue, Options);
         }
 
 
         public string Read(string Key)
         {
-            return _context.HttpContext.Request.Cookies[Key];
+            var cryptedValue = _context.HttpContext.Request.Cookies[Key];
+            var Value = StringCipher.Decrypt(cryptedValue, _configuration.GetValue<string>("KeyCrypt"));
+                
+            return Value;
         }
 
 

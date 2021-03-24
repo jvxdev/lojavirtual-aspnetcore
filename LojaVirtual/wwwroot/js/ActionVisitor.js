@@ -6,7 +6,7 @@
     ActionPlannerProduct();
 });
 
-function NumberToReal(numero) {
+function numberToReal(numero) {
     var numero = numero.toFixed(2).split('.');
     numero[0] = "R$ " + numero[0].split(/(?=(?:...)*$)/).join('.');
     return numero.join(',');
@@ -25,7 +25,7 @@ function ChangeAmountProductKart() {
 }
 
 function ActionPlannerProduct(operation, button) {
-    HiddErrorMessage();
+    HiddeErrorMessage();
 
     /*
      * ========== CARREGAMENTO DOS VALORES ==========
@@ -92,7 +92,7 @@ function ShowErrorMessage(message) {
     $(".alert-danger").text(message);
 }
 
-function HideErrorMessage(message) {
+function HiddeErrorMessage(message) {
     $(".alert-danger").css("display", "none");
 }
 
@@ -100,7 +100,7 @@ function UpdateAmountAndValue(product) {
     product.inputProductAmountKart.val(product.newProductAmountKart);
 
     var result = product.productUnitaryPrice * product.newProductAmountKart;
-    product.inputProductPrice.text(NumberToReal(result));
+    product.inputProductPrice.text(numberToReal(result));
 }
 
 function ChangeMainProductImage() {
