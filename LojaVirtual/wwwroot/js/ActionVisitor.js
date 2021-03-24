@@ -101,6 +101,21 @@ function UpdateAmountAndValue(product) {
 
     var result = product.productUnitaryPrice * product.newProductAmountKart;
     product.inputProductPrice.text(numberToReal(result));
+
+    UpdateSubtotal();
+}
+
+function UpdateSubtotal() {
+    var Subtotal = 0;
+    var priceTags = $(".price");
+
+    priceTags.each(function () {
+        var reaisValue = parseFloat($(this).text().replace("R$", "").replace(".", "").replace(" ", "").replace(",", "."));
+
+        Subtotal += reaisValue;
+    });
+
+    $(".subtotal").text(numberToReal(Subtotal));
 }
 
 function ChangeMainProductImage() {
