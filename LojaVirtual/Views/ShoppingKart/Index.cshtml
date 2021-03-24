@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Carrinho de compras";
+
+    decimal Subtotal = 0;
 }
 
 <main role="main">
@@ -52,11 +54,15 @@
                                             </div>
                                         </div>
                                     </td>
+                                    @{ 
+                                        var subtotalItem = item.Price * item.ItensKartAmount;
+                                        Subtotal = Subtotal + subtotalItem;
+                                    }
                                     <td>
                                         <div class="price-wrap">
                                             <var class="price">@((item.Price * item.ItensKartAmount).ToString("C"))</var>
                                             <small class="text-muted">unid/ (@item.Price.ToString("C"))</small>
-                                        </div> <!-- price-wrap .// -->
+                                        </div>
                                     </td>
                                     <td class="text-right d-none d-md-block">
                                         <a asp-controller="ShoppingKart" asp-action="DeleteItem" asp-route-id="@item.Id" class="btn btn-light btn-dark text-black"> Remover</a>
@@ -65,8 +71,8 @@
                                 }
                             </tbody>
                         </table>
-                    </div> <!-- card.// -->
-                </div> <!-- code-wrap.// -->
+                    </div>
+                </div>
     </section>
 
             <section class="container my-5">
@@ -78,19 +84,16 @@
                         <div id="code_desc_simple">
                             <div class="box">
                                 <dl>
-                                    <dt>Some info: </dt>
+                                    <dt class="mb-2">CEP </dt>
                                     <dd>
-                                        Dolor sit amet, consectetur adipisicing elit do eiusmod
-                                        tempor incididunt
+                                        <input type="text" name="CEP" value="" class="form-control"/>
                                     </dd>
                                 </dl>
                                 <dl>
-                                    <dt>Parameter: </dt>
-                                    <dd>Value name</dd>
+                                    <dd><input type="radio" name="DeliveryCompany" value=""/> <strong>SEDEX</strong> - R$ 389,99</dd>
                                 </dl>
                                 <dl>
-                                    <dt>Discount:</dt>
-                                    <dd>USD 658</dd>
+                                    <dd><input type="radio" name="DeliveryCompany" value=""/> <strong>CORREIOS</strong> - R$ 189,99</dd>
                                 </dl>
                             </div>
                         </div>
@@ -102,23 +105,19 @@
                         <div id="code_desc_right">
                             <div class="box">
                                 <dl class="dlist-align">
-                                    <dt>Parameter: </dt>
-                                    <dd class="text-right">Value name</dd>
+                                    <dt>Subtotal: </dt>
+                                    <dd class="text-right subtotal">@Subtotal.ToString("C")</dd>
                                 </dl>
                                 <dl class="dlist-align">
-                                    <dt>Color:</dt>
-                                    <dd class="text-right">Orange and Black</dd>
+                                    <dt>Frete:</dt>
+                                    <dd class="text-right">R$ 789,99</dd>
                                 </dl>
                                 <dl class="dlist-align">
-                                    <dt>Material:</dt>
-                                    <dd class="text-right">Leather</dd>
+                                    <dt>Total:</dt>
+                                    <dd class="text-right h5 b">R$ 989,99</dd>
                                 </dl>
-                                <dl class="dlist-align">
-                                    <dt>Total cost: </dt>
-                                    <dd class="text-right h5 b"> USD195 </dd>
-                                </dl>
-                            </div> <!-- box.// -->
-                        </div> <!-- code-wrap.// -->
+                            </div>
+                        </div>
                     </aside>
                 </div>
             </section>
