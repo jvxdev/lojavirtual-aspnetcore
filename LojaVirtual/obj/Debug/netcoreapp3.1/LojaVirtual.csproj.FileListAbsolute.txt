@@ -1852,3 +1852,14 @@ C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\D
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.genruntimeconfig.cache
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\AutoMapper.dll
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Connected Services\WSCorreios\ConnectedService.json
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\System.Net.Http.WinHttpHandler.dll
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\System.ServiceModel.Duplex.dll
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\System.ServiceModel.Http.dll
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\System.ServiceModel.NetTcp.dll
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\System.ServiceModel.Primitives.dll
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\System.ServiceModel.dll
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\System.ServiceModel.Security.dll
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Net.Http.WinHttpHandler.dll
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netstandard2.0\System.Private.ServiceModel.dll
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\runtimes\win7\lib\netstandard2.0\System.Private.ServiceModel.dll

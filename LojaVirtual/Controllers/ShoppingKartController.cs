@@ -8,6 +8,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using LojaVirtual.Libraries.Lang;
+using LojaVirtual.Models.Const;
+using LojaVirtual.Libraries.Manager.Shipping;
+using LojaVirtual.Models;
 
 namespace LojaVirtual.Controllers
 {
@@ -16,30 +19,23 @@ namespace LojaVirtual.Controllers
         private ShoppingKart _shoppingKart;
         private IProductRepository _productRepository;
         private IMapper _mapper;
+        private WSCorreiosCalcularFrete _wsCorreios;
+        private CalculatePackage _cPackage;
 
-        public ShoppingKartController(ShoppingKart shoppingKart, IProductRepository productRepository, IMapper mapper)
+
+        public ShoppingKartController(ShoppingKart shoppingKart, IProductRepository productRepository, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage cPackage)
         {
             _shoppingKart = shoppingKart;
             _productRepository = productRepository;
             _mapper = mapper;
+            _wsCorreios = wsCorreios;
+            _cPackage = cPackage;
         }
 
 
         public IActionResult Index()
         {
-            List<ProductItem> productKartItem = _shoppingKart.Read();
-
-            List<ProductItem> productKartItemFull = new List<ProductItem>();
-
-            foreach(var item in productKartItem)
-            {
-                Product product = _productRepository.Read(item.Id);
-
-                ProductItem productItem = _mapper.Map<ProductItem>(product);
-                productItem.ItensKartAmount = item.ItensKartAmount;
-
-                productKartItemFull.Add(productItem);
-            }
+            List<ProductItem> productKartItemFull = ReadProductDB();
 
             return View(productKartItemFull);
         }
@@ -66,8 +62,8 @@ namespace LojaVirtual.Controllers
         public IActionResult ChangeAmount(int Id, int Amount)
         {
             Product product = _productRepository.Read(Id);
-            
-            if(Amount < 1)
+
+            if (Amount < 1)
             {
                 return BadRequest(new { message = Message.MSG_E008 });
             }
@@ -91,6 +87,52 @@ namespace LojaVirtual.Controllers
             _shoppingKart.Delete(new ProductItem() { Id = Id });
 
             return RedirectToAction(nameof(Index));
+        }
+
+
+        public async Task<IActionResult> CalcularFrete(int cepDestino)
+        {
+            try
+            {
+                List<ProductItem> products = ReadProductDB();
+
+                List<Package> packages = _cPackage.CalculateProductsPackage(products);
+
+                ValorPrazoFrete valueSEDEX = await _wsCorreios.CalcularFrete(cepDestino.ToString(), CorreiosConst.SEDEX, packages);
+                ValorPrazoFrete valueSEDEX10 = await _wsCorreios.CalcularFrete(cepDestino.ToString(), CorreiosConst.SEDEX10, packages);
+                ValorPrazoFrete valuePAC = await _wsCorreios.CalcularFrete(cepDestino.ToString(), CorreiosConst.PAC, packages);
+
+                List<ValorPrazoFrete> list = new List<ValorPrazoFrete>();
+                list.Add(valueSEDEX);
+                list.Add(valueSEDEX10);
+                list.Add(valuePAC);
+
+                return Ok(list);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+
+        private List<ProductItem> ReadProductDB()
+        {
+            List<ProductItem> productKartItem = _shoppingKart.Read();
+
+            List<ProductItem> productKartItemFull = new List<ProductItem>();
+
+            foreach (var item in productKartItem)
+            {
+                Product product = _productRepository.Read(item.Id);
+
+                ProductItem productItem = _mapper.Map<ProductItem>(product);
+                productItem.ItensKartAmount = item.ItensKartAmount;
+
+                productKartItemFull.Add(productItem);
+            }
+
+            return productKartItemFull;
         }
     }
 }

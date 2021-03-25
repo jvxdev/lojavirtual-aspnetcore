@@ -4,7 +4,20 @@
     ChangeMainProductImage();
     ChangeAmountProductKart();
     ActionPlannerProduct();
+
+    MaskCEP();
+    AjaxCalcularFrete();
 });
+
+function MaskCEP() {
+    $(".cep").mask("00.000-000");
+}
+
+function AjaxCalcularFrete() {
+    $(".btn-calcular-frete").click(function () {
+        var cep = $(".cep").val().replace(".", "").replace("-", "");
+    });
+}
 
 function numberToReal(numero) {
     var numero = numero.toFixed(2).split('.');

@@ -76,6 +76,7 @@ namespace LojaVirtual
             services.AddScoped<LojaVirtual.Libraries.Cookie.Cookie>();
             services.AddScoped<ShoppingKart>();
             services.AddScoped<WSCorreiosCalcularFrete>();
+            services.AddScoped<CalculatePackage>();
 
             services.AddSession(options =>
             {

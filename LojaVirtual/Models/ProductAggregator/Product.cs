@@ -36,7 +36,7 @@ namespace LojaVirtual.Models.ProductAggregator
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
         [Display(Name = "Quantidade")]
         [JsonIgnore]
-        public int Amount { get; set; }
+        public int? Amount { get; set; }
 
 
         [Range(0.001, 30, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E007")]
