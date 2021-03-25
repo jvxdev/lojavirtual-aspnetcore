@@ -17,6 +17,8 @@ using System.Net;
 using System.Net.Mail;
 using AutoMapper;
 using LojaVirtual.Libraries.AutoMapper;
+using LojaVirtual.Libraries.Manager.Shipping;
+using WSCorreios;
 
 namespace LojaVirtual
 {
@@ -63,10 +65,17 @@ namespace LojaVirtual
                 return smtp;
             });
 
+            services.AddScoped<CalcPrecoPrazoWSSoap>(options =>
+            {
+                var service = new CalcPrecoPrazoWSSoapClient(CalcPrecoPrazoWSSoapClient.EndpointConfiguration.CalcPrecoPrazoWSSoap);
+                return service;
+            });
+
             services.AddHttpClient();
             services.AddScoped<EmailManage>();
             services.AddScoped<LojaVirtual.Libraries.Cookie.Cookie>();
             services.AddScoped<ShoppingKart>();
+            services.AddScoped<WSCorreiosCalcularFrete>();
 
             services.AddSession(options =>
             {
