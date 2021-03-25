@@ -10,6 +10,6 @@ namespace LojaVirtual.Libraries.Manager.Shipping
         public int Width { get; set; }
         public int Height { get; set; }
         public int Lenght { get; set; }
-        public int Wight { get; set; }
+        public double Weight { get; set; }
     }
 }
