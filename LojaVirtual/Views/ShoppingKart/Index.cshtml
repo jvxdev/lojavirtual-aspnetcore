@@ -8,120 +8,121 @@
 
 <main role="main">
     <section class="container" id="order">
-                <h1 class="display-4 text-center my-5">Carrinho de compras</h1>
-                <div class="alert alert-danger" style="display: none;" role="alert">
-                </div>   
-                <div id="code_cart">
-                    <div class="card">
-                        <table class="table table-hover shopping-cart-wrap">
-                            <thead class="text-muted">
-                                <tr>
-                                    <th scope="col">Nome do produto</th>
-                                    <th scope="col" width="120">Quantidade</th>
-                                    <th scope="col" width="120">Preço</th>
-                                    <th scope="col" width="200" class="text-right">Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                <tr>
-                                    <td width="55%">
-                                        <figure class="media">
-                                            <div class="img-wrap"><img src="~/img/img-example.png" class="img-thumbnail img-sm"></div>
-                                            <figcaption class="media-body">
-                                                <h6 class="title text-truncate">@item.Name</h6>
-                                                <dl class="dlist-inline small">
-                                                    <dt>Descrição: </dt>
-                                                    <dd>@item.Description</dd>
-                                                </dl>
-                                            </figcaption>
-                                        </figure>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <div class="input-group">
-                                                <input type="hidden" class="input-product-id" value="@item.Id" />
-                                                <input type="hidden" class="input-product-stock" value="@item.Amount" />
-                                                <input type="hidden" class="input-product-unitary-price" value="@item.Price" />
-                                                <div class="input-group-append">
-                                                    <a href="#" class="btn btn-secondary btn-less">-</a>
-                                                </div>
-                                                <input type="text" style="width: 30px;" class="form-control text-center input-product-amount-kart" value="@item.ItensKartAmount" readonly />
-                                                <div class="input-group-prepend">
-                                                    <a href="#" class="btn btn-secondary btn-more">+</a>
-                                                </div>
+        <h1 class="display-4 text-center my-5">Carrinho de compras</h1>
+        <div class="alert alert-danger" style="display: none;" role="alert">
+        </div>
+        <div id="code_cart">
+            <div class="card">
+                <table class="table table-hover shopping-cart-wrap">
+                    <thead class="text-muted">
+                        <tr>
+                            <th scope="col">Nome do produto</th>
+                            <th scope="col" width="120">Quantidade</th>
+                            <th scope="col" width="120">Preço</th>
+                            <th scope="col" width="200" class="text-right">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td width="55%">
+                                    <figure class="media">
+                                        <div class="img-wrap"><img src="~/img/img-example.png" class="img-thumbnail img-sm"></div>
+                                        <figcaption class="media-body">
+                                            <h6 class="title text-truncate">@item.Name</h6>
+                                            <dl class="dlist-inline small">
+                                                <dt>Descrição: </dt>
+                                                <dd>@item.Description</dd>
+                                            </dl>
+                                        </figcaption>
+                                    </figure>
+                                </td>
+                                <td>
+                                    <div>
+                                        <div class="input-group">
+                                            <input type="hidden" class="input-product-id" value="@item.Id" />
+                                            <input type="hidden" class="input-product-stock" value="@item.Amount" />
+                                            <input type="hidden" class="input-product-unitary-price" value="@item.Price" />
+                                            <div class="input-group-append">
+                                                <a href="#" class="btn btn-secondary btn-less">-</a>
+                                            </div>
+                                            <input type="text" style="width: 30px;" class="form-control text-center input-product-amount-kart" value="@item.ItensKartAmount" readonly />
+                                            <div class="input-group-prepend">
+                                                <a href="#" class="btn btn-secondary btn-more">+</a>
                                             </div>
                                         </div>
-                                    </td>
-                                    @{ 
-                                        var subtotalItem = item.Price * item.ItensKartAmount;
-                                        Subtotal = Subtotal + subtotalItem;
-                                    }
-                                    <td>
-                                        <div class="price-wrap">
-                                            <var class="price">@((item.Price * item.ItensKartAmount).ToString("C"))</var>
-                                            <small class="text-muted">unid/ (@item.Price.ToString("C"))</small>
-                                        </div>
-                                    </td>
-                                    <td class="text-right d-none d-md-block">
-                                        <a asp-controller="ShoppingKart" asp-action="DeleteItem" asp-route-id="@item.Id" class="btn btn-light btn-dark text-black"> Remover</a>
-                                    </td>
-                                </tr>
+                                    </div>
+                                </td>
+                                @{
+                                    var subtotalItem = item.Price * item.ItensKartAmount;
+                                    Subtotal = Subtotal + subtotalItem;
                                 }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                                <td>
+                                    <div class="price-wrap">
+                                        <var class="price">@((item.Price * item.ItensKartAmount).ToString("C"))</var>
+                                        <small class="text-muted">unid/ (@item.Price.ToString("C"))</small>
+                                    </div>
+                                </td>
+                                <td class="text-right d-none d-md-block">
+                                    <a asp-controller="ShoppingKart" asp-action="DeleteItem" asp-route-id="@item.Id" class="btn btn-light btn-dark text-black"> Remover</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </section>
 
-            <section class="container my-5">
-                <div class="row">
-                    <aside class="col-md-4">
-                        <h4 class="subtitle-doc">
-                            Frete
-                        </h4>
-                        <div id="code_desc_simple">
-                            <div class="box">
-                                <dl>
-                                    <dt class="mb-2">CEP </dt>
-                                    <dd>
-                                        <input type="text" name="cep" value="" class="cep form-control" placeholder="Digite seu CEP"/><a href="#" class="col-md-12 mt-2 btn btn-dark btn-calcular-frete">Calcular</a>
-                                    </dd>
-                                </dl>
-                                <div class="container-frete">
+    <section class="container my-5">
+        <div class="row">
+            <aside class="col-md-4">
+                <h4 class="subtitle-doc">
+                    Frete
+                </h4>
+                <div id="code_desc_simple">
+                    <div class="box">
+                        <dl>
+                            <dt class="mb-2">CEP </dt>
+                            <dd>
+                                <input type="text" name="cep" class="form-control cep" /><a href="#" class="col-md-12 mt-2 btn btn-dark btn-calcular-frete">Calcular</a>
+                            </dd>
+                        </dl>
+                        <div class="container-frete">
 
-                                </div>
-                                <dl>
-                                    <dd><input type="radio" value=""/> <strong>SEDEX</strong> - R$ 389,99</dd>
-                                </dl>
-                                <dl>
-                                    <dd><input type="radio" value=""/> <strong>CORREIOS</strong> - R$ 189,99</dd>
-                                </dl>
-                            </div>
                         </div>
-                    </aside>
-                    <aside class="col-md-8">
-                        <h4 class="subtitle-doc">
-                            Total a pagar
-                        </h4>
-                        <div id="code_desc_right">
-                            <div class="box">
-                                <dl class="dlist-align">
-                                    <dt>Subtotal: </dt>
-                                    <dd class="text-right subtotal">@Subtotal.ToString("C")</dd>
-                                </dl>
-                                <dl class="dlist-align">
-                                    <dt>Frete:</dt>
-                                    <dd class="text-right">R$ 789,99</dd>
-                                </dl>
-                                <dl class="dlist-align">
-                                    <dt>Total:</dt>
-                                    <dd class="text-right h5 b">R$ 989,99</dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </aside>
+                        <!--<dl>
+                            <dd><input type="radio" value=""/> <strong>SEDEX</strong> - R$ 389,99</dd>
+                        </dl>
+                        <dl>
+                            <dd><input type="radio" value=""/> <strong>CORREIOS</strong> - R$ 189,99</dd>
+                        </dl>
+                            -->
+                    </div>
                 </div>
-            </section>
+            </aside>
+            <aside class="col-md-8">
+                <h4 class="subtitle-doc">
+                    Total a pagar
+                </h4>
+                <div id="code_desc_right">
+                    <div class="box">
+                        <dl class="dlist-align">
+                            <dt>Subtotal: </dt>
+                            <dd class="text-right subtotal">@Subtotal.ToString("C")</dd>
+                        </dl>
+                        <dl class="dlist-align">
+                            <dt>Frete:</dt>
+                            <dd class="text-right">R$ 789,99</dd>
+                        </dl>
+                        <dl class="dlist-align">
+                            <dt>Total:</dt>
+                            <dd class="text-right h5 b">R$ 989,99</dd>
+                        </dl>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </section>
 </main>

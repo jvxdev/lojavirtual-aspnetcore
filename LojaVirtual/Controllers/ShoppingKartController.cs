@@ -20,16 +20,16 @@ namespace LojaVirtual.Controllers
         private IProductRepository _productRepository;
         private IMapper _mapper;
         private WSCorreiosCalcularFrete _wsCorreios;
-        private CalculatePackage _cPackage;
+        private CalculatePackage _calculatePackage;
 
 
-        public ShoppingKartController(ShoppingKart shoppingKart, IProductRepository productRepository, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage cPackage)
+        public ShoppingKartController(ShoppingKart shoppingKart, IProductRepository productRepository, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage)
         {
             _shoppingKart = shoppingKart;
             _productRepository = productRepository;
             _mapper = mapper;
             _wsCorreios = wsCorreios;
-            _cPackage = cPackage;
+            _calculatePackage = calculatePackage;
         }
 
 
@@ -96,16 +96,17 @@ namespace LojaVirtual.Controllers
             {
                 List<ProductItem> products = ReadProductDB();
 
-                List<Package> packages = _cPackage.CalculateProductsPackage(products);
+                List<Package> packages = _calculatePackage.CalculateProductsPackage(products);
 
                 ValorPrazoFrete valueSEDEX = await _wsCorreios.CalcularFrete(cepDestino.ToString(), CorreiosConst.SEDEX, packages);
                 ValorPrazoFrete valueSEDEX10 = await _wsCorreios.CalcularFrete(cepDestino.ToString(), CorreiosConst.SEDEX10, packages);
                 ValorPrazoFrete valuePAC = await _wsCorreios.CalcularFrete(cepDestino.ToString(), CorreiosConst.PAC, packages);
 
                 List<ValorPrazoFrete> list = new List<ValorPrazoFrete>();
-                list.Add(valueSEDEX);
-                list.Add(valueSEDEX10);
-                list.Add(valuePAC);
+
+                if (valueSEDEX != null) list.Add(valueSEDEX);
+                if (valueSEDEX10 != null) list.Add(valueSEDEX10);
+                if (valuePAC != null) list.Add(valuePAC);
 
                 return Ok(list);
             }

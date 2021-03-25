@@ -27,19 +27,28 @@ namespace LojaVirtual.Libraries.Manager.Shipping
 
             foreach (var package in packages)
             {
-                valorDosPacotesPorFrete.Add(await CalcularValorPrazoFrete(cepDestino, tipoFrete, package));
+                var result = await CalcularValorPrazoFrete(cepDestino, tipoFrete, package);
+
+                if (result != null)
+                {
+                valorDosPacotesPorFrete.Add(result);
+                }
             }
 
-            ValorPrazoFrete valorDosFretes = valorDosPacotesPorFrete
-                .GroupBy(a => a.TipoFrete)
-                .Select(list => new ValorPrazoFrete
-                {
-                    TipoFrete = list.First().TipoFrete,
-                    Prazo = list.Max(c => c.Prazo),
-                    Valor = list.Sum(c => c.Valor)
-                }).ToList().First();
+            if (valorDosPacotesPorFrete.Count > 0) 
+            {
+                ValorPrazoFrete valorDosFretes = valorDosPacotesPorFrete
+                    .GroupBy(a => a.TipoFrete)
+                    .Select(list => new ValorPrazoFrete
+                    {
+                        TipoFrete = list.First().TipoFrete,
+                        Prazo = list.Max(c => c.Prazo),
+                        Valor = list.Sum(c => c.Valor)
+                    }).ToList().First();
 
-            return valorDosFretes;
+                return valorDosFretes;
+            }
+            return null;
         }
 
 
@@ -60,6 +69,11 @@ namespace LojaVirtual.Libraries.Manager.Shipping
                     Prazo = int.Parse(result.Servicos[0].PrazoEntrega),
                     Valor = double.Parse(result.Servicos[0].Valor.Replace(".", "").Replace(",", "."))
                 };
+            }
+            else if (result.Servicos[0].Erro == "008")
+            {
+                //SEDEX10 - Não entrega nessa região em específico
+                return null;
             }
             else
             {

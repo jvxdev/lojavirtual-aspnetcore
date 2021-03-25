@@ -16,6 +16,17 @@ function MaskCEP() {
 function AjaxCalcularFrete() {
     $(".btn-calcular-frete").click(function () {
         var cep = $(".cep").val().replace(".", "").replace("-", "");
+
+        $.ajax({
+            type: "GET",
+            url: "/ShoppingKart/CalcularFrete?cepDestino=" + cep,
+            error: function (data) {
+                console.info(data);
+            },
+            success: function (data) {
+                console.info(data);
+            }
+        });
     });
 }
 

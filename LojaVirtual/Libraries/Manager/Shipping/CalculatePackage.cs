@@ -25,7 +25,7 @@ namespace LojaVirtual.Libraries.Manager.Shipping
 
                     var Dimension = Lenght + Width + Height;
 
-                    if (Weight > 30 || Dimension > 200)
+                    if (Weight > 30 || Dimension > 200 || Height > 105 || Lenght > 105 || Width > 105)
                     {
                         packages.Add(package);
                         package = new Package();
