@@ -3,7 +3,6 @@
     ChangeOrdination();
     ChangeMainProductImage();
     ChangeAmountProductKart();
-    ActionPlannerProduct();
 
     MaskCEP();
     AjaxCalcularFrete();
@@ -143,11 +142,13 @@ function UpdateSubtotal() {
 }
 
 function ChangeMainProductImage() {
-    $(".img-small-wrap img").click(function () {
-        var Path = $(this).attr("src");
-        $(".img-big-wrap img").attr("src", Path);
-        $(".img-big-wrap a").attr("href", Path);
-    });
+    if ($(".img-small-wrap img").length > 0) {
+        $(".img-small-wrap img").click(function () {
+            var Path = $(this).attr("src");
+            $(".img-big-wrap img").attr("src", Path);
+            $(".img-big-wrap a").attr("href", Path);
+        });
+    }
 }
 
 function ScrollOrdination() {
