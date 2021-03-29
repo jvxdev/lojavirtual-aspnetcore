@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "MRtJmHRfBzgfRrcqKK6UftvjR19pU7J42j3+R5a9O2sHf1DvCFMIPzPLWOezwQdPH4VH/KsgAyE/R0mzRoZ9Vg==",
+  "dgSpecHash": "0YJegm61Ef+4PJbHUjAIZJj27K8bOs3vXz7V4AoMwsllUiiHcGOJGxgH1a+WuhWpv0oXYkHxZwSh6TCyyJuocQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\emotionalboys\\Documents\\GitHub\\lojavirtual-aspnetcore\\LojaVirtual\\LojaVirtual.csproj",
   "expectedPackageFiles": [
@@ -94,7 +94,7 @@
     "C:\\Users\\emotionalboys\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\emotionalboys\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\emotionalboys\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
-    "C:\\Users\\emotionalboys\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\emotionalboys\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\emotionalboys\\.nuget\\packages\\newtonsoft.json.bson\\1.0.1\\newtonsoft.json.bson.1.0.1.nupkg.sha512",
     "C:\\Users\\emotionalboys\\.nuget\\packages\\nuget.frameworks\\4.7.0\\nuget.frameworks.4.7.0.nupkg.sha512",
     "C:\\Users\\emotionalboys\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",

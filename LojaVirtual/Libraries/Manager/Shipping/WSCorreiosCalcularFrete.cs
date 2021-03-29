@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Models;
+using LojaVirtual.Models.Const;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace LojaVirtual.Libraries.Manager.Shipping
 
                 if (result != null)
                 {
-                valorDosPacotesPorFrete.Add(result);
+                    valorDosPacotesPorFrete.Add(result);
                 }
             }
 
@@ -48,6 +49,7 @@ namespace LojaVirtual.Libraries.Manager.Shipping
 
                 return valorDosFretes;
             }
+
             return null;
         }
 
@@ -63,14 +65,17 @@ namespace LojaVirtual.Libraries.Manager.Shipping
         
             if (result.Servicos[0].Erro == "0")
             {
+                var cleanValue = result.Servicos[0].Valor.Replace(".", "");
+                var finalValue = double.Parse(cleanValue);
+
                 return new ValorPrazoFrete()
                 {
-                    TipoFrete = tipoFrete,
+                    TipoFrete = CorreiosConst.GetName(tipoFrete),
                     Prazo = int.Parse(result.Servicos[0].PrazoEntrega),
-                    Valor = double.Parse(result.Servicos[0].Valor.Replace(".", "").Replace(",", "."))
+                    Valor = finalValue
                 };
             }
-            else if (result.Servicos[0].Erro == "008")
+            else if (result.Servicos[0].Erro == "008" || result.Servicos[0].Erro == "-888")
             {
                 //SEDEX10 - Não entrega nessa região em específico
                 return null;
