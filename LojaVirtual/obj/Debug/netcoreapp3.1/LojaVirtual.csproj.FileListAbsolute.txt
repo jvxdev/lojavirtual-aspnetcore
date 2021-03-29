@@ -1862,4 +1862,3 @@ C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\D
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.dll
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.pdb
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.genruntimeconfig.cache
-C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.csprojAssemblyReference.cache

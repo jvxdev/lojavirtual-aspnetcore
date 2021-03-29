@@ -20,9 +20,22 @@ function AjaxCalcularFrete() {
             type: "GET",
             url: "/ShoppingKart/CalcularFrete?cepDestino=" + cep,
             error: function (data) {
+                ShowErrorMessage("Desculpe! Tivemos um erro ao tentar obter o frete... " + data.Message);
                 console.info(data);
             },
             success: function (data) {
+                $(".container-frete").html("");
+
+                html = "";
+                for (var i = 0; i < data.length; i++) {
+                    var tipoFrete = data[i].tipoFrete;
+                    var valor = data[i].valor;
+                    var prazo = data[i].prazo;
+
+                    html += "<dl><dd><input type=\"radio\" name=\"frete\" value=\"" + tipoFrete + "\"/> " + tipoFrete + " - <strong>" + numberToReal(valor) + "</strong> (até " + prazo + " dias úteis)</dd></dl>";
+                }
+
+                $(".container-frete").html(html);
                 console.info(data);
             }
         });

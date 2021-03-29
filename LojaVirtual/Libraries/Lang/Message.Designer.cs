@@ -124,7 +124,7 @@ namespace LojaVirtual.Libraries.Lang {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a A quantidade não pode ser menor do que *1*. Remova o produto caso não deseje comprá-lo!.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a A quantidade não pode ser 0. Remova o produto caso não deseje comprá-lo!.
         /// </summary>
         public static string MSG_E008 {
             get {
@@ -133,7 +133,7 @@ namespace LojaVirtual.Libraries.Lang {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Nos desculpe! Não temos em estoque a quantidade desejada..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Desculpe! Não temos em estoque a quantidade desejada..
         /// </summary>
         public static string MSG_E009 {
             get {
