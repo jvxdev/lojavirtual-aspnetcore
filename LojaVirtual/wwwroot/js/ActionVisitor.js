@@ -22,9 +22,18 @@ function ActionCalcularFreteBtn() {
 }
 
 function AjaxCalcularFrete(callByBtn) {
+
+    if (callByBtn == false) {
+        if ($.cookie('ShoppingKart.CEP') != undefined) {
+            $(".cep").val($.cookie("ShoppingKart.CEP"));
+        }
+    }
+
     var cep = $(".cep").val().replace(".", "").replace("-", "");
 
     if (cep.length == 8) {
+        $.cookie('ShoppingKart.CEP', $(".cep").val());
+
         $(".container-frete").html("<img src='/img/loading.gif' />");
 
         $.ajax({
