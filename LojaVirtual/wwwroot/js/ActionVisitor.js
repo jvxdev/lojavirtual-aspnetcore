@@ -4,17 +4,27 @@
     ChangeMainProductImage();
     ChangeAmountProductKart();
 
-    MaskCEP();
+    Mask();
+    ActionCalcularFreteBtn();
     AjaxCalcularFrete();
 });
 
-function MaskCEP() {
+function Mask() {
     $(".cep").mask("00.000-000");
+    $(".cpf").mask("000.000.000-00");
+}
+
+function ActionCalcularFreteBtn() {
+    $(".btn-calcular-frete").click(function () {
+        AjaxCalcularFrete();
+    });
 }
 
 function AjaxCalcularFrete() {
-    $(".btn-calcular-frete").click(function () {
-        var cep = $(".cep").val().replace(".", "").replace("-", "");
+    var cep = $(".cep").val().replace(".", "").replace("-", "");
+
+    if (cep.length == 8) {
+        $(".container-frete").html("<img src='/img/loading.gif' />");
 
         $.ajax({
             type: "GET",
@@ -24,7 +34,6 @@ function AjaxCalcularFrete() {
                 console.info(data);
             },
             success: function (data) {
-                $(".container-frete").html("");
 
                 html = "";
                 for (var i = 0; i < data.length; i++) {
@@ -39,7 +48,9 @@ function AjaxCalcularFrete() {
                 console.info(data);
             }
         });
-    });
+    } else {
+        ShowErrorMessage("O CEP é obrigatório!");
+    }
 }
 
 function numberToReal(numero) {
@@ -119,6 +130,7 @@ function AjaxAmountProductAlteration(product) {
             UpdateAmountAndValue(product);
         },
         success: function (data) {
+            AjaxCalcularFrete();
         }
     });
 }
@@ -165,12 +177,10 @@ function ChangeMainProductImage() {
 }
 
 function ScrollOrdination() {
-    if (window.location.hash.length > 0)
-    {
+    if (window.location.hash.length > 0) {
         var hash = window.location.hash;
 
-        if (hash == "#productPosition")
-        {
+        if (hash == "#productPosition") {
             window.scrollBy(0, 530);
         }
     }

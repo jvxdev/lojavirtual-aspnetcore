@@ -19,7 +19,7 @@
                             <article class="card-body">
                                 <div class="form-group">
                                     <label for="name">Nome</label>
-                                    <input type="text" asp-for="Name" id="name" name="name" class="form-control" placeholder="Nome completo.">
+                                    <input type="text" asp-for="Name" id="name" name="name" class="form-control" placeholder="Nome completo">
                                     <span asp-validation-for="Name"></span>
                                 </div>
                                 <div class="form-group">
@@ -42,12 +42,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="cpf">CPF</label>
-                                    <input type="text" asp-for="CPF" class="form-control" placeholder="Seu CPF" maxlength="15">
+                                    <input type="text" asp-for="CPF" class="form-control cpf" placeholder="Seu CPF" maxlength="15">
                                     <span asp-validation-for="CPF"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Telefone</label>
-                                    <input type="text" asp-for="Phone" name="phone" data class="form-control phone" placeholder="Seu melhor número" maxlength="12">
+                                    <input type="text" asp-for="Phone" name="phone" data class="form-control" placeholder="Seu melhor número" maxlength="12">
                                     <span asp-validation-for="Phone"></span>
                                 </div>
                                 <div class="form-group">
