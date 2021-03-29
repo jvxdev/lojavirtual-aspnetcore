@@ -6,7 +6,7 @@
 
     Mask();
     ActionCalcularFreteBtn();
-    AjaxCalcularFrete();
+    AjaxCalcularFrete(false);
 });
 
 function Mask() {
@@ -15,12 +15,13 @@ function Mask() {
 }
 
 function ActionCalcularFreteBtn() {
-    $(".btn-calcular-frete").click(function () {
-        AjaxCalcularFrete();
+    $(".btn-calcular-frete").click(function (e) {
+        AjaxCalcularFrete(true);
+        e.preventDefault();
     });
 }
 
-function AjaxCalcularFrete() {
+function AjaxCalcularFrete(callByBtn) {
     var cep = $(".cep").val().replace(".", "").replace("-", "");
 
     if (cep.length == 8) {
@@ -49,7 +50,9 @@ function AjaxCalcularFrete() {
             }
         });
     } else {
-        ShowErrorMessage("O CEP é obrigatório!");
+        if (callByBtn == true) {
+            ShowErrorMessage("O campo CEP é obrigatório!");
+        }
     }
 }
 
