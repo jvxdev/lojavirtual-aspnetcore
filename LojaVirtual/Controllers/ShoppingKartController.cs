@@ -16,20 +16,22 @@ namespace LojaVirtual.Controllers
 {
     public class ShoppingKartController : Controller
     {
-        private CookieShoppingKart _shoppingKart;
+        private CookieShoppingKart _cookieShoppingKart;
         private IProductRepository _productRepository;
         private IMapper _mapper;
         private WSCorreiosCalcularFrete _wsCorreios;
         private CalculatePackage _calculatePackage;
+        private CookieValorPrazoFrete _cookieValorPrazoFrete;
 
 
-        public ShoppingKartController(CookieShoppingKart shoppingKart, IProductRepository productRepository, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage)
+        public ShoppingKartController(CookieShoppingKart cookieShoppingKart, IProductRepository productRepository, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage, CookieValorPrazoFrete cookieValorPrazoFrete)
         {
-            _shoppingKart = shoppingKart;
+            _cookieShoppingKart = cookieShoppingKart;
             _productRepository = productRepository;
             _mapper = mapper;
             _wsCorreios = wsCorreios;
             _calculatePackage = calculatePackage;
+            _cookieValorPrazoFrete = cookieValorPrazoFrete;
         }
 
 
@@ -52,7 +54,7 @@ namespace LojaVirtual.Controllers
             else
             {
                 var Item = new ProductItem() { Id = Id, ItensKartAmount = 1 };
-                _shoppingKart.Create(Item);
+                _cookieShoppingKart.Create(Item);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -75,7 +77,7 @@ namespace LojaVirtual.Controllers
             {
                 var Item = new ProductItem() { Id = Id, ItensKartAmount = Amount };
 
-                _shoppingKart.Update(Item);
+                _cookieShoppingKart.Update(Item);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -84,7 +86,7 @@ namespace LojaVirtual.Controllers
 
         public IActionResult DeleteItem(int Id)
         {
-            _shoppingKart.Delete(new ProductItem() { Id = Id });
+            _cookieShoppingKart.Delete(new ProductItem() { Id = Id });
 
             return RedirectToAction(nameof(Index));
         }
@@ -108,10 +110,14 @@ namespace LojaVirtual.Controllers
                 if (valueSEDEX10 != null) list.Add(valueSEDEX10);
                 if (valuePAC != null) list.Add(valuePAC);
 
+                _cookieValorPrazoFrete.Create(list);
+
                 return Ok(list);
             }
             catch (Exception e)
             {
+                _cookieValorPrazoFrete.Delete();
+
                 return BadRequest(e);
             }
         }
@@ -119,7 +125,7 @@ namespace LojaVirtual.Controllers
 
         private List<ProductItem> ReadProductDB()
         {
-            List<ProductItem> productKartItem = _shoppingKart.Read();
+            List<ProductItem> productKartItem = _cookieShoppingKart.Read();
 
             List<ProductItem> productKartItemFull = new List<ProductItem>();
 

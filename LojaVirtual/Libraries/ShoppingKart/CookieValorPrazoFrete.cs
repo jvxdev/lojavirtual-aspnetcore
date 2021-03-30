@@ -40,7 +40,7 @@ namespace LojaVirtual.Libraries.ShoppingKart
         }
 
 
-        public void DeleteAll()
+        public void Delete()
         {
             _cookie.Delete(Key);
         }
