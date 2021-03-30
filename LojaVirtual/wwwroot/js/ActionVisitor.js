@@ -34,7 +34,7 @@ function AjaxCalcularFrete(callByBtn) {
     if (cep.length == 8) {
         $.cookie('ShoppingKart.CEP', $(".cep").val());
 
-        $(".container-frete").html("<img src='/img/loading.gif' />");
+        $(".container-frete").html("<img class='loading-img' src='/img/loading.gif' />");
 
         $.ajax({
             type: "GET",
@@ -51,10 +51,16 @@ function AjaxCalcularFrete(callByBtn) {
                     var valor = data[i].valor;
                     var prazo = data[i].prazo;
 
-                    html += "<dl><dd><input type=\"radio\" name=\"frete\" value=\"" + tipoFrete + "\"/> " + tipoFrete + " - <strong>" + numberToReal(valor) + "</strong> (até " + prazo + " dias úteis)</dd></dl>";
+                    html += "<dl><dd><input type=\"radio\" name=\"frete\" value=\"" + tipoFrete + "\"/><input type=\"hidden\" name=\"valor\" value=\"" + valor + "\"/> " + tipoFrete + " - <strong>" + numberToReal(valor) + "</strong> (até " + prazo + " dias úteis)</dd></dl>";
                 }
 
                 $(".container-frete").html(html);
+
+                $(".container-frete").find("input[type=radio]").change(function () {
+                    var valorFrete = parseFloat($(this).parent().find("input[type=hidden]").val());
+                    $(".frete").text(numberToReal(valorFrete));
+                });
+
                 console.info(data);
             }
         });
