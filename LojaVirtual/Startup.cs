@@ -74,7 +74,8 @@ namespace LojaVirtual
             services.AddHttpClient();
             services.AddScoped<EmailManage>();
             services.AddScoped<LojaVirtual.Libraries.Cookie.Cookie>();
-            services.AddScoped<ShoppingKart>();
+            services.AddScoped<CookieShoppingKart>();
+            services.AddScoped<CookieValorPrazoFrete>();
             services.AddScoped<WSCorreiosCalcularFrete>();
             services.AddScoped<CalculatePackage>();
 

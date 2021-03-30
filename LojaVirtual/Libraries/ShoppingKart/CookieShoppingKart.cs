@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace LojaVirtual.Libraries.ShoppingKart
 {
-    public class ShoppingKart
+    public class CookieShoppingKart
     {
         private string Key = "ShoppingKart.Buy";
         private Cookie.Cookie _cookie;
 
 
-        public ShoppingKart(Cookie.Cookie cookie)
+        public CookieShoppingKart(Cookie.Cookie cookie)
         {
             _cookie = cookie;
         }

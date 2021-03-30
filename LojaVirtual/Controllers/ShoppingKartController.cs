@@ -16,14 +16,14 @@ namespace LojaVirtual.Controllers
 {
     public class ShoppingKartController : Controller
     {
-        private ShoppingKart _shoppingKart;
+        private CookieShoppingKart _shoppingKart;
         private IProductRepository _productRepository;
         private IMapper _mapper;
         private WSCorreiosCalcularFrete _wsCorreios;
         private CalculatePackage _calculatePackage;
 
 
-        public ShoppingKartController(ShoppingKart shoppingKart, IProductRepository productRepository, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage)
+        public ShoppingKartController(CookieShoppingKart shoppingKart, IProductRepository productRepository, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage)
         {
             _shoppingKart = shoppingKart;
             _productRepository = productRepository;

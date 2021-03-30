@@ -43,6 +43,7 @@ namespace LojaVirtual.Libraries.Manager.Shipping
                     .Select(list => new ValorPrazoFrete
                     {
                         TipoFrete = list.First().TipoFrete,
+                        CodTipoFrete = list.First().CodTipoFrete,
                         Prazo = list.Max(c => c.Prazo),
                         Valor = list.Sum(c => c.Valor)
                     }).ToList().First();
@@ -71,6 +72,7 @@ namespace LojaVirtual.Libraries.Manager.Shipping
                 return new ValorPrazoFrete()
                 {
                     TipoFrete = CorreiosConst.GetName(tipoFrete),
+                    CodTipoFrete = tipoFrete,
                     Prazo = int.Parse(result.Servicos[0].PrazoEntrega),
                     Valor = finalValue
                 };
