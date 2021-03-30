@@ -54,7 +54,7 @@ function AjaxCalcularFrete(callByBtn) {
                     var valor = data[i].valor;
                     var prazo = data[i].prazo;
 
-                    html += "<dl><dd><input type=\"radio\" name=\"frete\" value=\"" + tipoFrete + "\"/><input type=\"hidden\" name=\"valor\" value=\"" + valor + "\"/> " + tipoFrete + " - <strong>" + numberToReal(valor) + "</strong> (até " + prazo + " dias úteis)</dd></dl>";
+                    html += "<dl><dd class=\"text-left\"><input type=\"radio\" name=\"frete\" value=\"" + tipoFrete + "\"/><input type=\"hidden\" name=\"valor\" value=\"" + valor + "\"/>   " + tipoFrete + " - <strong>" + numberToReal(valor) + "</strong> (até " + prazo + " dias úteis)</dd></dl>";
                 }
 
                 $(".container-frete").html(html);

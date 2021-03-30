@@ -120,3 +120,7 @@ div .left-border {
 .container-frete {
     text-align: center;
 }
+
+.control-inline {
+    flex-wrap: nowrap;
+}

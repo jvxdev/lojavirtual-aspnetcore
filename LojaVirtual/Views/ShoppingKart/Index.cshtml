@@ -28,19 +28,28 @@
                             <tr>
                                 <td width="55%">
                                     <figure class="media">
-                                        <div class="img-wrap"><img src="~/img/img-example.png" class="img-thumbnail img-sm"></div>
+                                        <div class="img-wrap">
+                                            @if (item.Images.Count > 0)
+                                            {
+                                                <a asp-controller="Product" asp-action="Show" asp-route-id="@item.Id"><img src="@item.Images.First().Path" class="img-thumbnail img-sm" /></a>
+                                            }
+                                            else
+                                            {
+                                                <img src="~/img/img-example.png" class="img-thumbnail img-sm" />
+                                            }
+                                        </div>
                                         <figcaption class="media-body">
-                                            <h6 class="title text-truncate">@item.Name</h6>
-                                            <dl class="dlist-inline small">
-                                                <dt>Descrição: </dt>
-                                                <dd>@item.Description</dd>
-                                            </dl>
+                                            <a asp-controller="Product" asp-action="Show" asp-route-id="@item.Id"><h6 class="title text-truncate">@item.Name</h6></a>
+                                                <dl class="dlist-inline small">
+                                                    <dt>Descrição: </dt>
+                                                    <dd>@item.Description</dd>
+                                                </dl>
                                         </figcaption>
                                     </figure>
                                 </td>
                                 <td>
                                     <div>
-                                        <div class="input-group">
+                                        <div class="input-group control-inline">
                                             <input type="hidden" class="input-product-id" value="@item.Id" />
                                             <input type="hidden" class="input-product-stock" value="@item.Amount" />
                                             <input type="hidden" class="input-product-unitary-price" value="@item.Price" />
@@ -65,7 +74,7 @@
                                     </div>
                                 </td>
                                 <td class="text-right d-none d-md-block">
-                                    <a asp-controller="ShoppingKart" asp-action="DeleteItem" asp-route-id="@item.Id" class="btn btn-light btn-dark text-black "> Remover</a>
+                                    <a asp-controller="ShoppingKart" asp-action="DeleteItem" asp-route-id="@item.Id" class="btn btn-light btn-dark text-black py-2"> Remover</a>
                                 </td>
                             </tr>
                         }
