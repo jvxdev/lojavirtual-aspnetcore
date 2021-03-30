@@ -22,7 +22,7 @@ function ActionCalcularFreteBtn() {
 }
 
 function AjaxCalcularFrete(callByBtn) {
-
+    $(".btn-proceed").addClass("disabled");
     if (callByBtn == false) {
         if ($.cookie('ShoppingKart.CEP') != undefined) {
             $(".cep").val($.cookie("ShoppingKart.CEP"));
@@ -60,8 +60,13 @@ function AjaxCalcularFrete(callByBtn) {
                 $(".container-frete").html(html);
 
                 $(".container-frete").find("input[type=radio]").change(function () {
-                    var valorFrete = parseFloat($(this).parent().find("input[type=hidden]").val());
+
                     $.cookie("ShoppingKart.tipoFrete", $(this).val());
+                    $(".btn-proceed").removeClass("disabled");
+
+                    var valorFrete = parseFloat($(this).parent().find("input[type=hidden]").val());
+
+
                     $(".frete").text(numberToReal(valorFrete));
 
                     var subtotal = parseFloat($(".subtotal").text().replace("R$", "").replace(".", "").replace(",", "."));
