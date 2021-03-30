@@ -30,6 +30,7 @@ function AjaxCalcularFrete(callByBtn) {
     }
 
     var cep = $(".cep").val().replace(".", "").replace("-", "");
+    $.removeCookie("ShoppingKart.tipoFrete");
 
     if (cep.length == 8) {
         $.cookie('ShoppingKart.CEP', $(".cep").val());
@@ -60,6 +61,7 @@ function AjaxCalcularFrete(callByBtn) {
 
                 $(".container-frete").find("input[type=radio]").change(function () {
                     var valorFrete = parseFloat($(this).parent().find("input[type=hidden]").val());
+                    $.cookie("ShoppingKart.tipoFrete", $(this).val());
                     $(".frete").text(numberToReal(valorFrete));
 
                     var subtotal = parseFloat($(".subtotal").text().replace("R$", "").replace(".", "").replace(",", "."));
@@ -74,6 +76,7 @@ function AjaxCalcularFrete(callByBtn) {
         });
     } else {
         if (callByBtn == true) {
+            $(".container-frete").html("");
             ShowErrorMessage("O campo CEP é obrigatório!");
         }
     }
