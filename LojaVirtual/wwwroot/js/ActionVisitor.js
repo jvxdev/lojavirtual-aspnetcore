@@ -34,7 +34,9 @@ function AjaxCalcularFrete(callByBtn) {
     if (cep.length == 8) {
         $.cookie('ShoppingKart.CEP', $(".cep").val());
 
-        $(".container-frete").html("<img class='loading-img' src='/img/loading.gif' />");
+        $(".container-frete").html("<img src='/img/loading.gif' />");
+        $(".frete").text("R$ 0,00");
+        $(".total").text("R$ 0,00");
 
         $.ajax({
             type: "GET",
@@ -59,9 +61,15 @@ function AjaxCalcularFrete(callByBtn) {
                 $(".container-frete").find("input[type=radio]").change(function () {
                     var valorFrete = parseFloat($(this).parent().find("input[type=hidden]").val());
                     $(".frete").text(numberToReal(valorFrete));
+
+                    var subtotal = parseFloat($(".subtotal").text().replace("R$", "").replace(".", "").replace(",", "."));
+
+                    var total = valorFrete + subtotal;
+
+                    $(".total").text(numberToReal(total));
                 });
 
-                console.info(data);
+                //console.info(data);
             }
         });
     } else {
