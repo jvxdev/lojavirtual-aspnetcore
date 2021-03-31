@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using LojaVirtual.Controllers.Base;
+using LojaVirtual.Libraries.Cookie;
+using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Libraries.Manager.Shipping;
 using LojaVirtual.Libraries.ShoppingKart;
 using LojaVirtual.Models.ProductAggregator;
@@ -14,16 +16,32 @@ namespace LojaVirtual.Controllers
 {
     public class PaymentController : BaseController
     {
-        public PaymentController(IProductRepository productRepository, CookieShoppingKart cookieShoppingKart, CookieValorPrazoFrete cookieValorPrazoFrete, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage) : base(productRepository, cookieShoppingKart, cookieValorPrazoFrete, mapper, wsCorreios, calculatePackage)
+        private Cookie _cookie;
+
+
+        public PaymentController(IProductRepository productRepository, CookieShoppingKart cookieShoppingKart, CookieValorPrazoFrete cookieValorPrazoFrete, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage, Cookie cookie) : base(productRepository, cookieShoppingKart, cookieValorPrazoFrete, mapper, wsCorreios, calculatePackage)
         {
+            _cookie = cookie;
         }
 
 
         public IActionResult Index()
         {
-            List<ProductItem> productKartItemFull = ReadProductDB();
+            var tipoFreteSelected = _cookie.Read("ShoppingKart.tipoFrete", false);
 
-            return View(productKartItemFull);
+            var Frete = _cookieValorPrazoFrete.Read().Where(a => a.TipoFrete == tipoFreteSelected).FirstOrDefault();
+
+            if (Frete != null)
+            {
+                List<ProductItem> productKartItemFull = ReadProductDB();
+
+                return View(productKartItemFull);
+            }
+            else
+            {
+                TempData["MSG_E"] = Message.MSG_E010;
+                return RedirectToAction("Index", "ShoppingKart");
+            }
         }
     }
 }

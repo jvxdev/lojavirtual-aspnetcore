@@ -32,11 +32,14 @@ namespace LojaVirtual.Libraries.Cookie
         }
 
 
-        public string Read(string Key)
+        public string Read(string Key, bool Cript = true)
         {
-            var cryptedValue = _context.HttpContext.Request.Cookies[Key];
-            var Value = StringCipher.Decrypt(cryptedValue, _configuration.GetValue<string>("KeyCrypt"));
-                
+            var Value = _context.HttpContext.Request.Cookies[Key];
+            if (Cript)
+            {
+                Value = StringCipher.Decrypt(Value, _configuration.GetValue<string>("KeyCrypt"));
+            }
+            
             return Value;
         }
 

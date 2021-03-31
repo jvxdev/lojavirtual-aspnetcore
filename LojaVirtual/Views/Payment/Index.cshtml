@@ -1,6 +1,6 @@
 ﻿@model List<ProductItem>
 
-@{ 
+@{
     ViewData["Title"] = "Efetuar pagamento";
     decimal Subtotal = 0;
 }
@@ -69,12 +69,12 @@
                         <ul class="nav bg radius nav-pills nav-fill mb-3" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link show btn-info" data-toggle="pill" href="#nav-tab-card">
-                                    <i class="fa fa-credit-card"></i> Cartão de crédito
+                                    <i class="fa fa-credit-card mr-1"></i> Cartão de crédito
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link btn-secondary" data-toggle="pill" href="#nav-tab-paypal">
-                                    <i class="fas fa-barcode"></i>  Boleto bancário
+                                <a class="nav-link btn-dark" data-toggle="pill" href="#nav-tab-paypal">
+                                    <i class="fas fa-barcode mr-1"></i>  Boleto bancário
                                 </a>
                             </li>
                         </ul>
@@ -135,5 +135,5 @@
 
             </div>
         </div>
-        </div>
+    </div>
 </div>
