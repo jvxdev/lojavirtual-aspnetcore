@@ -29,19 +29,22 @@ namespace LojaVirtual.Controllers
         {
             var tipoFreteSelected = _cookie.Read("ShoppingKart.tipoFrete", false);
 
-            var Frete = _cookieValorPrazoFrete.Read().Where(a => a.TipoFrete == tipoFreteSelected).FirstOrDefault();
-
-            if (Frete != null)
+            if (tipoFreteSelected != null)
             {
-                List<ProductItem> productKartItemFull = ReadProductDB();
+                var Frete = _cookieValorPrazoFrete.Read().Where(a => a.TipoFrete == tipoFreteSelected).FirstOrDefault();
 
-                return View(productKartItemFull);
+                if (Frete != null)
+                {
+                    ViewBag.Frete = Frete;
+                    List<ProductItem> productKartItemFull = ReadProductDB();
+
+                    return View(productKartItemFull);
+                }
+                    TempData["MSG_E"] = Message.MSG_E010;
+                    return RedirectToAction("Index", "ShoppingKart");
             }
-            else
-            {
-                TempData["MSG_E"] = Message.MSG_E010;
-                return RedirectToAction("Index", "ShoppingKart");
-            }
+
+            return null;
         }
     }
 }

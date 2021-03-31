@@ -51,11 +51,14 @@
                     </dl>
                     <dl class="dlist-align">
                         <dt>Frete: </dt>
-                        <dd class="text-right frete">PAC/SEDEX - R$ 0,00</dd>
+                        <dd class="text-right frete">@ViewBag.Frete.TipoFrete - @ViewBag.Frete.Valor.ToString("C")</dd>
                     </dl>
                     <dl class="dlist-align">
                         <dt>TOTAL: </dt>
-                        <dd class="text-right total h5 b">R$ 0,00</dd>
+                        @{ 
+                            decimal valorFrete = (decimal)ViewBag.Frete.Valor;
+                        }
+                        <dd class="text-right total h5 b">@((Subtotal + valorFrete).ToString("C"))</dd>
                     </dl>
                 </div>
             </div>
@@ -124,7 +127,7 @@
                             <div class="tab-pane fade" id="nav-tab-paypal">
                                 <p>Clique no botão para imprimir o boleto bancário.</p>
                                 <p>
-                                    <button type="button" class="btn btn-primary"> <i class="fab fa-barcode"></i> Imprimir boleto </button>
+                                    <button type="button" class="btn btn-secondary"> <i class="fab fa-barcode"></i> Imprimir boleto </button>
                                 </p>
                             </div>
 

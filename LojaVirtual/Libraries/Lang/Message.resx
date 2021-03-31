@@ -145,7 +145,7 @@
     <value>Desculpe! Não temos em estoque a quantidade desejada.</value>
   </data>
   <data name="MSG_E010" xml:space="preserve">
-    <value>O serviço de entrega não foi selecionado.</value>
+    <value>O serviço de entrega não foi selecionado. Por favor, volte para o carrinho de compras e selecione um serviço de entrega!</value>
   </data>
   <data name="MSG_S001" xml:space="preserve">
     <value>Registro cadastrado com sucesso!</value>
