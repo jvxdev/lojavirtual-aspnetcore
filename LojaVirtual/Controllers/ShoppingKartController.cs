@@ -11,27 +11,14 @@ using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Models.Const;
 using LojaVirtual.Libraries.Manager.Shipping;
 using LojaVirtual.Models;
+using LojaVirtual.Controllers.Base;
 
 namespace LojaVirtual.Controllers
 {
-    public class ShoppingKartController : Controller
+    public class ShoppingKartController : BaseController
     {
-        private CookieShoppingKart _cookieShoppingKart;
-        private IProductRepository _productRepository;
-        private IMapper _mapper;
-        private WSCorreiosCalcularFrete _wsCorreios;
-        private CalculatePackage _calculatePackage;
-        private CookieValorPrazoFrete _cookieValorPrazoFrete;
-
-
-        public ShoppingKartController(CookieShoppingKart cookieShoppingKart, IProductRepository productRepository, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage, CookieValorPrazoFrete cookieValorPrazoFrete)
+        public ShoppingKartController(IProductRepository productRepository, CookieShoppingKart cookieShoppingKart, CookieValorPrazoFrete cookieValorPrazoFrete, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage) : base(productRepository, cookieShoppingKart, cookieValorPrazoFrete, mapper, wsCorreios, calculatePackage)
         {
-            _cookieShoppingKart = cookieShoppingKart;
-            _productRepository = productRepository;
-            _mapper = mapper;
-            _wsCorreios = wsCorreios;
-            _calculatePackage = calculatePackage;
-            _cookieValorPrazoFrete = cookieValorPrazoFrete;
         }
 
 
@@ -120,26 +107,6 @@ namespace LojaVirtual.Controllers
 
                 return BadRequest(e);
             }
-        }
-
-
-        private List<ProductItem> ReadProductDB()
-        {
-            List<ProductItem> productKartItem = _cookieShoppingKart.Read();
-
-            List<ProductItem> productKartItemFull = new List<ProductItem>();
-
-            foreach (var item in productKartItem)
-            {
-                Product product = _productRepository.Read(item.Id);
-
-                ProductItem productItem = _mapper.Map<ProductItem>(product);
-                productItem.ItensKartAmount = item.ItensKartAmount;
-
-                productKartItemFull.Add(productItem);
-            }
-
-            return productKartItemFull;
         }
     }
 }

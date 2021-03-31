@@ -12,6 +12,7 @@
 function Mask() {
     $(".cep").mask("00.000-000");
     $(".cpf").mask("000.000.000-00");
+    $(".card-number").mask("0000-0000-0000-0000");
 }
 
 function ActionCalcularFreteBtn() {
@@ -94,7 +95,7 @@ function numberToReal(numero) {
 }
 
 function ChangeAmountProductKart() {
-    $("#order .btn-secondary").click(function () {
+    $("#order .btn-dark").click(function () {
         if ($(this).hasClass("btn-less")) {
             ActionPlannerProduct("decrease", $(this));
         };

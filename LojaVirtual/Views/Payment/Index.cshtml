@@ -1,95 +1,139 @@
-﻿<div class="container">
+﻿@model List<ProductItem>
+
+@{ 
+    ViewData["Title"] = "Efetuar pagamento";
+    decimal Subtotal = 0;
+}
+
+<div class="container">
     <h1 class="display-4 text-center my-5">Efetuar pagamento</h1>
     <div class="row mt-5">
         <div class="col-md-6">
-            <article class="card mb-4">
-                <div class="card-body">
-                    <h4 class="card-title mb-4">Itens no carrinho</h4>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <figure class="itemside  mb-4">
-                                <div class="aside"><img src="bootstrap-ecommerce-html/images/items/1.jpg" class="border img-sm"></div>
-                                <figcaption class="info">
-                                    <p>Apple iPad (2019) 32Gb Wi-Fi gold </p>
-                                    <span class="text-muted">2x = $560 </span>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-md-6">
-                            <figure class="itemside  mb-4">
-                                <div class="aside"><img src="bootstrap-ecommerce-html/images/items/2.jpg" class="border img-sm"></div>
-                                <figcaption class="info">
-                                    <p>Apple iPad (2019) 32Gb Wi-Fi gold </p>
-                                    <span class="text-muted">2x = $560 </span>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-md-6">
-                            <figure class="itemside mb-4">
-                                <div class="aside"><img src="bootstrap-ecommerce-html/images/items/3.jpg" class="border img-sm"></div>
-                                <figcaption class="info">
-                                    <p>Apple iPad (2019) 32Gb Wi-Fi gold </p>
-                                    <span class="text-muted">2x = $560 </span>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-md-6">
-                            <figure class="itemside  mb-4">
-                                <div class="aside"><img src="bootstrap-ecommerce-html/images/items/4.jpg" class="border img-sm"></div>
-                                <figcaption class="info">
-                                    <p>Apple iPad (2019) 32Gb Wi-Fi gold </p>
-                                    <span class="text-muted">2x = $560 </span>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </div>
+            <div id="code_itemside_img2">
+                <div class="box items-bordered-wrap">
+                    @foreach (var item in Model)
+                    {
+                        <figure class="itemside">
+                            <div class="aside">
+                                @if (item.Images.Count > 0)
+                                {
+                                    <img src="@item.Images.First().Path" class="img-sm">
+                                }
+                                else
+                                {
+                                    <img src="~/img/imagem-produto.png" class="img-sm">
+                                }
+                            </div>
+                            <figcaption class="text-wrap align-self-center">
+                                @{
+                                    var subtotalItem = item.Price * item.ItensKartAmount;
+                                    Subtotal = Subtotal + subtotalItem;
+                                }
+                                <h6 class="title"><strong>@item.Name.ToUpper()</strong></h6>
+                                <div>
+                                    <span class="price-new">Quantidade no carrinho: <strong>@item.ItensKartAmount</strong></span>
+                                </div>
+                                <div>
+                                    <span class="price-new">unid/ @item.Price.ToString() x @item.ItensKartAmount = <strong>@subtotalItem.ToString("C")</strong></span>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    }
                 </div>
-            </article>
-        </div>
 
+                <div class="box">
+                    <h4 class="subtitle-doc">
+                        Resumo
+                    </h4>
+                    <dl class="dlist-align">
+                        <dt>Subtotal: </dt>
+                        <dd class="text-right subtotal">@Subtotal.ToString("C")</dd>
+                    </dl>
+                    <dl class="dlist-align">
+                        <dt>Frete: </dt>
+                        <dd class="text-right frete">PAC/SEDEX - R$ 0,00</dd>
+                    </dl>
+                    <dl class="dlist-align">
+                        <dt>TOTAL: </dt>
+                        <dd class="text-right total h5 b">R$ 0,00</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
         <div class="col-md-6">
-            <article class="accordion" id="accordion_pay">
-                <div class="card">
-                    <header class="card-header">
-                        <label class="form-check" data-toggle="collapse" data-target="#pay_paynet" aria-expanded="true">
-                            <input class="form-check-input" name="payment-option" checked="" type="radio" value="option2">
-                            <h6 class="form-check-label">
-                                Boleto bancário
-                            </h6>
-                        </label>
-                    </header>
-                    <div id="pay_paynet" class="collapse show" data-parent="#accordion_pay" style="">
-                        <div class="card-body">
-                            <p class="text-center text-muted">Connect your PayPal account and use it to pay your bills. You'll be redirected to PayPal to add your billing information.</p>
-                            <p class="text-center">
-                                <a href="#"><img src="bootstrap-ecommerce-html/images/misc/btn-paypal.png" height="32"></a>
-                                <br><br>
-                            </p>
-                        </div>
-                    </div> 
-                </div>
-                <div class="card">
-                    <header class="card-header">
-                        <img src="~/img/payment-card.png" class="float-right" height="24">
-                        <label class="form-check collapsed" data-toggle="collapse" data-target="#pay_payme" aria-expanded="false">
-                            <input class="form-check-input" name="payment-option" type="radio" value="option2">
-                            <h6 class="form-check-label"> Cartão de crédito  </h6>
-                        </label>
-                    </header>
-                    <div id="pay_payme" class="collapse" data-parent="#accordion_pay" style="">
-                        <div class="card-body">
-                            <p class="alert alert-success">Some information or instruction</p>
-                            <form class="form-inline">
-                                <input type="text" class="form-control mr-2" placeholder="xxxx-xxxx-xxxx-xxxx" name="">
-                                <input type="text" class="form-control mr-2" style="width: 100px" placeholder="dd/yy" name="">
-                                <input type="number" maxlength="3" class="form-control mr-2" style="width: 100px" placeholder="cvc" name="">
-                                <button class="btn btn btn-success">Button</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </div>
-    </div>
+            <div id="code_payment2">
 
+                <article class="card">
+                    <div class="card-body p-5">
+
+                        <ul class="nav bg radius nav-pills nav-fill mb-3" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link show btn-info" data-toggle="pill" href="#nav-tab-card">
+                                    <i class="fa fa-credit-card"></i> Cartão de crédito
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn-secondary" data-toggle="pill" href="#nav-tab-paypal">
+                                    <i class="fas fa-barcode"></i>  Boleto bancário
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div class="tab-pane fade active show" id="nav-tab-card">
+                                <p class="alert alert-danger">Some text success or error</p>
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="username">Nome (impresso no cartão)</label>
+                                        <input type="text" class="form-control" name="username" placeholder="Digite o nome que consta no cartão" required="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="cardNumber">Número cartão</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control card-number" name="cardNumber" placeholder="XXXX-XXXX-XXXX-XXXX">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text text-muted">
+                                                    <i class="fab fa-cc-visa"></i> &nbsp; <i class="fab fa-cc-amex"></i> &nbsp;
+                                                    <i class="fab fa-cc-mastercard"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <div class="form-group">
+                                                <label><span class="hidden-xs">Vencimento</span> </label>
+                                                <div class="input-group">
+                                                    <input type="number" class="form-control" placeholder="MM" name="">
+                                                    <input type="number" class="form-control" placeholder="AA" name="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label data-toggle="tooltip" title="" data-original-title="Digite os 3 digitos que estão atrás do seu cartão">CVC/CVV</label>
+                                                <input type="number" maxlength="3" class="form-control" placeholder="XXX" required="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="subscribe btn btn-success btn-block p-3" type="button"> Confirmar  </button>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="nav-tab-paypal">
+                                <p>Clique no botão para imprimir o boleto bancário.</p>
+                                <p>
+                                    <button type="button" class="btn btn-primary"> <i class="fab fa-barcode"></i> Imprimir boleto </button>
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </article>
+
+            </div>
+        </div>
+        </div>
 </div>
