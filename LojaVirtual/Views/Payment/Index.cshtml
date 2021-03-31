@@ -1,0 +1,95 @@
+﻿<div class="container">
+    <h1 class="display-4 text-center my-5">Efetuar pagamento</h1>
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <article class="card mb-4">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Itens no carrinho</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <figure class="itemside  mb-4">
+                                <div class="aside"><img src="bootstrap-ecommerce-html/images/items/1.jpg" class="border img-sm"></div>
+                                <figcaption class="info">
+                                    <p>Apple iPad (2019) 32Gb Wi-Fi gold </p>
+                                    <span class="text-muted">2x = $560 </span>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="col-md-6">
+                            <figure class="itemside  mb-4">
+                                <div class="aside"><img src="bootstrap-ecommerce-html/images/items/2.jpg" class="border img-sm"></div>
+                                <figcaption class="info">
+                                    <p>Apple iPad (2019) 32Gb Wi-Fi gold </p>
+                                    <span class="text-muted">2x = $560 </span>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="col-md-6">
+                            <figure class="itemside mb-4">
+                                <div class="aside"><img src="bootstrap-ecommerce-html/images/items/3.jpg" class="border img-sm"></div>
+                                <figcaption class="info">
+                                    <p>Apple iPad (2019) 32Gb Wi-Fi gold </p>
+                                    <span class="text-muted">2x = $560 </span>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="col-md-6">
+                            <figure class="itemside  mb-4">
+                                <div class="aside"><img src="bootstrap-ecommerce-html/images/items/4.jpg" class="border img-sm"></div>
+                                <figcaption class="info">
+                                    <p>Apple iPad (2019) 32Gb Wi-Fi gold </p>
+                                    <span class="text-muted">2x = $560 </span>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div class="col-md-6">
+            <article class="accordion" id="accordion_pay">
+                <div class="card">
+                    <header class="card-header">
+                        <label class="form-check" data-toggle="collapse" data-target="#pay_paynet" aria-expanded="true">
+                            <input class="form-check-input" name="payment-option" checked="" type="radio" value="option2">
+                            <h6 class="form-check-label">
+                                Boleto bancário
+                            </h6>
+                        </label>
+                    </header>
+                    <div id="pay_paynet" class="collapse show" data-parent="#accordion_pay" style="">
+                        <div class="card-body">
+                            <p class="text-center text-muted">Connect your PayPal account and use it to pay your bills. You'll be redirected to PayPal to add your billing information.</p>
+                            <p class="text-center">
+                                <a href="#"><img src="bootstrap-ecommerce-html/images/misc/btn-paypal.png" height="32"></a>
+                                <br><br>
+                            </p>
+                        </div>
+                    </div> 
+                </div>
+                <div class="card">
+                    <header class="card-header">
+                        <img src="~/img/payment-card.png" class="float-right" height="24">
+                        <label class="form-check collapsed" data-toggle="collapse" data-target="#pay_payme" aria-expanded="false">
+                            <input class="form-check-input" name="payment-option" type="radio" value="option2">
+                            <h6 class="form-check-label"> Cartão de crédito  </h6>
+                        </label>
+                    </header>
+                    <div id="pay_payme" class="collapse" data-parent="#accordion_pay" style="">
+                        <div class="card-body">
+                            <p class="alert alert-success">Some information or instruction</p>
+                            <form class="form-inline">
+                                <input type="text" class="form-control mr-2" placeholder="xxxx-xxxx-xxxx-xxxx" name="">
+                                <input type="text" class="form-control mr-2" style="width: 100px" placeholder="dd/yy" name="">
+                                <input type="number" maxlength="3" class="form-control mr-2" style="width: 100px" placeholder="cvc" name="">
+                                <button class="btn btn btn-success">Button</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+
+</div>
