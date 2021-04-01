@@ -23,6 +23,7 @@ namespace LojaVirtual.Libraries.Login
 
         public Client getClient()
         {
+            //deserializar
             if (_session.Exist(Key))
             {
                 string clienteJson = _session.Read(Key);

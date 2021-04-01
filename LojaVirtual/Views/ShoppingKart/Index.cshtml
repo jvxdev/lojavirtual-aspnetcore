@@ -1,4 +1,5 @@
-﻿@model List<LojaVirtual.Models.ProductAggregator.ProductItem>
+﻿@model List<ProductItem>
+@inject ClientLogin _clientLogin
 
 @{
     ViewData["Title"] = "Carrinho de compras";
@@ -40,10 +41,10 @@
                                         </div>
                                         <figcaption class="media-body">
                                             <a asp-controller="Product" asp-action="Show" asp-route-id="@item.Id"><h6 class="title text-truncate">@item.Name</h6></a>
-                                                <dl class="dlist-inline small">
-                                                    <dt>Descrição: </dt>
-                                                    <dd>@item.Description</dd>
-                                                </dl>
+                                            <dl class="dlist-inline small">
+                                                <dt>Descrição: </dt>
+                                                <dd>@item.Description</dd>
+                                            </dl>
                                         </figcaption>
                                     </figure>
                                 </td>
@@ -131,7 +132,14 @@
                 </h4>
                 <div id="code_desc_right">
                     <div class="box text-center">
-                        <a asp-action="Index" asp-controller="Payment" class="btn btn-warning col-12 p-3 btn-proceed"><strong>Seguir para pagamento</strong></a></button>
+                        @if (_clientLogin.getClient() == null)
+                        {
+                            <a asp-action="Index" asp-controller="Payment"></a>
+                        }
+                        else
+                        {
+                            <a asp-action="Index" asp-controller="Payment" class="btn btn-warning col-12 p-3 btn-proceed"><strong>Seguir para pagamento</strong></a>
+                        }
                     </div>
                 </div>
             </aside>

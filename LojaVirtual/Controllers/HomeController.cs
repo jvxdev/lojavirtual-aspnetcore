@@ -18,16 +18,14 @@ namespace LojaVirtual.Controllers
         private IProductRepository _productRepository;
         private IClientRepository _clientRepository;
         private INewsletterRepository _newsletterRepository;
-        private ClientLogin _clientLogin;
         private EmailManage _emailManage;
 
 
-        public HomeController(IProductRepository productRepository, IClientRepository clientRepository, INewsletterRepository newsletterRepository, ClientLogin clientLogin, EmailManage emailManage)
+        public HomeController(IProductRepository productRepository, IClientRepository clientRepository, INewsletterRepository newsletterRepository, EmailManage emailManage)
         {
             _productRepository = productRepository;
             _clientRepository = clientRepository;
             _newsletterRepository = newsletterRepository;
-            _clientLogin = clientLogin;
             _emailManage = emailManage;
         }
 
@@ -60,72 +58,6 @@ namespace LojaVirtual.Controllers
 
         public IActionResult Contact()
         {
-            return View();
-        }
-
-
-        [HttpGet]
-        public IActionResult Login()
-        {
-            Client client = _clientLogin.getClient();
-
-            if (client == null)
-            {
-                return View();
-            }
-            else
-            {
-                return new ContentResult() { Content = "Você já está logado!" };
-            }
-        }
-
-
-        [HttpPost]
-        public IActionResult Login([FromForm] Client client)
-        {
-            Client clientDB = _clientRepository.Login(client.Email, client.Password);
-
-            if (clientDB != null)
-            {
-                _clientLogin.Login(clientDB);
-
-                return new RedirectResult(Url.Action(nameof(Panel)));
-            }
-            else
-            {
-                TempData["MSG_E"] = "E-mail ou senha inválidos!";
-
-                return View();
-            }
-        }
-
-
-        [HttpGet]
-        [ClientAuthorization]
-        public IActionResult Panel()
-        {
-            return View();
-        }
-
-
-        [HttpGet]
-        public IActionResult Register()
-        {
-            return View();
-        }
-
-
-        [HttpPost]
-        public IActionResult Register([FromForm] Client client)
-        {
-            if (ModelState.IsValid)
-            {
-                _clientRepository.Create(client);
-
-                TempData["MSG_S"] = "Cadastro realizado com sucesso! Entre com a sua nova conta!";
-
-                return RedirectToAction(nameof(Login));
-            }
             return View();
         }
 
