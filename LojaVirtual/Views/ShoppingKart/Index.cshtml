@@ -134,7 +134,7 @@
                     <div class="box text-center">
                         @if (_clientLogin.getClient() == null)
                         {
-                            <a asp-action="Index" asp-controller="Payment"></a>
+                            <a asp-action="Login" asp-controller="Home" asp-area="Client" asp-route-returnUrl="@Url.Action("Index", "Payment", new { area = ""})" class="btn btn-warning col-12 p-3 btn-proceed"><strong>Continuar</strong></a>
                         }
                         else
                         {

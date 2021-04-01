@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using LojaVirtual.Controllers.Base;
 using LojaVirtual.Libraries.Cookie;
+using LojaVirtual.Libraries.Filters;
 using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Libraries.Manager.Shipping;
 using LojaVirtual.Libraries.ShoppingKart;
@@ -25,6 +26,7 @@ namespace LojaVirtual.Controllers
         }
 
 
+        [ClientAuthorization]
         public IActionResult Index()
         {
             var tipoFreteSelected = _cookie.Read("ShoppingKart.tipoFrete", false);
@@ -40,11 +42,10 @@ namespace LojaVirtual.Controllers
 
                     return View(productKartItemFull);
                 }
-                    TempData["MSG_E"] = Message.MSG_E010;
-                    return RedirectToAction("Index", "ShoppingKart");
             }
 
-            return null;
+            TempData["MSG_E"] = Message.MSG_E010;
+            return RedirectToAction("Index", "ShoppingKart");
         }
     }
 }

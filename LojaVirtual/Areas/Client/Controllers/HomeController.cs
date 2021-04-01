@@ -37,7 +37,7 @@ namespace LojaVirtual.Areas.Client.Controllers
 
 
         [HttpPost]
-        public IActionResult Login([FromForm] Models.Client client)
+        public IActionResult Login([FromForm] Models.Client client, string returnUrl = null)
         {
             Models.Client clientDB = _clientRepository.Login(client.Email, client.Password);
 
@@ -45,7 +45,14 @@ namespace LojaVirtual.Areas.Client.Controllers
             {
                 _clientLogin.Login(clientDB);
 
-                return new RedirectResult(Url.Action(nameof(Panel)));
+                if (returnUrl == null)
+                {
+                    return new RedirectResult(Url.Action(nameof(Panel)));
+                }
+                else
+                {
+                    return LocalRedirectPermanent(returnUrl);
+                }
             }
             else
             {
@@ -60,7 +67,7 @@ namespace LojaVirtual.Areas.Client.Controllers
         [ClientAuthorization]
         public IActionResult Panel()
         {
-            return new ContentResult() { Content = "Olá! Você está no Painel do Cliente" };
+            return new ContentResult() { Content = "Você está no Painel do Cliente" };
         }
 
 
@@ -72,16 +79,25 @@ namespace LojaVirtual.Areas.Client.Controllers
 
 
         [HttpPost]
-        public IActionResult Register([FromForm] Models.Client client)
+        public IActionResult Register([FromForm] Models.Client client, string returnUrl = null)
         {
             if (ModelState.IsValid)
             {
                 _clientRepository.Create(client);
+                _clientLogin.Login(client);
 
                 TempData["MSG_S"] = "Cadastro realizado com sucesso! Entre com a sua nova conta!";
 
-                return RedirectToAction(nameof(Login));
+                if (returnUrl == null)
+                {
+                    return RedirectToAction("Index", "Home", new { area = ""});
+                }
+                else
+                {
+                    return LocalRedirectPermanent(returnUrl);
+                }
             }
+
             return View();
         }
     }
