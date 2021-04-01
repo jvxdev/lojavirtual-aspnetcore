@@ -9,6 +9,7 @@ using LojaVirtual.Libraries.Login;
 
 namespace LojaVirtual.Areas.Client.Controllers
 {
+    [Area("Client")]
     public class HomeController : Controller
     {
         IClientRepository _clientRepository;
@@ -59,7 +60,7 @@ namespace LojaVirtual.Areas.Client.Controllers
         [ClientAuthorization]
         public IActionResult Panel()
         {
-            return View();
+            return new ContentResult() { Content = "Olá! Você está no Painel do Cliente" };
         }
 
 

@@ -81,7 +81,7 @@ namespace LojaVirtual
 
             services.AddSession(options =>
             {
-
+                options.Cookie.IsEssential = true;
             });
 
             services.AddScoped<Session>();

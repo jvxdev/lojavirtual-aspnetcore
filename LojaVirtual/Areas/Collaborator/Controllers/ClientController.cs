@@ -1,6 +1,5 @@
 ﻿using LojaVirtual.Libraries.Filters;
 using LojaVirtual.Libraries.Lang;
-using LojaVirtual.Models;
 using LojaVirtual.Models.Const;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +22,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
         public IActionResult Index(int? Page, string Search)
         {
-            IPagedList<Client> clients = _clientRepository.ReadAll(Page, Search);
+            IPagedList<Models.Client> clients = _clientRepository.ReadAll(Page, Search);
             return View(clients);
         }
 
@@ -31,7 +30,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         [HttpReferer]
         public IActionResult ActivateDeactivate(int Id)
         {
-            Client client = _clientRepository.Read(Id);
+            Models.Client client = _clientRepository.Read(Id);
 
             if (client.Situation == SituationConst.Active)
             {

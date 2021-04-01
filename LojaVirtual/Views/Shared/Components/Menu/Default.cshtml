@@ -1,4 +1,5 @@
 ﻿@model List<Category>
+@inject ClientLogin _clientLogin;
 
 @{ 
     var Search = Context.Request.Query["Search"];
@@ -45,8 +46,17 @@
             <input class="form-control mr-sm-2" type="search" name="Search" value="@Search" placeholder="Procurando algo?" aria-label="Search">
             <button class="btn btn-danger my-2 my-sm-0" type="submit">Pesquisar</button>
             <a class="nav-link" asp-action="Contact" asp-controller="Home"><i class="fas fa-phone mr-1"></i> Fale conosco</a>
-            <a class="nav-link" asp-action="Login" asp-controller="Home"><i class="fas fa-user-alt mr-1"></i> Entrar</a>
-            <a class="nav-link" asp-action="Index" asp-controller="ShoppingKart"><i class="fas fa-shopping-cart mr-1"></i> Carrinho</a>
+            @if (_clientLogin.getClient() != null)
+            {
+                <a class="nav-link" asp-controller="ShoppingKart" asp-action="Index" ><i class="fas fa-shopping-cart mr-1"></i> Carrinho</a>
+                <a class="nav-link" asp-action="Login" asp-controller="Home" asp-area="Client"><i class="fas fa-user-alt mr-1"></i> @_clientLogin.getClient().Name</a>
+            }
+            else
+            {
+                <a class="nav-link" asp-action="Login" asp-controller="Home" asp-area="Client"><i class="fas fa-user-alt mr-1"></i> Entrar</a>
+                <a class="nav-link" asp-controller="ShoppingKart" asp-action="Index"><i class="fas fa-shopping-cart mr-1"></i> Carrinho</a>
+            }
+
         </form>
     </div>
 </nav>
