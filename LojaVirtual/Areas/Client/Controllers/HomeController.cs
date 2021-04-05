@@ -57,7 +57,6 @@ namespace LojaVirtual.Areas.Client.Controllers
             else
             {
                 TempData["MSG_E"] = "E-mail ou senha inválidos!";
-
                 return View();
             }
         }
