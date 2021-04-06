@@ -1392,6 +1392,16 @@ C:\Users\emotionalboys\Source\Repos\lojavirtual-aspnetcore\LojaVirtual\obj\Debug
 C:\Users\emotionalboys\Source\Repos\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.genruntimeconfig.cache
 C:\Users\emotionalboys\Source\Repos\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Menu\Default.cshtml.g.cs
 C:\Users\emotionalboys\Source\Repos\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Menu\_Submenu.cshtml.g.cs
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.Libraries.Lang.Message.resources
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.csproj.GenerateResource.cache
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.AssemblyInfoInputs.cache
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.AssemblyInfo.cs
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.csproj.CoreCompileInputs.cache
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.RazorAssemblyInfo.cache
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.RazorAssemblyInfo.cs
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.csprojAssemblyReference.cache
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Connected Services\WSCorreios\ConnectedService.json
@@ -1674,6 +1684,7 @@ C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\D
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\LojaVirtual.Views.pdb
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\AutoMapper.dll
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Humanizer.dll
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
@@ -1718,6 +1729,7 @@ C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\D
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\NuGet.Frameworks.dll
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\PagarMe.dll
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\System.Composition.AttributedModel.dll
@@ -1808,15 +1820,6 @@ C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\D
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\runtimes\win7\lib\netstandard2.0\System.Private.ServiceModel.dll
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.Libraries.Lang.Message.resources
-C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.csproj.GenerateResource.cache
-C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.AssemblyInfoInputs.cache
-C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.AssemblyInfo.cs
-C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.csproj.CoreCompileInputs.cache
-C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.RazorAssemblyInfo.cache
-C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.RazorAssemblyInfo.cs
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\staticwebassets\LojaVirtual.StaticWebAssets.Manifest.cache
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\staticwebassets\LojaVirtual.StaticWebAssets.xml
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\scopedcss\bundle\LojaVirtual.styles.css
@@ -1866,6 +1869,3 @@ C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\D
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.dll
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.pdb
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.genruntimeconfig.cache
-C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.csprojAssemblyReference.cache
-C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
-C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\PagarMe.dll

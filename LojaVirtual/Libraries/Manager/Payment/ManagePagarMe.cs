@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LojaVirtual.Libraries.Login;
+using LojaVirtual.Libraries.Text;
 using LojaVirtual.Models;
 using Microsoft.Extensions.Configuration;
 using PagarMe;
@@ -46,12 +47,12 @@ namespace LojaVirtual.Libraries.Manager.Payment
                     Documents = new[] {
                     new Document {
                         Type = DocumentType.Cpf,
-                        Number = client.CPF
+                        Number = Mask.Delete(client.CPF)
                     }
                 },
                     PhoneNumbers = new string[]
                     {
-                    "+55" + client.Phone
+                    "+55" + Mask.Delete(client.Phone)
                     },
                     Birthday = client.BirthDate.ToString("yyyy-MM-dd")
                 };
@@ -71,5 +72,109 @@ namespace LojaVirtual.Libraries.Manager.Payment
                 return new { Erro = e.Message };
             }
         }
+
+        /*
+        public object GerarPagCartaoCredito(CreditCard creditCard)
+        {
+            Client client = _clientLogin.getClient();
+
+            PagarMeService.DefaultApiKey = _conf.GetValue<String>("Pagamento:PagarMe:ApiKey");
+            PagarMeService.DefaultEncryptionKey = _conf.GetValue<String>("Pagamento:PagarMe:EcryptionKey");
+
+            Card card = new Card();
+            card.Number = creditCard.CardNumber;
+            card.HolderName = creditCard.CardHolderName;
+            card.ExpirationDate = creditCard.CardExpirationDate;
+            card.Cvv = creditCard.CardCvv;
+
+            card.Save();
+
+            Transaction transaction = new Transaction();
+
+            transaction.Amount = 2100;
+            transaction.Card = new Card
+            {
+                Id = card.Id
+            };
+
+            transaction.Customer = new Customer
+            {
+                ExternalId = client.Id.ToString(),
+                Name = client.Name,
+                Type = CustomerType.Individual,
+                Country = "br",
+                Email = client.Email,
+                Documents = new[]
+              {
+                    new Document{
+                      Type = DocumentType.Cpf,
+                      Number = Mask.Delete(client.CPF)
+                    }
+                  },
+                PhoneNumbers = new string[]
+              {
+                "+55" + Mask.Delete(client.Phone)
+              },
+                Birthday = client.BirthDate.ToString("yyyy-MM-dd")
+            };
+
+            transaction.Billing = new Billing
+            {
+                Name = "Morty",
+                Address = new Address()
+                {
+                    Country = "br",
+                    State = client.State,
+                    City = client.City,
+                    Neighborhood = client.Neighborhood,
+                    Street = client.Street,
+                    StreetNumber = client.HouseNumber,
+                    Zipcode = client.CEP
+                }
+            };
+
+            var Today = DateTime.Now;
+
+            transaction.Shipping = new PagarMe.Shipping
+            {
+                Name = "Rick",
+                Fee = 100,
+                DeliveryDate = Today.AddDays(4).ToString("yyyy-MM-dd"),
+                Expedited = false,
+                Address = new Address()
+                {
+                    Country = "br",
+                    State = client.State,
+                    City = client.City,
+                    Neighborhood = client.Neighborhood,
+                    Street = client.Street,
+                    StreetNumber = client.HouseNumber,
+                    Zipcode = client.CEP
+                }
+            };
+
+            transaction.Item = new[]
+            {
+              new Item()
+              {
+                Id = "1",
+                Title = "Little Car",
+                Quantity = 1,
+                Tangible = true,
+                UnitPrice = 1000
+              },
+              new Item()
+              {
+                Id = "2",
+                Title = "Baby Crib",
+                Quantity = 1,
+                Tangible = true,
+                UnitPrice = 1000
+              }
+            };
+
+            transaction.Save();
+        }
+        */
     }
 }

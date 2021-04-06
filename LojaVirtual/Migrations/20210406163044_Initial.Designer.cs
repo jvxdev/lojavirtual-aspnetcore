@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LojaVirtual.Migrations
 {
     [DbContext(typeof(LojaVirtualContext))]
-    [Migration("20210313213434_Initial")]
+    [Migration("20210406163044_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,11 +53,19 @@ namespace LojaVirtual.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<DateTime?>("BirthDate")
-                        .IsRequired()
+                    b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("CEP")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
                     b.Property<string>("CPF")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -65,7 +73,15 @@ namespace LojaVirtual.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("HouseNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Neighborhood")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -83,6 +99,14 @@ namespace LojaVirtual.Migrations
 
                     b.Property<string>("Situation")
                         .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -151,7 +175,7 @@ namespace LojaVirtual.Migrations
                     b.ToTable("Newsletter");
                 });
 
-            modelBuilder.Entity("LojaVirtual.Models.Product", b =>
+            modelBuilder.Entity("LojaVirtual.Models.ProductAggregator.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -162,20 +186,17 @@ namespace LojaVirtual.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int?>("CategoryId")
-                        .IsRequired()
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Height")
-                        .IsRequired()
+                    b.Property<int>("Height")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Lenght")
-                        .IsRequired()
+                    b.Property<int>("Lenght")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -185,12 +206,10 @@ namespace LojaVirtual.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<double?>("Weight")
-                        .IsRequired()
+                    b.Property<double>("Weight")
                         .HasColumnType("float");
 
-                    b.Property<int?>("Width")
-                        .IsRequired()
+                    b.Property<int>("Width")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -211,7 +230,7 @@ namespace LojaVirtual.Migrations
 
             modelBuilder.Entity("LojaVirtual.Models.Image", b =>
                 {
-                    b.HasOne("LojaVirtual.Models.Product", "Product")
+                    b.HasOne("LojaVirtual.Models.ProductAggregator.Product", "Product")
                         .WithMany("Images")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -220,7 +239,7 @@ namespace LojaVirtual.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("LojaVirtual.Models.Product", b =>
+            modelBuilder.Entity("LojaVirtual.Models.ProductAggregator.Product", b =>
                 {
                     b.HasOne("LojaVirtual.Models.Category", "Category")
                         .WithMany()
@@ -231,7 +250,7 @@ namespace LojaVirtual.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("LojaVirtual.Models.Product", b =>
+            modelBuilder.Entity("LojaVirtual.Models.ProductAggregator.Product", b =>
                 {
                     b.Navigation("Images");
                 });

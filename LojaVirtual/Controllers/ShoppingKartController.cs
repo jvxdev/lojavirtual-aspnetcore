@@ -10,6 +10,7 @@ using AutoMapper;
 using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Models.Const;
 using LojaVirtual.Libraries.Manager.Shipping;
+using LojaVirtual.Libraries.Manager.Frete;
 using LojaVirtual.Models;
 using LojaVirtual.Controllers.Base;
 

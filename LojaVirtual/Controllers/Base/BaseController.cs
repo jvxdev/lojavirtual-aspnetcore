@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LojaVirtual.Libraries.Manager.Frete;
 using LojaVirtual.Libraries.Manager.Shipping;
 using LojaVirtual.Libraries.ShoppingKart;
 using LojaVirtual.Models.ProductAggregator;

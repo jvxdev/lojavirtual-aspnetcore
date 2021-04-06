@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LojaVirtual.Libraries.Manager.Frete;
+using LojaVirtual.Libraries.Manager.Shipping;
 using LojaVirtual.Models;
 using LojaVirtual.Models.ProductAggregator;
 
-namespace LojaVirtual.Libraries.Manager.Shipping
+namespace LojaVirtual.Libraries.Manager.Frete
 {
     public class CalculatePackage
     {

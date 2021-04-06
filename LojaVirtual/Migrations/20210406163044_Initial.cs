@@ -39,6 +39,12 @@ namespace LojaVirtual.Migrations
                     Sex = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CPF = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    State = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Neighborhood = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HouseNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CEP = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Situation = table.Column<string>(type: "nvarchar(max)", nullable: true)

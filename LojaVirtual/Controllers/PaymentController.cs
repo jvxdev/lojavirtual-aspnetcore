@@ -4,6 +4,7 @@ using LojaVirtual.Libraries.Cookie;
 using LojaVirtual.Libraries.Filters;
 using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Libraries.Manager.Shipping;
+using LojaVirtual.Libraries.Manager.Frete;
 using LojaVirtual.Libraries.ShoppingKart;
 using LojaVirtual.Models.ProductAggregator;
 using LojaVirtual.Repositories.Contracts;
