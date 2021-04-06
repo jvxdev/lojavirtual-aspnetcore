@@ -54,7 +54,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
                     {
                     "+55" + Mask.Delete(client.Phone)
                     },
-                    Birthday = client.BirthDate.ToString("yyyy-MM-dd")
+                    Birthday = client.BirthDate?.ToString("yyyy-MM-dd")
                 };
 
                 transaction.Save();
@@ -115,7 +115,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
               {
                 "+55" + Mask.Delete(client.Phone)
               },
-                Birthday = client.BirthDate.ToString("yyyy-MM-dd")
+                Birthday = client.BirthDate?.ToString("yyyy-MM-dd")
             };
 
             transaction.Billing = new Billing

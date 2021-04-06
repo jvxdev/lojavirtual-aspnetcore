@@ -5,9 +5,38 @@
     ChangeAmountProductKart();
 
     Mask();
+    AjaxBuscarCEP();
     ActionCalcularFreteBtn();
     AjaxCalcularFrete(false);
 });
+
+function AjaxBuscarCEP() {
+    $("#CEP").keyup(function () {
+        if ($(this).val().length == 10) {
+
+            var cep = DeleteMask($(this).val());
+
+            $.ajax({
+                type: "GET",
+                url: "https://viacep.com.br/ws/" + cep + "/json/?callback=callback_name",
+                dataType: "jsonp",
+                error: function (data) {
+                    console.info("ERRO");
+                    console.info(data);
+                },
+                success: function (data) {
+                    console.info("OK");
+                    console.info(data);
+
+                    $("#State").val(data.uf);
+                    $("#City").val(data.localidade);
+                    $("#Neighborhood").val(data.bairro);
+                    $("#Street").val(data.logradouro);
+                }
+            });
+        }
+    });
+}
 
 function Mask() {
     $(".cep").mask("00.000-000");
@@ -248,6 +277,10 @@ function ChangeOrdination() {
 
         window.location.href = URLWithParameters;
     });
+}
+
+function DeleteMask(value) {
+    return value.replace(".", "").replace("-", "");
 }
 
 /*
