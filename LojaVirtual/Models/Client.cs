@@ -19,7 +19,7 @@ namespace LojaVirtual.Models
 
         [Display(Name = "Data de nascimento")]
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
-        public DateTime? BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
 
 
         [Display(Name = "Sexo")]
