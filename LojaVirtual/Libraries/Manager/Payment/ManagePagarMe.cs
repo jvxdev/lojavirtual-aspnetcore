@@ -2,16 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using PagarMe;
 
 namespace LojaVirtual.Libraries.Manager.Payment
 {
     public class ManagePagarMe
     {
+        private IConfiguration _conf;
+
+
+        public ManagePagarMe(IConfiguration conf)
+        {
+            _conf = conf;
+        }
+
+
         public void GerarBoleto()
         {
-            PagarMeService.DefaultApiKey = "SUA_CHAVE_DE_API";
-            PagarMeService.DefaultEncryptionKey = "SUA_CHAVE_DE_CRIPTOGRAFIA";
+            PagarMeService.DefaultApiKey = _conf.GetValue<String>("Pagamento:PagarMe:ApiKey");
+            PagarMeService.DefaultEncryptionKey = _conf.GetValue<String>("Pagamento:PagarMe:EcryptionKey");
 
             Transaction transaction = new Transaction();
 

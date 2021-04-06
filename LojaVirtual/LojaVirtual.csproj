@@ -42,7 +42,6 @@
   <ItemGroup>
     <Folder Include="Areas\Client\Models\" />
     <Folder Include="Areas\Collaborator\Models\" />
-    <Folder Include="Libraries\Manager\Pagamento\" />
     <Folder Include="wwwroot\resources\lib\jquerymask\" />
     <Folder Include="wwwroot\uploads\temp\" />
   </ItemGroup>
