@@ -12,6 +12,9 @@
 
 function AjaxBuscarCEP() {
     $("#CEP").keyup(function () {
+
+        HiddeErrorMessage();
+
         if ($(this).val().length == 10) {
 
             var cep = DeleteMask($(this).val());
@@ -21,17 +24,23 @@ function AjaxBuscarCEP() {
                 url: "https://viacep.com.br/ws/" + cep + "/json/?callback=callback_name",
                 dataType: "jsonp",
                 error: function (data) {
-                    console.info("ERRO");
+                    ShowErrorMessage("Ocorreu um erro durante a busca do CEP. Tente novamente mais tarde!");
                     console.info(data);
                 },
                 success: function (data) {
                     console.info("OK");
                     console.info(data);
 
-                    $("#State").val(data.uf);
-                    $("#City").val(data.localidade);
-                    $("#Neighborhood").val(data.bairro);
-                    $("#Street").val(data.logradouro);
+                    if (data.erro == undefined) {
+                        $("#State").val(data.uf);
+                        $("#City").val(data.localidade);
+                        $("#Neighborhood").val(data.bairro);
+                        $("#Street").val(data.logradouro);
+                    }
+                    else
+                    {
+                        ShowErrorMessage("O CEP informado não existe!");
+                    }
                 }
             });
         }
