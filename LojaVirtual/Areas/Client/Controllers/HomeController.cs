@@ -110,8 +110,13 @@ namespace LojaVirtual.Areas.Client.Controllers
 
         
         [HttpPost]
-        public IActionResult RegisterDeliveryAddress([FromForm] DeliveryAddress delivery)
+        public IActionResult RegisterDeliveryAddress([FromForm] DeliveryAddress delivery, string returnUrl = null)
         {
+            if (ModelState.IsValid) 
+            {
+                delivery.ClientId = _clientLogin.getClient().Id;
+            }
+
             return View();
         }
     }
