@@ -99,5 +99,20 @@ namespace LojaVirtual.Areas.Client.Controllers
 
             return View();
         }
+
+
+        [HttpGet]
+        public IActionResult RegisterDeliveryAddress()
+        {
+            return View();
+        }
+
+        /*
+        [HttpPost]
+        public IActionResult RegisterDeliveryAddress([FromForm] DeliveryAddress delivery)
+        {
+            return View();
+        }
+        */
     }
 }

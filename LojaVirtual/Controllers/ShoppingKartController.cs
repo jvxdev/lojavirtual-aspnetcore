@@ -55,20 +55,6 @@ namespace LojaVirtual.Controllers
         }
 
 
-        [HttpGet]
-        public IActionResult RegisterDeliveryAddress()
-        {
-            return View();
-        }
-
-
-        [HttpPost]
-        public IActionResult RegisterDeliveryAddress([FromForm] DeliveryAddress delivery)
-        {
-            return View();
-        }
-
-
         public IActionResult ChangeAmount(int Id, int Amount)
         {
             Product product = _productRepository.Read(Id);
