@@ -120,7 +120,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
 
             transaction.Billing = new Billing
             {
-                Name = "Morty",
+                Name = client.Name,
                 Address = new Address()
                 {
                     Country = "br",
@@ -129,7 +129,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
                     Neighborhood = client.Neighborhood,
                     Street = client.Street,
                     StreetNumber = client.HouseNumber,
-                    Zipcode = client.CEP
+                    Zipcode = Mask.Delete(client.CEP)
                 }
             };
 
@@ -137,7 +137,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
 
             transaction.Shipping = new PagarMe.Shipping
             {
-                Name = "Rick",
+                Name = client.Name,
                 Fee = 100,
                 DeliveryDate = Today.AddDays(4).ToString("yyyy-MM-dd"),
                 Expedited = false,
@@ -149,7 +149,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
                     Neighborhood = client.Neighborhood,
                     Street = client.Street,
                     StreetNumber = client.HouseNumber,
-                    Zipcode = client.CEP
+                    Zipcode = Mask.Delete(client.CEP)
                 }
             };
 
