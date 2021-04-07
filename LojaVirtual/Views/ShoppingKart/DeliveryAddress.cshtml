@@ -8,14 +8,18 @@
     <div class="row">
         <div class="col-md-12">
             <h4 class="text-center display-4 mt-5">Endereço de entrega</h4>
-            <table class="table my-5">
+
+            <table class="table table-hover my-5">
                 <tbody>
                     <tr>
-                        <th scope="col"><input type="radio" name="deliveryAddresses" value="0" /></th>
-                        
+                        <th scope="row">
+                            <input type="radio" name="deliveryAddresses" value="0" id="0-end" />
+                        </th>
                         <td>
-                            <strong>Endereço do cliente.</strong>
-                            <p>@ViewBag.Client.CEP | @ViewBag.Client.State, @ViewBag.Client.City, @ViewBag.Client.Neighborhood, @ViewBag.Client.Street, @ViewBag.Client.HouseNumber</p>
+                            <label for="0-end">
+                                <strong>Meu endereço</strong>
+                                <p>@ViewBag.Client.CEP | @ViewBag.Client.State, @ViewBag.Client.City, @ViewBag.Client.Neighborhood, @ViewBag.Client.Street, @ViewBag.Client.HouseNumber</p>
+                            </label>
                         </td>
                         <td>
                             <strong>Frete: </strong>
@@ -25,11 +29,14 @@
                     @foreach (DeliveryAddress deliveryAddress in ViewBag.Addresses)
                     {
                         <tr>
-                            <th scope="row">1</th>
-                            <input type="radio" name="deliveryAddress" value="0" />
+                            <th scope="row">
+                                <input type="radio" name="deliveryAddress" value="@deliveryAddress.Id" id="@deliveryAddress.Id-end" />
+                            </th>
                             <td>
-                                <strong>Nome: </strong> @deliveryAddress.AddressName.
-                                <p>@deliveryAddress.CEP | @deliveryAddress.State, @deliveryAddress.City, @deliveryAddress.Neighborhood, @deliveryAddress.Street, @deliveryAddress.HouseNumber</p>
+                                <label for="@deliveryAddress.Id-end">
+                                    <strong>@deliveryAddress.AddressName</strong>
+                                    <p>@deliveryAddress.CEP | @deliveryAddress.State, @deliveryAddress.City, @deliveryAddress.Neighborhood, @deliveryAddress.Street, @deliveryAddress.HouseNumber</p>
+                                </label>
                             </td>
                             <td>
                                 <strong>Frete: </strong>
@@ -42,7 +49,7 @@
 
             <div class="text-center">
                 <a class="btn btn-secondary p-2" asp-area="Client" asp-controller="Home" asp-route-returnUrl="@Url.Action("DeliveryAddress", "ShoppingKart", new {  area = "" })" asp-action="RegisterDeliveryAddress">Cadastrar novo endereço</a>
-                <a class="btn btn-primary p-2" asp-controller="Payment" asp-action="Index">Continuar para pagamento</a>
+                <a class="btn btn-primary p-2" asp-controller="Payment" asp-action="Index"><strong>Continuar para pagamento</strong></a>
             </div>
         </div>
     </div>

@@ -1,9 +1,9 @@
-﻿using System;
+﻿using LojaVirtual.Libraries.Lang;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.ServiceModel.Channels;
 using System.Threading.Tasks;
 
 namespace LojaVirtual.Models

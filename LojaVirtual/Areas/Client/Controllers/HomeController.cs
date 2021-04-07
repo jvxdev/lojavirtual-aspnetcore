@@ -113,13 +113,13 @@ namespace LojaVirtual.Areas.Client.Controllers
 
         
         [HttpPost]
-        public IActionResult RegisterDeliveryAddress([FromForm] DeliveryAddress delivery, string returnUrl = null)
+        public IActionResult RegisterDeliveryAddress([FromForm] DeliveryAddress deliveryAddress, string returnUrl = null)
         {
             if (ModelState.IsValid) 
             {
-                delivery.ClientId = _clientLogin.getClient().Id;
+                deliveryAddress.ClientId = _clientLogin.getClient().Id;
 
-                _deliveryAddressRepository.Create(delivery);
+                _deliveryAddressRepository.Create(deliveryAddress);
 
                 if (returnUrl == null)
                 {
