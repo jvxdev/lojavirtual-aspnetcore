@@ -1,18 +1,48 @@
 ﻿@model DeliveryAddress
 
-@{ 
+@{
     ViewData["Title"] = "Endereço de entrega";
 }
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-
-
+            <h4 class="text-center display-4 mt-5">Endereço de entrega</h4>
+            <table class="table my-5">
+                <tbody>
+                    <tr>
+                        <th scope="col"><input type="radio" name="deliveryAddresses" value="0" /></th>
+                        
+                        <td>
+                            <strong>Endereço do cliente.</strong>
+                            <p>@ViewBag.Client.CEP | @ViewBag.Client.State, @ViewBag.Client.City, @ViewBag.Client.Neighborhood, @ViewBag.Client.Street, @ViewBag.Client.HouseNumber</p>
+                        </td>
+                        <td>
+                            <strong>Frete: </strong>
+                            <p>R$ 189,99</p>
+                        </td>
+                    </tr>
+                    @foreach (DeliveryAddress deliveryAddress in ViewBag.Addresses)
+                    {
+                        <tr>
+                            <th scope="row">1</th>
+                            <input type="radio" name="deliveryAddress" value="0" />
+                            <td>
+                                <strong>Nome: </strong> @deliveryAddress.AddressName.
+                                <p>@deliveryAddress.CEP | @deliveryAddress.State, @deliveryAddress.City, @deliveryAddress.Neighborhood, @deliveryAddress.Street, @deliveryAddress.HouseNumber</p>
+                            </td>
+                            <td>
+                                <strong>Frete: </strong>
+                                <p>R$ 189,99</p>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
 
             <div class="text-center">
-                <a href="#" class="btn btn-warning col-12 p-3" asp-area="Client" asp-controller="Home" asp-route-returnUrl="@Url.Action("DeliveryAddress", "ShoppingKart", new {  area = "" })" asp-action="RegisterDeliveryAddress">Cadastrar novo endereço</a>
-                <a href="#" class="btn btn-secondary col-12 p-3" asp-controller="Payment" asp-action="Index">Continuar</a>
+                <a class="btn btn-secondary p-2" asp-area="Client" asp-controller="Home" asp-route-returnUrl="@Url.Action("DeliveryAddress", "ShoppingKart", new {  area = "" })" asp-action="RegisterDeliveryAddress">Cadastrar novo endereço</a>
+                <a class="btn btn-primary p-2" asp-controller="Payment" asp-action="Index">Continuar para pagamento</a>
             </div>
         </div>
     </div>
