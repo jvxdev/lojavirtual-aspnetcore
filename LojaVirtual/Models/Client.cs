@@ -1,5 +1,6 @@
 ﻿using LojaVirtual.Libraries.Lang;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -38,6 +39,12 @@ namespace LojaVirtual.Models
         public string Phone { get; set; }
 
 
+        [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
+        [MinLength(10, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E002")]
+        [MaxLength(10, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E003")]
+        public string CEP { get; set; }
+
+
         [Display(Name = "Estado")]
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
         public string State { get; set; }
@@ -64,12 +71,6 @@ namespace LojaVirtual.Models
 
 
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
-        [MinLength(10, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E002")]
-        [MaxLength(10, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E003")]
-        public string CEP { get; set; }
-
-
-        [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
         [EmailAddress(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E004")]
         public string Email { get; set; }
 
@@ -87,5 +88,9 @@ namespace LojaVirtual.Models
         [Display(Name = "Situação da conta")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public string Situation { get; set; }
+
+
+        [ForeignKey("ClientId")]
+        public virtual ICollection<DeliveryAddress> DeliveryAddresses { get; set; }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using LojaVirtual.Libraries.Filters;
 using LojaVirtual.Repositories.Contracts;
 using LojaVirtual.Libraries.Login;
+using LojaVirtual.Models;
 
 namespace LojaVirtual.Areas.Client.Controllers
 {
@@ -107,12 +108,11 @@ namespace LojaVirtual.Areas.Client.Controllers
             return View();
         }
 
-        /*
+        
         [HttpPost]
         public IActionResult RegisterDeliveryAddress([FromForm] DeliveryAddress delivery)
         {
             return View();
         }
-        */
     }
 }

@@ -1827,7 +1827,6 @@ C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\D
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.TagHelpers.output.cache
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.RazorCoreGenerate.cache
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Client\Views\Home\Login.cshtml.g.cs
-C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Client\Views\Home\Panel.cshtml.g.cs
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Client\Views\Home\Register.cshtml.g.cs
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Client\Views\_ViewImports.cshtml.g.cs
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Client\Views\_ViewStart.cshtml.g.cs
@@ -1870,3 +1869,4 @@ C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\D
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.pdb
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.genruntimeconfig.cache
 C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Views\ShoppingKart\DeliveryAddress.cshtml.g.cs
+C:\Users\emotionalboys\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Client\Views\Home\RegisterDeliveryAddress.cshtml.g.cs

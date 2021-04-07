@@ -51,7 +51,8 @@ namespace LojaVirtual.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<DateTime>("BirthDate")
+                    b.Property<DateTime?>("BirthDate")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CEP")
@@ -135,6 +136,53 @@ namespace LojaVirtual.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Collaborators");
+                });
+
+            modelBuilder.Entity("LojaVirtual.Models.DeliveryAddress", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("AddressName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("CEP")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("HouseNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Neighborhood")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("DeliveryAddresses");
                 });
 
             modelBuilder.Entity("LojaVirtual.Models.Image", b =>
@@ -226,6 +274,15 @@ namespace LojaVirtual.Migrations
                     b.Navigation("FatherCategory");
                 });
 
+            modelBuilder.Entity("LojaVirtual.Models.DeliveryAddress", b =>
+                {
+                    b.HasOne("LojaVirtual.Models.Client", "Client")
+                        .WithMany("DeliveryAddresses")
+                        .HasForeignKey("ClientId");
+
+                    b.Navigation("Client");
+                });
+
             modelBuilder.Entity("LojaVirtual.Models.Image", b =>
                 {
                     b.HasOne("LojaVirtual.Models.ProductAggregator.Product", "Product")
@@ -246,6 +303,11 @@ namespace LojaVirtual.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("LojaVirtual.Models.Client", b =>
+                {
+                    b.Navigation("DeliveryAddresses");
                 });
 
             modelBuilder.Entity("LojaVirtual.Models.ProductAggregator.Product", b =>
