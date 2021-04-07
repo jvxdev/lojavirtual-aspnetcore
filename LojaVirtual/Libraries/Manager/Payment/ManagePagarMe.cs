@@ -73,8 +73,9 @@ namespace LojaVirtual.Libraries.Manager.Payment
             }
         }
 
+        
         /*
-        public object GerarPagCartaoCredito(CreditCard creditCard)
+           public object GerarPagCartaoCredito(CreditCard creditCard)
         {
             Client client = _clientLogin.getClient();
 

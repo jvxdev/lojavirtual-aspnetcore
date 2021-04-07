@@ -7,7 +7,8 @@
     decimal Subtotal = 0;
 }
 
-<main role="main">
+@if (Model.Count > 0)
+{
     <section class="container" id="order">
         <h1 class="display-4 text-center my-5">Carrinho de compras</h1>
         <div class="alert alert-danger" style="display: none;" role="alert">
@@ -134,7 +135,7 @@
                     <div class="box text-center">
                         @if (_clientLogin.getClient() == null)
                         {
-                            <a asp-action="Login" asp-controller="Home" asp-area="Client" asp-route-returnUrl="@Url.Action("Index", "Payment", new { area = ""})" class="btn btn-warning col-12 p-3 btn-proceed"><strong>Continuar</strong></a>
+                            <a asp-action="Login" asp-controller="Home" asp-area="Client" asp-route-returnUrl="@Url.Action("Index", "Payment", new { area = "" })" class="btn btn-warning col-12 p-3 btn-proceed"><strong>Continuar</strong></a>
                         }
                         else
                         {
@@ -145,4 +146,16 @@
             </aside>
         </div>
     </section>
-</main>
+}
+else
+{
+    <div class="container">
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-md-12 text-center display-4">
+                Ainda não adicionou um produto ao seu carrinho? <a asp-controller="Home" asp-action="Index">Clique aqui</a> e começe a comprar
+            </div>
+        </div>
+    </div>
+}
