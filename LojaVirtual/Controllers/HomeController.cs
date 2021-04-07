@@ -18,14 +18,16 @@ namespace LojaVirtual.Controllers
         private IProductRepository _productRepository;
         private IClientRepository _clientRepository;
         private INewsletterRepository _newsletterRepository;
+        private ClientLogin _clientLogin;
         private EmailManage _emailManage;
 
 
-        public HomeController(IProductRepository productRepository, IClientRepository clientRepository, INewsletterRepository newsletterRepository, EmailManage emailManage)
+        public HomeController(IProductRepository productRepository, IClientRepository clientRepository, INewsletterRepository newsletterRepository, ClientLogin clientLogin, EmailManage emailManage)
         {
             _productRepository = productRepository;
             _clientRepository = clientRepository;
             _newsletterRepository = newsletterRepository;
+            _clientLogin = clientLogin;
             _emailManage = emailManage;
         }
 

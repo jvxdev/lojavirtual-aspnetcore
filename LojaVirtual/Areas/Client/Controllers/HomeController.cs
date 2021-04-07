@@ -14,12 +14,15 @@ namespace LojaVirtual.Areas.Client.Controllers
     public class HomeController : Controller
     {
         IClientRepository _clientRepository;
+        IDeliveryAddressRepository _deliveryAddressRepository;
         ClientLogin _clientLogin;
+        
 
 
-        public HomeController(IClientRepository clientRepository, ClientLogin clientLogin)
+        public HomeController(IClientRepository clientRepository, IDeliveryAddressRepository deliveryAddressRepository, ClientLogin clientLogin)
         {
             _clientRepository = clientRepository;
+            _deliveryAddressRepository = deliveryAddressRepository;
             _clientLogin = clientLogin;
         }
 
@@ -115,6 +118,17 @@ namespace LojaVirtual.Areas.Client.Controllers
             if (ModelState.IsValid) 
             {
                 delivery.ClientId = _clientLogin.getClient().Id;
+
+                _deliveryAddressRepository.Create(delivery);
+
+                if (returnUrl == null)
+                {
+
+                }
+                else
+                {
+                    return LocalRedirectPermanent(returnUrl);
+                }
             }
 
             return View();

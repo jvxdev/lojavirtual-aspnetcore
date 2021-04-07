@@ -13,13 +13,20 @@ using LojaVirtual.Libraries.Manager.Shipping;
 using LojaVirtual.Libraries.Manager.Frete;
 using LojaVirtual.Models;
 using LojaVirtual.Controllers.Base;
+using LojaVirtual.Libraries.Login;
+using LojaVirtual.Libraries.Filters;
 
 namespace LojaVirtual.Controllers
 {
     public class ShoppingKartController : BaseController
     {
-        public ShoppingKartController(IProductRepository productRepository, CookieShoppingKart cookieShoppingKart, CookieValorPrazoFrete cookieValorPrazoFrete, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage) : base(productRepository, cookieShoppingKart, cookieValorPrazoFrete, mapper, wsCorreios, calculatePackage)
+        private ClientLogin _clientLogin;
+        private IDeliveryAddressRepository _deliveryAddressRepository;
+
+        public ShoppingKartController(ClientLogin clientLogin, IDeliveryAddressRepository deliveryAddressRepository, IProductRepository productRepository, CookieShoppingKart cookieShoppingKart, CookieValorPrazoFrete cookieValorPrazoFrete, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage) : base(productRepository, cookieShoppingKart, cookieValorPrazoFrete, mapper, wsCorreios, calculatePackage)
         {
+            _clientLogin = clientLogin;
+            _deliveryAddressRepository = deliveryAddressRepository;
         }
 
 
@@ -49,8 +56,15 @@ namespace LojaVirtual.Controllers
         }
 
 
+        [ClientAuthorization]
         public IActionResult DeliveryAddress()
         {
+            Client client = _clientLogin.getClient();
+            IList<DeliveryAddress> deliveryAddresses = _deliveryAddressRepository.ReadAll(client.Id);
+
+            ViewBag.Client = client;
+            ViewBag.Addresses = deliveryAddresses;
+
             return View();
         }
 

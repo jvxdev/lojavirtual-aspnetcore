@@ -1,15 +1,18 @@
-﻿@{ 
+﻿@model DeliveryAddress
+
+@{ 
     ViewData["Title"] = "Endereço de entrega";
 }
 
 <div class="container">
-    <br />
-    <br />
     <div class="row">
         <div class="col-md-12">
 
+
+
             <div class="text-center">
                 <a href="#" class="btn btn-warning col-12 p-3" asp-area="Client" asp-controller="Home" asp-route-returnUrl="@Url.Action("DeliveryAddress", "ShoppingKart", new {  area = "" })" asp-action="RegisterDeliveryAddress">Cadastrar novo endereço</a>
+                <a href="#" class="btn btn-secondary col-12 p-3" asp-controller="Payment" asp-action="Index">Continuar</a>
             </div>
         </div>
     </div>
