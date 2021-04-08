@@ -13,6 +13,6 @@ namespace LojaVirtual.Models
         public string codShoppingKart { get; set; }
 
 
-        public List<ValorPrazoFrete> ValuesList { get; set; }
+        public List<ValorPrazoFrete> valuesList { get; set; }
     }
 }

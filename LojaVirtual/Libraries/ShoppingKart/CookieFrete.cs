@@ -35,7 +35,7 @@ namespace LojaVirtual.Libraries.ShoppingKart
                 else
                 {
                     itemLocation.codShoppingKart = item.codShoppingKart;
-                    itemLocation.ValuesList = item.ValuesList;
+                    itemLocation.valuesList = item.valuesList;
                 }
             }
             else
@@ -81,7 +81,7 @@ namespace LojaVirtual.Libraries.ShoppingKart
             if (itemLocation != null)
             {
                 itemLocation.codShoppingKart = item.codShoppingKart;
-                itemLocation.ValuesList = item.ValuesList;
+                itemLocation.valuesList = item.valuesList;
 
                 Save(List);
             }

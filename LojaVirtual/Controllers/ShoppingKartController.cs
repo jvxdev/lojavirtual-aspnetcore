@@ -123,11 +123,11 @@ namespace LojaVirtual.Controllers
                 var frete = new Frete()
                 {
                     CEP = cepDestino,
-                    codShoppingKart = StringMD5.MD5Hash(JsonConvert.SerializeObject(_cookieShoppingKart.Read())),
-                    ValuesList = list
+                    codShoppingKart = HashGenerator(_cookieShoppingKart.Read()),
+                    valuesList = list
                 };
 
-                _cookieValorPrazoFrete.Create(frete);
+                _cookieFrete.Create(frete);
 
                 return Ok(frete);
             }

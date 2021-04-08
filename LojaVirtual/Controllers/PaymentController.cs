@@ -34,7 +34,8 @@ namespace LojaVirtual.Controllers
 
             if (tipoFreteSelected != null)
             {
-                var Frete = _cookieValorPrazoFrete.Read().Where(a => a.TipoFrete == tipoFreteSelected).FirstOrDefault();
+                /*
+                var Frete = _cookieFrete.Read().Where(a => a.TipoFrete == tipoFreteSelected).FirstOrDefault();
 
                 if (Frete != null)
                 {
@@ -43,6 +44,7 @@ namespace LojaVirtual.Controllers
 
                     return View(productKartItemFull);
                 }
+                */
             }
 
             TempData["MSG_E"] = Message.MSG_E010;
