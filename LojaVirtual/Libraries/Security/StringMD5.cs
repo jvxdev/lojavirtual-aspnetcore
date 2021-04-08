@@ -9,13 +9,19 @@ namespace LojaVirtual.Libraries.Security
 {
     public class StringMD5
     {
-        public static string MD5Hash(string text)
+        public static string MD5Hash(string input)
         {
-            using (var md5 = MD5.Create())
+            using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
             {
-                var result = md5.ComputeHash(Encoding.ASCII.GetBytes(text));
+                byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
 
-                return Encoding.ASCII.GetString(result);
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    sb.Append(hashBytes[i].ToString("X2"));
+                }
+                return sb.ToString();
             }
         }
     }
