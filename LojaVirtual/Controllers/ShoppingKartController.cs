@@ -15,6 +15,8 @@ using LojaVirtual.Models;
 using LojaVirtual.Controllers.Base;
 using LojaVirtual.Libraries.Login;
 using LojaVirtual.Libraries.Filters;
+using Newtonsoft.Json;
+using LojaVirtual.Libraries.Security;
 
 namespace LojaVirtual.Controllers
 {
@@ -23,7 +25,7 @@ namespace LojaVirtual.Controllers
         private ClientLogin _clientLogin;
         private IDeliveryAddressRepository _deliveryAddressRepository;
 
-        public ShoppingKartController(ClientLogin clientLogin, IDeliveryAddressRepository deliveryAddressRepository, IProductRepository productRepository, CookieShoppingKart cookieShoppingKart, CookieValorPrazoFrete cookieValorPrazoFrete, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage) : base(productRepository, cookieShoppingKart, cookieValorPrazoFrete, mapper, wsCorreios, calculatePackage)
+        public ShoppingKartController(ClientLogin clientLogin, IDeliveryAddressRepository deliveryAddressRepository, IProductRepository productRepository, CookieShoppingKart cookieShoppingKart, CookieFrete cookieValorPrazoFrete, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage) : base(productRepository, cookieShoppingKart, cookieValorPrazoFrete, mapper, wsCorreios, calculatePackage)
         {
             _clientLogin = clientLogin;
             _deliveryAddressRepository = deliveryAddressRepository;
@@ -121,18 +123,16 @@ namespace LojaVirtual.Controllers
                 var frete = new Frete()
                 {
                     CEP = cepDestino,
-                //codShoppingKart,
-                ValuesList = list
+                    codShoppingKart = StringMD5.MD5Hash(JsonConvert.SerializeObject(_cookieShoppingKart.Read())),
+                    ValuesList = list
                 };
 
-                //_cookieValorPrazoFrete.Create(frete);
+                _cookieValorPrazoFrete.Create(frete);
 
                 return Ok(frete);
             }
             catch (Exception e)
             {
-                _cookieValorPrazoFrete.Delete();
-
                 return BadRequest(e);
             }
         }

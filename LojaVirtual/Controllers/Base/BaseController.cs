@@ -16,13 +16,13 @@ namespace LojaVirtual.Controllers.Base
     {
         protected IProductRepository _productRepository;
         protected CookieShoppingKart _cookieShoppingKart;
-        protected CookieValorPrazoFrete _cookieValorPrazoFrete;
+        protected CookieFrete _cookieValorPrazoFrete;
         protected IMapper _mapper;
         protected WSCorreiosCalcularFrete _wsCorreios;
         protected CalculatePackage _calculatePackage;
 
 
-        public BaseController(IProductRepository productRepository, CookieShoppingKart cookieShoppingKart, CookieValorPrazoFrete cookieValorPrazoFrete, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage)
+        public BaseController(IProductRepository productRepository, CookieShoppingKart cookieShoppingKart, CookieFrete cookieValorPrazoFrete, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage)
         {
             _productRepository = productRepository;
             _cookieShoppingKart = cookieShoppingKart;
