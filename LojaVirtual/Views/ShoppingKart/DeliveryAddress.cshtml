@@ -13,7 +13,7 @@
                 <tbody>
                     <tr>
                         <th scope="row">
-                            <input type="radio" name="deliveryAddresses" value="0" id="0-end" />
+                            <input type="radio" name="deliveryAddresses" class="input-group" value="0" id="0-end" />
                         </th>
                         <td>
                             <label for="0-end">
@@ -21,16 +21,13 @@
                                 <p>@ViewBag.Client.CEP | @ViewBag.Client.State, @ViewBag.Client.City, @ViewBag.Client.Neighborhood, @ViewBag.Client.Street, @ViewBag.Client.HouseNumber</p>
                             </label>
                         </td>
-                        <td>
-                            <strong>Frete: </strong>
-                            <p>R$ 189,99</p>
-                        </td>
                     </tr>
+
                     @foreach (DeliveryAddress deliveryAddress in ViewBag.Addresses)
                     {
                         <tr>
                             <th scope="row">
-                                <input type="radio" name="deliveryAddress" value="@deliveryAddress.Id" id="@deliveryAddress.Id-end" />
+                                <input type="radio" name="deliveryAddress" class="input-group" value="@deliveryAddress.Id" id="@deliveryAddress.Id-end" />
                             </th>
                             <td>
                                 <label for="@deliveryAddress.Id-end">
@@ -38,18 +35,47 @@
                                     <p>@deliveryAddress.CEP | @deliveryAddress.State, @deliveryAddress.City, @deliveryAddress.Neighborhood, @deliveryAddress.Street, @deliveryAddress.HouseNumber</p>
                                 </label>
                             </td>
-                            <td>
-                                <strong>Frete: </strong>
-                                <p>R$ 189,99</p>
-                            </td>
                         </tr>
                     }
                 </tbody>
             </table>
 
-            <div class="text-center">
-                <a class="btn btn-secondary p-2" asp-area="Client" asp-controller="Home" asp-route-returnUrl="@Url.Action("DeliveryAddress", "ShoppingKart", new {  area = "" })" asp-action="RegisterDeliveryAddress">Cadastrar novo endereço</a>
-                <a class="btn btn-primary p-2" asp-controller="Payment" asp-action="Index"><strong>Continuar para pagamento</strong></a>
+            <div class="text-left">
+                <a class="btn btn-secondary p-3" asp-area="Client" asp-controller="Home" asp-route-returnUrl="@Url.Action("DeliveryAddress", "ShoppingKart", new {  area = "" })" asp-action="RegisterDeliveryAddress">Cadastrar novo endereço</a>
+            </div>
+
+            <div class="card-group my-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">SEDEX</h5>
+                        <p class="card-text">Até dias utéis.</p>
+                    </div>
+                    <div class="card-footer">
+                        <input type="radio" name="frete" class="input-group" value="SEDEX" />
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">SEDEX10</h5>
+                        <p class="card-text">Até dias utéis.</p>
+                    </div>
+                    <div class="card-footer">
+                        <input type="radio" name="frete" class="input-group" value="SEDEX10" />
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">PAC</h5>
+                        <p class="card-text">Até dias utéis.</p>
+                    </div>
+                    <div class="card-footer">
+                        <input type="radio" name ="frete" class="input-group" value="PAC" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-right">
+                <a class="btn btn-warning p-3" asp-controller="Payment" asp-action="Index"><strong>Continuar para pagamento</strong></a>
             </div>
         </div>
     </div>
