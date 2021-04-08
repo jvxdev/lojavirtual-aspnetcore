@@ -118,9 +118,16 @@ namespace LojaVirtual.Controllers
                 if (valueSEDEX10 != null) list.Add(valueSEDEX10);
                 if (valuePAC != null) list.Add(valuePAC);
 
-                _cookieValorPrazoFrete.Create(list);
+                var frete = new Frete()
+                {
+                    CEP = cepDestino,
+                //codShoppingKart,
+                ValuesList = list
+                };
 
-                return Ok(list);
+                //_cookieValorPrazoFrete.Create(frete);
+
+                return Ok(frete);
             }
             catch (Exception e)
             {
