@@ -35,20 +35,22 @@ function AjaxDeliveryAddressCalcularFrete() {
                     var valor = data.valuesList[i].valor;
                     var prazo = data.valuesList[i].prazo;
 
-                    $(".card-title")[i].innerHTML = tipoFrete;
-                    $(".card-text")[i].innerHTML = "Prazo de até " + prazo + " dia(s).";
+                    $(".card-title")[i].innerHTML = "<label for='" + tipoFrete + "'>" + tipoFrete + "</label>";
+                    $(".card-text")[i].innerHTML = "<label for='" + tipoFrete + "'>Prazo de até " + prazo + " dia(s).</label>";
                     $(".card-footer")[i].innerHTML = "<input type=\"radio\" name=\"frete\" id='" + tipoFrete + "' value=\"" + tipoFrete + "\" /> <strong><label for='" + tipoFrete + "'>" + numberToReal(valor) + "</label></strong>";
 
+                    console.info($.cookie("ShoppingKart.tipoFrete") + " - " + tipoFrete);
+                    console.info($.cookie("ShoppingKart.tipoFrete" == tipoFrete));
 
-                    if ($.cookie("ShoppingKart.tipoFrete") == tipoFrete) {
-                        $(".card-footer").find("input[name=frete]").attr("selected", "selected");
-                        $(".btn-proceed").removeClass("disabled");
+                    if ($.cookie("ShoppingKart.tipoFrete") != undefined && $.cookie("ShoppingKart.tipoFrete") == tipoFrete) {
+                        $(".card-footer").find("input[name=frete]").attr("checked", "checked");
                     }
                 }
 
                 $(".card-footer").find("input[name=frete]").change(function () {
                     $.cookie("ShoppingKart.tipoFrete", $(this).val());
                     $(".btn-proceed").removeClass("disabled");
+                    $(this).parent().parent().css("background-color", "#red");
                 });
 
                 /*
@@ -86,9 +88,8 @@ function DeliveryAddressCardsLoading() {
 
 function DeliveryAddressCardsClear() {
     for (var i = 0; i < 3; i++) {
-        $(".card-title")[i].innerHTML = "-";
-        $(".card-text")[i].innerHTML = "-";
-        $(".card-footer")[i].innerHTML = "...";
+        $(".card-text")[i].innerHTML = "O serviço SEDEX10 está indisponível para este trajeto...";
+        $(".card-footer")[i].innerHTML = "<h5>...</h5>";
     }
 }
 
