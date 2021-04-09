@@ -16,14 +16,20 @@ function AjaxDeliveryAddressCalcularFrete() {
     $("input[name=deliveryAddress]").change(function () {
         var cep = DeleteMask($(this).parent().find("input[name=cep]").val());
 
+        DeliveryAddressCardsLoading();
+
         $.ajax({
             type: "GET",
             url: "/ShoppingKart/CalcularFrete?cepDestino=" + cep,
             error: function (data) {
                 ShowErrorMessage("Desculpe! Tivemos um erro ao tentar obter o frete... " + data.Message);
-                console.info(data);
+
+                DeliveryAddressCardsClear();
             },
             success: function (data) {
+
+                DeliveryAddressCardsClear();
+
                 for (var i = 0; i < data.valuesList.length; i++) {
                     var tipoFrete = data.valuesList[i].tipoFrete;
                     var valor = data.valuesList[i].valor;
@@ -31,9 +37,19 @@ function AjaxDeliveryAddressCalcularFrete() {
 
                     $(".card-title")[i].innerHTML = tipoFrete;
                     $(".card-text")[i].innerHTML = "Prazo de até " + prazo + " dia(s).";
-                    $(".card-footer .text-muted")[i].innerHTML = "<input type=\"radio\" name=\"frete\" id='" + tipoFrete + "' value=\"" + tipoFrete + "\" /> <strong><label for='" + tipoFrete + "'>" + numberToReal(valor) + "</label></strong>";
+                    $(".card-footer h5")[i].innerHTML = "<input type=\"radio\" name=\"frete\" id='" + tipoFrete + "' value=\"" + tipoFrete + "\" /> <strong><label for='" + tipoFrete + "'>" + numberToReal(valor) + "</label></strong>";
 
+
+                    if ($.cookie("ShoppingKart.tipoFrete") == tipoFrete) {
+                        $(".card-footer h5").find("input[name=frete]").attr("selected", "selected");
+                        $(".btn-proceed").removeClass("disabled");
+                    }
                 }
+
+                $(".card-footer h5").find("input[name=frete]").change(function () {
+                    $.cookie("ShoppingKart.tipoFrete", $(this).val());
+                    $(".btn-proceed").removeClass("disabled");
+                });
                 /*
                 $(".container-frete").html(html);
 
@@ -58,6 +74,21 @@ function AjaxDeliveryAddressCalcularFrete() {
             }
         });
     });
+}
+
+function DeliveryAddressCardsLoading() {
+    for (var i = 0; i < 3; i++) {
+        $(".card-text")[i].innerHTML = "<img src='/img/loading.gif' />";
+    }
+}
+
+
+function DeliveryAddressCardsClear() {
+    for (var i = 0; i < 3; i++) {
+        $(".card-title")[i].innerHTML = "-";
+        $(".card-text")[i].innerHTML = "-";
+        $(".card-footer")[i].innerHTML = "...";
+    }
 }
 
 function AjaxBuscarCEP() {
