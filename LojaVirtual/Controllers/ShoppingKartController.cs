@@ -106,6 +106,14 @@ namespace LojaVirtual.Controllers
         {
             try
             {
+                Frete frete = _cookieFrete.Read().Where(a => a.CEP == cepDestino && a.codShoppingKart == HashGenerator(_cookieShoppingKart.Read())).FirstOrDefault();
+
+                if (frete != null)
+                {
+                    return Ok(frete);
+                }
+                else
+                {
                 List<ProductItem> products = ReadProductDB();
 
                 List<Package> packages = _calculatePackage.CalculateProductsPackage(products);
@@ -120,7 +128,7 @@ namespace LojaVirtual.Controllers
                 if (valueSEDEX10 != null) list.Add(valueSEDEX10);
                 if (valuePAC != null) list.Add(valuePAC);
 
-                var frete = new Frete()
+                frete = new Frete()
                 {
                     CEP = cepDestino,
                     codShoppingKart = HashGenerator(_cookieShoppingKart.Read()),
@@ -130,6 +138,7 @@ namespace LojaVirtual.Controllers
                 _cookieFrete.Create(frete);
 
                 return Ok(frete);
+                }
             }
             catch (Exception e)
             {

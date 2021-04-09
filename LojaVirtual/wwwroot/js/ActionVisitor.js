@@ -37,19 +37,20 @@ function AjaxDeliveryAddressCalcularFrete() {
 
                     $(".card-title")[i].innerHTML = tipoFrete;
                     $(".card-text")[i].innerHTML = "Prazo de até " + prazo + " dia(s).";
-                    $(".card-footer h5")[i].innerHTML = "<input type=\"radio\" name=\"frete\" id='" + tipoFrete + "' value=\"" + tipoFrete + "\" /> <strong><label for='" + tipoFrete + "'>" + numberToReal(valor) + "</label></strong>";
+                    $(".card-footer")[i].innerHTML = "<input type=\"radio\" name=\"frete\" id='" + tipoFrete + "' value=\"" + tipoFrete + "\" /> <strong><label for='" + tipoFrete + "'>" + numberToReal(valor) + "</label></strong>";
 
 
                     if ($.cookie("ShoppingKart.tipoFrete") == tipoFrete) {
-                        $(".card-footer h5").find("input[name=frete]").attr("selected", "selected");
+                        $(".card-footer").find("input[name=frete]").attr("selected", "selected");
                         $(".btn-proceed").removeClass("disabled");
                     }
                 }
 
-                $(".card-footer h5").find("input[name=frete]").change(function () {
+                $(".card-footer").find("input[name=frete]").change(function () {
                     $.cookie("ShoppingKart.tipoFrete", $(this).val());
                     $(".btn-proceed").removeClass("disabled");
                 });
+
                 /*
                 $(".container-frete").html(html);
 
