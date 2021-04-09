@@ -8,7 +8,57 @@
     AjaxBuscarCEP();
     ActionCalcularFreteBtn();
     AjaxCalcularFrete(false);
+
+    AjaxDeliveryAddressCalcularFrete();
 });
+
+function AjaxDeliveryAddressCalcularFrete() {
+    $("input[name=deliveryAddress]").change(function () {
+        var cep = DeleteMask($(this).parent().find("input[name=cep]").val());
+
+        $.ajax({
+            type: "GET",
+            url: "/ShoppingKart/CalcularFrete?cepDestino=" + cep,
+            error: function (data) {
+                ShowErrorMessage("Desculpe! Tivemos um erro ao tentar obter o frete... " + data.Message);
+                console.info(data);
+            },
+            success: function (data) {
+                for (var i = 0; i < data.valuesList.length; i++) {
+                    var tipoFrete = data.valuesList[i].tipoFrete;
+                    var valor = data.valuesList[i].valor;
+                    var prazo = data.valuesList[i].prazo;
+
+                    $(".card-title")[i].html(tipoFrete);
+                    $(".card-text")[i].html("Prazo de " + prazo + " dias.")
+                    $(".card-footer .text-muted")[i].html("<input type=\"radio\" name=\"frete\" value=\"" + tipoFrete +  "\" />" + numberToReal(valor));
+
+                 }
+                /*
+                $(".container-frete").html(html);
+
+                $(".container-frete").find("input[type=radio]").change(function () {
+
+                    $.cookie("ShoppingKart.tipoFrete", $(this).val());
+                    $(".btn-proceed").removeClass("disabled");
+
+                    var valorFrete = parseFloat($(this).parent().find("input[type=hidden]").val());
+
+                    $(".frete").text(numberToReal(valorFrete));
+
+                    var subtotal = parseFloat($(".subtotal").text().replace("R$", "").replace(".", "").replace(",", "."));
+
+                    var total = valorFrete + subtotal;
+
+                    $(".total").text(numberToReal(total));
+                });
+                */
+
+                //console.info(data);
+            }
+        });
+    });
+}
 
 function AjaxBuscarCEP() {
     $("#CEP").keyup(function () {
@@ -68,7 +118,7 @@ function AjaxCalcularFrete(callByBtn) {
         }
     }
 
-    var cep = $(".cep").val().replace(".", "").replace("-", "");
+    var cep = DeleteMask($(".cep").val());
     $.removeCookie("ShoppingKart.tipoFrete");
 
     if (cep.length == 8) {
@@ -105,7 +155,6 @@ function AjaxCalcularFrete(callByBtn) {
                     $(".btn-proceed").removeClass("disabled");
 
                     var valorFrete = parseFloat($(this).parent().find("input[type=hidden]").val());
-
 
                     $(".frete").text(numberToReal(valorFrete));
 
