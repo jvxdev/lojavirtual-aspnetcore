@@ -29,11 +29,11 @@ function AjaxDeliveryAddressCalcularFrete() {
                     var valor = data.valuesList[i].valor;
                     var prazo = data.valuesList[i].prazo;
 
-                    $(".card-title")[i].html(tipoFrete);
-                    $(".card-text")[i].html("Prazo de " + prazo + " dias.")
-                    $(".card-footer .text-muted")[i].html("<input type=\"radio\" name=\"frete\" value=\"" + tipoFrete +  "\" />" + numberToReal(valor));
+                    $(".card-title")[i].innerHTML = tipoFrete;
+                    $(".card-text")[i].innerHTML = "Prazo de até " + prazo + " dia(s).";
+                    $(".card-footer .text-muted")[i].innerHTML = "<input type=\"radio\" name=\"frete\" id='" + tipoFrete + "' value=\"" + tipoFrete + "\" /> <strong><label for='" + tipoFrete + "'>" + numberToReal(valor) + "</label></strong>";
 
-                 }
+                }
                 /*
                 $(".container-frete").html(html);
 
@@ -87,8 +87,7 @@ function AjaxBuscarCEP() {
                         $("#Neighborhood").val(data.bairro);
                         $("#Street").val(data.logradouro);
                     }
-                    else
-                    {
+                    else {
                         ShowErrorMessage("O CEP informado não existe!");
                     }
                 }
@@ -118,60 +117,63 @@ function AjaxCalcularFrete(callByBtn) {
         }
     }
 
-    var cep = DeleteMask($(".cep").val());
-    $.removeCookie("ShoppingKart.tipoFrete");
+    if ($(".cep").length > 0) {
 
-    if (cep.length == 8) {
-        $.cookie('ShoppingKart.CEP', $(".cep").val());
+        var cep = DeleteMask($(".cep").val());
+        $.removeCookie("ShoppingKart.tipoFrete");
 
-        $(".container-frete").html("<img src='/img/loading.gif' />");
-        $(".frete").text("R$ 0,00");
-        $(".total").text("R$ 0,00");
+        if (cep.length == 8) {
+            $.cookie('ShoppingKart.CEP', $(".cep").val());
 
-        $.ajax({
-            type: "GET",
-            url: "/ShoppingKart/CalcularFrete?cepDestino=" + cep,
-            error: function (data) {
-                ShowErrorMessage("Desculpe! Tivemos um erro ao tentar obter o frete... " + data.Message);
-                console.info(data);
-            },
-            success: function (data) {
-                console.info(data);
-                html = "";
+            $(".container-frete").html("<img src='/img/loading.gif' />");
+            $(".frete").text("R$ 0,00");
+            $(".total").text("R$ 0,00");
 
-                for (var i = 0; i < data.valuesList.length; i++) {
-                    var tipoFrete = data.valuesList[i].tipoFrete;
-                    var valor = data.valuesList[i].valor;
-                    var prazo = data.valuesList[i].prazo;
+            $.ajax({
+                type: "GET",
+                url: "/ShoppingKart/CalcularFrete?cepDestino=" + cep,
+                error: function (data) {
+                    ShowErrorMessage("Desculpe! Tivemos um erro ao tentar obter o frete... " + data.Message);
+                    console.info(data);
+                },
+                success: function (data) {
+                    console.info(data);
+                    html = "";
 
-                    html += "<dl><dd class=\"text-left\"><input type=\"radio\" name=\"frete\" value=\"" + tipoFrete + "\"/><input type=\"hidden\" name=\"valor\" value=\"" + valor + "\"/>   " + tipoFrete + " - <strong>" + numberToReal(valor) + "</strong> (até " + prazo + " dias úteis)</dd></dl>";
+                    for (var i = 0; i < data.valuesList.length; i++) {
+                        var tipoFrete = data.valuesList[i].tipoFrete;
+                        var valor = data.valuesList[i].valor;
+                        var prazo = data.valuesList[i].prazo;
+
+                        html += "<dl><dd class=\"text-left\"><input type=\"radio\" name=\"frete\" value=\"" + tipoFrete + "\"/><input type=\"hidden\" name=\"valor\" value=\"" + valor + "\"/>   " + tipoFrete + " - <strong>" + numberToReal(valor) + "</strong> (até " + prazo + " dias úteis)</dd></dl>";
+                    }
+
+                    $(".container-frete").html(html);
+
+                    $(".container-frete").find("input[type=radio]").change(function () {
+
+                        $.cookie("ShoppingKart.tipoFrete", $(this).val());
+                        $(".btn-proceed").removeClass("disabled");
+
+                        var valorFrete = parseFloat($(this).parent().find("input[type=hidden]").val());
+
+                        $(".frete").text(numberToReal(valorFrete));
+
+                        var subtotal = parseFloat($(".subtotal").text().replace("R$", "").replace(".", "").replace(",", "."));
+
+                        var total = valorFrete + subtotal;
+
+                        $(".total").text(numberToReal(total));
+                    });
+
+                    //console.info(data);
                 }
-
-                $(".container-frete").html(html);
-
-                $(".container-frete").find("input[type=radio]").change(function () {
-
-                    $.cookie("ShoppingKart.tipoFrete", $(this).val());
-                    $(".btn-proceed").removeClass("disabled");
-
-                    var valorFrete = parseFloat($(this).parent().find("input[type=hidden]").val());
-
-                    $(".frete").text(numberToReal(valorFrete));
-
-                    var subtotal = parseFloat($(".subtotal").text().replace("R$", "").replace(".", "").replace(",", "."));
-
-                    var total = valorFrete + subtotal;
-
-                    $(".total").text(numberToReal(total));
-                });
-
-                //console.info(data);
+            });
+        } else {
+            if (callByBtn == true) {
+                $(".container-frete").html("");
+                ShowErrorMessage("O campo CEP é obrigatório!");
             }
-        });
-    } else {
-        if (callByBtn == true) {
-            $(".container-frete").html("");
-            ShowErrorMessage("O campo CEP é obrigatório!");
         }
     }
 }
