@@ -17,7 +17,7 @@ function AjaxDeliveryAddressCalcularFrete() {
         var cep = DeleteMask($(this).parent().find("input[name=cep]").val());
 
         DeliveryAddressCardsClear();
-
+        ClearValues();
         DeliveryAddressCardsLoading();
 
         $(".btn-proceed").addClass("disabled");
@@ -98,10 +98,18 @@ function TipoFreteBackgroundStyle(obj) {
 }
 
 function UpdateValues() {
-    var frete = $(".card-footer input[name=frete]:checked").parent().find("label").text();
-    console.info(frete);
+    var product = parseFloat($(".product-text").text().replace("R$", "").replace(".", "").replace(",", "."));
+    var frete = parseFloat($(".card-footer input[name=frete]:checked").parent().find("label").text().replace("R$", "").replace(".", "").replace(",", "."));
 
-    $(".frete-text").text();
+    var total = product += frete;
+
+    $(".frete-text").text(numberToReal(frete));
+    $(".total-text").text(numberToReal(total));
+}
+
+function ClearValues() {
+    $(".frete-text").text("-");
+    $(".total-text").text("-");
 }
 
 function DeliveryAddressCardsLoading() {
