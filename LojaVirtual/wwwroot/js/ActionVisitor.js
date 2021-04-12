@@ -93,6 +93,15 @@ function TipoFreteBackgroundStyle(obj) {
 
     obj.parent().parent().find(".card-body").css("background-color", "#CACACA");
     obj.parent().parent().find(".card-footer").css("background-color", "#CACACA");
+
+    UpdateValues();
+}
+
+function UpdateValues() {
+    var frete = $(".card-footer input[name=frete]:checked").parent().find("label").text();
+    console.info(frete);
+
+    $(".frete-text").text();
 }
 
 function DeliveryAddressCardsLoading() {

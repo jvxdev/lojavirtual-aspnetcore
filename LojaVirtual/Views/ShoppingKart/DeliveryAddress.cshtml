@@ -2,6 +2,15 @@
 
 @{
     ViewData["Title"] = "Endereço de entrega";
+
+    var products = (List<ProductItem>)ViewBag.Products;
+    decimal total = 0;
+
+    foreach (ProductItem product in products)
+    {
+        decimal result = product.Price * product.ItensKartAmount;
+        total += result;
+    }
 }
 
 <div class="container">
@@ -84,25 +93,25 @@
             </div>
 
             <div class="card-group">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Subtotal</h5>
+                        <p class="card-text">@total.ToString("C")</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Frete</h5>
+                        <p class="card-text frete-text"></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total</h5>
+                        <p class="card-text">R$ 5000,00</p>
+                    </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                </div>
-            </div>
-        </div>
 
             <div class="text-right mt-5">
                 <a class="btn btn-warning p-3 disabled btn-proceed" asp-controller="Payment" asp-action="Index"><strong>Continuar para pagamento</strong></a>

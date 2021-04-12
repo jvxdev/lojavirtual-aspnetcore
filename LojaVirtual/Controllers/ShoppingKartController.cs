@@ -64,6 +64,8 @@ namespace LojaVirtual.Controllers
             Client client = _clientLogin.getClient();
             IList<DeliveryAddress> deliveryAddresses = _deliveryAddressRepository.ReadAll(client.Id);
 
+            ViewBag.Products = ReadProductDB();
+
             ViewBag.Client = client;
             ViewBag.Addresses = deliveryAddresses;
 
