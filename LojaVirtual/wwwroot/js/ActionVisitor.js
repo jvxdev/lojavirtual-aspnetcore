@@ -27,7 +27,6 @@ function AjaxDeliveryAddressCalcularFrete() {
                 DeliveryAddressCardsClear();
             },
             success: function (data) {
-
                 DeliveryAddressCardsClear();
 
                 for (var i = 0; i < data.valuesList.length; i++) {
@@ -43,12 +42,16 @@ function AjaxDeliveryAddressCalcularFrete() {
                     console.info($.cookie("ShoppingKart.tipoFrete") == tipoFrete);
 
                     if ($.cookie("ShoppingKart.tipoFrete") != undefined && $.cookie("ShoppingKart.tipoFrete") == tipoFrete) {
-                        $(".card-footer").find("input[name=frete]").attr("checked", "checked");
+                        $(".card-footer input[name=frete]").eq(i).attr("checked", "checked");
+
+                        TipoFreteBackgroundStyle($(".card-footer input[name=frete]").eq(i));
+
+                        $(".btn-proceed").removeClass("disabled");
                     }
                 }
 
                 $(".card-footer").find("input[name=frete]").change(function () {
-                    $.cookie("ShoppingKart.tipoFrete", $(this).val(), { path: '/'});
+                    $.cookie("ShoppingKart.tipoFrete", $(this).val(), { path: '/' });
                     $(".btn-proceed").removeClass("disabled");
 
                     TipoFreteBackgroundStyle($(this));
