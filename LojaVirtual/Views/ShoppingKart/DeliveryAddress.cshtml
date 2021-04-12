@@ -19,7 +19,7 @@
                         <td>
                             <label for="0-end">
                                 <strong>Meu endereço</strong>
-                                <p>@ViewBag.Client.CEP | @ViewBag.Client.State, @ViewBag.Client.City, @ViewBag.Client.Neighborhood, @ViewBag.Client.Street, @ViewBag.Client.HouseNumber</p>
+                                <p>@ViewBag.Client.CEP | @ViewBag.Client.State, @ViewBag.Client.City, @ViewBag.Client.Neighborhood, @ViewBag.Client.Street, n° @ViewBag.Client.HouseNumber</p>
                             </label>
                         </td>
                     </tr>
@@ -34,7 +34,7 @@
                             <td>
                                 <label for="@deliveryAddress.Id-end">
                                     <strong>@deliveryAddress.AddressName</strong>
-                                    <p>@deliveryAddress.CEP | @deliveryAddress.State, @deliveryAddress.City, @deliveryAddress.Neighborhood, @deliveryAddress.Street, @deliveryAddress.HouseNumber</p>
+                                    <p>@deliveryAddress.CEP | @deliveryAddress.State, @deliveryAddress.City, @deliveryAddress.Neighborhood, @deliveryAddress.Street, n° @deliveryAddress.HouseNumber</p>
                                 </label>
                             </td>
                         </tr>

@@ -40,7 +40,7 @@ function AjaxDeliveryAddressCalcularFrete() {
                     $(".card-footer")[i].innerHTML = "<input type=\"radio\" name=\"frete\" id='" + tipoFrete + "' value=\"" + tipoFrete + "\" /> <strong><label for='" + tipoFrete + "'>" + numberToReal(valor) + "</label></strong>";
 
                     console.info($.cookie("ShoppingKart.tipoFrete") + " - " + tipoFrete);
-                    console.info($.cookie("ShoppingKart.tipoFrete" == tipoFrete));
+                    console.info($.cookie("ShoppingKart.tipoFrete") == tipoFrete);
 
                     if ($.cookie("ShoppingKart.tipoFrete") != undefined && $.cookie("ShoppingKart.tipoFrete") == tipoFrete) {
                         $(".card-footer").find("input[name=frete]").attr("checked", "checked");
@@ -48,9 +48,10 @@ function AjaxDeliveryAddressCalcularFrete() {
                 }
 
                 $(".card-footer").find("input[name=frete]").change(function () {
-                    $.cookie("ShoppingKart.tipoFrete", $(this).val());
+                    $.cookie("ShoppingKart.tipoFrete", $(this).val(), { path: '/'});
                     $(".btn-proceed").removeClass("disabled");
-                    $(this).parent().parent().css("background-color", "#red");
+
+                    TipoFreteBackgroundStyle($(this));
                 });
 
                 /*
@@ -79,17 +80,25 @@ function AjaxDeliveryAddressCalcularFrete() {
     });
 }
 
+function TipoFreteBackgroundStyle(obj) {
+    $(".card-body").css("background-color", "white");
+    $(".card-footer").css("background-color", "rgba(0,0,0,.03)");
+
+    obj.parent().parent().find(".card-body").css("background-color", "#CACACA");
+    obj.parent().parent().find(".card-footer").css("background-color", "#CACACA");
+}
+
 function DeliveryAddressCardsLoading() {
     for (var i = 0; i < 3; i++) {
         $(".card-text")[i].innerHTML = "<img src='/img/loading.gif' />";
     }
 }
 
-
 function DeliveryAddressCardsClear() {
     for (var i = 0; i < 3; i++) {
-        $(".card-text")[i].innerHTML = "O serviço SEDEX10 está indisponível para este trajeto...";
-        $(".card-footer")[i].innerHTML = "<h5>...</h5>";
+        $(".card-title")[i].innerHTML = "-";
+        $(".card-text")[i].innerHTML = "-";
+        $(".card-footer")[i].innerHTML = "<h5>-</h5>";
     }
 }
 
