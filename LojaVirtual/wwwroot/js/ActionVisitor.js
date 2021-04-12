@@ -14,6 +14,9 @@
 
 function AjaxDeliveryAddressCalcularFrete() {
     $("input[name=deliveryAddress]").change(function () {
+
+        $.cookie("ShoppingKart.DeliveryAddress", $(this).val(), { path: "/" });
+
         var cep = DeleteMask($(this).parent().find("input[name=cep]").val());
 
         DeliveryAddressCardsClear();

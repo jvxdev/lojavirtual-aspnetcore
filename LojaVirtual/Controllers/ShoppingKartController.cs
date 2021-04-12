@@ -23,12 +23,10 @@ namespace LojaVirtual.Controllers
     public class ShoppingKartController : BaseController
     {
         private ClientLogin _clientLogin;
-        private IDeliveryAddressRepository _deliveryAddressRepository;
 
-        public ShoppingKartController(ClientLogin clientLogin, IDeliveryAddressRepository deliveryAddressRepository, IProductRepository productRepository, CookieShoppingKart cookieShoppingKart, CookieFrete cookieValorPrazoFrete, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage) : base(productRepository, cookieShoppingKart, cookieValorPrazoFrete, mapper, wsCorreios, calculatePackage)
+        public ShoppingKartController(ClientLogin clientLogin, IDeliveryAddressRepository deliveryAddressRepository, IProductRepository productRepository, CookieShoppingKart cookieShoppingKart, CookieFrete cookieValorPrazoFrete, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage) : base(deliveryAddressRepository, productRepository, cookieShoppingKart, cookieValorPrazoFrete, mapper, wsCorreios, calculatePackage)
         {
             _clientLogin = clientLogin;
-            _deliveryAddressRepository = deliveryAddressRepository;
         }
 
 

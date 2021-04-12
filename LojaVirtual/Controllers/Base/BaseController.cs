@@ -16,6 +16,7 @@ namespace LojaVirtual.Controllers.Base
 {
     public class BaseController : Controller
     {
+        protected IDeliveryAddressRepository _deliveryAddressRepository;
         protected IProductRepository _productRepository;
         protected CookieShoppingKart _cookieShoppingKart;
         protected CookieFrete _cookieFrete;
@@ -24,8 +25,9 @@ namespace LojaVirtual.Controllers.Base
         protected CalculatePackage _calculatePackage;
 
 
-        public BaseController(IProductRepository productRepository, CookieShoppingKart cookieShoppingKart, CookieFrete cookieFrete, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage)
+        public BaseController(IDeliveryAddressRepository deliveryAddressRepository, IProductRepository productRepository, CookieShoppingKart cookieShoppingKart, CookieFrete cookieFrete, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage)
         {
+            _deliveryAddressRepository = deliveryAddressRepository;
             _productRepository = productRepository;
             _cookieShoppingKart = cookieShoppingKart;
             _cookieFrete = cookieFrete;

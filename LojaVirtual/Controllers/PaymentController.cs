@@ -21,7 +21,7 @@ namespace LojaVirtual.Controllers
         private Cookie _cookie;
 
 
-        public PaymentController(IProductRepository productRepository, CookieShoppingKart cookieShoppingKart, CookieFrete cookieValorPrazoFrete, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage, Cookie cookie) : base(productRepository, cookieShoppingKart, cookieValorPrazoFrete, mapper, wsCorreios, calculatePackage)
+        public PaymentController(IDeliveryAddressRepository deliveryAddressRepository, IProductRepository productRepository, CookieShoppingKart cookieShoppingKart, CookieFrete cookieValorPrazoFrete, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage, Cookie cookie) : base(deliveryAddressRepository, productRepository, cookieShoppingKart, cookieValorPrazoFrete, mapper, wsCorreios, calculatePackage)
         {
             _cookie = cookie;
         }
@@ -34,8 +34,15 @@ namespace LojaVirtual.Controllers
 
             if (tipoFreteSelected != null)
             {
-                /*
-                var Frete = _cookieFrete.Read().Where(a => a.TipoFrete == tipoFreteSelected).FirstOrDefault();
+                var deliveryAddressId = int.Parse(_cookie.Read("ShoppingKart.DeliveryAddress", false).Replace("-end", ""));
+                var deliveryAdress = _deliveryAddressRepository.Read(deliveryAddressId);
+
+                var ShoppingKartHash = HashGenerator(_cookieShoppingKart.Read());
+                var cep = deliveryAdress.CEP;
+                
+                _cookieFrete.Read()
+
+                var Frete = .Where(a => a.TipoFrete == tipoFreteSelected).FirstOrDefault();
 
                 if (Frete != null)
                 {
@@ -44,7 +51,6 @@ namespace LojaVirtual.Controllers
 
                     return View(productKartItemFull);
                 }
-                */
             }
 
             TempData["MSG_E"] = Message.MSG_E010;
