@@ -13,6 +13,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LojaVirtual.Libraries.Text;
+using LojaVirtual.Models;
+using LojaVirtual.Libraries.Login;
 
 namespace LojaVirtual.Controllers
 {
@@ -21,7 +24,7 @@ namespace LojaVirtual.Controllers
         private Cookie _cookie;
 
 
-        public PaymentController(IDeliveryAddressRepository deliveryAddressRepository, IProductRepository productRepository, CookieShoppingKart cookieShoppingKart, CookieFrete cookieValorPrazoFrete, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage, Cookie cookie) : base(deliveryAddressRepository, productRepository, cookieShoppingKart, cookieValorPrazoFrete, mapper, wsCorreios, calculatePackage)
+        public PaymentController(ClientLogin clientLogin, IDeliveryAddressRepository deliveryAddressRepository, IProductRepository productRepository, CookieShoppingKart cookieShoppingKart, CookieFrete cookieValorPrazoFrete, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage, Cookie cookie) : base(clientLogin, deliveryAddressRepository, productRepository, cookieShoppingKart, cookieValorPrazoFrete, mapper, wsCorreios, calculatePackage)
         {
             _cookie = cookie;
         }
@@ -35,18 +38,26 @@ namespace LojaVirtual.Controllers
             if (tipoFreteSelected != null)
             {
                 var deliveryAddressId = int.Parse(_cookie.Read("ShoppingKart.DeliveryAddress", false).Replace("-end", ""));
-                var deliveryAdress = _deliveryAddressRepository.Read(deliveryAddressId);
 
-                var ShoppingKartHash = HashGenerator(_cookieShoppingKart.Read());
-                var cep = deliveryAdress.CEP;
-                
-                _cookieFrete.Read()
+                int cep = 0;
 
-                var Frete = .Where(a => a.TipoFrete == tipoFreteSelected).FirstOrDefault();
-
-                if (Frete != null)
+                if (deliveryAddressId == 0)
                 {
-                    ViewBag.Frete = Frete;
+                    cep = int.Parse(Mask.Delete(_clientLogin.getClient().CEP));
+                }
+                else
+                {
+                    var deliveryAdress = _deliveryAddressRepository.Read(deliveryAddressId);
+                    cep = int.Parse(Mask.Delete(deliveryAdress.CEP));
+                }
+
+                var shoppingKartHash = HashGenerator(_cookieShoppingKart.Read());
+
+                Frete frete = _cookieFrete.Read().Where(a => a.CEP == cep && a.codShoppingKart == shoppingKartHash).FirstOrDefault();
+
+                if (frete != null)
+                {
+                    ViewBag.Frete = frete.valuesList.Where(a => a.TipoFrete == tipoFreteSelected).FirstOrDefault();
                     List<ProductItem> productKartItemFull = ReadProductDB();
 
                     return View(productKartItemFull);

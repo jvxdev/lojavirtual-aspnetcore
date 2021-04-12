@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LojaVirtual.Libraries.Login;
 using LojaVirtual.Libraries.Manager.Frete;
 using LojaVirtual.Libraries.Manager.Shipping;
 using LojaVirtual.Libraries.Security;
@@ -16,6 +17,7 @@ namespace LojaVirtual.Controllers.Base
 {
     public class BaseController : Controller
     {
+        protected ClientLogin _clientLogin;
         protected IDeliveryAddressRepository _deliveryAddressRepository;
         protected IProductRepository _productRepository;
         protected CookieShoppingKart _cookieShoppingKart;
@@ -25,8 +27,9 @@ namespace LojaVirtual.Controllers.Base
         protected CalculatePackage _calculatePackage;
 
 
-        public BaseController(IDeliveryAddressRepository deliveryAddressRepository, IProductRepository productRepository, CookieShoppingKart cookieShoppingKart, CookieFrete cookieFrete, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage)
+        public BaseController(ClientLogin clientLogin, IDeliveryAddressRepository deliveryAddressRepository, IProductRepository productRepository, CookieShoppingKart cookieShoppingKart, CookieFrete cookieFrete, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage)
         {
+            _clientLogin = clientLogin;
             _deliveryAddressRepository = deliveryAddressRepository;
             _productRepository = productRepository;
             _cookieShoppingKart = cookieShoppingKart;
