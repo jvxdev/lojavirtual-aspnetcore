@@ -16,7 +16,11 @@ function AjaxDeliveryAddressCalcularFrete() {
     $("input[name=deliveryAddress]").change(function () {
         var cep = DeleteMask($(this).parent().find("input[name=cep]").val());
 
+        DeliveryAddressCardsClear();
+
         DeliveryAddressCardsLoading();
+
+        $(".btn-proceed").addClass("disabled");
 
         $.ajax({
             type: "GET",
