@@ -18,6 +18,11 @@
         <div class="col-md-12">
             <h4 class="text-center display-4 mt-5">Endereço de entrega</h4>
 
+            @if (TempData["MSG_SE"] != null)
+            {
+                <p class="alert alert-danger">@TempData["MSG_E"]</p>
+            }
+
             <table class="table table-hover my-5">
                 <tbody>
                     <tr>

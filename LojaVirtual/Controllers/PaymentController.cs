@@ -82,7 +82,7 @@ namespace LojaVirtual.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                return View();
             }
             else
             {

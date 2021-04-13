@@ -85,18 +85,18 @@
                         <div class="tab-content">
                             <div class="tab-pane fade active show" id="nav-tab-card">
                                 <p class="alert alert-danger">Some text success or error</p>
-                                <form role="form">
+                                <form role="form" method="post">
 
                                     <div class="form-group">
                                         <label asp-for="CardHolderName">Nome impresso no cartão</label>
-                                        <input type="text" asp-for="CardHolderName" id="cardHolderName" name="cardHolderName" class="form-control" placeholder="Nome completo">
+                                        <input type="text" asp-for="CardHolderName" id="cardHolderName" name="cardHolderName" class="form-control" placeholder="Nome impresso no cartão de créd.">
                                         <span asp-validation-for="CardHolderName"></span>
                                     </div>
 
                                     <div class="form-group">
+                                        <label asp-for="CardNumber">Número do cartão</label>
                                         <div class="input-group">
-                                            <label for="cardNumber">Número do cartão</label>
-                                            <input type="text" asp-for="CardNumber" id="cardNumber" name="cardNumber" class="form-control" placeholder="Nome completo">
+                                            <input type="text" asp-for="CardNumber" id="cardNumber" name="cardNumber" class="form-control card-number" placeholder="XXXX-XXXX-XXXX-XXXX">
                                             <div class="input-group-append">
                                                 <span class="input-group-text text-muted">
                                                     <i class="fab fa-cc-visa"></i> &nbsp; <i class="fab fa-cc-amex"></i> &nbsp;
@@ -112,8 +112,8 @@
                                             <div class="form-group">
                                                 <label for="CardExpirationDateMM" class="hidden-xs">Vencimento</label>
                                                 <div class="input-group">
-                                                    <input asp-for="CardExpirationDateMM" type="number" class="form-control" placeholder="MM" name="">
-                                                    <input asp-for="CardExpirationDateYY" type="number" class="form-control" placeholder="AA" name="">
+                                                    <input type="number" class="form-control" placeholder="MM" asp-for="CardExpirationDateMM" >
+                                                    <input type="number" class="form-control" placeholder="AA" asp-for="CardExpirationDateYY" >
                                                 </div>
                                                 <span asp-validation-for="CardExpirationDateMM"></span>
                                                 <span asp-validation-for="CardExpirationDateYY"></span>
@@ -127,7 +127,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="subscribe btn btn-success btn-block p-3" type="button"> Confirmar  </button>
+                                    <button class="subscribe btn btn-success btn-block p-3" type="submit"> Confirmar  </button>
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="nav-tab-paypal">
