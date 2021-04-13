@@ -38,37 +38,17 @@ namespace LojaVirtual.Controllers
 
             if (tipoFreteSelected != null)
             {
-                var deliveryAddressId = int.Parse(_cookie.Read("ShoppingKart.DeliveryAddress", false).Replace("-end", ""));
-
-                int cep = 0;
-
-                if (deliveryAddressId == 0)
-                {
-                    cep = int.Parse(Mask.Delete(_clientLogin.getClient().CEP));
-                }
-                else
-                {
-                    var deliveryAdress = _deliveryAddressRepository.Read(deliveryAddressId);
-                    cep = int.Parse(Mask.Delete(deliveryAdress.CEP));
-                }
+                var deliveryAddress = GetAddress();
 
                 var shoppingKartHash = HashGenerator(_cookieShoppingKart.Read());
 
-                Frete frete = _cookieFrete.Read().Where(a => a.CEP == cep && a.codShoppingKart == shoppingKartHash).FirstOrDefault();
+                int cep = int.Parse(Mask.Delete(deliveryAddress.CEP));
 
-                if (frete != null)
-                {
-                    ViewBag.Frete = frete.valuesList.Where(a => a.TipoFrete == tipoFreteSelected).FirstOrDefault();
-                    List<ProductItem> productKartItemFull = ReadProductDB();
+                ViewBag.Frete = GetFrete(cep.ToString());
+                List<ProductItem> productKartItemFull = ReadProductDB();
+                ViewBag.Products = productKartItemFull;
 
-                    ViewBag.Products = productKartItemFull;
-
-                    return View("Index");
-                }
-                else
-                {
-                    return RedirectToAction("DeliveryAddress", "ShoppingKart");
-                }
+                return View("Index");
             }
 
             TempData["MSG_E"] = Message.MSG_E010;
@@ -82,11 +62,64 @@ namespace LojaVirtual.Controllers
         {
             if (ModelState.IsValid)
             {
+                DeliveryAddress deliveryAddress = GetAddress();
+                ValorPrazoFrete frete = GetFrete(deliveryAddress.CEP.ToString());
+
                 return View();
             }
             else
             {
                 return Index();
+            }
+        }
+
+
+        private DeliveryAddress GetAddress()
+        {
+            DeliveryAddress deliveryAddress = null;
+
+            var deliveryAddressId = int.Parse(_cookie.Read("ShoppingKart.DeliveryAddress", false).Replace("-end", ""));
+
+
+            if (deliveryAddressId == 0)
+            {
+                Client client = _clientLogin.getClient();
+
+                deliveryAddress = new DeliveryAddress();
+                deliveryAddress.AddressName = "Endereço do cliente";
+                deliveryAddress.Id = 0;
+                deliveryAddress.State = client.State;
+                deliveryAddress.City = client.City;
+                deliveryAddress.Neighborhood = client.Neighborhood;
+                deliveryAddress.Street = client.Street;
+                deliveryAddress.HouseNumber = client.HouseNumber;
+            }
+            else
+            {
+                var address = _deliveryAddressRepository.Read(deliveryAddressId);
+            }
+
+            return deliveryAddress;
+        }
+
+
+        private ValorPrazoFrete GetFrete(string cepDestino)
+        {
+            var tipoFreteSelected = _cookie.Read("ShoppingKart.tipoFrete", false);
+
+            var shoppingKartHash = HashGenerator(_cookieShoppingKart.Read());
+
+            int cep = int.Parse(Mask.Delete(cepDestino));
+
+            Frete frete = _cookieFrete.Read().Where(a => a.CEP == cep && a.codShoppingKart == shoppingKartHash).FirstOrDefault();
+
+            if (frete != null)
+            {
+                return frete.valuesList.Where(a => a.TipoFrete == tipoFreteSelected).FirstOrDefault();
+            }
+            else
+            {
+                return null;
             }
         }
     }
