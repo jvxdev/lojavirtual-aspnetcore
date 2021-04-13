@@ -1,4 +1,4 @@
-﻿@model List<ProductItem>
+﻿@model CreditCard
 
 @{
     ViewData["Title"] = "Efetuar pagamento";
@@ -11,7 +11,7 @@
         <div class="col-md-6">
             <div id="code_itemside_img2">
                 <div class="box items-bordered-wrap">
-                    @foreach (var item in Model)
+                    @foreach (var item in ViewBag.Products)
                     {
                         <figure class="itemside">
                             <div class="aside">
@@ -55,7 +55,7 @@
                     </dl>
                     <dl class="dlist-align">
                         <dt>TOTAL: </dt>
-                        @{ 
+                        @{
                             decimal valorFrete = (decimal)ViewBag.Frete.Valor;
                         }
                         <dd class="text-right total h5 b">@((Subtotal + valorFrete).ToString("C"))</dd>
@@ -86,15 +86,17 @@
                             <div class="tab-pane fade active show" id="nav-tab-card">
                                 <p class="alert alert-danger">Some text success or error</p>
                                 <form role="form">
+
                                     <div class="form-group">
-                                        <label for="username">Nome (impresso no cartão)</label>
-                                        <input type="text" class="form-control" name="username" placeholder="Digite o nome que consta no cartão" required="">
+                                        <label asp-for="CardHolderName">Nome impresso no cartão</label>
+                                        <input type="text" asp-for="CardHolderName" id="cardHolderName" name="cardHolderName" class="form-control" placeholder="Nome completo">
+                                        <span asp-validation-for="CardHolderName"></span>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="cardNumber">Número cartão</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control card-number" name="cardNumber" placeholder="XXXX-XXXX-XXXX-XXXX">
+                                            <label for="cardNumber">Número do cartão</label>
+                                            <input type="text" asp-for="CardNumber" id="cardNumber" name="cardNumber" class="form-control" placeholder="Nome completo">
                                             <div class="input-group-append">
                                                 <span class="input-group-text text-muted">
                                                     <i class="fab fa-cc-visa"></i> &nbsp; <i class="fab fa-cc-amex"></i> &nbsp;
@@ -102,22 +104,26 @@
                                                 </span>
                                             </div>
                                         </div>
+                                        <span asp-validation-for="CardNumber"></span>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-sm-8">
                                             <div class="form-group">
-                                                <label><span class="hidden-xs">Vencimento</span> </label>
+                                                <label for="CardExpirationDateMM" class="hidden-xs">Vencimento</label>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control" placeholder="MM" name="">
-                                                    <input type="number" class="form-control" placeholder="AA" name="">
+                                                    <input asp-for="CardExpirationDateMM" type="number" class="form-control" placeholder="MM" name="">
+                                                    <input asp-for="CardExpirationDateYY" type="number" class="form-control" placeholder="AA" name="">
                                                 </div>
+                                                <span asp-validation-for="CardExpirationDateMM"></span>
+                                                <span asp-validation-for="CardExpirationDateYY"></span>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label data-toggle="tooltip" title="" data-original-title="Digite os 3 digitos que estão atrás do seu cartão">CVC/CVV</label>
-                                                <input type="number" maxlength="3" class="form-control" placeholder="XXX" required="">
+                                                <label asp-for="CardCvv" data-toggle="tooltip" title="" data-original-title="Digite os 3 digitos que estão atrás do seu cartão">CVV/CVC</label>
+                                                <input asp-for="CardCvv" type="number" class="form-control" placeholder="XXX">
+                                                <span asp-validation-for="CardCvv"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -125,7 +131,7 @@
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="nav-tab-paypal">
-                                <p>Clique no botão para imprimir o boleto bancário.</p>
+                                <p>Clique aqui para imprimir o boleto bancário.</p>
                                 <p>
                                     <button type="button" class="btn btn-secondary"> <i class="fab fa-barcode"></i> Imprimir boleto </button>
                                 </p>

@@ -142,7 +142,7 @@ namespace LojaVirtual.Libraries.Lang {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O serviço de entrega não foi selecionado. Por favor, volte para o carrinho de compras e selecione um serviço de entrega!.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O serviço de entrega não foi selecionado..
         /// </summary>
         public static string MSG_E010 {
             get {

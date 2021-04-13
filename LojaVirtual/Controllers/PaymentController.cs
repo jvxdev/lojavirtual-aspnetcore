@@ -30,6 +30,7 @@ namespace LojaVirtual.Controllers
         }
 
 
+        [HttpGet]
         [ClientAuthorization]
         public IActionResult Index()
         {
@@ -60,12 +61,33 @@ namespace LojaVirtual.Controllers
                     ViewBag.Frete = frete.valuesList.Where(a => a.TipoFrete == tipoFreteSelected).FirstOrDefault();
                     List<ProductItem> productKartItemFull = ReadProductDB();
 
-                    return View(productKartItemFull);
+                    ViewBag.Products = productKartItemFull;
+
+                    return View("Index");
+                }
+                else
+                {
+                    return RedirectToAction("DeliveryAddress", "ShoppingKart");
                 }
             }
 
             TempData["MSG_E"] = Message.MSG_E010;
-            return RedirectToAction("Index", "ShoppingKart");
+            return RedirectToAction("DeliveryAddress", "ShoppingKart");
+        }
+
+
+        [HttpPost]
+        [ClientAuthorization]
+        public IActionResult Index([FromForm] CreditCard creditCard)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
+            else
+            {
+                return Index();
+            }
         }
     }
 }
