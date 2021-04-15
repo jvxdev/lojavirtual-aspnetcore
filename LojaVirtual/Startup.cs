@@ -20,6 +20,7 @@ using AutoMapper;
 using LojaVirtual.Libraries.AutoMapper;
 using LojaVirtual.Libraries.Manager.Shipping;
 using WSCorreios;
+using LojaVirtual.Libraries.Manager.Payment;
 
 namespace LojaVirtual
 {
@@ -89,6 +90,7 @@ namespace LojaVirtual
             services.AddScoped<Session>();
             services.AddScoped<ClientLogin>();
             services.AddScoped<CollaboratorLogin>();
+            services.AddScoped<ManagePagarMe>();
 
             string connection = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=LojaVirtual;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 

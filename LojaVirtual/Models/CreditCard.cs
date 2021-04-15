@@ -11,6 +11,9 @@ namespace LojaVirtual.Models
     {
         [Display(Name = "Número do cartão")]
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
+        [CreditCard(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E004")]
+        [MinLength(15, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E002")]
+        [MaxLength(16, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E003")]
         public string CardNumber { get; set; }
 
 

@@ -16,17 +16,20 @@ using System.Threading.Tasks;
 using LojaVirtual.Libraries.Text;
 using LojaVirtual.Models;
 using LojaVirtual.Libraries.Login;
+using LojaVirtual.Libraries.Manager.Payment;
 
 namespace LojaVirtual.Controllers
 {
     public class PaymentController : BaseController
     {
         private Cookie _cookie;
+        private ManagePagarMe _managePagarMe;
 
 
-        public PaymentController(ClientLogin clientLogin, IDeliveryAddressRepository deliveryAddressRepository, IProductRepository productRepository, CookieShoppingKart cookieShoppingKart, CookieFrete cookieValorPrazoFrete, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage, Cookie cookie) : base(clientLogin, deliveryAddressRepository, productRepository, cookieShoppingKart, cookieValorPrazoFrete, mapper, wsCorreios, calculatePackage)
+        public PaymentController(ManagePagarMe managePagarMe, ClientLogin clientLogin, IDeliveryAddressRepository deliveryAddressRepository, IProductRepository productRepository, CookieShoppingKart cookieShoppingKart, CookieFrete cookieValorPrazoFrete, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage, Cookie cookie) : base(clientLogin, deliveryAddressRepository, productRepository, cookieShoppingKart, cookieValorPrazoFrete, mapper, wsCorreios, calculatePackage)
         {
             _cookie = cookie;
+            _managePagarMe = managePagarMe;
         }
 
 
@@ -66,7 +69,9 @@ namespace LojaVirtual.Controllers
                 ValorPrazoFrete frete = GetFrete(deliveryAddress.CEP.ToString());
                 List<ProductItem> products = ReadProductDB();
 
-                return View();
+                dynamic pagarMeReturn = _managePagarMe.GerarPagCartaoCredito(creditCard, deliveryAddress, frete, products);
+
+                return new ContentResult() { Content = "Tudo certo! " + pagarMeReturn.TransactionId };
             }
             else
             {
@@ -89,6 +94,7 @@ namespace LojaVirtual.Controllers
                 deliveryAddress = new DeliveryAddress();
                 deliveryAddress.AddressName = "Endereço do cliente";
                 deliveryAddress.Id = 0;
+                deliveryAddress.CEP = client.CEP;
                 deliveryAddress.State = client.State;
                 deliveryAddress.City = client.City;
                 deliveryAddress.Neighborhood = client.Neighborhood;

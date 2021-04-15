@@ -174,6 +174,8 @@ namespace LojaVirtual.Libraries.Manager.Payment
             transaction.Item = items;
 
             transaction.Save();
+
+            return new { TransactionId = transaction.Id };
         }
     }
 }

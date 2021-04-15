@@ -7,9 +7,9 @@ namespace LojaVirtual.Libraries.Text
 {
     public class Mask
     {
-        public static string Delete(string Value)
+        public static string Delete(string value)
         {
-            return Value.Replace("(", "").Replace(")", "").Replace("-", "").Replace(".", "");
+            return value.Replace("(", "").Replace(")", "").Replace("-", "").Replace(".", "");
         }
     }
 }
