@@ -74,7 +74,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
         }
 
 
-        public object GerarPagCartaoCredito(CreditCard creditCard)
+        public object GerarPagCartaoCredito(CreditCard creditCard, DeliveryAddress deliveryAddress, ValorPrazoFrete valorFrete)
         {
             Client client = _clientLogin.getClient();
 
@@ -137,19 +137,19 @@ namespace LojaVirtual.Libraries.Manager.Payment
 
             transaction.Shipping = new PagarMe.Shipping
             {
-                Name = client.Name,
-                Fee = 100,
-                DeliveryDate = Today.AddDays(4).ToString("yyyy-MM-dd"),
+                Name = deliveryAddress.AddressName,
+                Fee = Convert.ToInt32(valorFrete.Valor),
+                DeliveryDate = Today.AddDays(_conf.GetValue<int>("diasNaEmpresa")).AddDays(valorFrete.Prazo).ToString("yyyy-MM-dd"),
                 Expedited = false,
                 Address = new Address()
                 {
                     Country = "br",
-                    State = client.State,
-                    City = client.City,
-                    Neighborhood = client.Neighborhood,
-                    Street = client.Street,
-                    StreetNumber = client.HouseNumber,
-                    Zipcode = Mask.Delete(client.CEP)
+                    State = deliveryAddress.State,
+                    City = deliveryAddress.City,
+                    Neighborhood = deliveryAddress.Neighborhood,
+                    Street = deliveryAddress.Street,
+                    StreetNumber = deliveryAddress.HouseNumber,
+                    Zipcode = Mask.Delete(deliveryAddress.CEP)
                 }
             };
 
