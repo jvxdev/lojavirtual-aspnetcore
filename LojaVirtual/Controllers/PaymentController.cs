@@ -64,6 +64,7 @@ namespace LojaVirtual.Controllers
             {
                 DeliveryAddress deliveryAddress = GetAddress();
                 ValorPrazoFrete frete = GetFrete(deliveryAddress.CEP.ToString());
+                List<ProductItem> products = ReadProductDB();
 
                 return View();
             }

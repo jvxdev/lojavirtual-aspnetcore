@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using LojaVirtual.Libraries.Login;
 using LojaVirtual.Libraries.Text;
 using LojaVirtual.Models;
+using LojaVirtual.Models.ProductAggregator;
 using Microsoft.Extensions.Configuration;
 using PagarMe;
 
@@ -74,7 +75,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
         }
 
 
-        public object GerarPagCartaoCredito(CreditCard creditCard, DeliveryAddress deliveryAddress, ValorPrazoFrete valorFrete)
+        public object GerarPagCartaoCredito(CreditCard creditCard, DeliveryAddress deliveryAddress, ValorPrazoFrete valorFrete, List<ProductItem> products)
         {
             Client client = _clientLogin.getClient();
 
@@ -84,7 +85,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
             Card card = new Card();
             card.Number = creditCard.CardNumber;
             card.HolderName = creditCard.CardHolderName;
-            card.ExpirationDate = creditCard.CardExpirationDate;
+            card.ExpirationDate = creditCard.CardExpirationDateMM + creditCard.CardExpirationDateYY;
             card.Cvv = creditCard.CardCvv;
 
             card.Save();
@@ -153,25 +154,24 @@ namespace LojaVirtual.Libraries.Manager.Payment
                 }
             };
 
-            transaction.Item = new[]
+            Item[] items = new Item[products.Count];
+
+            for (var i = 0; i < products.Count; i++)
             {
-              new Item()
-              {
-                Id = "1",
-                Title = "Little Car",
-                Quantity = 1,
-                Tangible = true,
-                UnitPrice = 1000
-              },
-              new Item()
-              {
-                Id = "2",
-                Title = "Baby Crib",
-                Quantity = 1,
-                Tangible = true,
-                UnitPrice = 1000
-              }
-            };
+                var item = products[i];
+                var itemA = new Item()
+                {
+                    Id = item.Id.ToString(),
+                    Title = item.Name,
+                    Quantity = item.ItensKartAmount,
+                    Tangible = true,
+                    UnitPrice = Convert.ToInt32(item.Price),
+                };
+
+                items[i] = itemA;
+            }
+
+            transaction.Item = items;
 
             transaction.Save();
         }
