@@ -23,7 +23,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
             _clientLogin = clientLogin;
         }
 
-
+        
         public object GerarBoleto(decimal Value)
         {
             try

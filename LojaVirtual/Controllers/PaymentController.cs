@@ -71,7 +71,7 @@ namespace LojaVirtual.Controllers
 
                 dynamic pagarMeReturn = _managePagarMe.GerarPagCartaoCredito(creditCard, deliveryAddress, frete, products);
 
-                return new ContentResult() { Content = "Tudo certo! " + pagarMeReturn.TransactionId };
+                return new ContentResult() { Content = "Tudo certo!" };
             }
             else
             {
