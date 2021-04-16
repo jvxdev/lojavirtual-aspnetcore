@@ -83,7 +83,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
             PagarMeService.DefaultEncryptionKey = _conf.GetValue<String>("Pagamento:PagarMe:EcryptionKey");
 
             Card card = new Card();
-            card.Number = creditCard.CardNumber;
+            card.Number = Mask.Delete(creditCard.CardNumber);
             card.HolderName = creditCard.CardHolderName;
             card.ExpirationDate = creditCard.CardExpirationDateMM + creditCard.CardExpirationDateYY;
             card.Cvv = creditCard.CardCvv;
