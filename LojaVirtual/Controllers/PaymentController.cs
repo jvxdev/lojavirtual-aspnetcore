@@ -17,6 +17,8 @@ using LojaVirtual.Libraries.Text;
 using LojaVirtual.Models;
 using LojaVirtual.Libraries.Login;
 using LojaVirtual.Libraries.Manager.Payment;
+using PagarMe;
+using System.Text;
 
 namespace LojaVirtual.Controllers
 {
@@ -69,9 +71,27 @@ namespace LojaVirtual.Controllers
                 ValorPrazoFrete frete = GetFrete(deliveryAddress.CEP.ToString());
                 List<ProductItem> products = ReadProductDB();
 
-                dynamic pagarMeReturn = _managePagarMe.GerarPagCartaoCredito(creditCard, deliveryAddress, frete, products);
+                try
+                {
+                    dynamic pagarMeReturn = _managePagarMe.GerarPagCartaoCredito(creditCard, deliveryAddress, frete, products);
+                    
+                    return new ContentResult() { Content = "Tudo certo!" };
+                }
+                catch (PagarMeException e)
+                {
+                    StringBuilder sb = new StringBuilder();
 
-                return new ContentResult() { Content = "Tudo certo!" };
+                    if (e.Error.Errors.Count() > 0)
+                    {
+                        foreach(var erro in e.Error.Errors)
+                        {
+                            sb.Append("-" + erro.Message + "<br />");
+                        }
+                    }
+                    TempData["MSG_E"] = sb.ToString();
+
+                    return Index();
+                }
             }
             else
             {
@@ -103,7 +123,7 @@ namespace LojaVirtual.Controllers
             }
             else
             {
-                var address = _deliveryAddressRepository.Read(deliveryAddressId);
+                var Address = _deliveryAddressRepository.Read(deliveryAddressId);
             }
 
             return deliveryAddress;
