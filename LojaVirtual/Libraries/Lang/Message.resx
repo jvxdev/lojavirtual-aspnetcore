@@ -147,6 +147,9 @@
   <data name="MSG_E010" xml:space="preserve">
     <value>O serviço de entrega não foi selecionado.</value>
   </data>
+  <data name="MSG_E011" xml:space="preserve">
+    <value>E-mail ou senha inválidos!</value>
+  </data>
   <data name="MSG_S001" xml:space="preserve">
     <value>Registro cadastrado com sucesso!</value>
   </data>

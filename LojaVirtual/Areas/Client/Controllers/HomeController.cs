@@ -7,6 +7,7 @@ using LojaVirtual.Libraries.Filters;
 using LojaVirtual.Repositories.Contracts;
 using LojaVirtual.Libraries.Login;
 using LojaVirtual.Models;
+using LojaVirtual.Libraries.Lang;
 
 namespace LojaVirtual.Areas.Client.Controllers
 {
@@ -60,7 +61,7 @@ namespace LojaVirtual.Areas.Client.Controllers
             }
             else
             {
-                TempData["MSG_E"] = "E-mail ou senha inválidos!";
+                TempData["MSG_E"] = Message.MSG_E011;
                 return View();
             }
         }
@@ -88,8 +89,6 @@ namespace LojaVirtual.Areas.Client.Controllers
             {
                 _clientRepository.Create(client);
                 _clientLogin.Login(client);
-
-                TempData["MSG_S"] = "Cadastro realizado com sucesso! Entre com a sua nova conta!";
 
                 if (returnUrl == null)
                 {

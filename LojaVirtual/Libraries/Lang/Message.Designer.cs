@@ -151,6 +151,15 @@ namespace LojaVirtual.Libraries.Lang {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a E-mail ou senha inválidos!.
+        /// </summary>
+        public static string MSG_E011 {
+            get {
+                return ResourceManager.GetString("MSG_E011", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Registro cadastrado com sucesso!.
         /// </summary>
         public static string MSG_S001 {
