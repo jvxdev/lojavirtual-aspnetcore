@@ -75,7 +75,7 @@ namespace LojaVirtual.Controllers
                 {
                     dynamic pagarMeReturn = _managePagarMe.GerarPagCartaoCredito(creditCard, deliveryAddress, frete, products);
                     
-                    return new ContentResult() { Content = "Tudo certo!" };
+                    return new ContentResult() { Content = "Tudo certo! " + pagarMeReturn.TransactionId };
                 }
                 catch (PagarMeException e)
                 {
@@ -83,9 +83,11 @@ namespace LojaVirtual.Controllers
 
                     if (e.Error.Errors.Count() > 0)
                     {
+                        sb.Append("Erro no pagamento: ");
+
                         foreach(var erro in e.Error.Errors)
                         {
-                            sb.Append("-" + erro.Message + "<br />");
+                            sb.Append(erro.Message + "<br />");
                         }
                     }
                     TempData["MSG_E"] = sb.ToString();
