@@ -92,7 +92,6 @@ namespace LojaVirtual.Libraries.Manager.Payment
 
             Transaction transaction = new Transaction();
 
-            transaction.Amount = 2100;
             transaction.Card = new Card
             {
                 Id = card.Id
@@ -136,10 +135,13 @@ namespace LojaVirtual.Libraries.Manager.Payment
 
             var Today = DateTime.Now;
 
+            var fee = Convert.ToDecimal(valorFrete.Valor);
+            decimal totalValue = fee;
+
             transaction.Shipping = new PagarMe.Shipping
             {
                 Name = deliveryAddress.AddressName,
-                Fee = Convert.ToInt32(valorFrete.Valor),
+                Fee = Mask.ConvertValuePagarMe(fee),
                 DeliveryDate = Today.AddDays(_conf.GetValue<int>("diasNaEmpresa")).AddDays(valorFrete.Prazo).ToString("yyyy-MM-dd"),
                 Expedited = false,
                 Address = new Address()
@@ -165,13 +167,17 @@ namespace LojaVirtual.Libraries.Manager.Payment
                     Title = item.Name,
                     Quantity = item.ItensKartAmount,
                     Tangible = true,
-                    UnitPrice = Convert.ToInt32(item.Price),
+                    UnitPrice = Mask.ConvertValuePagarMe(item.Price),
                 };
+
+                totalValue += (item.Price * item.ItensKartAmount);
 
                 items[i] = itemA;
             }
 
             transaction.Item = items;
+
+            transaction.Amount = Mask.ConvertValuePagarMe(totalValue);
 
             transaction.Save();
 

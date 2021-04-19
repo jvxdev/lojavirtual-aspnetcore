@@ -9,7 +9,17 @@ namespace LojaVirtual.Libraries.Text
     {
         public static string Delete(string value)
         {
-            return value.Replace("(", "").Replace(")", "").Replace("-", "").Replace(".", "");
+            return value.Replace("(", "").Replace(")", "").Replace("-", "").Replace(".", "").Replace(",", "").Replace("R$", "").Replace(" ", "");
+        }
+
+
+        public static int ConvertValuePagarMe(decimal value)
+        {
+            string stringValue = value.ToString("C");
+            stringValue = Delete(stringValue);
+            int intValue = int.Parse(stringValue);
+
+            return intValue;
         }
     }
 }
