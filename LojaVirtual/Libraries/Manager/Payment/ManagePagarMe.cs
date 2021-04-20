@@ -24,7 +24,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
         }
 
         
-        public object GerarBoleto(decimal Value)
+        public object GerarBoleto(decimal value)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
 
                 Transaction transaction = new Transaction();
 
-                transaction.Amount = Convert.ToInt32(Value);
+                transaction.Amount = Convert.ToInt32(value);
                 transaction.PaymentMethod = PaymentMethod.Boleto;
 
                 transaction.Customer = new Customer
@@ -182,6 +182,12 @@ namespace LojaVirtual.Libraries.Manager.Payment
             transaction.Save();
 
             return new { TransactionId = transaction.Id };
+        }
+
+
+        public List<Installment> CalcularPagamentoParcelado(decimal value)
+        {
+
         }
     }
 }

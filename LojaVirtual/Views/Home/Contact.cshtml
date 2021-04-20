@@ -48,7 +48,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-user"></i></span>
                                         </div>
-                                        <input type="text" class="form-control" id="name" name="name" placeholder=""
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Digite seu nome aqui"
                                                required="" value="@(contact != null ? contact.Name : "")">
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-at"></i></span>
                                         </div>
-                                        <input type="text" class="form-control" id="email" name="email" placeholder=""
+                                        <input type="text" class="form-control" id="email" name="email" placeholder="Seu e-mail"
                                                value="@(contact != null ? contact.Email : "")">
                                     </div>
                                 </div>
@@ -69,7 +69,7 @@
                                         <div class="form-group">
                                             <label for="texto"><span class="hidden-xs">Texto</span> </label>
                                             <div class="form-inline">
-                                                <textarea class="form-control" id="text" name="text" style="width:100%" placeholder="Digite sua mensagem aqui!">@(contact != null ? contact.Menssage : "")</textarea>
+                                                <textarea class="form-control" id="text" name="text" style="width:100%" placeholder="Digite sua mensagem aqui">@(contact != null ? contact.Menssage : "")</textarea>
 
                                             </div>
                                         </div>
