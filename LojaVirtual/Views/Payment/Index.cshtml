@@ -1,4 +1,4 @@
-﻿@model CreditCard
+﻿@model LojaVirtual.Models.ViewModel.Payment.IndexViewModel
 
 @{
     ViewData["Title"] = "Efetuar pagamento";
@@ -90,15 +90,15 @@
                                 <form role="form" method="post">
 
                                     <div class="form-group">
-                                        <label asp-for="CardHolderName">Nome impresso no cartão</label>
-                                        <input type="text" asp-for="CardHolderName" id="cardHolderName" name="cardHolderName" class="form-control" placeholder="Nome impresso no cartão de créd.">
-                                        <span asp-validation-for="CardHolderName"></span>
+                                        <label asp-for="CreditCard.CardHolderName">Nome impresso no cartão</label>
+                                        <input type="text" asp-for="CreditCard.CardHolderName" id="cardHolderName" name="cardHolderName" class="form-control" placeholder="Nome impresso no cartão de créd.">
+                                        <span asp-validation-for="CreditCard.CardHolderName"></span>
                                     </div>
 
                                     <div class="form-group">
-                                        <label asp-for="CardNumber">Número do cartão</label>
+                                        <label asp-for="CreditCard.CardNumber">Número do cartão</label>
                                         <div class="input-group">
-                                            <input type="text" asp-for="CardNumber" id="cardNumber" name="cardNumber" class="form-control card-number" placeholder="XXXX-XXXX-XXXX-XXXX">
+                                            <input type="text" asp-for="CreditCard.CardNumber" id="cardNumber" name="cardNumber" class="form-control card-number" placeholder="XXXX-XXXX-XXXX-XXXX">
                                             <div class="input-group-append">
                                                 <span class="input-group-text text-muted">
                                                     <i class="fab fa-cc-visa"></i> &nbsp; <i class="fab fa-cc-amex"></i> &nbsp;
@@ -106,7 +106,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <span asp-validation-for="CardNumber"></span>
+                                        <span asp-validation-for="CreditCard.CardNumber"></span>
                                     </div>
 
                                     <div class="row">
@@ -114,18 +114,27 @@
                                             <div class="form-group">
                                                 <label for="CardExpirationDateMM" class="hidden-xs">Vencimento</label>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control" placeholder="MM" asp-for="CardExpirationDateMM" >
-                                                    <input type="number" class="form-control" placeholder="AA" asp-for="CardExpirationDateYY" >
+                                                    <input type="number" class="form-control" placeholder="MM" asp-for="CreditCard.CardExpirationDateMM">
+                                                    <input type="number" class="form-control" placeholder="AA" asp-for="CreditCard.CardExpirationDateYY">
                                                 </div>
-                                                <span asp-validation-for="CardExpirationDateMM"></span>
-                                                <span asp-validation-for="CardExpirationDateYY"></span>
+                                                <span asp-validation-for="CreditCard.CardExpirationDateMM"></span>
+                                                <span asp-validation-for="CreditCard.CardExpirationDateYY"></span>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label asp-for="CardCvv" data-toggle="tooltip" title="" data-original-title="Digite os 3 digitos que estão atrás do seu cartão">CVV/CVC</label>
-                                                <input asp-for="CardCvv" type="number" class="form-control" placeholder="XXX">
-                                                <span asp-validation-for="CardCvv"></span>
+                                                <label asp-for="CreditCard.CardCvv" data-toggle="tooltip" title="" data-original-title="Digite os 3 digitos que estão atrás do seu cartão">CVV/CVC</label>
+                                                <input asp-for="CreditCard.CardCvv" type="number" class="form-control" placeholder="XXX">
+                                                <span asp-validation-for="CreditCard.CardCvv"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label asp-for="Installment" data-toggle="tooltip" title="">Parcelamento</label>
+                                                <select asp-for="Installment.Number" asp-items="ViewBag.Installments" class="form-control">
+
+                                                </select>
+                                                <span asp-validation-for="Installment"></span>
                                             </div>
                                         </div>
                                     </div>

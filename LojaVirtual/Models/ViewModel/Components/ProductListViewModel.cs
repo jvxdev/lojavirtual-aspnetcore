@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using X.PagedList;
 using LojaVirtual.Models.ProductAggregator;
 
-namespace LojaVirtual.Models.ViewModel
+namespace LojaVirtual.Models.ViewModel.Components
 {
     public class ProductListViewModel
     {

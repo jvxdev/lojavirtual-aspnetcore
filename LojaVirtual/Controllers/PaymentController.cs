@@ -20,6 +20,7 @@ using LojaVirtual.Libraries.Manager.Payment;
 using PagarMe;
 using System.Text;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using LojaVirtual.Models.ViewModel.Payment;
 
 namespace LojaVirtual.Controllers
 {
@@ -56,7 +57,12 @@ namespace LojaVirtual.Controllers
                 ViewBag.Frete = frete;
                 ViewBag.Products = productKartItemFull;
                 ViewBag.Installments = installment.Select(a => new SelectListItem(
-                    String.Format("{0}x R$ {1} {2} - Valor total: {3}", a.Number, a.ValuePerInstallment.ToString("C"), (a.Fees) ? "c/ juros" : "s/ juros", a.Value.ToString("C")), a.Number.ToString())).ToList();
+                    String.Format(
+                        "{0}x R$ {1} {2} - Valor total: {3}",
+                        a.Number, a.ValuePerInstallment.ToString("C"),
+                        (a.Fees) ? "c/ juros" : "s/ juros",
+                        a.Value.ToString("C")),
+                        a.Number.ToString())).ToList();
 
                 return View("Index");
             }
@@ -68,7 +74,7 @@ namespace LojaVirtual.Controllers
 
         [HttpPost]
         [ClientAuthorization]
-        public IActionResult Index([FromForm] CreditCard creditCard)
+        public IActionResult Index([FromForm] IndexViewModel indexViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -76,9 +82,11 @@ namespace LojaVirtual.Controllers
                 ValorPrazoFrete frete = GetFrete(deliveryAddress.CEP.ToString());
                 List<ProductItem> products = ReadProductDB();
 
+                var installment = _managePagarMe.CalcularPagamentoParcelado(GetTotalPurchaseValue(products, frete)).Where(a => a.Number == indexViewModel.Installment.Number).First();
+
                 try
                 {
-                    dynamic pagarMeReturn = _managePagarMe.GerarPagCartaoCredito(creditCard, deliveryAddress, frete, products);
+                    dynamic pagarMeReturn = _managePagarMe.GerarPagCartaoCredito(indexViewModel.CreditCard, deliveryAddress, frete, products);
                     
                     return new ContentResult() { Content = "Tudo certo! " + pagarMeReturn.TransactionId };
                 }
@@ -156,6 +164,7 @@ namespace LojaVirtual.Controllers
                 return null;
             }
         }
+
 
         private decimal GetTotalPurchaseValue(List<ProductItem> products, ValorPrazoFrete valorPrazoFrete)
         {
