@@ -75,7 +75,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
         }
 
 
-        public object GerarPagCartaoCredito(CreditCard creditCard, DeliveryAddress deliveryAddress, ValorPrazoFrete valorFrete, List<ProductItem> products)
+        public object GerarPagCartaoCredito(CreditCard creditCard, Installment installment, DeliveryAddress deliveryAddress, ValorPrazoFrete valorFrete, List<ProductItem> products)
         {
             Client client = _clientLogin.getClient();
 
@@ -136,7 +136,6 @@ namespace LojaVirtual.Libraries.Manager.Payment
             var Today = DateTime.Now;
 
             var fee = Convert.ToDecimal(valorFrete.Valor);
-            decimal totalValue = fee;
 
             transaction.Shipping = new PagarMe.Shipping
             {
@@ -170,14 +169,14 @@ namespace LojaVirtual.Libraries.Manager.Payment
                     UnitPrice = Mask.ConvertValuePagarMe(item.Price),
                 };
 
-                totalValue += (item.Price * item.ItensKartAmount);
-
                 items[i] = itemA;
             }
 
             transaction.Item = items;
 
-            transaction.Amount = Mask.ConvertValuePagarMe(totalValue);
+            transaction.Amount = Mask.ConvertValuePagarMe(installment.Value);
+
+            transaction.Installments = installment.Number;
 
             transaction.Save();
 

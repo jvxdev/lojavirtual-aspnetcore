@@ -9,7 +9,7 @@ namespace LojaVirtual.Libraries.Text
     {
         public static string Delete(string value)
         {
-            return value.Replace("(", "").Replace(")", "").Replace("-", "").Replace(".", "").Replace(",", "").Replace("R$", "").Replace(" ", "");
+            return value.Replace("(", "").Replace(")", "").Replace("-", "").Replace(".", "").Replace("R$", "").Replace(",", "").Replace(" ", "");
         }
 
 

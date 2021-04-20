@@ -91,14 +91,14 @@
 
                                     <div class="form-group">
                                         <label asp-for="CreditCard.CardHolderName">Nome impresso no cartão</label>
-                                        <input type="text" asp-for="CreditCard.CardHolderName" id="cardHolderName" name="cardHolderName" class="form-control" placeholder="Nome impresso no cartão de créd.">
+                                        <input type="text" asp-for="CreditCard.CardHolderName" class="form-control" placeholder="Nome impresso no cartão de créd.">
                                         <span asp-validation-for="CreditCard.CardHolderName"></span>
                                     </div>
 
                                     <div class="form-group">
                                         <label asp-for="CreditCard.CardNumber">Número do cartão</label>
                                         <div class="input-group">
-                                            <input type="text" asp-for="CreditCard.CardNumber" id="cardNumber" name="cardNumber" class="form-control card-number" placeholder="XXXX-XXXX-XXXX-XXXX">
+                                            <input type="text" asp-for="CreditCard.CardNumber" class="form-control card-number" placeholder="XXXX-XXXX-XXXX-XXXX">
                                             <div class="input-group-append">
                                                 <span class="input-group-text text-muted">
                                                     <i class="fab fa-cc-visa"></i> &nbsp; <i class="fab fa-cc-amex"></i> &nbsp;
@@ -128,11 +128,10 @@
                                                 <span asp-validation-for="CreditCard.CardCvv"></span>
                                             </div>
                                         </div>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label asp-for="Installment" data-toggle="tooltip" title="">Parcelamento</label>
                                                 <select asp-for="Installment.Number" asp-items="ViewBag.Installments" class="form-control">
-
                                                 </select>
                                                 <span asp-validation-for="Installment"></span>
                                             </div>

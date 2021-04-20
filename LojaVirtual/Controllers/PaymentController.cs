@@ -58,8 +58,9 @@ namespace LojaVirtual.Controllers
                 ViewBag.Products = productKartItemFull;
                 ViewBag.Installments = installment.Select(a => new SelectListItem(
                     String.Format(
-                        "{0}x R$ {1} {2} - Valor total: {3}",
-                        a.Number, a.ValuePerInstallment.ToString("C"),
+                        "{0}x {1} {2} - Valor total: {3}",
+                        a.Number, 
+                        a.ValuePerInstallment.ToString("C"),
                         (a.Fees) ? "c/ juros" : "s/ juros",
                         a.Value.ToString("C")),
                         a.Number.ToString())).ToList();
@@ -86,7 +87,7 @@ namespace LojaVirtual.Controllers
 
                 try
                 {
-                    dynamic pagarMeReturn = _managePagarMe.GerarPagCartaoCredito(indexViewModel.CreditCard, deliveryAddress, frete, products);
+                    dynamic pagarMeReturn = _managePagarMe.GerarPagCartaoCredito(indexViewModel.CreditCard, installment, deliveryAddress, frete, products);
                     
                     return new ContentResult() { Content = "Tudo certo! " + pagarMeReturn.TransactionId };
                 }
@@ -166,9 +167,9 @@ namespace LojaVirtual.Controllers
         }
 
 
-        private decimal GetTotalPurchaseValue(List<ProductItem> products, ValorPrazoFrete valorPrazoFrete)
+        private decimal GetTotalPurchaseValue(List<ProductItem> products, ValorPrazoFrete frete)
         {
-            decimal total = Convert.ToDecimal(valorPrazoFrete.Valor);
+            decimal total = Convert.ToDecimal(frete.Valor);
 
             foreach(var product in products)
             {
