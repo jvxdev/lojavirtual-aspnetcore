@@ -19,6 +19,7 @@ using LojaVirtual.Libraries.Login;
 using LojaVirtual.Libraries.Manager.Payment;
 using PagarMe;
 using System.Text;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace LojaVirtual.Controllers
 {
@@ -44,14 +45,18 @@ namespace LojaVirtual.Controllers
             if (tipoFreteSelected != null)
             {
                 var deliveryAddress = GetAddress();
-
                 var shoppingKartHash = HashGenerator(_cookieShoppingKart.Read());
-
                 int cep = int.Parse(Mask.Delete(deliveryAddress.CEP));
-
-                ViewBag.Frete = GetFrete(cep.ToString());
                 List<ProductItem> productKartItemFull = ReadProductDB();
+
+                var frete = GetFrete(cep.ToString());
+                var total = GetTotalPurchaseValue(productKartItemFull, frete);
+                var installment = _managePagarMe.CalcularPagamentoParcelado(total);
+
+                ViewBag.Frete = frete;
                 ViewBag.Products = productKartItemFull;
+                ViewBag.Installments = installment.Select(a => new SelectListItem(
+                    String.Format("{0}x R$ {1} {2} - Valor total: {3}", a.Number, a.ValuePerInstallment.ToString("C"), (a.Fees) ? "c/ juros" : "s/ juros", a.Value.ToString("C")), a.Number.ToString())).ToList();
 
                 return View("Index");
             }
@@ -150,6 +155,18 @@ namespace LojaVirtual.Controllers
             {
                 return null;
             }
+        }
+
+        private decimal GetTotalPurchaseValue(List<ProductItem> products, ValorPrazoFrete valorPrazoFrete)
+        {
+            decimal total = Convert.ToDecimal(valorPrazoFrete.Valor);
+
+            foreach(var product in products)
+            {
+                total += product.Price;
+            }
+
+            return total;
         }
     }
 }
