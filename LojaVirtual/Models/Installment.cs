@@ -13,7 +13,7 @@ namespace LojaVirtual.Models
         public decimal Value { get; set; }
 
 
-        public decimal InstallmentValue { get; set; }
+        public decimal ValuePerInstallment { get; set; }
 
 
         public bool Fees { get; set; }

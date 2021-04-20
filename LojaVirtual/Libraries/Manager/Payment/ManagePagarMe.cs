@@ -30,8 +30,8 @@ namespace LojaVirtual.Libraries.Manager.Payment
             {
                 Client client = _clientLogin.getClient();
 
-                PagarMeService.DefaultApiKey = _conf.GetValue<String>("Pagamento:PagarMe:ApiKey");
-                PagarMeService.DefaultEncryptionKey = _conf.GetValue<String>("Pagamento:PagarMe:EcryptionKey");
+                PagarMeService.DefaultApiKey = _conf.GetValue<String>("Payment:PagarMe:ApiKey");
+                PagarMeService.DefaultEncryptionKey = _conf.GetValue<String>("Payment:PagarMe:EcryptionKey");
 
                 Transaction transaction = new Transaction();
 
@@ -79,8 +79,8 @@ namespace LojaVirtual.Libraries.Manager.Payment
         {
             Client client = _clientLogin.getClient();
 
-            PagarMeService.DefaultApiKey = _conf.GetValue<String>("Pagamento:PagarMe:ApiKey");
-            PagarMeService.DefaultEncryptionKey = _conf.GetValue<String>("Pagamento:PagarMe:EcryptionKey");
+            PagarMeService.DefaultApiKey = _conf.GetValue<String>("Payment:PagarMe:ApiKey");
+            PagarMeService.DefaultEncryptionKey = _conf.GetValue<String>("Payment:PagarMe:EcryptionKey");
 
             Card card = new Card();
             card.Number = Mask.Delete(creditCard.CardNumber);
@@ -187,7 +187,38 @@ namespace LojaVirtual.Libraries.Manager.Payment
 
         public List<Installment> CalcularPagamentoParcelado(decimal value)
         {
+            List<Installment> list = new List<Installment>();
 
+            int maxInstallments = _conf.GetValue<int>("Payment:PagarMe:MaxInstallments");
+            int sellerInstallment = _conf.GetValue<int>("Payment:PagarMe:SellerInstallment");
+            decimal fees = _conf.GetValue<int>("Payment:PagarMe:Fees");
+
+            for (int i = 1; i <= maxInstallments; i++)
+            {
+                Installment installment = new Installment();
+
+                installment.Number = i;
+
+                if (i > sellerInstallment)
+                {
+                    int installmentsFeesAmount = i - sellerInstallment;
+                    decimal feesValue = value * fees / 100;
+
+                    installment.Value = installmentsFeesAmount * feesValue + value;
+                    installment.ValuePerInstallment = installment.Value / installment.Number;
+                    installment.Fees = true;
+                }
+                else
+                {
+                    installment.Value = value;
+                    installment.ValuePerInstallment = installment.Value / installment.Number;
+                    installment.Fees = false;
+                }
+
+                list.Add(installment);
+            }
+
+            return list;
         }
     }
 }
