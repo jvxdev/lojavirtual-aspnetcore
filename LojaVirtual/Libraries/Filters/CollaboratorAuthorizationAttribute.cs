@@ -7,12 +7,12 @@ using System;
 
 namespace LojaVirtual.Libraries.Filters
 {
-    public class CollaboratorAuthorization : Attribute, IAuthorizationFilter
+    public class CollaboratorAuthorizationAttribute : Attribute, IAuthorizationFilter
     {
         private string _authorizedCollaborator;
 
 
-        public CollaboratorAuthorization(string AuthorizedCollaborator = CollaboratorPositionConst.Commun)
+        public CollaboratorAuthorizationAttribute(string AuthorizedCollaborator = CollaboratorPositionConst.Commun)
         {
             _authorizedCollaborator = AuthorizedCollaborator;
         }

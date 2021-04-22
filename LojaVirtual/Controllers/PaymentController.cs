@@ -24,6 +24,8 @@ using LojaVirtual.Models.ViewModel.Payment;
 
 namespace LojaVirtual.Controllers
 {
+    [ClientAuthorization]
+    [PaymentCookie]
     public class PaymentController : BaseController
     {
         private Cookie _cookie;
@@ -38,31 +40,21 @@ namespace LojaVirtual.Controllers
 
 
         [HttpGet]
-        [ClientAuthorization]
         public IActionResult Index()
         {
-            var tipoFreteSelected = _cookie.Read("ShoppingKart.tipoFrete", false);
+            List<ProductItem> productKartItemFull = ReadProductDB();
 
-            if (tipoFreteSelected != null)
-            {
-                List<ProductItem> productKartItemFull = ReadProductDB();
+            ValorPrazoFrete frete = GetFrete();
 
-                ValorPrazoFrete frete = GetFrete();
+            ViewBag.Frete = frete;
+            ViewBag.Products = productKartItemFull;
+            ViewBag.Installments = CalculateInstallment(productKartItemFull);
 
-                ViewBag.Frete = frete;
-                ViewBag.Products = productKartItemFull;
-                ViewBag.Installments = CalculateInstallment(productKartItemFull);
-
-                return View("Index");
-            }
-
-            TempData["MSG_E"] = Message.MSG_E010;
-            return RedirectToAction("DeliveryAddress", "ShoppingKart");
+            return View("Index");
         }
 
 
         [HttpPost]
-        [ClientAuthorization]
         public IActionResult Index([FromForm] IndexViewModel indexViewModel)
         {
             if (ModelState.IsValid)
@@ -76,7 +68,7 @@ namespace LojaVirtual.Controllers
                 try
                 {
                     Transaction transaction = _managePagarMe.GerarPagCartaoCredito(indexViewModel.CreditCard, installment, deliveryAddress, frete, products);
-                    
+
                     return new ContentResult() { Content = "Tudo certo! Código da compra com cartão: " + transaction.Id };
                 }
                 catch (PagarMeException e)
@@ -171,7 +163,7 @@ namespace LojaVirtual.Controllers
 
             decimal total = Convert.ToDecimal(frete.Valor);
 
-            foreach(var product in products)
+            foreach (var product in products)
             {
                 total += product.Price;
             }

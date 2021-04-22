@@ -53,7 +53,7 @@ namespace LojaVirtual.Controllers
         }
 
 
-        [ClientAuthorization]
+        [ClientAuthorizationAttribute]
         public IActionResult DeliveryAddress()
         {
             Client client = _clientLogin.getClient();

@@ -8,7 +8,7 @@ using X.PagedList;
 namespace LojaVirtual.Areas.Collaborator.Controllers
 {
     [Area("Collaborator")]
-    [CollaboratorAuthorization]
+    [CollaboratorAuthorizationAttribute]
     public class ClientController : Controller
     {
         private IClientRepository _clientRepository;

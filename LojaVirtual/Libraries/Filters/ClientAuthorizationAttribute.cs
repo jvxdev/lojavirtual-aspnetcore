@@ -6,7 +6,7 @@ using System;
 
 namespace LojaVirtual.Libraries.Filters
 {
-    public class ClientAuthorization : Attribute, IAuthorizationFilter
+    public class ClientAuthorizationAttribute : Attribute, IAuthorizationFilter
     {
         public void OnAuthorization(AuthorizationFilterContext context)
         {

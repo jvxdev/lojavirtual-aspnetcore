@@ -150,6 +150,9 @@
   <data name="MSG_E011" xml:space="preserve">
     <value>E-mail ou senha inválidos!</value>
   </data>
+  <data name="MSG_E012" xml:space="preserve">
+    <value>Nenhum produto foi selecionado.</value>
+  </data>
   <data name="MSG_S001" xml:space="preserve">
     <value>Registro cadastrado com sucesso!</value>
   </data>

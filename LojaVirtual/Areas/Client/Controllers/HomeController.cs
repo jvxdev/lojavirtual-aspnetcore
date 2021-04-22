@@ -68,7 +68,7 @@ namespace LojaVirtual.Areas.Client.Controllers
 
 
         [HttpGet]
-        [ClientAuthorization]
+        [ClientAuthorizationAttribute]
         public IActionResult Panel()
         {
             return new ContentResult() { Content = "Você está no Painel do Cliente" };

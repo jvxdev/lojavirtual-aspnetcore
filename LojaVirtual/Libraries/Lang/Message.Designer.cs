@@ -160,6 +160,15 @@ namespace LojaVirtual.Libraries.Lang {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Nenhum produto foi selecionado..
+        /// </summary>
+        public static string MSG_E012 {
+            get {
+                return ResourceManager.GetString("MSG_E012", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Registro cadastrado com sucesso!.
         /// </summary>
         public static string MSG_S001 {

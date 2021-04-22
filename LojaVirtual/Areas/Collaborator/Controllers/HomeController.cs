@@ -69,7 +69,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         }
 
 
-        [CollaboratorAuthorization]
+        [CollaboratorAuthorizationAttribute]
         [HttpReferer]
         public IActionResult Logout()
         {
@@ -79,7 +79,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         }
 
 
-        [CollaboratorAuthorization]
+        [CollaboratorAuthorizationAttribute]
         public IActionResult Panel()
         {
             return View();
