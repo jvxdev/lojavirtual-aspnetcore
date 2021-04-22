@@ -24,7 +24,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
         }
 
         
-        public object GerarBoleto(decimal value)
+        public Boleto GerarBoleto(decimal value)
         {
             try
             {
@@ -60,9 +60,10 @@ namespace LojaVirtual.Libraries.Manager.Payment
 
                 transaction.Save();
 
-                return new
+                return new Boleto
                 {
-                    BoletoUrl = transaction.BoletoUrl,
+                    TransactionId = transaction.Id,
+                    BoletoURL = transaction.BoletoUrl,
                     BarCode = transaction.BoletoBarcode,
                     BoletoExpirationDate = transaction.BoletoExpirationDate
 
@@ -70,7 +71,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
             }
             catch (Exception e)
             {
-                return new { Erro = e.Message };
+                return new Boleto { Erro = e.Message };
             }
         }
 
@@ -190,7 +191,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
 
             int maxInstallments = _conf.GetValue<int>("Payment:PagarMe:MaxInstallments");
             int sellerInstallment = _conf.GetValue<int>("Payment:PagarMe:SellerInstallment");
-            decimal fees = _conf.GetValue<int>("Payment:PagarMe:Fees");
+            decimal fees = _conf.GetValue<decimal>("Payment:PagarMe:Fees");
 
             for (int i = 1; i <= maxInstallments; i++)
             {

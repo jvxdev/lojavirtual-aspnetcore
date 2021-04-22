@@ -116,6 +116,29 @@ namespace LojaVirtual.Controllers
         }
 
 
+        public IActionResult BoletoBancario()
+        {
+            DeliveryAddress deliveryAddress = GetAddress();
+            ValorPrazoFrete frete = GetFrete(deliveryAddress.CEP.ToString());
+            List<ProductItem> products = ReadProductDB();
+
+            var totalPurchaseValue = GetTotalPurchaseValue(products, frete);
+
+            Boleto boleto = _managePagarMe.GerarBoleto(totalPurchaseValue);
+
+            if (boleto.Erro != null)
+            {
+                TempData["MSG_E"] = boleto.Erro;
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return new ContentResult() { Content = "Tudo certo! Código do boleto: " + boleto.TransactionId };
+                //return View("OrderSuccess");
+            }
+        }
+
+
         private DeliveryAddress GetAddress()
         {
             DeliveryAddress deliveryAddress = null;
