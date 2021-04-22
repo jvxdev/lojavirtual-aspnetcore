@@ -75,24 +75,13 @@ namespace LojaVirtual.Controllers
 
                 try
                 {
-                    dynamic pagarMeReturn = _managePagarMe.GerarPagCartaoCredito(indexViewModel.CreditCard, installment, deliveryAddress, frete, products);
+                    Transaction transaction = _managePagarMe.GerarPagCartaoCredito(indexViewModel.CreditCard, installment, deliveryAddress, frete, products);
                     
-                    return new ContentResult() { Content = "Tudo certo! " + pagarMeReturn.TransactionId };
+                    return new ContentResult() { Content = "Tudo certo! Código da compra com cartão: " + transaction.Id };
                 }
                 catch (PagarMeException e)
                 {
-                    StringBuilder sb = new StringBuilder();
-
-                    if (e.Error.Errors.Count() > 0)
-                    {
-                        sb.Append("Erro no pagamento: ");
-
-                        foreach(var erro in e.Error.Errors)
-                        {
-                            sb.Append(erro.Message + "<br />");
-                        }
-                    }
-                    TempData["MSG_E"] = sb.ToString();
+                    TempData["MSG_E"] = CreateErrorMessage(e);
 
                     return Index();
                 }
@@ -111,18 +100,15 @@ namespace LojaVirtual.Controllers
             List<ProductItem> products = ReadProductDB();
 
             var totalPurchaseValue = GetTotalPurchaseValue(products);
-
-            Boleto boleto = _managePagarMe.GerarBoleto(totalPurchaseValue);
-
-            if (boleto.Erro != null)
+            try
             {
-                TempData["MSG_E"] = boleto.Erro;
-                return RedirectToAction(nameof(Index));
+                Transaction transaction = _managePagarMe.GerarBoleto(totalPurchaseValue);
+                return new ContentResult() { Content = "Tudo certo! Código do boleto: " + transaction.Id };
             }
-            else
+            catch (PagarMeException e)
             {
-                return new ContentResult() { Content = "Tudo certo! Código do boleto: " + boleto.TransactionId };
-                //return View("OrderSuccess");
+                TempData["MSG_E"] = CreateErrorMessage(e);
+                return RedirectToAction(nameof(Index));
             }
         }
 
@@ -213,6 +199,23 @@ namespace LojaVirtual.Controllers
         private Installment LocateInstallment(List<ProductItem> products, int number)
         {
             return _managePagarMe.CalcularPagamentoParcelado(GetTotalPurchaseValue(products)).Where(a => a.Number == number).First();
+        }
+
+
+        private string CreateErrorMessage(PagarMeException e)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            if (e.Error.Errors.Count() > 0)
+            {
+                sb.Append("Erro no pagamento: ");
+
+                foreach (var erro in e.Error.Errors)
+                {
+                    sb.Append(erro.Message + "<br />");
+                }
+            }
+            return sb.ToString();
         }
     }
 }

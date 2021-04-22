@@ -24,10 +24,8 @@ namespace LojaVirtual.Libraries.Manager.Payment
         }
 
         
-        public Boleto GerarBoleto(decimal value)
+        public Transaction GerarBoleto(decimal value)
         {
-            try
-            {
                 Client client = _clientLogin.getClient();
 
                 PagarMeService.DefaultApiKey = _conf.GetValue<String>("Payment:PagarMe:ApiKey");
@@ -60,23 +58,11 @@ namespace LojaVirtual.Libraries.Manager.Payment
 
                 transaction.Save();
 
-                return new Boleto
-                {
-                    TransactionId = transaction.Id,
-                    BoletoURL = transaction.BoletoUrl,
-                    BarCode = transaction.BoletoBarcode,
-                    BoletoExpirationDate = transaction.BoletoExpirationDate
-
-                };
-            }
-            catch (Exception e)
-            {
-                return new Boleto { Erro = e.Message };
-            }
+                return transaction;
         }
 
 
-        public object GerarPagCartaoCredito(CreditCard creditCard, Installment installment, DeliveryAddress deliveryAddress, ValorPrazoFrete valorFrete, List<ProductItem> products)
+        public Transaction GerarPagCartaoCredito(CreditCard creditCard, Installment installment, DeliveryAddress deliveryAddress, ValorPrazoFrete valorFrete, List<ProductItem> products)
         {
             Client client = _clientLogin.getClient();
 
@@ -181,7 +167,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
 
             transaction.Save();
 
-            return new { TransactionId = transaction.Id };
+            return transaction;
         }
 
 
