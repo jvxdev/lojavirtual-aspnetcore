@@ -23,8 +23,6 @@ namespace LojaVirtual.Libraries.Filters
             var tipoFreteSelected = _cookie.Read("ShoppingKart.tipoFrete", false);
             var valueFrete = _cookie.Read("ShoppingKart.FreteValue", true);
 
-            
-
             if (shoppingKart == null)
             {
                 ((Controller)context.Controller).TempData["MSG_E"] = Message.MSG_E012;

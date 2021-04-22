@@ -115,16 +115,7 @@ namespace LojaVirtual.Controllers
             if (deliveryAddressId == 0)
             {
                 Client client = _clientLogin.getClient();
-
-                deliveryAddress = new DeliveryAddress();
-                deliveryAddress.AddressName = "Endereço do cliente";
-                deliveryAddress.Id = 0;
-                deliveryAddress.CEP = client.CEP;
-                deliveryAddress.State = client.State;
-                deliveryAddress.City = client.City;
-                deliveryAddress.Neighborhood = client.Neighborhood;
-                deliveryAddress.Street = client.Street;
-                deliveryAddress.HouseNumber = client.HouseNumber;
+                deliveryAddress = _mapper.Map<DeliveryAddress>(client);
             }
             else
             {
