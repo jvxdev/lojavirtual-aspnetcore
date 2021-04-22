@@ -45,25 +45,13 @@ namespace LojaVirtual.Controllers
 
             if (tipoFreteSelected != null)
             {
-                var deliveryAddress = GetAddress();
-                var shoppingKartHash = HashGenerator(_cookieShoppingKart.Read());
-                int cep = int.Parse(Mask.Delete(deliveryAddress.CEP));
                 List<ProductItem> productKartItemFull = ReadProductDB();
 
-                var frete = GetFrete(cep.ToString());
-                var total = GetTotalPurchaseValue(productKartItemFull, frete);
-                var installment = _managePagarMe.CalcularPagamentoParcelado(total);
+                ValorPrazoFrete frete = GetFrete();
 
                 ViewBag.Frete = frete;
                 ViewBag.Products = productKartItemFull;
-                ViewBag.Installments = installment.Select(a => new SelectListItem(
-                    String.Format(
-                        "{0}x {1} {2} - Valor total: {3}",
-                        a.Number, 
-                        a.ValuePerInstallment.ToString("C"),
-                        (a.Fees) ? "c/ juros" : "s/ juros",
-                        a.Value.ToString("C")),
-                        a.Number.ToString())).ToList();
+                ViewBag.Installments = CalculateInstallment(productKartItemFull);
 
                 return View("Index");
             }
@@ -80,10 +68,10 @@ namespace LojaVirtual.Controllers
             if (ModelState.IsValid)
             {
                 DeliveryAddress deliveryAddress = GetAddress();
-                ValorPrazoFrete frete = GetFrete(deliveryAddress.CEP.ToString());
+                ValorPrazoFrete frete = GetFrete();
                 List<ProductItem> products = ReadProductDB();
 
-                var installment = _managePagarMe.CalcularPagamentoParcelado(GetTotalPurchaseValue(products, frete)).Where(a => a.Number == indexViewModel.Installment.Number).First();
+                Installment installment = LocateInstallment(products, indexViewModel.Installment.Number);
 
                 try
                 {
@@ -119,10 +107,10 @@ namespace LojaVirtual.Controllers
         public IActionResult BoletoBancario()
         {
             DeliveryAddress deliveryAddress = GetAddress();
-            ValorPrazoFrete frete = GetFrete(deliveryAddress.CEP.ToString());
+            ValorPrazoFrete frete = GetFrete();
             List<ProductItem> products = ReadProductDB();
 
-            var totalPurchaseValue = GetTotalPurchaseValue(products, frete);
+            var totalPurchaseValue = GetTotalPurchaseValue(products);
 
             Boleto boleto = _managePagarMe.GerarBoleto(totalPurchaseValue);
 
@@ -169,13 +157,14 @@ namespace LojaVirtual.Controllers
         }
 
 
-        private ValorPrazoFrete GetFrete(string cepDestino)
+        private ValorPrazoFrete GetFrete()
         {
+            var deliveryAddress = GetAddress();
+            int cep = int.Parse(Mask.Delete(deliveryAddress.CEP));
+
             var tipoFreteSelected = _cookie.Read("ShoppingKart.tipoFrete", false);
 
             var shoppingKartHash = HashGenerator(_cookieShoppingKart.Read());
-
-            int cep = int.Parse(Mask.Delete(cepDestino));
 
             Frete frete = _cookieFrete.Read().Where(a => a.CEP == cep && a.codShoppingKart == shoppingKartHash).FirstOrDefault();
 
@@ -190,8 +179,10 @@ namespace LojaVirtual.Controllers
         }
 
 
-        private decimal GetTotalPurchaseValue(List<ProductItem> products, ValorPrazoFrete frete)
+        private decimal GetTotalPurchaseValue(List<ProductItem> products)
         {
+            ValorPrazoFrete frete = GetFrete();
+
             decimal total = Convert.ToDecimal(frete.Valor);
 
             foreach(var product in products)
@@ -200,6 +191,28 @@ namespace LojaVirtual.Controllers
             }
 
             return total;
+        }
+
+
+        private List<SelectListItem> CalculateInstallment(List<ProductItem> products)
+        {
+            var total = GetTotalPurchaseValue(products);
+            var installment = _managePagarMe.CalcularPagamentoParcelado(total);
+
+            return installment.Select(a => new SelectListItem(
+                String.Format(
+                    "{0}x {1} {2} - Valor total: {3}",
+                    a.Number,
+                    a.ValuePerInstallment.ToString("C"),
+                    (a.Fees) ? "c/ juros" : "s/ juros",
+                    a.Value.ToString("C")),
+                    a.Number.ToString())).ToList();
+        }
+
+
+        private Installment LocateInstallment(List<ProductItem> products, int number)
+        {
+            return _managePagarMe.CalcularPagamentoParcelado(GetTotalPurchaseValue(products)).Where(a => a.Number == number).First();
         }
     }
 }
