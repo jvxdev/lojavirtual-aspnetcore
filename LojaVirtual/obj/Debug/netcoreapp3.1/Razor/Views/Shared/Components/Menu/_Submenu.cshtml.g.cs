@@ -35,7 +35,7 @@ using LojaVirtual.Models.ViewModel.Components;
 #nullable disable
 #nullable restore
 #line 7 "C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\Views\_ViewImports.cshtml"
-using LojaVirtual.Models.ViewModel;
+using LojaVirtual.Models.ViewModel.Payment;
 
 #line default
 #line hidden
@@ -62,7 +62,7 @@ using X.PagedList;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"974d36ce12e727f69534cde4417f0a97bb3660a3", @"/Views/Shared/Components/Menu/_Submenu.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"196eb434ce273ddae17d94b813486485f73bb699", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"39b641cbb3dc16bcf1ad6dc74a578787ab81a1e2", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Components_Menu__Submenu : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("dropdown-item"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -114,7 +114,7 @@ using X.PagedList;
 #line hidden
 #nullable disable
             WriteLiteral("    <li class=\"dropdown-submenu\">\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "974d36ce12e727f69534cde4417f0a97bb3660a36308", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "974d36ce12e727f69534cde4417f0a97bb3660a36316", async() => {
 #nullable restore
 #line 11 "C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\Views\Shared\Components\Menu\_Submenu.cshtml"
                                                                                                                                    Write(fatherCategory.Name);
@@ -193,7 +193,7 @@ using X.PagedList;
 #line hidden
 #nullable disable
             WriteLiteral("                        <li class=\"dropdown-item\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "974d36ce12e727f69534cde4417f0a97bb3660a310888", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "974d36ce12e727f69534cde4417f0a97bb3660a310896", async() => {
 #nullable restore
 #line 23 "C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\Views\Shared\Components\Menu\_Submenu.cshtml"
                                                                                                                                       Write(sonCategory.Name);
@@ -258,7 +258,7 @@ else
 #line hidden
 #nullable disable
             WriteLiteral("    <li class=\"dropdown-item\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "974d36ce12e727f69534cde4417f0a97bb3660a314463", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "974d36ce12e727f69534cde4417f0a97bb3660a314471", async() => {
 #nullable restore
 #line 31 "C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\Views\Shared\Components\Menu\_Submenu.cshtml"
                                                                                                                      Write(fatherCategory.Name);

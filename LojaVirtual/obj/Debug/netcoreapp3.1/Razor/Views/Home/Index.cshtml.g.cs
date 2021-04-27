@@ -35,7 +35,7 @@ using LojaVirtual.Models.ViewModel.Components;
 #nullable disable
 #nullable restore
 #line 7 "C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\Views\_ViewImports.cshtml"
-using LojaVirtual.Models.ViewModel;
+using LojaVirtual.Models.ViewModel.Payment;
 
 #line default
 #line hidden
@@ -62,7 +62,7 @@ using X.PagedList;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ff2769c5a7de5151981f09df60cac9798e5e7028", @"/Views/Home/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"196eb434ce273ddae17d94b813486485f73bb699", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"39b641cbb3dc16bcf1ad6dc74a578787ab81a1e2", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<NewsletterEmail>
     {
         #line hidden
@@ -168,7 +168,7 @@ using X.PagedList;
     </h1>
 
     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("vc:product-list", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ff2769c5a7de5151981f09df60cac9798e5e70288149", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("vc:product-list", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ff2769c5a7de5151981f09df60cac9798e5e70288157", async() => {
             }
             );
             __ProductListViewComponentTagHelper = CreateTagHelper<global::AspNetCore.Views_Home_Index.__Generated__ProductListViewComponentTagHelper>();

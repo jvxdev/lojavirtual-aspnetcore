@@ -35,7 +35,7 @@ using LojaVirtual.Models.ViewModel.Components;
 #nullable disable
 #nullable restore
 #line 7 "C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\Views\_ViewImports.cshtml"
-using LojaVirtual.Models.ViewModel;
+using LojaVirtual.Models.ViewModel.Payment;
 
 #line default
 #line hidden
@@ -62,7 +62,7 @@ using X.PagedList;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1ac8a18640a7643c076de16e10329449b43b786d", @"/Views/Product/CategoryList.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"196eb434ce273ddae17d94b813486485f73bb699", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"39b641cbb3dc16bcf1ad6dc74a578787ab81a1e2", @"/Views/_ViewImports.cshtml")]
     public class Views_Product_CategoryList : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Category>
     {
         #line hidden
@@ -107,7 +107,7 @@ using X.PagedList;
 #line hidden
 #nullable disable
             WriteLiteral("</span>\r\n    </div>\r\n</div>\r\n\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("vc:product-list", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1ac8a18640a7643c076de16e10329449b43b786d4964", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("vc:product-list", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1ac8a18640a7643c076de16e10329449b43b786d4972", async() => {
             }
             );
             __ProductListViewComponentTagHelper = CreateTagHelper<global::AspNetCore.Views_Product_CategoryList.__Generated__ProductListViewComponentTagHelper>();

@@ -156,7 +156,7 @@ namespace LojaVirtual.Controllers
 
             foreach (var product in products)
             {
-                total += product.Price;
+                total += product.Price * product.ItensKartAmount;
             }
 
             return total;

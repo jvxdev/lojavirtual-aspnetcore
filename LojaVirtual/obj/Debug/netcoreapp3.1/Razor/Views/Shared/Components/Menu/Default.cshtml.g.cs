@@ -35,7 +35,7 @@ using LojaVirtual.Models.ViewModel.Components;
 #nullable disable
 #nullable restore
 #line 7 "C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\Views\_ViewImports.cshtml"
-using LojaVirtual.Models.ViewModel;
+using LojaVirtual.Models.ViewModel.Payment;
 
 #line default
 #line hidden
@@ -62,7 +62,7 @@ using X.PagedList;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d80bd7e7b4b54a21d2f482d9790efa99f1f62b28", @"/Views/Shared/Components/Menu/Default.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"196eb434ce273ddae17d94b813486485f73bb699", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"39b641cbb3dc16bcf1ad6dc74a578787ab81a1e2", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Components_Menu_Default : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<Category>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("nav-link"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -192,7 +192,7 @@ using X.PagedList;
 #line hidden
 #nullable disable
             WriteLiteral("        </ul>\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d80bd7e7b4b54a21d2f482d9790efa99f1f62b2811367", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d80bd7e7b4b54a21d2f482d9790efa99f1f62b2811375", async() => {
                 WriteLiteral("\r\n            <input class=\"form-control mr-sm-2\" type=\"search\" name=\"Search\"");
                 BeginWriteAttribute("value", " value=\"", 2187, "\"", 2202, 1);
 #nullable restore
@@ -204,7 +204,7 @@ WriteAttributeValue("", 2195, Search, 2195, 7, false);
 #nullable disable
                 EndWriteAttribute();
                 WriteLiteral(" placeholder=\"Procurando algo?\" aria-label=\"Search\">\r\n            <button class=\"btn btn-danger my-2 my-sm-0\" type=\"submit\">Pesquisar</button>\r\n            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d80bd7e7b4b54a21d2f482d9790efa99f1f62b2812277", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d80bd7e7b4b54a21d2f482d9790efa99f1f62b2812285", async() => {
                     WriteLiteral("<i class=\"fas fa-phone mr-1\"></i> Fale conosco");
                 }
                 );
@@ -232,7 +232,7 @@ WriteAttributeValue("", 2195, Search, 2195, 7, false);
 #line hidden
 #nullable disable
                 WriteLiteral("                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d80bd7e7b4b54a21d2f482d9790efa99f1f62b2814150", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d80bd7e7b4b54a21d2f482d9790efa99f1f62b2814158", async() => {
                     WriteLiteral("<i class=\"fas fa-shopping-cart mr-1\"></i> Carrinho");
                 }
                 );
@@ -251,7 +251,7 @@ WriteAttributeValue("", 2195, Search, 2195, 7, false);
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d80bd7e7b4b54a21d2f482d9790efa99f1f62b2815733", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d80bd7e7b4b54a21d2f482d9790efa99f1f62b2815741", async() => {
                     WriteLiteral("<i class=\"fas fa-user-alt mr-1\"></i> ");
 #nullable restore
 #line 52 "C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\Views\Shared\Components\Menu\Default.cshtml"
@@ -289,7 +289,7 @@ WriteAttributeValue("", 2195, Search, 2195, 7, false);
 #line hidden
 #nullable disable
                 WriteLiteral("                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d80bd7e7b4b54a21d2f482d9790efa99f1f62b2818144", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d80bd7e7b4b54a21d2f482d9790efa99f1f62b2818152", async() => {
                     WriteLiteral("<i class=\"fas fa-user-alt mr-1\"></i> Entrar");
                 }
                 );
@@ -310,7 +310,7 @@ WriteAttributeValue("", 2195, Search, 2195, 7, false);
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d80bd7e7b4b54a21d2f482d9790efa99f1f62b2819928", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d80bd7e7b4b54a21d2f482d9790efa99f1f62b2819936", async() => {
                     WriteLiteral("<i class=\"fas fa-shopping-cart mr-1\"></i> Carrinho");
                 }
                 );

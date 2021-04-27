@@ -35,7 +35,7 @@ using LojaVirtual.Models.ViewModel.Components;
 #nullable disable
 #nullable restore
 #line 7 "C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\Views\_ViewImports.cshtml"
-using LojaVirtual.Models.ViewModel;
+using LojaVirtual.Models.ViewModel.Payment;
 
 #line default
 #line hidden
@@ -62,7 +62,7 @@ using X.PagedList;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7b493ea54c1786f2edfd709bb88acb0b6a2ce6dd", @"/Views/ShoppingKart/DeliveryAddress.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"196eb434ce273ddae17d94b813486485f73bb699", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"39b641cbb3dc16bcf1ad6dc74a578787ab81a1e2", @"/Views/_ViewImports.cshtml")]
     public class Views_ShoppingKart_DeliveryAddress : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<DeliveryAddress>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("btn btn-secondary p-3"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -301,7 +301,7 @@ WriteAttributeValue("", 1893, deliveryAddress.Id, 1893, 19, false);
 #line hidden
 #nullable disable
             WriteLiteral("                </tbody>\r\n            </table>\r\n\r\n            <div class=\"text-left\">\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7b493ea54c1786f2edfd709bb88acb0b6a2ce6dd16013", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7b493ea54c1786f2edfd709bb88acb0b6a2ce6dd16021", async() => {
                 WriteLiteral("Cadastrar novo endereço");
             }
             );
@@ -408,7 +408,7 @@ WriteAttributeValue("", 1893, deliveryAddress.Id, 1893, 19, false);
 
             <div class=""text-right mt-5"">
                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7b493ea54c1786f2edfd709bb88acb0b6a2ce6dd21668", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7b493ea54c1786f2edfd709bb88acb0b6a2ce6dd21676", async() => {
                 WriteLiteral("<strong>Continuar para pagamento</strong>");
             }
             );

@@ -1,4 +1,4 @@
-﻿@model LojaVirtual.Models.ViewModel.Payment.IndexViewModel
+﻿@model IndexViewModel
 
 @{
     ViewData["Title"] = "Efetuar pagamento";
@@ -131,8 +131,7 @@
                                         <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label asp-for="Installment" data-toggle="tooltip" title="">Parcelamento</label>
-                                                <select asp-for="Installment.Number" asp-items="ViewBag.Installments" class="form-control">
-                                                </select>
+                                                <select asp-for="Installment.Number" asp-items="ViewBag.Installments" class="form-control"></select>
                                                 <span asp-validation-for="Installment"></span>
                                             </div>
                                         </div>
