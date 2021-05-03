@@ -49,6 +49,7 @@ namespace LojaVirtual
             services.AddScoped<IImageRepository, ImageRepository>();
             services.AddScoped<IDeliveryAddressRepository, DeliveryAddressRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IOrderSituationRepository, OrderSituationRepository>();
 
             services.AddRazorPages().AddRazorRuntimeCompilation();
 

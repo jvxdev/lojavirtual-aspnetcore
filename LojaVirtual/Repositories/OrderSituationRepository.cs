@@ -11,44 +11,43 @@ using X.PagedList;
 
 namespace LojaVirtual.Repositories
 {
-    public class OrderRepository : IOrderRepository
+    public class OrderSituationRepository : IOrderSituationRepository
     {
         private LojaVirtualContext _database;
         private IConfiguration _conf;
 
 
-        public OrderRepository(LojaVirtualContext database, IConfiguration configuration)
+        public OrderSituationRepository(LojaVirtualContext database, IConfiguration configuration)
         {
             _database = database;
             _conf = configuration;
         }
 
 
-        public void Create(Order order)
+        public void Create(OrderSituation order)
         {
             _database.Add(order);
             _database.SaveChanges();
         }
 
 
-        public Order Read(int Id)
+        public OrderSituation Read(int Id)
         {
-            return _database.Orders.Include(a => a.OrderSituations).Where(a => a.Id == Id).FirstOrDefault();
+            return _database.OrderSituations.Include(a => a.Order).Where(a => a.Id == Id).FirstOrDefault();
         }
 
 
-        public IPagedList<Order> ReadAll(int? Page, int ClientId)
-        {
-            int registryPerPage = _conf.GetValue<int>("registryPerPage");
-            int pageNumber = Page ?? 1;
-
-            return _database.Orders.Include(a => a.OrderSituations).ToPagedList<Order>(pageNumber, registryPerPage);
-        }
-
-
-        public void Update(Order order)
+        public void Update(OrderSituation order)
         {
             _database.Update(order);
+            _database.SaveChanges();
+        }
+
+
+        public void Delete(int Id)
+        {
+            OrderSituation order = Read(Id);
+            _database.Remove(order);
             _database.SaveChanges();
         }
     }
