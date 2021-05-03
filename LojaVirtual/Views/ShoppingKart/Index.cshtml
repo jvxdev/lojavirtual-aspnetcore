@@ -53,11 +53,11 @@
                                     <div>
                                         <div class="input-group input-spinner">
                                             <div>
-                                                <a href="#" class="btn btn-dark btn-less" id="button-plus-less"> <i class="fa fa-minus"></i> </a>
+                                                <a href="#" class="btn btn-dark btn-amount btn-less" id="button-plus-less"> <i class="fa fa-minus"></i> </a>
                                             </div>
                                             <input type="text" style="width: 30px;" class="form-control text-center input-product-amount-kart" value="@item.ItensKartAmount" readonly />
                                             <div>
-                                                <a href="#" class="btn btn-dark btn-more" id="button-plus-more"> <i class="fa fa-plus"></i> </a>
+                                                <a href="#" class="btn btn-dark btn-amount btn-more" id="button-plus-more"> <i class="fa fa-plus"></i> </a>
                                             </div>
 
                                             <input type="hidden" class="input-product-id" value="@item.Id" />
@@ -77,7 +77,7 @@
                                     </div>
                                 </td>
                                 <td class="text-right d-none d-md-block">
-                                    <a asp-controller="ShoppingKart" asp-action="DeleteItem" asp-route-id="@item.Id" class="btn btn-light btn-dark text-black py-2"> Remover</a>
+                                    <a asp-controller="ShoppingKart" asp-action="DeleteItem" asp-route-id="@item.Id" class="btn btn-dark text-black py-2"> Remover</a>
                                 </td>
                             </tr>
                         }

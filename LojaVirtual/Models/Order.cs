@@ -36,7 +36,7 @@ namespace LojaVirtual.Models
         public string ProductsData { get; set; }
 
 
-        public DateTime RegistryData { get; set; }
+        public DateTime RegistryDate { get; set; }
 
 
         public string Situation { get; set; }

@@ -85,14 +85,14 @@ namespace LojaVirtual.Libraries.ShoppingKart
         }
 
 
-        public void Delete(ProductItem productItem)
+        public void Delete(ProductItem item)
         {
             var List = Read();
-            var itemLocation = List.SingleOrDefault(a => a.Id == productItem.Id);
+            var ItemLocation = List.SingleOrDefault(a => a.Id == item.Id);
 
-            if (itemLocation != null)
+            if (ItemLocation != null)
             {
-                List.Remove(itemLocation);
+                List.Remove(ItemLocation);
                 Save(List);
             }
         }

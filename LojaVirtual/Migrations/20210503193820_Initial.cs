@@ -137,6 +137,35 @@ namespace LojaVirtual.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClientId = table.Column<int>(type: "int", nullable: true),
+                    TransactionId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TransactionData = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FreteCompany = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FreteTrackingCod = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PaymentForm = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TotalValue = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ProductsData = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RegistryData = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Situation = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NFE = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_Clients_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Clients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Images",
                 columns: table => new
                 {
@@ -156,6 +185,28 @@ namespace LojaVirtual.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "OrderSituations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderId = table.Column<int>(type: "int", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Situation = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Data = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderSituations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderSituations_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Categories_FatherCategoryId",
                 table: "Categories",
@@ -170,6 +221,16 @@ namespace LojaVirtual.Migrations
                 name: "IX_Images_ProductId",
                 table: "Images",
                 column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_ClientId",
+                table: "Orders",
+                column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderSituations_OrderId",
+                table: "OrderSituations",
+                column: "OrderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
@@ -192,13 +253,19 @@ namespace LojaVirtual.Migrations
                 name: "Newsletter");
 
             migrationBuilder.DropTable(
-                name: "Clients");
+                name: "OrderSituations");
 
             migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
+                name: "Orders");
+
+            migrationBuilder.DropTable(
                 name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "Clients");
         }
     }
 }

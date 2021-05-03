@@ -254,7 +254,7 @@ function numberToReal(numero) {
 }
 
 function ChangeAmountProductKart() {
-    $("#order .btn-dark").click(function (e) {
+    $("#order .btn-amount").click(function (e) {
         e.preventDefault();
         if ($(this).hasClass("btn-less")) {
             ActionPlannerProduct("decrease", $(this));

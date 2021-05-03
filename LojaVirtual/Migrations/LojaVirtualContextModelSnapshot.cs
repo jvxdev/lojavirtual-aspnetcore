@@ -221,6 +221,79 @@ namespace LojaVirtual.Migrations
                     b.ToTable("Newsletter");
                 });
 
+            modelBuilder.Entity("LojaVirtual.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FreteCompany")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FreteTrackingCod")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NFE")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentForm")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductsData")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RegistryData")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Situation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalValue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("TransactionData")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransactionId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("LojaVirtual.Models.OrderSituation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Data")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Situation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderSituations");
+                });
+
             modelBuilder.Entity("LojaVirtual.Models.ProductAggregator.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -294,6 +367,24 @@ namespace LojaVirtual.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("LojaVirtual.Models.Order", b =>
+                {
+                    b.HasOne("LojaVirtual.Models.Client", "Client")
+                        .WithMany("Orders")
+                        .HasForeignKey("ClientId");
+
+                    b.Navigation("Client");
+                });
+
+            modelBuilder.Entity("LojaVirtual.Models.OrderSituation", b =>
+                {
+                    b.HasOne("LojaVirtual.Models.Order", "Order")
+                        .WithMany("OrderSituations")
+                        .HasForeignKey("OrderId");
+
+                    b.Navigation("Order");
+                });
+
             modelBuilder.Entity("LojaVirtual.Models.ProductAggregator.Product", b =>
                 {
                     b.HasOne("LojaVirtual.Models.Category", "Category")
@@ -308,6 +399,13 @@ namespace LojaVirtual.Migrations
             modelBuilder.Entity("LojaVirtual.Models.Client", b =>
                 {
                     b.Navigation("DeliveryAddresses");
+
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("LojaVirtual.Models.Order", b =>
+                {
+                    b.Navigation("OrderSituations");
                 });
 
             modelBuilder.Entity("LojaVirtual.Models.ProductAggregator.Product", b =>
