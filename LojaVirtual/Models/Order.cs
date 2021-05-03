@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@ namespace LojaVirtual.Models
         public int Id { get; set; }
 
 
+        [ForeignKey("Client")]
         public int? ClientId { get; set; }
 
 
@@ -40,6 +42,14 @@ namespace LojaVirtual.Models
         public string Situation { get; set; }
 
 
+        //Nota fiscal eletrônica
         public string NFE { get; set; }
+
+
+        public virtual Client Client { get; set; }
+
+
+        [ForeignKey("OrderId")]
+        public virtual ICollection<OrderSituation> OrderSituations { get; set; }
     }
 }

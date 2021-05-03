@@ -26,6 +26,12 @@ namespace LojaVirtual.Database
         public DbSet<DeliveryAddress> DeliveryAddresses { get; set; }
 
 
+        public DbSet<Order> Orders { get; set; }
+
+
+        public DbSet<OrderSituation> OrderSituations { get; set; }
+
+
         public DbSet<Product> Products { get; set; }
 
 

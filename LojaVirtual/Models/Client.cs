@@ -92,5 +92,9 @@ namespace LojaVirtual.Models
 
         [ForeignKey("ClientId")]
         public virtual ICollection<DeliveryAddress> DeliveryAddresses { get; set; }
+
+
+        [ForeignKey("ClientId")]
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }
