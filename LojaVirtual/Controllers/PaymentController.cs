@@ -102,7 +102,7 @@ namespace LojaVirtual.Controllers
                     Transaction transaction = _managePagarMe.GerarPagCartaoCredito(indexViewModel.CreditCard, installment, deliveryAddress, frete, products);
                     Order order = SaveOrder(products, transaction);
 
-                    return new ContentResult() { Content = "Tudo certo! Código da compra com cartão: " + transaction.Id };
+                    return new RedirectToActionResult("Index", "Order", new { id = order.Id });
                 }
                 catch (PagarMeException e)
                 {
@@ -114,6 +114,29 @@ namespace LojaVirtual.Controllers
             else
             {
                 return Index();
+            }
+        }
+
+
+        public IActionResult BoletoBancario()
+        {
+            DeliveryAddress deliveryAddress = GetAddress();
+            ValorPrazoFrete frete = GetFrete();
+            List<ProductItem> products = ReadProductDB();
+
+            var totalPurchaseValue = GetTotalPurchaseValue(products);
+            try
+            {
+                Transaction transaction = _managePagarMe.GerarBoleto(totalPurchaseValue);
+
+                Order order = SaveOrder(products, transaction);
+
+                return new RedirectToActionResult("Index", "Order", new { id = order.Id });
+            }
+            catch (PagarMeException e)
+            {
+                TempData["MSG_E"] = CreateErrorMessage(e);
+                return RedirectToAction(nameof(Index));
             }
         }
 
@@ -135,26 +158,6 @@ namespace LojaVirtual.Controllers
             _orderSituationRepository.Create(orderSituation);
 
             return order;
-        }
-
-
-        public IActionResult BoletoBancario()
-        {
-            DeliveryAddress deliveryAddress = GetAddress();
-            ValorPrazoFrete frete = GetFrete();
-            List<ProductItem> products = ReadProductDB();
-
-            var totalPurchaseValue = GetTotalPurchaseValue(products);
-            try
-            {
-                Transaction transaction = _managePagarMe.GerarBoleto(totalPurchaseValue);
-                return new ContentResult() { Content = "Tudo certo! Código do boleto: " + transaction.Id };
-            }
-            catch (PagarMeException e)
-            {
-                TempData["MSG_E"] = CreateErrorMessage(e);
-                return RedirectToAction(nameof(Index));
-            }
         }
 
 

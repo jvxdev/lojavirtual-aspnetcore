@@ -45,7 +45,7 @@ namespace LojaVirtual.Libraries.AutoMapper
                 .ForMember(
                 dest => dest.PaymentForm,
                 opt => opt.MapFrom(
-                orig => (orig.PaymentMethod == 0) ? "Cartão de crédito" : "Boleto bancário"
+                orig => (orig.PaymentMethod == 0) ? PaymentMethod.CreditCard : PaymentMethod.Boleto
                 ))
                 .ForMember(
                 dest => dest.TransactionData,
@@ -101,6 +101,9 @@ namespace LojaVirtual.Libraries.AutoMapper
 
     public static class Extension
     {
-        public static TDestination Map<TSource, TDestination>(this TDestination destination, TSource source) => Mapper.Map(source, destination);
+        public static TDestination Map<TSource, TDestination>(this TDestination destination, TSource source)
+        {
+            return Mapper.Map(source, destination);
+        }
     }
 }
