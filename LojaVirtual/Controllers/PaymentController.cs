@@ -97,28 +97,7 @@ namespace LojaVirtual.Controllers
                 try
                 {
                     Transaction transaction = _managePagarMe.GerarPagCartaoCredito(indexViewModel.CreditCard, installment, deliveryAddress, frete, products);
-
-                    Order order = new Order();
-                    order.ClientId = int.Parse(transaction.Customer.Id);
-                    order.TransactionId = transaction.Id;
-                    order.FreteCompany = "ECT - Correios";
-                    order.PaymentForm = (transaction.PaymentMethod == 0) ? "Cartão de crédito" : "Boleto bancário";
-                    order.TotalValue = GetTotalPurchaseValue(products);
-                    order.TransactionData = transaction;
-                    order.ProductsData = products;
-                    order.RegistryDate = DateTime.Now;
-                    order.Situation = "";
-
-                    _orderRepository.Create(order);
-
-                    OrderSituation orderSituation = new OrderSituation();
-
-                    orderSituation.OrderId = order.Id;
-                    orderSituation.Date = DateTime.Now;
-                    orderSituation.Data = new { Transaction = transaction, Products = products };
-                    orderSituation.Situation = ;
-
-                    _orderSituationRepository.Create(orderSituation);
+                    SaveOrder(products, transaction);
 
                     return new ContentResult() { Content = "Tudo certo! Código da compra com cartão: " + transaction.Id };
                 }
@@ -133,6 +112,32 @@ namespace LojaVirtual.Controllers
             {
                 return Index();
             }
+        }
+
+
+        private void SaveOrder(List<ProductItem> products, Transaction transaction)
+        {
+            Order order = new Order();
+            order.ClientId = int.Parse(transaction.Customer.Id);
+            order.TransactionId = transaction.Id;
+            order.FreteCompany = "ECT - Correios";
+            order.PaymentForm = (transaction.PaymentMethod == 0) ? "Cartão de crédito" : "Boleto bancário";
+            order.TotalValue = GetTotalPurchaseValue(products);
+            order.TransactionData = transaction;
+            order.ProductsData = products;
+            order.RegistryDate = DateTime.Now;
+            order.Situation = "";
+
+            _orderRepository.Create(order);
+
+            OrderSituation orderSituation = new OrderSituation();
+
+            orderSituation.OrderId = order.Id;
+            orderSituation.Date = DateTime.Now;
+            orderSituation.Data = new { Transaction = transaction, Products = products };
+            orderSituation.Situation = ;
+
+            _orderSituationRepository.Create(orderSituation);
         }
 
 
