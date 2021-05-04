@@ -21,6 +21,8 @@ using PagarMe;
 using System.Text;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using LojaVirtual.Models.ViewModel.Payment;
+using Newtonsoft.Json;
+using LojaVirtual.Models.Const;
 
 namespace LojaVirtual.Controllers
 {
@@ -97,7 +99,7 @@ namespace LojaVirtual.Controllers
                 try
                 {
                     Transaction transaction = _managePagarMe.GerarPagCartaoCredito(indexViewModel.CreditCard, installment, deliveryAddress, frete, products);
-                    SaveOrder(products, transaction);
+                    Order order = SaveOrder(products, transaction);
 
                     return new ContentResult() { Content = "Tudo certo! Código da compra com cartão: " + transaction.Id };
                 }
@@ -115,18 +117,13 @@ namespace LojaVirtual.Controllers
         }
 
 
-        private void SaveOrder(List<ProductItem> products, Transaction transaction)
+        private Order SaveOrder(List<ProductItem> products, Transaction transaction)
         {
-            Order order = new Order();
-            order.ClientId = int.Parse(transaction.Customer.Id);
-            order.TransactionId = transaction.Id;
-            order.FreteCompany = "ECT - Correios";
-            order.PaymentForm = (transaction.PaymentMethod == 0) ? "Cartão de crédito" : "Boleto bancário";
+            Order order = _mapper.Map<Order>(transaction);
+
             order.TotalValue = GetTotalPurchaseValue(products);
-            order.TransactionData = transaction;
-            order.ProductsData = products;
-            order.RegistryDate = DateTime.Now;
-            order.Situation = "";
+            order.ProductsData = JsonConvert.SerializeObject(products);
+            order.Situation = OrderSituationConst.AGUARDANDO_PAGAMENTO;
 
             _orderRepository.Create(order);
 
@@ -134,10 +131,12 @@ namespace LojaVirtual.Controllers
 
             orderSituation.OrderId = order.Id;
             orderSituation.Date = DateTime.Now;
-            orderSituation.Data = new { Transaction = transaction, Products = products };
-            orderSituation.Situation = ;
+            orderSituation.Data = JsonConvert.SerializeObject(new ProductTransaction { Transaction = transaction, Products = products });
+            orderSituation.Situation = OrderSituationConst.AGUARDANDO_PAGAMENTO;
 
             _orderSituationRepository.Create(orderSituation);
+
+            return order;
         }
 
 
