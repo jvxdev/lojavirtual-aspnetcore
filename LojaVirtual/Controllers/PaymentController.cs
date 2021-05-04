@@ -121,7 +121,7 @@ namespace LojaVirtual.Controllers
         {
             Order order = _mapper.Map<Order>(transaction);
 
-            order.TotalValue = GetTotalPurchaseValue(products);
+            order.TotalValue = transaction.Amount;
             order.ProductsData = JsonConvert.SerializeObject(products);
             order.Situation = OrderSituationConst.AGUARDANDO_PAGAMENTO;
 

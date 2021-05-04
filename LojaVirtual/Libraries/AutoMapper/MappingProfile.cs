@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LojaVirtual.Libraries.Text;
 using LojaVirtual.Models;
 using LojaVirtual.Models.ProductAggregator;
 using Newtonsoft.Json;
@@ -60,6 +61,16 @@ namespace LojaVirtual.Libraries.AutoMapper
                 dest => dest.RegistryDate,
                 opt => opt.MapFrom(
                 orig => DateTime.Now
+                ))
+                .ForMember(
+                dest => dest.TotalValue,
+                opt => opt.MapFrom(
+                orig => orig.Amount
+                ))
+                .ForMember(
+                dest => dest.RegistryDate,
+                opt => opt.MapFrom(
+                orig => Mask.ConvertPagarMeIntToDecimal(orig.Amount)
                 ));
         }
     }
