@@ -23,6 +23,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using LojaVirtual.Models.ViewModel.Payment;
 using Newtonsoft.Json;
 using LojaVirtual.Models.Const;
+using LojaVirtual.Libraries.AutoMapper;
 
 namespace LojaVirtual.Controllers
 {
@@ -119,19 +120,16 @@ namespace LojaVirtual.Controllers
 
         private Order SaveOrder(List<ProductItem> products, Transaction transaction)
         {
-            Order order = _mapper.Map<Order>(transaction);
+            Order order = _mapper.Map<Order>(transaction).Map(products);
 
-            order.TotalValue = transaction.Amount;
-            order.ProductsData = JsonConvert.SerializeObject(products);
             order.Situation = OrderSituationConst.AGUARDANDO_PAGAMENTO;
 
             _orderRepository.Create(order);
 
-            OrderSituation orderSituation = new OrderSituation();
+            ProductTransaction pt = new ProductTransaction { Transaction = transaction, Products = products };
 
-            orderSituation.OrderId = order.Id;
-            orderSituation.Date = DateTime.Now;
-            orderSituation.Data = JsonConvert.SerializeObject(new ProductTransaction { Transaction = transaction, Products = products });
+            OrderSituation orderSituation = _mapper.Map<OrderSituation>(order).Map(pt);
+
             orderSituation.Situation = OrderSituationConst.AGUARDANDO_PAGAMENTO;
 
             _orderSituationRepository.Create(orderSituation);

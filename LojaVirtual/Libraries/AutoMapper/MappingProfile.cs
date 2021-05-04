@@ -18,12 +18,12 @@ namespace LojaVirtual.Libraries.AutoMapper
             CreateMap<Product, ProductItem>();
             CreateMap<Client, DeliveryAddress>()
                 .ForMember(
-                dest => dest.Id, 
+                dest => dest.Id,
                 opt => opt.MapFrom(
                 orig => 0
                 ))
                 .ForMember(
-                dest => dest.AddressName, 
+                dest => dest.AddressName,
                 opt => opt.MapFrom(
                 orig => string.Format("Endereço do cliente ({0})", orig.Name)));
             CreateMap<Transaction, Order>()
@@ -72,6 +72,35 @@ namespace LojaVirtual.Libraries.AutoMapper
                 opt => opt.MapFrom(
                 orig => Mask.ConvertPagarMeIntToDecimal(orig.Amount)
                 ));
+            CreateMap<List<ProductItem>, Order>()
+                .ForMember(
+                dest => dest.ProductsData,
+                opt => opt.MapFrom(
+                orig => JsonConvert.SerializeObject(orig)
+                ));
+            CreateMap<Order, OrderSituation>()
+                .ForMember(
+                dest => dest.OrderId,
+                opt => opt.MapFrom(
+                orig => orig.Id
+                ))
+                .ForMember(
+                dest => dest.Date,
+                opt => opt.MapFrom(
+                orig => DateTime.Now
+                ));
+            CreateMap<ProductTransaction, OrderSituation>()
+                .ForMember(
+                dest => dest.Data,
+                opt => opt.MapFrom(
+                orig => JsonConvert.SerializeObject(orig)
+                ));
         }
+    }
+
+
+    public static class Extension
+    {
+        public static TDestination Map<TSource, TDestination>(this TDestination destination, TSource source) => Mapper.Map(source, destination);
     }
 }
