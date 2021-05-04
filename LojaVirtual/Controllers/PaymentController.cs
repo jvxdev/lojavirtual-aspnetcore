@@ -30,12 +30,41 @@ namespace LojaVirtual.Controllers
     {
         private Cookie _cookie;
         private ManagePagarMe _managePagarMe;
+        private IOrderRepository _orderRepository;
+        private IOrderSituationRepository _orderSituationRepository;
 
 
-        public PaymentController(ManagePagarMe managePagarMe, ClientLogin clientLogin, IDeliveryAddressRepository deliveryAddressRepository, IProductRepository productRepository, CookieShoppingKart cookieShoppingKart, CookieFrete cookieValorPrazoFrete, IMapper mapper, WSCorreiosCalcularFrete wsCorreios, CalculatePackage calculatePackage, Cookie cookie) : base(clientLogin, deliveryAddressRepository, productRepository, cookieShoppingKart, cookieValorPrazoFrete, mapper, wsCorreios, calculatePackage)
+        public PaymentController
+            (
+            IOrderRepository orderRepository, 
+            IOrderSituationRepository orderSituationRepository, 
+            ManagePagarMe managePagarMe, 
+            ClientLogin clientLogin, 
+            IDeliveryAddressRepository deliveryAddressRepository, 
+            IProductRepository productRepository, 
+            CookieShoppingKart cookieShoppingKart, 
+            CookieFrete cookieValorPrazoFrete, 
+            IMapper mapper, WSCorreiosCalcularFrete wsCorreios, 
+            CalculatePackage calculatePackage, 
+            Cookie cookie
+            )
+            : 
+            base
+            (
+                clientLogin, 
+                deliveryAddressRepository, 
+                productRepository, 
+                cookieShoppingKart, 
+                cookieValorPrazoFrete, 
+                mapper, 
+                wsCorreios, 
+                calculatePackage
+            )
         {
             _cookie = cookie;
             _managePagarMe = managePagarMe;
+            _orderRepository = orderRepository;
+            _orderSituationRepository = orderSituationRepository;
         }
 
 
@@ -68,6 +97,28 @@ namespace LojaVirtual.Controllers
                 try
                 {
                     Transaction transaction = _managePagarMe.GerarPagCartaoCredito(indexViewModel.CreditCard, installment, deliveryAddress, frete, products);
+
+                    Order order = new Order();
+                    order.ClientId = int.Parse(transaction.Customer.Id);
+                    order.TransactionId = transaction.Id;
+                    order.FreteCompany = "ECT - Correios";
+                    order.PaymentForm = (transaction.PaymentMethod == 0) ? "Cartão de crédito" : "Boleto bancário";
+                    order.TotalValue = GetTotalPurchaseValue(products);
+                    order.TransactionData = transaction;
+                    order.ProductsData = products;
+                    order.RegistryDate = DateTime.Now;
+                    order.Situation = "";
+
+                    _orderRepository.Create(order);
+
+                    OrderSituation orderSituation = new OrderSituation();
+
+                    orderSituation.OrderId = order.Id;
+                    orderSituation.Date = DateTime.Now;
+                    orderSituation.Data = new { Transaction = transaction, Products = products };
+                    orderSituation.Situation = ;
+
+                    _orderSituationRepository.Create(orderSituation);
 
                     return new ContentResult() { Content = "Tudo certo! Código da compra com cartão: " + transaction.Id };
                 }

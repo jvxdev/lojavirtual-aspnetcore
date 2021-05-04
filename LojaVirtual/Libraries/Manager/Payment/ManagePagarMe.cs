@@ -78,6 +78,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
             card.Save();
 
             Transaction transaction = new Transaction();
+            transaction.PaymentMethod = PaymentMethod.CreditCard;
 
             transaction.Card = new Card
             {
