@@ -1,13 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LojaVirtual.Libraries.Filters;
-using LojaVirtual.Repositories.Contracts;
+﻿using LojaVirtual.Libraries.Filters;
+using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Libraries.Login;
 using LojaVirtual.Models;
-using LojaVirtual.Libraries.Lang;
+using LojaVirtual.Repositories.Contracts;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LojaVirtual.Areas.Client.Controllers
 {
@@ -17,7 +13,7 @@ namespace LojaVirtual.Areas.Client.Controllers
         IClientRepository _clientRepository;
         IDeliveryAddressRepository _deliveryAddressRepository;
         ClientLogin _clientLogin;
-        
+
 
 
         public HomeController(IClientRepository clientRepository, IDeliveryAddressRepository deliveryAddressRepository, ClientLogin clientLogin)
@@ -92,7 +88,7 @@ namespace LojaVirtual.Areas.Client.Controllers
 
                 if (returnUrl == null)
                 {
-                    return RedirectToAction("Index", "Home", new { area = ""});
+                    return RedirectToAction("Index", "Home", new { area = "" });
                 }
                 else
                 {
@@ -110,11 +106,11 @@ namespace LojaVirtual.Areas.Client.Controllers
             return View();
         }
 
-        
+
         [HttpPost]
         public IActionResult RegisterDeliveryAddress([FromForm] DeliveryAddress deliveryAddress, string returnUrl = null)
         {
-            if (ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
                 deliveryAddress.ClientId = _clientLogin.getClient().Id;
 

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LojaVirtual.Libraries.Login;
+﻿using LojaVirtual.Libraries.Login;
 using LojaVirtual.Libraries.Text;
 using LojaVirtual.Models;
 using LojaVirtual.Models.ProductAggregator;
 using Microsoft.Extensions.Configuration;
 using PagarMe;
+using System;
+using System.Collections.Generic;
 
 namespace LojaVirtual.Libraries.Manager.Payment
 {
@@ -23,42 +21,42 @@ namespace LojaVirtual.Libraries.Manager.Payment
             _clientLogin = clientLogin;
         }
 
-        
+
         public Transaction GerarBoleto(decimal value)
         {
-                Client client = _clientLogin.getClient();
+            Client client = _clientLogin.getClient();
 
-                PagarMeService.DefaultApiKey = _conf.GetValue<String>("Payment:PagarMe:ApiKey");
-                PagarMeService.DefaultEncryptionKey = _conf.GetValue<String>("Payment:PagarMe:EcryptionKey");
+            PagarMeService.DefaultApiKey = _conf.GetValue<String>("Payment:PagarMe:ApiKey");
+            PagarMeService.DefaultEncryptionKey = _conf.GetValue<String>("Payment:PagarMe:EcryptionKey");
 
-                Transaction transaction = new Transaction();
+            Transaction transaction = new Transaction();
 
-                transaction.Amount = Convert.ToInt32(value);
-                transaction.PaymentMethod = PaymentMethod.Boleto;
+            transaction.Amount = Convert.ToInt32(value);
+            transaction.PaymentMethod = PaymentMethod.Boleto;
 
-                transaction.Customer = new Customer
-                {
-                    ExternalId = client.Id.ToString(),
-                    Name = client.Name,
-                    Type = CustomerType.Individual,
-                    Country = "br",
-                    Email = client.Email,
-                    Documents = new[] {
+            transaction.Customer = new Customer
+            {
+                ExternalId = client.Id.ToString(),
+                Name = client.Name,
+                Type = CustomerType.Individual,
+                Country = "br",
+                Email = client.Email,
+                Documents = new[] {
                     new Document {
                         Type = DocumentType.Cpf,
                         Number = Mask.Delete(client.CPF)
                     }
                 },
-                    PhoneNumbers = new string[]
-                    {
+                PhoneNumbers = new string[]
+                {
                     "+55" + Mask.Delete(client.Phone)
-                    },
-                    Birthday = client.BirthDate?.ToString("yyyy-MM-dd")
-                };
+                },
+                Birthday = client.BirthDate?.ToString("yyyy-MM-dd")
+            };
 
-                transaction.Save();
+            transaction.Save();
 
-                return transaction;
+            return transaction;
         }
 
 

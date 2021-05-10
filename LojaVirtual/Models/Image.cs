@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using LojaVirtual.Models.ProductAggregator;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using LojaVirtual.Models.ProductAggregator;
 
 namespace LojaVirtual.Models
 {

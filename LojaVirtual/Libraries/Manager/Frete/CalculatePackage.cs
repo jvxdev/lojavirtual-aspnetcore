@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LojaVirtual.Libraries.Manager.Frete;
-using LojaVirtual.Libraries.Manager.Shipping;
-using LojaVirtual.Models;
+﻿using LojaVirtual.Libraries.Manager.Shipping;
 using LojaVirtual.Models.ProductAggregator;
+using System.Collections.Generic;
 
 namespace LojaVirtual.Libraries.Manager.Frete
 {
@@ -18,7 +13,7 @@ namespace LojaVirtual.Libraries.Manager.Frete
             Package package = new Package();
             foreach (var item in products)
             {
-                for(int i = 0; i <item.ItensKartAmount; i++)
+                for (int i = 0; i < item.ItensKartAmount; i++)
                 {
                     var Weight = package.Weight + item.Weight;
                     var Lenght = (package.Lenght > item.Lenght) ? package.Lenght : item.Lenght;

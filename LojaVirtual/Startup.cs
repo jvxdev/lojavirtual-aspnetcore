@@ -1,7 +1,10 @@
-using LojaVirtual.Controllers;
 using LojaVirtual.Database;
+using LojaVirtual.Libraries.AutoMapper;
 using LojaVirtual.Libraries.Email;
 using LojaVirtual.Libraries.Login;
+using LojaVirtual.Libraries.Manager.Frete;
+using LojaVirtual.Libraries.Manager.Payment;
+using LojaVirtual.Libraries.Manager.Shipping;
 using LojaVirtual.Libraries.Middleware;
 using LojaVirtual.Libraries.Session;
 using LojaVirtual.Libraries.ShoppingKart;
@@ -12,15 +15,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using LojaVirtual.Libraries.Manager.Frete;
 using Microsoft.Extensions.Hosting;
 using System.Net;
 using System.Net.Mail;
-using AutoMapper;
-using LojaVirtual.Libraries.AutoMapper;
-using LojaVirtual.Libraries.Manager.Shipping;
 using WSCorreios;
-using LojaVirtual.Libraries.Manager.Payment;
 
 namespace LojaVirtual
 {

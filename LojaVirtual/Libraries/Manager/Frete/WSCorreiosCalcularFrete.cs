@@ -36,7 +36,7 @@ namespace LojaVirtual.Libraries.Manager.Shipping
                 }
             }
 
-            if (valorDosPacotesPorFrete.Count > 0) 
+            if (valorDosPacotesPorFrete.Count > 0)
             {
                 ValorPrazoFrete valorDosFretes = valorDosPacotesPorFrete
                     .GroupBy(a => a.TipoFrete)
@@ -63,7 +63,7 @@ namespace LojaVirtual.Libraries.Manager.Shipping
             var Diameter = Math.Max(Math.Max(package.Lenght, package.Width), package.Height);
 
             cResultado result = await _service.CalcPrecoPrazoAsync("", "", tipoFrete, cepOrigem, cepDestino, package.Weight.ToString(), 1, package.Lenght, package.Height, package.Width, Diameter, maoPropria, 0, avisoDeRecebimento);
-        
+
             if (result.Servicos[0].Erro == "0")
             {
                 var cleanValue = result.Servicos[0].Valor.Replace(".", "");

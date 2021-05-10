@@ -2,9 +2,7 @@
 using LojaVirtual.Models.ViewModel.Components;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace LojaVirtual.Libraries.Component
@@ -14,7 +12,7 @@ namespace LojaVirtual.Libraries.Component
         private IProductRepository _productRepository;
         private ICategoryRepository _categoryRepository;
 
-        public ProductListViewComponent (IProductRepository productRepository, ICategoryRepository categoryRepository)
+        public ProductListViewComponent(IProductRepository productRepository, ICategoryRepository categoryRepository)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;

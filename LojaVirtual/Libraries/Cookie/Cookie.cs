@@ -2,9 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace LojaVirtual.Libraries.Cookie
 {
@@ -39,7 +37,7 @@ namespace LojaVirtual.Libraries.Cookie
             {
                 Value = StringCipher.Decrypt(Value, _configuration.GetValue<string>("KeyCrypt"));
             }
-            
+
             return Value;
         }
 
@@ -68,7 +66,7 @@ namespace LojaVirtual.Libraries.Cookie
 
         public void Delete(string Key)
         {
-                _context.HttpContext.Response.Cookies.Delete(Key);
+            _context.HttpContext.Response.Cookies.Delete(Key);
         }
 
 

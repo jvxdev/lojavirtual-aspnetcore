@@ -1,10 +1,5 @@
-﻿using LojaVirtual.Models;
-using LojaVirtual.Repositories.Contracts;
+﻿using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LojaVirtual.Controllers
 {
@@ -23,7 +18,7 @@ namespace LojaVirtual.Controllers
 
         [HttpGet]
         [Route("Product/Category/{slug}")]
-        public IActionResult CategoryList (string slug)
+        public IActionResult CategoryList(string slug)
         {
             return View(_categoryRepository.Read(slug));
         }

@@ -1,29 +1,26 @@
 ﻿using AutoMapper;
 using LojaVirtual.Controllers.Base;
+using LojaVirtual.Libraries.AutoMapper;
 using LojaVirtual.Libraries.Cookie;
 using LojaVirtual.Libraries.Filters;
-using LojaVirtual.Libraries.Lang;
-using LojaVirtual.Libraries.Manager.Shipping;
+using LojaVirtual.Libraries.Login;
 using LojaVirtual.Libraries.Manager.Frete;
+using LojaVirtual.Libraries.Manager.Payment;
+using LojaVirtual.Libraries.Manager.Shipping;
 using LojaVirtual.Libraries.ShoppingKart;
+using LojaVirtual.Libraries.Text;
+using LojaVirtual.Models;
+using LojaVirtual.Models.Const;
 using LojaVirtual.Models.ProductAggregator;
+using LojaVirtual.Models.ViewModel.Payment;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using PagarMe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using LojaVirtual.Libraries.Text;
-using LojaVirtual.Models;
-using LojaVirtual.Libraries.Login;
-using LojaVirtual.Libraries.Manager.Payment;
-using PagarMe;
 using System.Text;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using LojaVirtual.Models.ViewModel.Payment;
-using Newtonsoft.Json;
-using LojaVirtual.Models.Const;
-using LojaVirtual.Libraries.AutoMapper;
 
 namespace LojaVirtual.Controllers
 {
@@ -39,28 +36,28 @@ namespace LojaVirtual.Controllers
 
         public PaymentController
             (
-            IOrderRepository orderRepository, 
-            IOrderSituationRepository orderSituationRepository, 
-            ManagePagarMe managePagarMe, 
-            ClientLogin clientLogin, 
-            IDeliveryAddressRepository deliveryAddressRepository, 
-            IProductRepository productRepository, 
-            CookieShoppingKart cookieShoppingKart, 
-            CookieFrete cookieValorPrazoFrete, 
-            IMapper mapper, WSCorreiosCalcularFrete wsCorreios, 
-            CalculatePackage calculatePackage, 
+            IOrderRepository orderRepository,
+            IOrderSituationRepository orderSituationRepository,
+            ManagePagarMe managePagarMe,
+            ClientLogin clientLogin,
+            IDeliveryAddressRepository deliveryAddressRepository,
+            IProductRepository productRepository,
+            CookieShoppingKart cookieShoppingKart,
+            CookieFrete cookieValorPrazoFrete,
+            IMapper mapper, WSCorreiosCalcularFrete wsCorreios,
+            CalculatePackage calculatePackage,
             Cookie cookie
             )
-            : 
+            :
             base
             (
-                clientLogin, 
-                deliveryAddressRepository, 
-                productRepository, 
-                cookieShoppingKart, 
-                cookieValorPrazoFrete, 
-                mapper, 
-                wsCorreios, 
+                clientLogin,
+                deliveryAddressRepository,
+                productRepository,
+                cookieShoppingKart,
+                cookieValorPrazoFrete,
+                mapper,
+                wsCorreios,
                 calculatePackage
             )
         {

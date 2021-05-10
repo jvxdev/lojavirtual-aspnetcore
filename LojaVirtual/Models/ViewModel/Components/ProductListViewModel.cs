@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
+﻿using LojaVirtual.Models.ProductAggregator;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using X.PagedList;
-using LojaVirtual.Models.ProductAggregator;
 
 namespace LojaVirtual.Models.ViewModel.Components
 {

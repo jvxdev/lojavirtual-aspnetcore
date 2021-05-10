@@ -6,8 +6,6 @@ using Newtonsoft.Json;
 using PagarMe;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LojaVirtual.Libraries.AutoMapper
 {
@@ -26,6 +24,7 @@ namespace LojaVirtual.Libraries.AutoMapper
                 dest => dest.AddressName,
                 opt => opt.MapFrom(
                 orig => string.Format("Endereço do cliente ({0})", orig.Name)));
+
             CreateMap<Transaction, Order>()
                 .ForMember(
                 dest => dest.ClientId,
@@ -72,12 +71,14 @@ namespace LojaVirtual.Libraries.AutoMapper
                 opt => opt.MapFrom(
                 orig => Mask.ConvertPagarMeIntToDecimal(orig.Amount)
                 ));
+
             CreateMap<List<ProductItem>, Order>()
                 .ForMember(
                 dest => dest.ProductsData,
                 opt => opt.MapFrom(
                 orig => JsonConvert.SerializeObject(orig)
                 ));
+
             CreateMap<Order, OrderSituation>()
                 .ForMember(
                 dest => dest.OrderId,
@@ -89,6 +90,7 @@ namespace LojaVirtual.Libraries.AutoMapper
                 opt => opt.MapFrom(
                 orig => DateTime.Now
                 ));
+
             CreateMap<ProductTransaction, OrderSituation>()
                 .ForMember(
                 dest => dest.Data,

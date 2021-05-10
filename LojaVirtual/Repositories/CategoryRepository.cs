@@ -48,7 +48,7 @@ namespace LojaVirtual.Repositories
             if (Categories == null)
             {
                 Categories = ReadAll().ToList();
-            } 
+            }
 
             if (!recursiveCategoryList.Exists(a => a.Id == fatherCategory.Id))
             {

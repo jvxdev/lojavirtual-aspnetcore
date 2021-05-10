@@ -1,4 +1,13 @@
-﻿using LojaVirtual.Libraries.ShoppingKart;
+﻿using AutoMapper;
+using LojaVirtual.Controllers.Base;
+using LojaVirtual.Libraries.Filters;
+using LojaVirtual.Libraries.Lang;
+using LojaVirtual.Libraries.Login;
+using LojaVirtual.Libraries.Manager.Frete;
+using LojaVirtual.Libraries.Manager.Shipping;
+using LojaVirtual.Libraries.ShoppingKart;
+using LojaVirtual.Models;
+using LojaVirtual.Models.Const;
 using LojaVirtual.Models.ProductAggregator;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -6,17 +15,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
-using LojaVirtual.Libraries.Lang;
-using LojaVirtual.Models.Const;
-using LojaVirtual.Libraries.Manager.Shipping;
-using LojaVirtual.Libraries.Manager.Frete;
-using LojaVirtual.Models;
-using LojaVirtual.Controllers.Base;
-using LojaVirtual.Libraries.Login;
-using LojaVirtual.Libraries.Filters;
-using Newtonsoft.Json;
-using LojaVirtual.Libraries.Security;
 
 namespace LojaVirtual.Controllers
 {
@@ -111,30 +109,30 @@ namespace LojaVirtual.Controllers
                 }
                 else
                 {
-                List<ProductItem> products = ReadProductDB();
+                    List<ProductItem> products = ReadProductDB();
 
-                List<Package> packages = _calculatePackage.CalculateProductsPackage(products);
+                    List<Package> packages = _calculatePackage.CalculateProductsPackage(products);
 
-                ValorPrazoFrete valueSEDEX = await _wsCorreios.CalcularFrete(cepDestino.ToString(), CorreiosConst.SEDEX, packages);
-                ValorPrazoFrete valueSEDEX10 = await _wsCorreios.CalcularFrete(cepDestino.ToString(), CorreiosConst.SEDEX10, packages);
-                ValorPrazoFrete valuePAC = await _wsCorreios.CalcularFrete(cepDestino.ToString(), CorreiosConst.PAC, packages);
+                    ValorPrazoFrete valueSEDEX = await _wsCorreios.CalcularFrete(cepDestino.ToString(), CorreiosConst.SEDEX, packages);
+                    ValorPrazoFrete valueSEDEX10 = await _wsCorreios.CalcularFrete(cepDestino.ToString(), CorreiosConst.SEDEX10, packages);
+                    ValorPrazoFrete valuePAC = await _wsCorreios.CalcularFrete(cepDestino.ToString(), CorreiosConst.PAC, packages);
 
-                List<ValorPrazoFrete> list = new List<ValorPrazoFrete>();
+                    List<ValorPrazoFrete> list = new List<ValorPrazoFrete>();
 
-                if (valueSEDEX != null) list.Add(valueSEDEX);
-                if (valueSEDEX10 != null) list.Add(valueSEDEX10);
-                if (valuePAC != null) list.Add(valuePAC);
+                    if (valueSEDEX != null) list.Add(valueSEDEX);
+                    if (valueSEDEX10 != null) list.Add(valueSEDEX10);
+                    if (valuePAC != null) list.Add(valuePAC);
 
-                frete = new Frete()
-                {
-                    CEP = cepDestino,
-                    codShoppingKart = HashGenerator(_cookieShoppingKart.Read()),
-                    valuesList = list
-                };
+                    frete = new Frete()
+                    {
+                        CEP = cepDestino,
+                        codShoppingKart = HashGenerator(_cookieShoppingKart.Read()),
+                        valuesList = list
+                    };
 
-                _cookieFrete.Create(frete);
+                    _cookieFrete.Create(frete);
 
-                return Ok(frete);
+                    return Ok(frete);
                 }
             }
             catch (Exception e)

@@ -1,9 +1,7 @@
 ﻿using LojaVirtual.Models.ProductAggregator;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace LojaVirtual.Libraries.ShoppingKart
 {
@@ -49,7 +47,7 @@ namespace LojaVirtual.Libraries.ShoppingKart
 
         public List<ProductItem> Read()
         {
-            if(_cookie.Exist(Key))
+            if (_cookie.Exist(Key))
             {
                 string Value = _cookie.Read(Key);
                 return JsonConvert.DeserializeObject<List<ProductItem>>(Value);

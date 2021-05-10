@@ -1,8 +1,6 @@
 ﻿using LojaVirtual.Libraries.Email;
-using LojaVirtual.Libraries.Filters;
 using LojaVirtual.Libraries.Login;
 using LojaVirtual.Models;
-using LojaVirtual.Models.ViewModel;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

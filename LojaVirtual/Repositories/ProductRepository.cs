@@ -1,6 +1,6 @@
 ﻿using LojaVirtual.Database;
-using LojaVirtual.Models.ProductAggregator;
 using LojaVirtual.Models;
+using LojaVirtual.Models.ProductAggregator;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

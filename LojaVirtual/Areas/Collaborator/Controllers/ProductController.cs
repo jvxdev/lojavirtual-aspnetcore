@@ -1,8 +1,8 @@
 ﻿using LojaVirtual.Libraries.Files;
 using LojaVirtual.Libraries.Filters;
 using LojaVirtual.Libraries.Lang;
-using LojaVirtual.Models.ProductAggregator;
 using LojaVirtual.Models;
+using LojaVirtual.Models.ProductAggregator;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
