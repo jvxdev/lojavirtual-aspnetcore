@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LojaVirtual.Libraries.Json.Resolver;
 using LojaVirtual.Libraries.Text;
 using LojaVirtual.Models;
 using LojaVirtual.Models.ProductAggregator;
@@ -25,11 +26,18 @@ namespace LojaVirtual.Libraries.AutoMapper
                 opt => opt.MapFrom(
                 orig => string.Format("Endereço do cliente ({0})", orig.Name)));
 
-            CreateMap<Transaction, Order>()
+            CreateMap<Transaction, TransactionPagarMe>();
+
+            CreateMap<TransactionPagarMe, Order>()
+                .ForMember(
+                dest => dest.Id,
+                opt => opt.MapFrom(
+                orig => 0
+                ))
                 .ForMember(
                 dest => dest.ClientId,
                 opt => opt.MapFrom(
-                orig => int.Parse(orig.Customer.Id)
+                orig => int.Parse(orig.Customer.ExternalId)
                 ))
                 .ForMember(
                 dest => dest.TransactionId,
@@ -76,10 +84,15 @@ namespace LojaVirtual.Libraries.AutoMapper
                 .ForMember(
                 dest => dest.ProductsData,
                 opt => opt.MapFrom(
-                orig => JsonConvert.SerializeObject(orig)
+                orig => JsonConvert.SerializeObject(orig, new JsonSerializerSettings() { ContractResolver = new ProductItemResolver<List<ProductItem>>() })
                 ));
 
             CreateMap<Order, OrderSituation>()
+                .ForMember(
+                dest => dest.Id,
+                opt => opt.MapFrom(
+                orig => 0
+                ))
                 .ForMember(
                 dest => dest.OrderId,
                 opt => opt.MapFrom(
@@ -95,17 +108,8 @@ namespace LojaVirtual.Libraries.AutoMapper
                 .ForMember(
                 dest => dest.Data,
                 opt => opt.MapFrom(
-                orig => JsonConvert.SerializeObject(orig)
+                orig => JsonConvert.SerializeObject(orig, new JsonSerializerSettings() { ContractResolver = new ProductItemResolver<List<ProductItem>>() })
                 ));
-        }
-    }
-
-
-    public static class Extension
-    {
-        public static TDestination Map<TSource, TDestination>(this TDestination destination, TSource source)
-        {
-            return Mapper.Map(source, destination);
         }
     }
 }

@@ -56,6 +56,8 @@ namespace LojaVirtual.Libraries.Manager.Payment
 
             transaction.Save();
 
+            transaction.Customer.Gender = (client.Sex == "M") ? Gender.Male : Gender.Female;
+
             return transaction;
         }
 
@@ -165,6 +167,8 @@ namespace LojaVirtual.Libraries.Manager.Payment
             transaction.Installments = installment.Number;
 
             transaction.Save();
+
+            transaction.Customer.Gender = (client.Sex == "M") ? Gender.Male : Gender.Female;
 
             return transaction;
         }

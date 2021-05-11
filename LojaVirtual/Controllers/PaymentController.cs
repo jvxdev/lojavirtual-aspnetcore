@@ -133,6 +133,7 @@ namespace LojaVirtual.Controllers
             catch (PagarMeException e)
             {
                 TempData["MSG_E"] = CreateErrorMessage(e);
+
                 return RedirectToAction(nameof(Index));
             }
         }
@@ -140,15 +141,20 @@ namespace LojaVirtual.Controllers
 
         private Order SaveOrder(List<ProductItem> products, Transaction transaction)
         {
-            Order order = _mapper.Map<Order>(transaction).Map(products);
+            TransactionPagarMe transactionPagarMe = _mapper.Map<TransactionPagarMe>(transaction);
+
+            Order order = _mapper.Map<TransactionPagarMe, Order>(transactionPagarMe);
+            order = _mapper.Map<List<ProductItem>, Order>(products, order);
 
             order.Situation = OrderSituationConst.AGUARDANDO_PAGAMENTO;
 
             _orderRepository.Create(order);
 
-            ProductTransaction pt = new ProductTransaction { Transaction = transaction, Products = products };
+            ProductTransaction pt = new ProductTransaction { TransactionPagarMe = transactionPagarMe, Products = products };
 
-            OrderSituation orderSituation = _mapper.Map<OrderSituation>(order).Map(pt);
+            OrderSituation orderSituation = _mapper.Map<Order, OrderSituation>(order);
+                
+            orderSituation = _mapper.Map<ProductTransaction, OrderSituation>(pt, orderSituation);
 
             orderSituation.Situation = OrderSituationConst.AGUARDANDO_PAGAMENTO;
 
