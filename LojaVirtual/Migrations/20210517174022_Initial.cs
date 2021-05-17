@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LojaVirtual.Migrations
 {
@@ -150,7 +150,7 @@ namespace LojaVirtual.Migrations
                     PaymentForm = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TotalValue = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ProductsData = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RegistryData = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RegistryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Situation = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NFE = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },

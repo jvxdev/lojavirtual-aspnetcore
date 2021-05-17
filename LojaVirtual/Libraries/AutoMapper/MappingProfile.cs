@@ -57,7 +57,7 @@ namespace LojaVirtual.Libraries.AutoMapper
                 .ForMember(
                 dest => dest.TransactionData,
                 opt => opt.MapFrom(
-                orig => JsonConvert.SerializeObject(orig)
+                orig => JsonConvert.SerializeObject(orig, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore })
                 ))
                 .ForMember(
                 dest => dest.RegistryDate,
@@ -72,19 +72,13 @@ namespace LojaVirtual.Libraries.AutoMapper
                 .ForMember(
                 dest => dest.TotalValue,
                 opt => opt.MapFrom(
-                orig => orig.Amount
-                ))
-                .ForMember(
-                dest => dest.RegistryDate,
-                opt => opt.MapFrom(
-                orig => Mask.ConvertPagarMeIntToDecimal(orig.Amount)
-                ));
+                orig => Mask.ConvertPagarMeIntToDecimal(orig.Amount)));
 
             CreateMap<List<ProductItem>, Order>()
                 .ForMember(
                 dest => dest.ProductsData,
                 opt => opt.MapFrom(
-                orig => JsonConvert.SerializeObject(orig, new JsonSerializerSettings() { ContractResolver = new ProductItemResolver<List<ProductItem>>() })
+                orig => JsonConvert.SerializeObject(orig, new JsonSerializerSettings() { ContractResolver = new ProductItemResolver<List<ProductItem>>(), ReferenceLoopHandling = ReferenceLoopHandling.Ignore })
                 ));
 
             CreateMap<Order, OrderSituation>()
@@ -108,7 +102,7 @@ namespace LojaVirtual.Libraries.AutoMapper
                 .ForMember(
                 dest => dest.Data,
                 opt => opt.MapFrom(
-                orig => JsonConvert.SerializeObject(orig, new JsonSerializerSettings() { ContractResolver = new ProductItemResolver<List<ProductItem>>() })
+                orig => JsonConvert.SerializeObject(orig, new JsonSerializerSettings() { ContractResolver = new ProductItemResolver<List<ProductItem>>(), ReferenceLoopHandling = ReferenceLoopHandling.Ignore })
                 ));
         }
     }

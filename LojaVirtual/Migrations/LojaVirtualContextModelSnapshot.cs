@@ -246,7 +246,7 @@ namespace LojaVirtual.Migrations
                     b.Property<string>("ProductsData")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("RegistryData")
+                    b.Property<DateTime>("RegistryDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Situation")

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LojaVirtual.Migrations
 {
     [DbContext(typeof(LojaVirtualContext))]
-    [Migration("20210503193820_Initial")]
+    [Migration("20210517174022_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -248,7 +248,7 @@ namespace LojaVirtual.Migrations
                     b.Property<string>("ProductsData")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("RegistryData")
+                    b.Property<DateTime>("RegistryDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Situation")
