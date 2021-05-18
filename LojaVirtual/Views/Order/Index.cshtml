@@ -1,7 +1,52 @@
 ﻿@model Order
 
-@{ 
-    ViewData["Title"] = "Index";
+@{
+    ViewData["Title"] = "Pedido";
 }
 
-<h1>Pedido n° @Model.Id-@Model.TransactionId</h1>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12 text-center">
+
+            <h1>Pedido n° @Model.Id-@Model.TransactionId</h1>
+
+            <table class="table table-bordered">
+                <thread>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Quantidade</th>
+                        <th>Valor</th>
+                    </tr>
+                </thread>
+
+                @foreach (ProductItem product in ViewBag.Products)
+                {
+                    <tr>
+                        <td>@product.Name</td>
+                        <td>@product.ItensKartAmount</td>
+                        <td>
+                            @((@product.ItensKartAmount * product.Price).ToString("C"))
+                            (@product.Price.ToString("C") unid)
+                        </td>
+                    </tr>
+                }
+
+                <tr>
+                    <td colspan="2">Frete</td>
+                    <td>Valor</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Total</td>
+                    <td>R$ 1000,00</td>
+                </tr>
+            </table>
+
+            @if (Model.PaymentForm == PaymentMethodConst.Boleto)
+            {
+                <h3>Boleto bancário</h3>
+            }
+
+            <a asp-action="Index" asp-controller="Home" class="btn btn-dark">Voltar as compras</a>
+        </div>
+    </div>
+</div>
