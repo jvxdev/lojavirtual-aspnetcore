@@ -1,9 +1,14 @@
-﻿namespace LojaVirtual.Models.Const
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace LojaVirtual.Models.Const
 {
     public class PaymentMethodConst
     {
-        public const string CreditCard = "Cartão de crédito";
-        public const string Boleto = "Boleto bancário";
+        public const string CreditCard = "Cartão";
+        public const string Boleto = "Boleto";
 
         public static string GetName(string code)
         {

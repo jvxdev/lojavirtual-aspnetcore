@@ -122,6 +122,7 @@ namespace LojaVirtual.Controllers
             List<ProductItem> products = ReadProductDB();
 
             var totalPurchaseValue = GetTotalPurchaseValue(products);
+
             try
             {
                 Transaction transaction = _managePagarMe.GerarBoleto(totalPurchaseValue, products, deliveryAddress, frete);
@@ -196,7 +197,6 @@ namespace LojaVirtual.Controllers
 
             var deliveryAddressId = int.Parse(_cookie.Read("ShoppingKart.DeliveryAddress", false).Replace("-end", ""));
 
-
             if (deliveryAddressId == 0)
             {
                 Client client = _clientLogin.getClient();
@@ -226,10 +226,8 @@ namespace LojaVirtual.Controllers
             {
                 return frete.valuesList.Where(a => a.TipoFrete == tipoFreteSelected).FirstOrDefault();
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
 
 

@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Pedido";
+    decimal totalValue = 0;
 }
 
 <div class="container mt-5">
@@ -21,11 +22,13 @@
 
                 @foreach (ProductItem product in ViewBag.Products)
                 {
+                    totalValue += (product.ItensKartAmount * product.Price);
+
                     <tr>
                         <td>@product.Name</td>
                         <td>@product.ItensKartAmount</td>
                         <td>
-                            @((@product.ItensKartAmount * product.Price).ToString("C"))
+                            @((product.ItensKartAmount * product.Price).ToString("C"))
                             (@product.Price.ToString("C") unid)
                         </td>
                     </tr>
@@ -33,11 +36,18 @@
 
                 <tr>
                     <td colspan="2">Frete</td>
-                    <td>Valor</td>
+                    <td>
+                        @{
+                            var fee = Mask.ConvertPagarMeIntToDecimal(ViewBag.Transaction.Shipping.Fee).ToString("C");
+                            totalValue += fee;
+                        }
+
+                        @fee.ToString("C");
+                    </td>
                 </tr>
                 <tr>
-                    <td colspan="2">Total</td>
-                    <td>R$ 1000,00</td>
+                    <td colspan="2">Valor total</td>
+                    <td>@totalValue.ToString("C")</td>
                 </tr>
             </table>
 

@@ -26,6 +26,11 @@ namespace LojaVirtual.Controllers
             new JsonSerializerSettings() { ContractResolver = new ProductItemResolver<List<ProductItem>>() }    
             );
 
+            var transaction = JsonConvert.DeserializeObject<TransactionPagarMe>(order.TransactionData);
+            var fee = transaction.Shipping.Fee;
+
+            ViewBag.Transaction = ;
+
             return View(order);
         }
     }
