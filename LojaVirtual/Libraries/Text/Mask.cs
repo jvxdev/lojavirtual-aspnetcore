@@ -23,7 +23,9 @@
             string valuePagarMeString = value.ToString();
             string valueDecimalString = valuePagarMeString.Substring(0, valuePagarMeString.Length - 2) + "," + valuePagarMeString.Substring(valuePagarMeString.Length - 2);
 
-            return decimal.Parse(valueDecimalString);
+            var dec = decimal.Parse(valueDecimalString);
+
+            return dec;
         }
     }
 }
