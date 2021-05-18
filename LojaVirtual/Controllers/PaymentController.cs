@@ -97,7 +97,7 @@ namespace LojaVirtual.Controllers
                 try
                 {
                     Transaction transaction = _managePagarMe.GerarPagCartaoCredito(indexViewModel.CreditCard, installment, deliveryAddress, frete, products);
-                    Order order = SaveOrder(products, transaction);
+                    Order order = OrderProcess(products, transaction);
 
                     return new RedirectToActionResult("Index", "Order", new { id = order.Id });
                 }
@@ -126,7 +126,7 @@ namespace LojaVirtual.Controllers
             {
                 Transaction transaction = _managePagarMe.GerarBoleto(totalPurchaseValue);
 
-                Order order = SaveOrder(products, transaction);
+                Order order = OrderProcess(products, transaction);
 
                 return new RedirectToActionResult("Index", "Order", new { id = order.Id });
             }
@@ -139,28 +139,54 @@ namespace LojaVirtual.Controllers
         }
 
 
-        private Order SaveOrder(List<ProductItem> products, Transaction transaction)
+        private Order OrderProcess(List<ProductItem> products, Transaction transaction)
         {
-            TransactionPagarMe transactionPagarMe = _mapper.Map<TransactionPagarMe>(transaction);
+            TransactionPagarMe transactionPagarMe;
+            Order order;
 
-            Order order = _mapper.Map<TransactionPagarMe, Order>(transactionPagarMe);
-            order = _mapper.Map<List<ProductItem>, Order>(products, order);
+            SaveOrder(products, transaction, out transactionPagarMe, out order);
+            SaveOrderSituation(products, transactionPagarMe, order);
+            StockDischarged(products);
 
-            order.Situation = OrderSituationConst.AGUARDANDO_PAGAMENTO;
+            return order;
+        }
 
-            _orderRepository.Create(order);
 
+        private void StockDischarged(List<ProductItem> products)
+        {
+            foreach (var product in products)
+            {
+                Product productDB = _productRepository.Read(product.Id);
+                productDB.Amount -= product.ItensKartAmount;
+
+                _productRepository.Update(productDB);
+            }
+        }
+
+
+        private void SaveOrderSituation(List<ProductItem> products, TransactionPagarMe transactionPagarMe, Order order)
+        {
             ProductTransaction pt = new ProductTransaction { TransactionPagarMe = transactionPagarMe, Products = products };
 
             OrderSituation orderSituation = _mapper.Map<Order, OrderSituation>(order);
-                
+
             orderSituation = _mapper.Map<ProductTransaction, OrderSituation>(pt, orderSituation);
 
             orderSituation.Situation = OrderSituationConst.AGUARDANDO_PAGAMENTO;
 
             _orderSituationRepository.Create(orderSituation);
+        }
 
-            return order;
+
+        private void SaveOrder(List<ProductItem> products, Transaction transaction, out TransactionPagarMe transactionPagarMe, out Order order)
+        {
+            transactionPagarMe = _mapper.Map<TransactionPagarMe>(transaction);
+            order = _mapper.Map<TransactionPagarMe, Order>(transactionPagarMe);
+            order = _mapper.Map<List<ProductItem>, Order>(products, order);
+
+            order.Situation = OrderSituationConst.AGUARDANDO_PAGAMENTO;
+
+            _orderRepository.Create(order);
         }
 
 
