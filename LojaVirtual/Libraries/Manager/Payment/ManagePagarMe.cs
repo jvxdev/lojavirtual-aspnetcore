@@ -22,7 +22,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
         }
 
 
-        public Transaction GerarBoleto(decimal value)
+        public Transaction GerarBoleto(decimal value, List<ProductItem> products, DeliveryAddress deliveryAddress, ValorPrazoFrete valorFrete)
         {
             Client client = _clientLogin.getClient();
 
@@ -53,6 +53,47 @@ namespace LojaVirtual.Libraries.Manager.Payment
                 },
                 Birthday = client.BirthDate?.ToString("yyyy-MM-dd")
             };
+
+            var Today = DateTime.Now;
+
+            var Fee = Convert.ToDecimal(valorFrete.Valor);
+
+            transaction.Shipping = new PagarMe.Shipping
+            {
+                Name = deliveryAddress.AddressName,
+                Fee = Mask.ConvertValuePagarMe(Fee),
+                DeliveryDate = Today.AddDays(_conf.GetValue<int>("diasNaEmpresa")).AddDays(valorFrete.Prazo).ToString("yyyy-MM-dd"),
+                Expedited = false,
+                Address = new Address()
+                {
+                    Country = "br",
+                    State = deliveryAddress.State,
+                    City = deliveryAddress.City,
+                    Neighborhood = deliveryAddress.Neighborhood,
+                    Street = deliveryAddress.Street,
+                    StreetNumber = deliveryAddress.HouseNumber,
+                    Zipcode = Mask.Delete(deliveryAddress.CEP)
+                }
+            };
+
+            Item[] items = new Item[products.Count];
+
+            for (var i = 0; i < products.Count; i++)
+            {
+                var item = products[i];
+                var itemA = new Item()
+                {
+                    Id = item.Id.ToString(),
+                    Title = item.Name,
+                    Quantity = item.ItensKartAmount,
+                    Tangible = true,
+                    UnitPrice = Mask.ConvertValuePagarMe(item.Price),
+                };
+
+                items[i] = itemA;
+            }
+
+            transaction.Item = items;
 
             transaction.Save();
 
@@ -123,12 +164,12 @@ namespace LojaVirtual.Libraries.Manager.Payment
 
             var Today = DateTime.Now;
 
-            var fee = Convert.ToDecimal(valorFrete.Valor);
+            var Fee = Convert.ToDecimal(valorFrete.Valor);
 
             transaction.Shipping = new PagarMe.Shipping
             {
                 Name = deliveryAddress.AddressName,
-                Fee = Mask.ConvertValuePagarMe(fee),
+                Fee = Mask.ConvertValuePagarMe(Fee),
                 DeliveryDate = Today.AddDays(_conf.GetValue<int>("diasNaEmpresa")).AddDays(valorFrete.Prazo).ToString("yyyy-MM-dd"),
                 Expedited = false,
                 Address = new Address()

@@ -124,7 +124,7 @@ namespace LojaVirtual.Controllers
             var totalPurchaseValue = GetTotalPurchaseValue(products);
             try
             {
-                Transaction transaction = _managePagarMe.GerarBoleto(totalPurchaseValue);
+                Transaction transaction = _managePagarMe.GerarBoleto(totalPurchaseValue, products, deliveryAddress, frete);
 
                 Order order = OrderProcess(products, transaction);
 
