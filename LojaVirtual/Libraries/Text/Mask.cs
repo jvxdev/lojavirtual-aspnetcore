@@ -21,7 +21,7 @@
         public static decimal ConvertPagarMeIntToDecimal(int value)
         {
             string valuePagarMeString = value.ToString();
-            string valueDecimalString = valuePagarMeString.Substring(0, valuePagarMeString.Length - 2) + "." + valuePagarMeString.Substring(valuePagarMeString.Length - 2);
+            string valueDecimalString = valuePagarMeString.Substring(0, valuePagarMeString.Length - 2) + "," + valuePagarMeString.Substring(valuePagarMeString.Length - 2);
 
             return decimal.Parse(valueDecimalString);
         }

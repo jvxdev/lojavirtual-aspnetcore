@@ -5,11 +5,11 @@
     decimal totalValue = 0;
 }
 
-<div class="container mt-5">
+<div class="container">
     <div class="row">
         <div class="col-md-12 text-center">
 
-            <h1>Pedido n° @Model.Id-@Model.TransactionId</h1>
+            <h1 class="display-3 m-5">Pedido n° @Model.Id-@Model.TransactionId</h1>
 
             <table class="table table-bordered">
                 <thread>
@@ -38,11 +38,11 @@
                     <td colspan="2">Frete</td>
                     <td>
                         @{
-                            var fee = Mask.ConvertPagarMeIntToDecimal(ViewBag.Transaction.Shipping.Fee).ToString("C");
+                            var fee = Mask.ConvertPagarMeIntToDecimal(ViewBag.Transaction.Shipping.Fee);
                             totalValue += fee;
                         }
 
-                        @fee.ToString("C");
+                        @fee.ToString("C")
                     </td>
                 </tr>
                 <tr>
@@ -53,10 +53,13 @@
 
             @if (Model.PaymentForm == PaymentMethodConst.Boleto)
             {
-                <h3>Boleto bancário</h3>
+                <h3 class="display-4 m-5">Boleto bancário</h3>
+                <iframe class="mb-3" src="@ViewBag.Transaction.BoletoUrl" style="width: 100%; min-height: 400px; border: 1px solid #CCC;"></iframe>
+                <a asp-action="Index" asp-controller="Home" class="btn btn-dark">Voltar as compras</a>
+                <a href="@ViewBag.Transaction.BoletoUrl" class="btn btn-success">Imprimir boleto</a>
             }
 
-            <a asp-action="Index" asp-controller="Home" class="btn btn-dark">Voltar as compras</a>
+            
         </div>
     </div>
 </div>

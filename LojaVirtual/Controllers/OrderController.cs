@@ -29,7 +29,7 @@ namespace LojaVirtual.Controllers
             var transaction = JsonConvert.DeserializeObject<TransactionPagarMe>(order.TransactionData);
             var fee = transaction.Shipping.Fee;
 
-            ViewBag.Transaction = ;
+            ViewBag.Transaction = transaction;
 
             return View(order);
         }
