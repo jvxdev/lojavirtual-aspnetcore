@@ -95,6 +95,8 @@ namespace LojaVirtual.Libraries.Manager.Payment
 
             transaction.Item = items;
 
+            transaction.Amount = Mask.ConvertValuePagarMe(value);
+
             transaction.Save();
 
             transaction.Customer.Gender = (client.Sex == "M") ? Gender.Male : Gender.Female;

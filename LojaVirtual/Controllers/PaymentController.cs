@@ -204,7 +204,7 @@ namespace LojaVirtual.Controllers
             }
             else
             {
-                var Address = _deliveryAddressRepository.Read(deliveryAddressId);
+                deliveryAddress = _deliveryAddressRepository.Read(deliveryAddressId);
             }
 
             return deliveryAddress;
