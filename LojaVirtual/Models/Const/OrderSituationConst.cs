@@ -2,18 +2,18 @@
 {
     public class OrderSituationConst
     {
-        public const string AGUARDANDO_PAGAMENTO = "04014";
-        public const string PAGAMENTO_APROVADO = "04790";
-        public const string PAGAMENTO_REJEITADO = "04510";
-        public const string NF_EMITIDA = "04014";
-        public const string EM_TRANSPORTE = "04790";
-        public const string ENTREGUE = "04510";
-        public const string FINALIZADO = "04510";
-        public const string EM_CANCELAMENTO = "04510";
-        public const string EM_ANALISE = "04510";
-        public const string CANCELAMENTO_APROVADO = "04510";
-        public const string CANCELAMENTO_REJEITADO = "04510";
-        public const string ESTORNO = "04510";
+        public const string AGUARDANDO_PAGAMENTO = "Aguardando pagamento";
+        public const string PAGAMENTO_APROVADO = "Pagamento aprovado";
+        public const string PAGAMENTO_REJEITADO = "Pagamento rejeitado";
+        public const string NF_EMITIDA = "Nota fiscal emitida";
+        public const string EM_TRANSPORTE = "Em transporte";
+        public const string ENTREGUE = "Entregue";
+        public const string FINALIZADO = "Finalizado";
+        public const string EM_CANCELAMENTO = "Em cancelamento";
+        public const string EM_ANALISE = "Em análise";
+        public const string CANCELAMENTO_APROVADO = "Cancelamento aprovado";
+        public const string CANCELAMENTO_REJEITADO = "Cancelamento rejeitado";
+        public const string ESTORNO = "Estorno";
 
         public static string GetName(string code)
         {
