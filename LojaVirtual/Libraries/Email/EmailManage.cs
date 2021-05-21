@@ -38,6 +38,7 @@ namespace LojaVirtual.Libraries.Email
             _smtp.Send(message);
         }
 
+
         public void NewPasswordEmail(Collaborator collaborator)
         {
             //Mensagem exemplo enviada para e-mail
@@ -49,6 +50,31 @@ namespace LojaVirtual.Libraries.Email
             message.From = new MailAddress(_conf.GetValue<string>("Email:Username"));
             message.To.Add(collaborator.Email);
             message.Subject = "Colaborador - LojaVirtual - Nova senha para o colaborador " + collaborator.Name;
+            message.Body = corpoMsg;
+            message.IsBodyHtml = true;
+
+            //Enviar mensagem via Smtp
+            _smtp.Send(message);
+        }
+
+
+        public void NewOrderEmail(Client client, Order order)
+        {
+            //Mensagem exemplo enviada para e-mail
+            string corpoMsg = string.Format(
+                "Olá <b>" + client.Name + "</b>, " +
+                "como vai? <br/> Só estou passando para lembrar que o " +
+                "teu pedido foi realizado com sucesso! <br/>" +
+                "Este é o n° do teu pedido: <b>{0}<b><br/>" +
+                "<b>Não esqueça de entrar em nosso site " +
+                "para acompanhar mais informações!",
+                order.Id + "-" + order.TransactionId
+                );
+
+            MailMessage message = new MailMessage();
+            message.From = new MailAddress(_conf.GetValue<string>("Email:Username"));
+            message.To.Add(client.Email);
+            message.Subject = "Pedido n° " + order.Id + "-" + order.TransactionId + " - LojaVirtual";
             message.Body = corpoMsg;
             message.IsBodyHtml = true;
 

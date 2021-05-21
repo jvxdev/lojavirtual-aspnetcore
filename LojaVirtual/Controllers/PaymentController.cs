@@ -2,6 +2,7 @@
 using LojaVirtual.Controllers.Base;
 using LojaVirtual.Libraries.AutoMapper;
 using LojaVirtual.Libraries.Cookie;
+using LojaVirtual.Libraries.Email;
 using LojaVirtual.Libraries.Filters;
 using LojaVirtual.Libraries.Login;
 using LojaVirtual.Libraries.Manager.Frete;
@@ -32,10 +33,12 @@ namespace LojaVirtual.Controllers
         private ManagePagarMe _managePagarMe;
         private IOrderRepository _orderRepository;
         private IOrderSituationRepository _orderSituationRepository;
+        private EmailManage _emailManage;
 
 
         public PaymentController
             (
+            EmailManage emailManage,
             IOrderRepository orderRepository,
             IOrderSituationRepository orderSituationRepository,
             ManagePagarMe managePagarMe,
@@ -61,6 +64,7 @@ namespace LojaVirtual.Controllers
                 calculatePackage
             )
         {
+            _emailManage = emailManage;
             _cookie = cookie;
             _managePagarMe = managePagarMe;
             _orderRepository = orderRepository;
@@ -148,6 +152,10 @@ namespace LojaVirtual.Controllers
             SaveOrder(products, transaction, out transactionPagarMe, out order);
             SaveOrderSituation(products, transactionPagarMe, order);
             StockDischarged(products);
+
+            _cookieShoppingKart.DeleteAll();
+
+            _emailManage.NewOrderEmail(_clientLogin.GetClient(), order);
 
             return order;
         }
