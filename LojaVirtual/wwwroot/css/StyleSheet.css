@@ -134,3 +134,10 @@ div .left-border {
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
 }
+
+/****** ORDER ******/
+
+.num-order {
+    color: #50b708;
+    border-bottom: 2px solid #50b708;
+}
