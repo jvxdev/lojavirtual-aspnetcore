@@ -133,7 +133,7 @@
                 </h4>
                 <div id="code_desc_right">
                     <div class="box text-center">
-                        @if (_clientLogin.getClient() == null)
+                        @if (_clientLogin.GetClient() == null)
                         {
                             <a asp-action="Login" asp-controller="Home" asp-area="Client" asp-route-returnUrl="@Url.Action("DeliveryAddress", "ShoppingKart", new { area = "" })" class="btn btn-warning col-12 p-3 btn-proceed"><strong>Continuar</strong></a>
                         }

@@ -21,7 +21,7 @@ namespace LojaVirtual.Libraries.Login
             _session.Create(Key, clientJson);
         }
 
-        public Client getClient()
+        public Client GetClient()
         {
             //deserializar
             if (_session.Exist(Key))

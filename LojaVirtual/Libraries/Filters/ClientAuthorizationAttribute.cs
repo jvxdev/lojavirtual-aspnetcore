@@ -14,7 +14,7 @@ namespace LojaVirtual.Libraries.Filters
 
             _clientLogin = (ClientLogin)context.HttpContext.RequestServices.GetService(typeof(ClientLogin));
 
-            Client client = _clientLogin.getClient();
+            Client client = _clientLogin.GetClient();
 
             if (client == null)
 

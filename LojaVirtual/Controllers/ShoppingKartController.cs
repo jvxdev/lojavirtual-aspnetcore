@@ -54,7 +54,7 @@ namespace LojaVirtual.Controllers
         [ClientAuthorizationAttribute]
         public IActionResult DeliveryAddress()
         {
-            Client client = _clientLogin.getClient();
+            Client client = _clientLogin.GetClient();
             IList<DeliveryAddress> deliveryAddresses = _deliveryAddressRepository.ReadAll(client.Id);
 
             ViewBag.Products = ReadProductDB();

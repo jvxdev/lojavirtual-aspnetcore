@@ -199,7 +199,7 @@ namespace LojaVirtual.Controllers
 
             if (deliveryAddressId == 0)
             {
-                Client client = _clientLogin.getClient();
+                Client client = _clientLogin.GetClient();
                 deliveryAddress = _mapper.Map<DeliveryAddress>(client);
             }
             else

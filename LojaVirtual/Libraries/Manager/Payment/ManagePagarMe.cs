@@ -24,7 +24,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
 
         public Transaction GerarBoleto(decimal value, List<ProductItem> products, DeliveryAddress deliveryAddress, ValorPrazoFrete valorFrete)
         {
-            Client client = _clientLogin.getClient();
+            Client client = _clientLogin.GetClient();
 
             PagarMeService.DefaultApiKey = _conf.GetValue<String>("Payment:PagarMe:ApiKey");
             PagarMeService.DefaultEncryptionKey = _conf.GetValue<String>("Payment:PagarMe:EcryptionKey");
@@ -107,7 +107,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
 
         public Transaction GerarPagCartaoCredito(CreditCard creditCard, Installment installment, DeliveryAddress deliveryAddress, ValorPrazoFrete valorFrete, List<ProductItem> products)
         {
-            Client client = _clientLogin.getClient();
+            Client client = _clientLogin.GetClient();
 
             PagarMeService.DefaultApiKey = _conf.GetValue<String>("Payment:PagarMe:ApiKey");
             PagarMeService.DefaultEncryptionKey = _conf.GetValue<String>("Payment:PagarMe:EcryptionKey");

@@ -112,7 +112,7 @@ namespace LojaVirtual.Areas.Client.Controllers
         {
             if (ModelState.IsValid)
             {
-                deliveryAddress.ClientId = _clientLogin.getClient().Id;
+                deliveryAddress.ClientId = _clientLogin.GetClient().Id;
 
                 _deliveryAddressRepository.Create(deliveryAddress);
 
