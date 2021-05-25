@@ -15,11 +15,13 @@ namespace LojaVirtual.Areas.Client.Controllers
         private ClientLogin _clientLogin;
         private ClientRepository _clientRepository;
 
+
         public ClientController(ClientLogin clientLogin, ClientRepository clientRepository)
         {
             _clientLogin = clientLogin;
             _clientRepository = clientRepository;
         }
+
 
         [ClientAuthorization]
         public IActionResult Index()
@@ -51,6 +53,51 @@ namespace LojaVirtual.Areas.Client.Controllers
                 _clientRepository.Update(client);
 
                 _clientLogin.Login(client);
+
+                TempData["MSG_S"] = Message.MSG_S006;
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View();
+        }
+
+
+        [ClientAuthorization]
+        [HttpGet]
+        public IActionResult UpdatePassword()
+        {
+            Models.Client client = _clientRepository.Read(_clientLogin.GetClient().Id);
+
+            return View(client);
+        }
+
+
+        [ClientAuthorization]
+        [HttpPost]
+        public IActionResult UpdatePassword(Models.Client client)
+        {
+            ModelState.Remove("Name");
+            ModelState.Remove("BirthDate");
+            ModelState.Remove("Sex");
+            ModelState.Remove("CPF");
+            ModelState.Remove("Phone");
+            ModelState.Remove("CEP");
+            ModelState.Remove("State");
+            ModelState.Remove("City");
+            ModelState.Remove("Neighborhood");
+            ModelState.Remove("Street");
+            ModelState.Remove("HouseNumber");
+            ModelState.Remove("Email");
+
+            if (ModelState.IsValid)
+            {
+                Models.Client clientDB = _clientRepository.Read(_clientLogin.GetClient().Id);
+                clientDB.Password = client.Password;
+                
+                _clientRepository.Update(clientDB);
+
+                _clientLogin.Login(clientDB);
 
                 TempData["MSG_S"] = Message.MSG_S006;
 
