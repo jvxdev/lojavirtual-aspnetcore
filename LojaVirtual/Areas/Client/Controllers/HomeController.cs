@@ -48,7 +48,7 @@ namespace LojaVirtual.Areas.Client.Controllers
 
                 if (returnUrl == null)
                 {
-                    return new RedirectResult(Url.Action(nameof(Panel)));
+                    return RedirectToAction("Index", "Home", new {  area = "" });
                 }
                 else
                 {
@@ -62,12 +62,12 @@ namespace LojaVirtual.Areas.Client.Controllers
             }
         }
 
-
         [HttpGet]
-        [ClientAuthorizationAttribute]
-        public IActionResult Panel()
+        public IActionResult Logout()
         {
-            return new ContentResult() { Content = "Você está no Painel do Cliente" };
+            _clientLogin.Logout();
+
+            return RedirectToAction("Index", "Home", new { area = "" });
         }
 
 

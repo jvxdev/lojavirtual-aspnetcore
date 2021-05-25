@@ -1,7 +1,7 @@
 ﻿@model List<Category>
 @inject ClientLogin _clientLogin;
 
-@{ 
+@{
     var Search = Context.Request.Query["Search"];
 }
 
@@ -48,13 +48,23 @@
             <a class="nav-link" asp-action="Contact" asp-controller="Home"><i class="fas fa-phone mr-1"></i> Fale conosco</a>
             @if (_clientLogin.GetClient() != null)
             {
-                <a class="nav-link" asp-controller="ShoppingKart" asp-action="Index" ><i class="fas fa-shopping-cart mr-1"></i> Carrinho</a>
-                <a class="nav-link" asp-action="Login" asp-controller="Home" asp-area="Client"><i class="fas fa-user-alt mr-1"></i> @_clientLogin.GetClient().Name</a>
+                <a class="nav-link" asp-controller="ShoppingKart" asp-action="Index"><i class="fas fa-shopping-cart mr-1"></i> Carrinho</a>
+
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user-alt mr-1"></i> @_clientLogin.GetClient().Name
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" asp-action="Update" asp-controller="Client" asp-area="Client" asp-route-id="@_clientLogin.GetClient().Id">Minha conta</a></li>
+                        <li><a class="dropdown-item" asp-action="Index" asp-controller="Order" asp-area="Client">Meus pedidos</a></li>
+                        <li><a class="dropdown-item" asp-action="Logout" asp-controller="Home" asp-area="Client">Sair</a></li>
+                    </ul>
+                </div>
             }
             else
             {
-                <a class="nav-link" asp-action="Login" asp-controller="Home" asp-area="Client"><i class="fas fa-user-alt mr-1"></i> Entrar</a>
                 <a class="nav-link" asp-controller="ShoppingKart" asp-action="Index"><i class="fas fa-shopping-cart mr-1"></i> Carrinho</a>
+                <a class="nav-link" asp-action="Login" asp-controller="Home" asp-area="Client"><i class="fas fa-user-alt mr-1"></i> Entrar</a>
             }
 
         </form>
