@@ -168,4 +168,7 @@
   <data name="MSG_S005" xml:space="preserve">
     <value>Cadastro realizado com sucesso!</value>
   </data>
+  <data name="MSG_S006" xml:space="preserve">
+    <value>Dados atualizados com sucesso! ;)</value>
+  </data>
 </root>

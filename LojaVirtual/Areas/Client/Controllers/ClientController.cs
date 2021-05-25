@@ -1,4 +1,7 @@
 ﻿using LojaVirtual.Libraries.Filters;
+using LojaVirtual.Libraries.Lang;
+using LojaVirtual.Libraries.Login;
+using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +12,15 @@ namespace LojaVirtual.Areas.Client.Controllers
 {
     public class ClientController : Controller
     {
+        private ClientLogin _clientLogin;
+        private ClientRepository _clientRepository;
+
+        public ClientController(ClientLogin clientLogin, ClientRepository clientRepository)
+        {
+            _clientLogin = clientLogin;
+            _clientRepository = clientRepository;
+        }
+
         [ClientAuthorization]
         public IActionResult Index()
         {
@@ -17,8 +29,34 @@ namespace LojaVirtual.Areas.Client.Controllers
 
 
         [ClientAuthorization]
+        [HttpGet]
         public IActionResult Update()
         {
+            Models.Client client =_clientRepository.Read(_clientLogin.GetClient().Id);
+
+            return View(client);
+        }
+
+
+        [ClientAuthorization]
+        [HttpPost]
+        public IActionResult Update(Models.Client client)
+        {
+            ModelState.Remove("Password");
+            ModelState.Remove("PasswordConfirmation");
+
+            if (ModelState.IsValid)
+            {
+                client.Password = _clientLogin.GetClient().Password;
+                _clientRepository.Update(client);
+
+                _clientLogin.Login(client);
+
+                TempData["MSG_S"] = Message.MSG_S006;
+
+                return RedirectToAction(nameof(Index));
+            }
+
             return View();
         }
     }

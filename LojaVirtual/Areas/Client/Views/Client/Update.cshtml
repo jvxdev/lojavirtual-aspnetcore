@@ -1,0 +1,115 @@
+﻿@model Client;
+
+@{
+    ViewData["Title"] = "Meus dados";
+}
+
+<form method="post">
+    <main role="main">
+        <section class="container" style="margin-top: 50px">
+            <div class="row">
+                <aside class="col-sm-6 center">
+                    <div id="code_register_1">
+                        <div class="card">
+                            @{ await Html.RenderPartialAsync("~/Views/Shared/_Message.cshtml"); }
+                            <input type="hidden" asp-for="Id" />
+                            <header class="card-header">
+                                <h4 class="card-title mt-2 font-weight-light">Atualize seus dados</h4>
+                            </header>
+                            <article class="card-body">
+                                <div class="form-group">
+                                    <label for="name">Nome</label>
+                                    <input type="text" asp-for="Name" id="name" name="name" class="form-control" placeholder="Nome completo">
+                                    <span asp-validation-for="Name"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="birthdate">Data de nascimento</label>
+                                    <input type="date" asp-for="BirthDate" id="birthdate" name="birthdate" class="form-control" placeholder="">
+                                    <span asp-validation-for="BirthDate"></span>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <label>Sexo</label>
+                                    <br />
+                                    <label class="form-check form-check-inline">
+                                        <input type="radio" asp-for="Sex" class="form-check-input" value="M">
+                                        <span class="form-check-label"> Masculino </span>
+                                    </label>
+                                    <label class="form-check form-check-inline">
+                                        <input type="radio" asp-for="Sex" class="form-check-input" value="F">
+                                        <span class="form-check-label"> Feminino </span>
+                                    </label>
+                                    <span asp-validation-for="Sex"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cpf">CPF</label>
+                                    <input type="text" asp-for="CPF" class="form-control cpf" placeholder="Seu CPF" maxlength="15">
+                                    <span asp-validation-for="CPF"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Telefone</label>
+                                    <input type="text" asp-for="Phone" class="form-control" placeholder="Seu melhor número" maxlength="15">
+                                    <span asp-validation-for="Phone"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CEP">CEP</label>
+                                    <input type="text" asp-for="CEP" name="CEP" data class="form-control cep" placeholder="Seu CEP">
+                                    <span asp-validation-for="CEP"></span>
+                                    <div class="alert alert-danger mt-3" style="display:none;"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="state">Estado</label>
+                                    <input type="text" asp-for="State" name="state" data class="form-control" readonly>
+                                    <span asp-validation-for="State"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="city">Cidade</label>
+                                    <input type="text" asp-for="City" name="city" data class="form-control" readonly>
+                                    <span asp-validation-for="City"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="neighborhood">Bairro</label>
+                                    <input type="text" asp-for="Neighborhood" name="neighborhood" data class="form-control" readonly>
+                                    <span asp-validation-for="Neighborhood"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="street">Rua</label>
+                                    <input type="text" asp-for="Street" name="street" data class="form-control" readonly>
+                                    <span asp-validation-for="Street"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="houseNumber">Número da casa/apart</label>
+                                    <input type="text" asp-for="HouseNumber" name="houseNumber" data class="form-control" placeholder="O número da casa/apart">
+                                    <span asp-validation-for="HouseNumber"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">E-mail</label>
+                                    <input type="email" asp-for="Email" id="email" name="email" class="form-control" placeholder="exemplo@email.com">
+                                    <span asp-validation-for="Email"></span>
+                                    <small class="form-text text-muted">
+                                        Nunca compartilharemos seu e-mail com
+                                        ninguém.
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Senha</label>
+                                    <input type="password" asp-for="Password" id="password" name="password" class="form-control" placeholder="**********" />
+                                    <span asp-validation-for="Password"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="passwordConfirmation">Confirme sua senha</label>
+                                    <input type="password" asp-for="PasswordConfirmation" id="passwordConfirmation" name="passwordConfirmation" class="form-control" placeholder="**********" />
+                                    <span asp-validation-for="PasswordConfirmation"></span>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block"> Salvar </button>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+    </main>
+</form>
+

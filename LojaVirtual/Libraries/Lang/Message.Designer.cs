@@ -212,5 +212,14 @@ namespace LojaVirtual.Libraries.Lang {
                 return ResourceManager.GetString("MSG_S005", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Dados atualizados com sucesso! ;).
+        /// </summary>
+        public static string MSG_S006 {
+            get {
+                return ResourceManager.GetString("MSG_S006", resourceCulture);
+            }
+        }
     }
 }
