@@ -182,7 +182,9 @@ function AjaxCalcularFrete(callByBtn) {
     $(".btn-proceed").addClass("disabled");
     if (callByBtn == false) {
         if ($.cookie('ShoppingKart.CEP') != undefined) {
-            $(".cep").val($.cookie("ShoppingKart.CEP"));
+            if ($(".no-cep").length <= 0) {
+                $(".cep").val($.cookie("ShoppingKart.CEP"));
+            }
         }
     }
 
