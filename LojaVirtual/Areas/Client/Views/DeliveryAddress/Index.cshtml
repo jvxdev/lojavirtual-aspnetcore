@@ -4,6 +4,7 @@
 
 <div class="container">
     <div class="row">
+        <a asp-action="Index" asp-controller="Client" class="btn btn-primary">Voltar</a>
         <div class="col-md-12">
             <h4 class="text-center display-4 mt-5">Endereço de entrega</h4>
 
@@ -43,68 +44,6 @@
 
             <div class="text-left">
                 <a class="btn btn-secondary p-3" asp-area="Client" asp-controller="Home" asp-route-returnUrl="@Url.Action("DeliveryAddress", "ShoppingKart", new {  area = "" })" asp-action="RegisterDeliveryAddress">Cadastrar novo endereço</a>
-            </div>
-
-            <div class="card-group my-5">
-
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title text-center"></h5>
-                        <p class="card-text text-center"></p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <h5 class="mt-2">
-                            -
-                        </h5>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title text-center"></h5>
-                        <p class="card-text text-center"></p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <h5 class="mt-2">
-                            -
-                        </h5>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title text-center"></h5>
-                        <p class="card-text text-center"></p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <h5 class="mt-2">
-                            -
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-group">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Subtotal</h5>
-                        <p class="card-text text-center product-text">@total.ToString("C")</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Frete</h5>
-                        <p class="card-text text-center frete-text">-</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Total</h5>
-                        <p class="card-text text-center total-text">-</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-right mt-5">
-                <a class="btn btn-warning p-3 disabled btn-proceed" asp-controller="Payment" asp-action="Index"><strong>Continuar para pagamento</strong></a>
             </div>
         </div>
     </div>

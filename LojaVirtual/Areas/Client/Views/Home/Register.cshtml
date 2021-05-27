@@ -16,6 +16,9 @@
                                 <h4 class="card-title mt-2 font-weight-light">Faça teu cadastro</h4>
                             </header>
                             <article class="card-body">
+
+                                @{ await Html.RenderPartialAsync("~/Views/Shared/_Message.cshtml"); }
+                                
                                 <div class="form-group">
                                     <label for="name">Nome</label>
                                     <input type="text" asp-for="Name" id="name" name="name" class="form-control" placeholder="Nome completo">

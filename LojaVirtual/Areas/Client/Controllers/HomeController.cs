@@ -98,35 +98,5 @@ namespace LojaVirtual.Areas.Client.Controllers
 
             return View();
         }
-
-
-        [HttpGet]
-        public IActionResult RegisterDeliveryAddress()
-        {
-            return View();
-        }
-
-
-        [HttpPost]
-        public IActionResult RegisterDeliveryAddress([FromForm] DeliveryAddress deliveryAddress, string returnUrl = null)
-        {
-            if (ModelState.IsValid)
-            {
-                deliveryAddress.ClientId = _clientLogin.GetClient().Id;
-
-                _deliveryAddressRepository.Create(deliveryAddress);
-
-                if (returnUrl == null)
-                {
-
-                }
-                else
-                {
-                    return LocalRedirectPermanent(returnUrl);
-                }
-            }
-
-            return View();
-        }
     }
 }

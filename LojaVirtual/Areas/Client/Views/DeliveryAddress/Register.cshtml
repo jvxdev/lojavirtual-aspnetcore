@@ -15,6 +15,9 @@
                                 <h4 class="card-title mt-2 font-weight-light">Cadastrar endereço</h4>
                             </header>
                             <article class="card-body">
+
+                                @{ await Html.RenderPartialAsync("~/Views/Shared/_Message.cshtml"); }
+
                                 <div class="form-group">
                                     <label for="addressName">Nome do endereço</label>
                                     <input type="text" asp-for="AddressName" name="addressName" data class="form-control" placeholder="Escolha um nome">
@@ -52,7 +55,7 @@
                                     <span asp-validation-for="HouseNumber"></span>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-block"> Cadastrar </button>
+                                    <button type="submit" class="btn btn-primary btn-block"> Salvar </button>
                                 </div>
                             </article>
                         </div>
