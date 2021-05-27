@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace LojaVirtual.Areas.Client.Controllers
 {
+    [Area("Client")]
     [ClientAuthorization]
     public class DeliveryAddressController : Controller
     {
@@ -54,6 +55,8 @@ namespace LojaVirtual.Areas.Client.Controllers
 
                 if (returnUrl == null)
                 {
+                    TempData["MSG_S"] = Message.MSG_S009;
+
                     return RedirectToAction(nameof(Index));
                 }
                 else
@@ -67,9 +70,18 @@ namespace LojaVirtual.Areas.Client.Controllers
 
 
         [HttpGet]
-        public IActionResult Update()
+        public IActionResult Update(int Id)
         {
-            return View();
+            Models.Client client = _clientLogin.GetClient();
+
+            DeliveryAddress deliveryAddress = _deliveryAddressRepository.Read(Id);
+
+            if (deliveryAddress.ClientId != client.Id)
+            {
+                return new ContentResult() { Content = "Acesso negado." };
+            }
+
+            return View(deliveryAddress);
         }
 
 
@@ -82,9 +94,9 @@ namespace LojaVirtual.Areas.Client.Controllers
 
                 _deliveryAddressRepository.Update(deliveryAddress);
 
-                TempData["MSG_S"] = Message.MSG_S003;
+                TempData["MSG_S"] = Message.MSG_S007;
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Update));
             }
 
             return View();
@@ -102,7 +114,7 @@ namespace LojaVirtual.Areas.Client.Controllers
             {
                 _deliveryAddressRepository.Delete(Id);
 
-                TempData["MSG_S"] = Message.MSG_S002;
+                TempData["MSG_S"] = Message.MSG_S008;
 
                 return RedirectToAction(nameof(Index));
             }

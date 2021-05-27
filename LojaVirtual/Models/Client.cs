@@ -80,8 +80,9 @@ namespace LojaVirtual.Models
         public string Password { get; set; }
 
 
-        [Display(Name = "Confirmação de senha")]
         [NotMapped]
+        [Display(Name = "Confirmação de senha")]
+        [Compare("Password", ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E006")]
         public string PasswordConfirmation { get; set; }
 
 

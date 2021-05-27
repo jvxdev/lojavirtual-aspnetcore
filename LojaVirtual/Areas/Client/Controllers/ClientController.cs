@@ -10,13 +10,14 @@ using System.Threading.Tasks;
 
 namespace LojaVirtual.Areas.Client.Controllers
 {
+    [Area("Client")]
     public class ClientController : Controller
     {
         private ClientLogin _clientLogin;
-        private ClientRepository _clientRepository;
+        private IClientRepository _clientRepository;
 
 
-        public ClientController(ClientLogin clientLogin, ClientRepository clientRepository)
+        public ClientController(ClientLogin clientLogin, IClientRepository clientRepository)
         {
             _clientLogin = clientLogin;
             _clientRepository = clientRepository;
@@ -56,7 +57,7 @@ namespace LojaVirtual.Areas.Client.Controllers
 
                 TempData["MSG_S"] = Message.MSG_S006;
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Update));
             }
 
             return View();
@@ -101,7 +102,7 @@ namespace LojaVirtual.Areas.Client.Controllers
 
                 TempData["MSG_S"] = Message.MSG_S006;
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(UpdatePassword));
             }
 
             return View();

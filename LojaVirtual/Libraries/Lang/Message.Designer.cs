@@ -221,5 +221,32 @@ namespace LojaVirtual.Libraries.Lang {
                 return ResourceManager.GetString("MSG_S006", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Endereço de entrega atualizado com sucesso! ;).
+        /// </summary>
+        public static string MSG_S007 {
+            get {
+                return ResourceManager.GetString("MSG_S007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Endereço de entrega removido com sucesso! ;).
+        /// </summary>
+        public static string MSG_S008 {
+            get {
+                return ResourceManager.GetString("MSG_S008", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Endereço de entrega cadastrado com sucesso! ;).
+        /// </summary>
+        public static string MSG_S009 {
+            get {
+                return ResourceManager.GetString("MSG_S009", resourceCulture);
+            }
+        }
     }
 }

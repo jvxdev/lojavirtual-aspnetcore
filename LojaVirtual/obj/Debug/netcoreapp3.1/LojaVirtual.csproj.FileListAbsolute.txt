@@ -2306,7 +2306,6 @@ C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\net
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\LojaVirtual.RazorCoreGenerate.cache
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Client\Views\Home\Login.cshtml.g.cs
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Client\Views\Home\Register.cshtml.g.cs
-C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Client\Views\Home\RegisterDeliveryAddress.cshtml.g.cs
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Client\Views\_ViewImports.cshtml.g.cs
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Client\Views\_ViewStart.cshtml.g.cs
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Collaborator\Views\Category\Index.cshtml.g.cs
@@ -2353,3 +2352,6 @@ C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\net
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Client\Views\Client\Index.cshtml.g.cs
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Client\Views\Client\Update.cshtml.g.cs
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Client\Views\Client\UpdatePassword.cshtml.g.cs
+C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Client\Views\DeliveryAddress\Index.cshtml.g.cs
+C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Client\Views\DeliveryAddress\Register.cshtml.g.cs
+C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Client\Views\DeliveryAddress\Update.cshtml.g.cs

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace LojaVirtual.Areas.Client.Controllers
 {
+    [Area("Client")]
     public class OrderController : Controller
     {
         public IActionResult Index()

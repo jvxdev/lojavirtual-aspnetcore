@@ -4,13 +4,12 @@
 
 <div class="container">
     <div class="row">
-        <a asp-action="Index" asp-controller="Client" class="btn btn-primary">Voltar</a>
         <div class="col-md-12">
-            <h4 class="text-center display-4 mt-5">Endereço de entrega</h4>
+            <h4 class="text-center display-4 my-5">Endereço de entrega</h4>
 
             @{ await Html.RenderPartialAsync("~/Views/Shared/_Message.cshtml"); }
 
-            <table class="table table-hover my-5">
+            <table class="table table-hover">
                 <tbody>
                     <tr>
                         <td>
@@ -20,11 +19,11 @@
                             </label>
                         </td>
                         <td>
-                            <a asp-action="Update" asp-controller="Client">Editar</a>
+                            <a asp-action="Update" asp-controller="Client" class="btn btn-dark">Editar</a>
                         </td>
                     </tr>
 
-                    @foreach (DeliveryAddress deliveryAddress in ViewBag.Addresses)
+                    @foreach (DeliveryAddress deliveryAddress in ViewBag.DeliveryAddress)
                     {
                         <tr>
                             <td>
@@ -34,16 +33,17 @@
                                 </label>
                             </td>
                             <td>
-                                <a asp-action="Update" asp-route-id="@deliveryAddress.Id">Editar</a>
-                                <a asp-action="Delete" asp-route-id="@deliveryAddress.Id">Remover</a>
+                                <a asp-action="Update" asp-route-id="@deliveryAddress.Id" class="btn btn-dark">Editar</a>
+                                <a asp-action="Delete" asp-route-id="@deliveryAddress.Id" class="btn btn-danger">Remover</a>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
 
-            <div class="text-left">
-                <a class="btn btn-secondary p-3" asp-area="Client" asp-controller="Home" asp-route-returnUrl="@Url.Action("DeliveryAddress", "ShoppingKart", new {  area = "" })" asp-action="RegisterDeliveryAddress">Cadastrar novo endereço</a>
+            <div class="text-left mt-3">
+                <a  class="btn btn-primary p-3" asp-action="Index" asp-controller="Client">Voltar</a>
+                <a class="btn btn-secondary p-3" asp-action="Register">Cadastrar novo endereço</a>
             </div>
         </div>
     </div>

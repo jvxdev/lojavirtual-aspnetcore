@@ -171,4 +171,13 @@
   <data name="MSG_S006" xml:space="preserve">
     <value>Dados atualizados com sucesso! ;)</value>
   </data>
+  <data name="MSG_S007" xml:space="preserve">
+    <value>Endereço de entrega atualizado com sucesso! ;)</value>
+  </data>
+  <data name="MSG_S008" xml:space="preserve">
+    <value>Endereço de entrega removido com sucesso! ;)</value>
+  </data>
+  <data name="MSG_S009" xml:space="preserve">
+    <value>Endereço de entrega cadastrado com sucesso! ;)</value>
+  </data>
 </root>

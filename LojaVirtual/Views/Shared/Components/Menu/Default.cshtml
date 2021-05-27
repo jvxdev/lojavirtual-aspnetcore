@@ -55,7 +55,7 @@
                         <i class="fas fa-user-alt mr-1"></i> @_clientLogin.GetClient().Name
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" asp-action="Update" asp-controller="Client" asp-area="Client" asp-route-id="@_clientLogin.GetClient().Id">Minha conta</a></li>
+                        <li><a class="dropdown-item" asp-action="Index" asp-controller="Client" asp-area="Client" asp-route-id="@_clientLogin.GetClient().Id">Minha conta</a></li>
                         <li><a class="dropdown-item" asp-action="Index" asp-controller="Order" asp-area="Client">Meus pedidos</a></li>
                         <li><a class="dropdown-item" asp-action="Logout" asp-controller="Home" asp-area="Client">Sair</a></li>
                     </ul>

@@ -1,39 +1,39 @@
 ﻿@{ 
-    ViewData["Title"] = "Meus dados";
+    ViewData["Title"] = "Minha conta";
 }
 
-<div class="container">
+<div class="container text-center">
+    <h4 class="text-center display-4 my-5">Minha conta</h4>
     <div class="row">
-        <div class="col-md-3">
-            <div class="card" style="width: 18rem;">
+        <div class="col-md-4">
+            <div class="card" style="width: 22rem;">
                 <div class="card-body">
                     <h5 class="card-title"><i class="fas fa-user-alt mr-1"></i></h5>
                     <h6 class="card-subtitle mb-2 text-muted">Dados pessoais</h6>
                     <p class="card-text">Altere seu e-mail e teu endereço residêncial</p>
-                    <a class="card-link" asp-action="Update"> Clique aqui para alterar</a>
+                    <a class="btn btn-dark" asp-action="Update"> Clique aqui para alterar</a>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-3">
-            <div class="card" style="width: 18rem;">
+        <div class="col-md-4">
+            <div class="card" style="width: 22rem;">
                 <div class="card-body">
                     <h5 class="card-title"><i class="fas fa-shipping-fast mr-1"></i></h5>
                     <h6 class="card-subtitle mb-2 text-muted">Endereço de entrega</h6>
-                    <p class="card-text">Cadastre, altere ou remova endereços de entrega</p>
-                    <a href="#" class="card-link">Clique aqui</a>
+                    <p class="card-text">Cadastre, altere ou remova os teus endereços de entrega</p>
+                    <a class="btn btn-dark" asp-controller="DeliveryAddress" asp-action="Index">Clique aqui</a>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-3">
-            <div class="card" style="width: 18rem;">
+        <div class="col-md-4">
+            <div class="card" style="width: 22rem;">
                 <div class="card-body">
                     <h5 class="card-title"><i class="fas fa-unlock-alt mr-1"></i></h5>
                     <h6 class="card-subtitle mb-2 text-muted">Senha</h6>
                     <p class="card-text">Altere a senha da sua conta</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+                    <a class="btn btn-dark" asp-action="UpdatePassword">Clique aqui para alterar</a>
                 </div>
             </div>
         </div>
