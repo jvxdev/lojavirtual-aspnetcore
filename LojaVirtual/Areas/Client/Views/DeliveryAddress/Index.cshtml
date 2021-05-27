@@ -1,0 +1,111 @@
+﻿@{
+    ViewData["Title"] = "Endereços de entrega";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="text-center display-4 mt-5">Endereço de entrega</h4>
+
+            @{ await Html.RenderPartialAsync("~/Views/Shared/_Message.cshtml"); }
+
+            <table class="table table-hover my-5">
+                <tbody>
+                    <tr>
+                        <td>
+                            <label for="0-end">
+                                <strong>Meu endereço</strong>
+                                <p>@ViewBag.Client.CEP - @ViewBag.Client.State, @ViewBag.Client.City, @ViewBag.Client.Neighborhood, @ViewBag.Client.Street, n° @ViewBag.Client.HouseNumber</p>
+                            </label>
+                        </td>
+                        <td>
+                            <a asp-action="Update" asp-controller="Client">Editar</a>
+                        </td>
+                    </tr>
+
+                    @foreach (DeliveryAddress deliveryAddress in ViewBag.Addresses)
+                    {
+                        <tr>
+                            <td>
+                                <label for="@deliveryAddress.Id-end">
+                                    <strong>@deliveryAddress.AddressName</strong>
+                                    <p>@deliveryAddress.CEP | @deliveryAddress.State, @deliveryAddress.City, @deliveryAddress.Neighborhood, @deliveryAddress.Street, n° @deliveryAddress.HouseNumber</p>
+                                </label>
+                            </td>
+                            <td>
+                                <a asp-action="Update" asp-route-id="@deliveryAddress.Id">Editar</a>
+                                <a asp-action="Delete" asp-route-id="@deliveryAddress.Id">Remover</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="text-left">
+                <a class="btn btn-secondary p-3" asp-area="Client" asp-controller="Home" asp-route-returnUrl="@Url.Action("DeliveryAddress", "ShoppingKart", new {  area = "" })" asp-action="RegisterDeliveryAddress">Cadastrar novo endereço</a>
+            </div>
+
+            <div class="card-group my-5">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center"></h5>
+                        <p class="card-text text-center"></p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <h5 class="mt-2">
+                            -
+                        </h5>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center"></h5>
+                        <p class="card-text text-center"></p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <h5 class="mt-2">
+                            -
+                        </h5>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center"></h5>
+                        <p class="card-text text-center"></p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <h5 class="mt-2">
+                            -
+                        </h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-group">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Subtotal</h5>
+                        <p class="card-text text-center product-text">@total.ToString("C")</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Frete</h5>
+                        <p class="card-text text-center frete-text">-</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Total</h5>
+                        <p class="card-text text-center total-text">-</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-right mt-5">
+                <a class="btn btn-warning p-3 disabled btn-proceed" asp-controller="Payment" asp-action="Index"><strong>Continuar para pagamento</strong></a>
+            </div>
+        </div>
+    </div>
+</div>
