@@ -11,7 +11,7 @@
         <aside class="col-sm-5 center">
                 <div class="card">
                     <article class="card-body">
-                        <a class="float-right btn btn-outline-primary" asp-action="Register" asp-controller="Home" asp-route-returnUrl="@Context.Request.Query["returnUrl"]">Criar conta</a>
+                        <a class="float-right btn btn-outline-primary" asp-controller="Client" asp-action="Register" asp-route-returnUrl="@Context.Request.Query["returnUrl"]">Criar conta</a>
                         <h4 class="card-title mb-4 mt-1 font-weight-light">Entre com sua conta!</h4>
                         <form method="post">
                             @if (TempData["MSG_S"] != null)

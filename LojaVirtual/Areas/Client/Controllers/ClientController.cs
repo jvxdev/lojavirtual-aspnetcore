@@ -31,6 +31,35 @@ namespace LojaVirtual.Areas.Client.Controllers
         }
 
 
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult Register([FromForm] Models.Client client, string returnUrl = null)
+        {
+            if (ModelState.IsValid)
+            {
+                _clientRepository.Create(client);
+                _clientLogin.Login(client);
+
+                if (returnUrl == null)
+                {
+                    return RedirectToAction("Index", "Home", new { area = "" });
+                }
+                else
+                {
+                    return LocalRedirectPermanent(returnUrl);
+                }
+            }
+
+            return View();
+        }
+
+
         [ClientAuthorization]
         [HttpGet]
         public IActionResult Update()
