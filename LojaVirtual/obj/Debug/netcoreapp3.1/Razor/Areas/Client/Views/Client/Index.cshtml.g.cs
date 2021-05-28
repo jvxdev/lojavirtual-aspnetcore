@@ -54,8 +54,22 @@ using X.PagedList;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 11 "C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\Areas\Client\Views\_ViewImports.cshtml"
+using Newtonsoft.Json;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\Areas\Client\Views\_ViewImports.cshtml"
+using LojaVirtual.Libraries.Text;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"030e3fdf7924da4a8d1025ac22c6d5469dd4bc01", @"/Areas/Client/Views/Client/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7adc452639fb0c2ced48a410501a111bbe57c3c1", @"/Areas/Client/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2675bfcba42b87437ed6793dd505f4d1281eff42", @"/Areas/Client/Views/_ViewImports.cshtml")]
     public class Areas_Client_Views_Client_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("btn btn-dark"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -106,7 +120,7 @@ using X.PagedList;
                     <h6 class=""card-subtitle mb-2 text-muted"">Dados pessoais</h6>
                     <p class=""card-text"">Altere seu e-mail e teu endereço residêncial</p>
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "030e3fdf7924da4a8d1025ac22c6d5469dd4bc016457", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "030e3fdf7924da4a8d1025ac22c6d5469dd4bc016890", async() => {
                 WriteLiteral(" Clique aqui para alterar");
             }
             );
@@ -134,7 +148,7 @@ using X.PagedList;
                     <h6 class=""card-subtitle mb-2 text-muted"">Endereço de entrega</h6>
                     <p class=""card-text"">Cadastre, altere ou remova os teus endereços de entrega</p>
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "030e3fdf7924da4a8d1025ac22c6d5469dd4bc018219", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "030e3fdf7924da4a8d1025ac22c6d5469dd4bc018652", async() => {
                 WriteLiteral("Clique aqui");
             }
             );
@@ -164,7 +178,7 @@ using X.PagedList;
                     <h6 class=""card-subtitle mb-2 text-muted"">Senha</h6>
                     <p class=""card-text"">Altere a senha da sua conta</p>
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "030e3fdf7924da4a8d1025ac22c6d5469dd4bc0110128", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "030e3fdf7924da4a8d1025ac22c6d5469dd4bc0110561", async() => {
                 WriteLiteral("Clique aqui para alterar");
             }
             );

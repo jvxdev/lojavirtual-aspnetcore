@@ -54,8 +54,22 @@ using X.PagedList;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 11 "C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\Areas\Client\Views\_ViewImports.cshtml"
+using Newtonsoft.Json;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\Areas\Client\Views\_ViewImports.cshtml"
+using LojaVirtual.Libraries.Text;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f087fecaafd9e9337926207020476e5365b724fe", @"/Areas/Client/Views/DeliveryAddress/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7adc452639fb0c2ced48a410501a111bbe57c3c1", @"/Areas/Client/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2675bfcba42b87437ed6793dd505f4d1281eff42", @"/Areas/Client/Views/_ViewImports.cshtml")]
     public class Areas_Client_Views_DeliveryAddress_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Update", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -163,7 +177,7 @@ using X.PagedList;
 #line hidden
 #nullable disable
             WriteLiteral("</p>\r\n                            </label>\r\n                        </td>\r\n                        <td>\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f087fecaafd9e9337926207020476e5365b724fe10342", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f087fecaafd9e9337926207020476e5365b724fe10775", async() => {
                 WriteLiteral("Editar");
             }
             );
@@ -258,7 +272,7 @@ WriteAttributeValue("", 1224, deliveryAddress.Id, 1224, 19, false);
 #line hidden
 #nullable disable
             WriteLiteral("</p>\r\n                                </label>\r\n                            </td>\r\n                            <td>\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f087fecaafd9e9337926207020476e5365b724fe15478", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f087fecaafd9e9337926207020476e5365b724fe15911", async() => {
                 WriteLiteral("Editar");
             }
             );
@@ -290,7 +304,7 @@ WriteAttributeValue("", 1224, deliveryAddress.Id, 1224, 19, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f087fecaafd9e9337926207020476e5365b724fe17807", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f087fecaafd9e9337926207020476e5365b724fe18240", async() => {
                 WriteLiteral("Remover");
             }
             );
@@ -330,7 +344,7 @@ WriteAttributeValue("", 1224, deliveryAddress.Id, 1224, 19, false);
 #line hidden
 #nullable disable
             WriteLiteral("                </tbody>\r\n            </table>\r\n\r\n            <div class=\"text-left mt-3\">\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f087fecaafd9e9337926207020476e5365b724fe20543", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f087fecaafd9e9337926207020476e5365b724fe20976", async() => {
                 WriteLiteral("Voltar");
             }
             );
@@ -349,7 +363,7 @@ WriteAttributeValue("", 1224, deliveryAddress.Id, 1224, 19, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f087fecaafd9e9337926207020476e5365b724fe22004", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f087fecaafd9e9337926207020476e5365b724fe22437", async() => {
                 WriteLiteral("Cadastrar novo endereço");
             }
             );

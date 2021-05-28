@@ -33,6 +33,7 @@ namespace LojaVirtual.Areas.Client.Controllers
         }
 
 
+        [HttpGet]
         public IActionResult Show(int Id)
         {
             Models.Client client = _clientLogin.GetClient();
