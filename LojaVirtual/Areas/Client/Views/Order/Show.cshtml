@@ -2,17 +2,42 @@
 
 @{
     ViewData["Title"] = "Visualizar pedido";
+
+    TransactionPagarMe transaction = JsonConvert.DeserializeObject<TransactionPagarMe>(Model.TransactionData);
+    List<ProductItem> products = JsonConvert.DeserializeObject<List<ProductItem>>(Model.ProductsData);
 }
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <span>Situação</span>
-            @Model.Situation
+            @foreach (var orderSituation in Model.OrderSituations)
+            {
+                orderSituation.Situation - orderSituation.Date
+            }
 
             <h3>Dados do comprador</h3>
+            @transaction.Customer.Name - @transaction.Customer.Birthday
+
             <h3>Informações da entrega</h3>
+            @transaction.Shipping.Name
+            @transaction.Shipping.Address.Zipcode
+            @transaction.Shipping.Address.State
+            @transaction.Shipping.Address.City
+            @transaction.Shipping.Address.Neighborhood
+            @transaction.Shipping.Address.Street
+            @transaction.Shipping.Address.StreetNumber
+            @Model.FreteCompany
+            @transaction.Shipping.Fee.ToString("C")
+            @Model.FreteTrackingCod
+
             <h3>Lista de produtos</h3>
+            @foreach (var product in products)
+            {
+                product.ItensKartAmount;
+                product.Name;
+                product.Price.ToString("C");
+                (product.Price * product.ItensKartAmount).ToString("C");
+            }
         </div>
     </div>
 </div>
