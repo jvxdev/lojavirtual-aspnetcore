@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Libraries.Login;
+using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -29,6 +30,21 @@ namespace LojaVirtual.Areas.Client.Controllers
             var orders = _orderRepository.ReadAll(Page, client.Id);
 
             return View(orders);
+        }
+
+
+        public IActionResult Show(int Id)
+        {
+            Models.Client client = _clientLogin.GetClient();
+
+            Order order = _orderRepository.Read(Id);
+
+            if (order.ClientId != client.Id)
+            {
+                return new ContentResult() { Content = "Acesso negado." };
+            }
+
+            return View(order);
         }
     }
 }

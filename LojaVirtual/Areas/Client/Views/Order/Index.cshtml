@@ -17,8 +17,10 @@
                 <tr>
                     <th scope="col">N° do pedido</th>
                     <th scope="col">Data da compra</th>
+                    <th scope="col">Forma de pegamento</th>
                     <th scope="col">Valor total</th>
                     <th scope="col">Situação do pedido</th>
+                    <th scope="col">NF-E</th>
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
@@ -28,9 +30,11 @@
                 <tr>
                     <td>@order.Id - @order.TransactionId</td>
                     <td>@order.RegistryDate.ToString("dd/MM/yyyy")</td>
+                    <td>@order.PaymentForm</td>
                     <td>@order.TotalValue</td>
                     <td>@order.Situation</td>
-                    <td><a href="#" class="btn btn-dark">Acompanhar</a></td>
+                    <td>@order.NFE</td>
+                    <td><a href="#" class="btn btn-dark" asp-action="Show" asp-route-id="@order.Id">Visualizar pedido</a></td>
                 </tr>
                 }
             </tbody>
