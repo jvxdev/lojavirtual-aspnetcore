@@ -9,13 +9,10 @@
     var birthDay = DateTime.Parse(transaction.Customer.Birthday);
 }
 
-<div class="container ">
+<div class="container">
     <div class="row">
         <div class="col-md-12 my-5">
-            @foreach (var orderSituation in Model.OrderSituations)
-            {
-                //orderSituation.Situation - orderSituation.Date
-            }
+            <vc:order-situation order="@Model" />
 
             <h3 class="display-4 text-center mb-5">Informações do pedido</h3>
             <table class="table table-bordered">
@@ -29,7 +26,7 @@
                 </tr>
             </table>
 
-            <h3 class="display-4 text-center my-5">Informações do endereço de entrega</h3>
+            <h3 class="display-4 text-center my-5">Endereço de entrega</h3>
             <table class="table table-bordered">
                 <tr>
                     <td colspan="6" class="text-center"><strong>@transaction.Shipping.Name</strong></td>
