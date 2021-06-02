@@ -8,7 +8,7 @@
 
     @{ await Html.RenderPartialAsync("~/Views/Shared/_Message.cshtml"); }
 
-    <h3 class="display-4 text-center my-5">Seus pedidos</h3>
+    <h3 class="display-4 text-center my-5">Meus pedidos</h3>
 
     @if (Model.Count > 0)
     {
@@ -33,7 +33,7 @@
                             <td>@order.Id - @order.TransactionId</td>
                             <td>@order.RegistryDate.ToString("dd/MM/yyyy")</td>
                             <td>@order.PaymentForm</td>
-                            <td>@order.TotalValue</td>
+                            <td>@order.TotalValue.ToString("C")</td>
                             <td>@order.Situation</td>
                             <td>@order.NFE</td>
                             <td><a class="btn btn-dark" asp-action="Show" asp-route-id="@order.Id">Visualizar pedido</a></td>

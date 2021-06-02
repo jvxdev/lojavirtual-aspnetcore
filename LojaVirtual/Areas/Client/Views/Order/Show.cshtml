@@ -4,7 +4,7 @@
     ViewData["Title"] = "Visualizar pedido";
 
     TransactionPagarMe transaction = JsonConvert.DeserializeObject<TransactionPagarMe>(Model.TransactionData);
-    List<ProductItem> products = JsonConvert.DeserializeObject<List<ProductItem>>(Model.ProductsData);
+    List<ProductItem> products = JsonConvert.DeserializeObject<List<ProductItem>>(Model.ProductsData, new JsonSerializerSettings() { ContractResolver = new ProductItemResolver<List<ProductItem>>() });
 
     var birthDay = DateTime.Parse(transaction.Customer.Birthday);
 }
@@ -55,7 +55,7 @@
                     <th>Nome</th>
                     <th>Quantidade</th>
                     <th>Valor (unid)</th>
-                    <th>Valor total</th>
+                    <th>Valor total (todas unid)</th>
                 </tr>
 
                 @foreach (var product in products)
@@ -64,9 +64,18 @@
                         <td>@product.Name</td>
                         <td>@product.ItensKartAmount</td>
                         <td>@product.Price.ToString("C")</td>
-                        <td>@(product.Price * product.ItensKartAmount).ToString("C")</td>
+                        <td>@((product.Price * product.ItensKartAmount).ToString("C"))</td>
                     </tr>
                 }
+
+                <tr>
+                    <td colspan="3"><strong>FRETE</strong></td>
+                    <td><strong>@Mask.ConvertPagarMeIntToDecimal(transaction.Shipping.Fee).ToString("C")</strong></td>
+                    </tr>
+                <tr>
+                    <td colspan="3"><strong>TOTAL</strong></td>
+                    <td><strong>@Model.TotalValue.ToString("C")</strong></td>
+                </tr>
             </table>
         </div>
     </div>
