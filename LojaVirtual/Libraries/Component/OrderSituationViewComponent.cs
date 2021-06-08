@@ -9,29 +9,25 @@ namespace LojaVirtual.Libraries.Component
 {
     public class OrderSituationViewComponent : ViewComponent
     {
-        List<OrderSituationStatus> timeline1 {
-            get 
-            {
-                var list = new List<OrderSituationStatus>();
-
-                list.Add(new OrderSituationStatus() { Situation = OrderSituationConst.AGUARDANDO_PAGAMENTO, Concluded = false });
-                list.Add(new OrderSituationStatus() { Situation = OrderSituationConst.PAGAMENTO_APROVADO, Concluded = false });
-                list.Add(new OrderSituationStatus() { Situation = OrderSituationConst.NF_EMITIDA, Concluded = false });
-                list.Add(new OrderSituationStatus() { Situation = OrderSituationConst.EM_TRANSPORTE, Concluded = false });
-                list.Add(new OrderSituationStatus() { Situation = OrderSituationConst.ENTREGUE, Concluded = false });
-                list.Add(new OrderSituationStatus() { Situation = OrderSituationConst.FINALIZADO, Concluded = false });
-                
-                return list;
-            } 
-        }
+        List<OrderSituationStatus> timeline1 { get; set; }
 
         public OrderSituationViewComponent()
         {
+            timeline1 = new List<OrderSituationStatus>();
+
+            timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.AGUARDANDO_PAGAMENTO, Concluded = false });
+            timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.PAGAMENTO_APROVADO, Concluded = false });
+            timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.NF_EMITIDA, Concluded = false });
+            timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.EM_TRANSPORTE, Concluded = false });
+            timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.ENTREGUE, Concluded = false });
+            timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.FINALIZADO, Concluded = false });
         }
 
 
         public async Task<IViewComponentResult> InvokeAsync(Order order)
         {
+            List<OrderSituationStatus> timeline = null;
+
             var listStatusTimeline1 = new List<string>()
             {
                 OrderSituationConst.AGUARDANDO_PAGAMENTO,
@@ -44,6 +40,8 @@ namespace LojaVirtual.Libraries.Component
 
             if (listStatusTimeline1.Contains(order.Situation))
             {
+                timeline = timeline1;
+
                 foreach (var orderSituation in order.OrderSituations)
                 {
                     var orderSituationTimeline = timeline1.Where(a => a.Situation == orderSituation.Situation).FirstOrDefault();
@@ -53,7 +51,7 @@ namespace LojaVirtual.Libraries.Component
                 }
             }
 
-            return View();
+            return View(timeline);
         }
     }
 }

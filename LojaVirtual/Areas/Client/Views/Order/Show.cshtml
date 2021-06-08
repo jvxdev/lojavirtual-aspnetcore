@@ -21,7 +21,10 @@
             <h3 class="display-4 text-center mb-5">Informações do pedido</h3>
             <table class="table table-bordered">
                 <tr>
-                    <td><strong>Nome:</strong> @transaction.Customer.Name</td>
+                    <td colspan="6" class="text-center"><strong>SITUAÇÃO DO PEDIDO:</strong> @Model.Situation</td>
+                </tr>
+                <tr>
+                    <td><strong>Cliente:</strong> @transaction.Customer.Name</td>
                     <td><strong>Data de nascimento:</strong> @birthDay.ToString("dd/MM/yyyy")</td>
                 </tr>
                 <tr>
