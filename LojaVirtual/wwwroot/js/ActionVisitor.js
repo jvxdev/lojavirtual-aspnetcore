@@ -10,7 +10,15 @@
     AjaxCalcularFrete(false);
 
     AjaxDeliveryAddressCalcularFrete();
+
+    OrderBtnImprimir();
 });
+
+function OrderBtnImprimir() {
+    $(".btn-imprimir").click(function () {
+        window.print();
+    })
+}
 
 function AjaxDeliveryAddressCalcularFrete() {
     $("input[name=deliveryAddress]").change(function () {

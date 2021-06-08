@@ -9,10 +9,10 @@
     {
         <li class="li @((orderStatus.Concluded) ? "complete" : "")">
             <div class="timestamp">
-                <span class="date">@orderStatus.Date</span>
+                <span class="date">@((orderStatus.Date != null) ? orderStatus.Date.ToString() : "-")</span>
             </div>
             <div class="status">
-                <h4> @orderStatus.Situation </h4>
+                <h4 class="font-weight-light"> @orderStatus.Situation </h4>
             </div>
         </li>
     }

@@ -11,13 +11,13 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12 my-5">
+        <div class="col-md-12 mt-5">
             <vc:order-situation order="@Model" />
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-12 my-5">
+        <div class="col-md-12">
             <h3 class="display-4 text-center mb-5">Informações do pedido</h3>
             <table class="table table-bordered">
                 <tr>
@@ -81,6 +81,9 @@
                     <td><strong>@Model.TotalValue.ToString("C")</strong></td>
                 </tr>
             </table>
+
+            <button class="mt-5 btn btn-dark btn-imprimir">Imprimir</button>
+
         </div>
     </div>
 </div>

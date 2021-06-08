@@ -10,7 +10,7 @@ namespace LojaVirtual.Models
         public string Situation { get; set; }
 
 
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
 
         public bool Concluded { get; set; }
