@@ -15,7 +15,7 @@ namespace LojaVirtual.Libraries.Component
         {
             timeline1 = new List<OrderSituationStatus>();
 
-            timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.AGUARDANDO_PAGAMENTO, Concluded = false });
+            timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.PEDIDO_REALIZADO, Concluded = false });
             timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.PAGAMENTO_APROVADO, Concluded = false });
             timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.NF_EMITIDA, Concluded = false });
             timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.EM_TRANSPORTE, Concluded = false });
@@ -30,7 +30,7 @@ namespace LojaVirtual.Libraries.Component
 
             var listStatusTimeline1 = new List<string>()
             {
-                OrderSituationConst.AGUARDANDO_PAGAMENTO,
+                OrderSituationConst.PEDIDO_REALIZADO,
                 OrderSituationConst.PAGAMENTO_APROVADO,
                 OrderSituationConst.NF_EMITIDA,
                 OrderSituationConst.EM_TRANSPORTE,

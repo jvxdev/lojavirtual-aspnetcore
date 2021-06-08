@@ -181,7 +181,7 @@ namespace LojaVirtual.Controllers
 
             orderSituation = _mapper.Map<ProductTransaction, OrderSituation>(pt, orderSituation);
 
-            orderSituation.Situation = OrderSituationConst.AGUARDANDO_PAGAMENTO;
+            orderSituation.Situation = OrderSituationConst.PEDIDO_REALIZADO;
 
             _orderSituationRepository.Create(orderSituation);
         }
@@ -193,7 +193,7 @@ namespace LojaVirtual.Controllers
             order = _mapper.Map<TransactionPagarMe, Order>(transactionPagarMe);
             order = _mapper.Map<List<ProductItem>, Order>(products, order);
 
-            order.Situation = OrderSituationConst.AGUARDANDO_PAGAMENTO;
+            order.Situation = OrderSituationConst.PEDIDO_REALIZADO;
 
             _orderRepository.Create(order);
         }

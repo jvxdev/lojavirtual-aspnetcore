@@ -2,7 +2,7 @@
 {
     public class OrderSituationConst
     {
-        public const string AGUARDANDO_PAGAMENTO = "Aguardando pagamento";
+        public const string PEDIDO_REALIZADO = "Pedido realizado";
         public const string PAGAMENTO_APROVADO = "Pagamento aprovado";
         public const string PAGAMENTO_REJEITADO = "Pagamento rejeitado";
         public const string NF_EMITIDA = "Nota fiscal emitida";
@@ -22,6 +22,7 @@
                 if ((string)field.GetValue(null) == code)
                     return field.Name.ToString();
             }
+
             return "";
         }
     }
