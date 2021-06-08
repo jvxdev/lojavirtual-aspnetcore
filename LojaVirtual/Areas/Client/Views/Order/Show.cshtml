@@ -13,7 +13,11 @@
     <div class="row">
         <div class="col-md-12 my-5">
             <vc:order-situation order="@Model" />
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-md-12 my-5">
             <h3 class="display-4 text-center mb-5">Informações do pedido</h3>
             <table class="table table-bordered">
                 <tr>
@@ -42,7 +46,7 @@
                 <tr>
                     <td><strong>Empresa de entrega:</strong> @Model.FreteCompany</td>
                     <td><strong>Valor do frete:</strong> @Mask.ConvertPagarMeIntToDecimal(transaction.Shipping.Fee).ToString("C")</td>
-                    <td><strong>Código de rastreamento:</strong> @Model.FreteTrackingCod</td>
+                    <td colspan="4"><strong>Código de rastreamento:</strong> @Model.FreteTrackingCod</td>
                 </tr>
             </table>
 
@@ -68,7 +72,7 @@
                 <tr>
                     <td colspan="3"><strong>FRETE</strong></td>
                     <td><strong>@Mask.ConvertPagarMeIntToDecimal(transaction.Shipping.Fee).ToString("C")</strong></td>
-                    </tr>
+                </tr>
                 <tr>
                     <td colspan="3"><strong>TOTAL</strong></td>
                     <td><strong>@Model.TotalValue.ToString("C")</strong></td>
