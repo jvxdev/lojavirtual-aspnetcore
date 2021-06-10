@@ -42,6 +42,27 @@ namespace LojaVirtual.Repositories
             return _database.Orders.Include(a => a.OrderSituations).ToPagedList<Order>(pageNumber, registryPerPage);
         }
 
+        public IPagedList<Order> ReadAllOrders(int? Page, string codOrder, string cpf)
+        {
+            int registryPerPage = _conf.GetValue<int>("registryPerPage");
+            int pageNumber = Page ?? 1;
+
+            var query = _database.Orders.Include(a => a.OrderSituations).AsQueryable();
+
+            if (cpf != null)
+            {
+                query.Where(a => a.Client.CPF == cpf);
+            }
+
+            if (codOrder != null)
+            {
+                codOrder
+
+                query = query.Where(a => a.Id == id && a.TransactionId == transactionId);
+            }
+
+            return query.ToPagedList<Order>(pageNumber, registryPerPage);
+        }
 
         public void Update(Order order)
         {

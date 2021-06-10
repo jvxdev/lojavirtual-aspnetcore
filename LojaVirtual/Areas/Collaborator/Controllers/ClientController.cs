@@ -32,14 +32,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         {
             Models.Client client = _clientRepository.Read(Id);
 
-            if (client.Situation == SituationConst.Active)
-            {
-                client.Situation = SituationConst.Deactivate;
-            }
-            else
-            {
-                client.Situation = SituationConst.Active;
-            }
+            client.Situation = (client.Situation == SituationConst.Active) ? client.Situation = SituationConst.Deactivate : client.Situation = SituationConst.Active;
 
             _clientRepository.Update(client);
 

@@ -47,7 +47,7 @@ namespace LojaVirtual.Migrations
                     HouseNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Situation = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Situation = table.Column<string>(type: "nvarchar(max)", nullable: true, defaultValue: "A")
                 },
                 constraints: table =>
                 {

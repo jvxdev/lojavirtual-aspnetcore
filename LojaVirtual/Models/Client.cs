@@ -87,7 +87,6 @@ namespace LojaVirtual.Models
 
 
         [Display(Name = "Situação da conta")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public string Situation { get; set; }
 
 

@@ -14,6 +14,9 @@ namespace LojaVirtual.Repositories.Contracts
         IPagedList<Order> ReadAll(int? Page, int ClientId);
 
 
+        IPagedList<Order> ReadAllOrders(int? Page, string codOrder, string cpf);
+
+
         void Update(Order order);
     }
 }
