@@ -19,9 +19,9 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         }
 
 
-        public IActionResult Index(int? Page, string codOrder, string Cpf)
+        public IActionResult Index(int? Page, string codOrder, string cpf)
         {
-            var orders = _orderRepository.ReadAllOrders(Page, codOrder, Cpf);
+            var orders = _orderRepository.ReadAllOrders(Page, codOrder, cpf);
 
             return View(orders);
         }
