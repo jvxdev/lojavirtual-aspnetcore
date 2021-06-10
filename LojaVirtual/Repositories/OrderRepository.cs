@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Database;
+using LojaVirtual.Libraries.Text;
 using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
@@ -42,21 +43,23 @@ namespace LojaVirtual.Repositories
             return _database.Orders.Include(a => a.OrderSituations).ToPagedList<Order>(pageNumber, registryPerPage);
         }
 
-        public IPagedList<Order> ReadAllOrders(int? Page, string codOrder, string cpf)
+        public IPagedList<Order> ReadAllOrders(int? Page, string codOrder, string Cpf)
         {
             int registryPerPage = _conf.GetValue<int>("registryPerPage");
             int pageNumber = Page ?? 1;
 
-            var query = _database.Orders.Include(a => a.OrderSituations).AsQueryable();
+            var query = _database.Orders.Include(a => a.OrderSituations).Include(a => a.Client).AsQueryable();
 
-            if (cpf != null)
+            if (Cpf != null)
             {
-                query.Where(a => a.Client.CPF == cpf);
+                query.Where(a => a.Client.CPF == Cpf);
             }
 
             if (codOrder != null)
             {
-                codOrder
+                string transactionId = string.Empty;
+
+                int id = Mask.ExtractCodOrder(codOrder, out transactionId);
 
                 query = query.Where(a => a.Id == id && a.TransactionId == transactionId);
             }

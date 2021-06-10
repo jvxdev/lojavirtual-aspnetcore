@@ -27,5 +27,15 @@
 
             return dec;
         }
+
+
+        public static int ExtractCodOrder(string codOrder, out string transactionId)
+        {
+            string[] resultSplit = codOrder.Split("-");
+
+            transactionId = resultSplit[1];
+
+            return int.Parse(resultSplit[0]);
+        }
     }
 }
