@@ -1,0 +1,87 @@
+﻿@{
+    ViewData["Title"] = "Visualizar pedido";
+    TransactionPagarMe transaction = JsonConvert.DeserializeObject<TransactionPagarMe>(Model.TransactionData);
+    List<ProductItem> products = JsonConvert.DeserializeObject<List<ProductItem>>(Model.ProductsData, new JsonSerializerSettings() { ContractResolver = new ProductItemResolver<List<ProductItem>>() });
+
+    var birthDay = DateTime.Parse(transaction.Customer.Birthday);
+}
+
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-12">
+            <vc:order-situation order="@Model" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="display-4 text-center mb-4">Informações do pedido</h3>
+            <table class="table table-bordered">
+                <tr>
+                    <td colspan="6" class="text-center"><strong>SITUAÇÃO DO PEDIDO:</strong> @Model.Situation</td>
+                </tr>
+                <tr>
+                    <td><strong>Cliente:</strong> @transaction.Customer.Name</td>
+                    <td><strong>Data de nascimento:</strong> @birthDay.ToString("dd/MM/yyyy")</td>
+                </tr>
+                <tr>
+                    <td><strong>Forma de pagamento:</strong> @Model.PaymentForm</td>
+                    <td><strong>N° nota fiscal:</strong> @Model.NFE</td>
+                </tr>
+            </table>
+
+            <h3 class="display-4 text-center my-4">Endereço de entrega</h3>
+            <table class="table table-bordered">
+                <tr>
+                    <td colspan="6" class="text-center"><strong>@transaction.Shipping.Name</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>CEP:</strong> @transaction.Shipping.Address.Zipcode</td>
+                    <td><strong>Estado:</strong> @transaction.Shipping.Address.State</td>
+                    <td><strong>Cidade:</strong> @transaction.Shipping.Address.City</td>
+                    <td><strong>Bairro:</strong> @transaction.Shipping.Address.Neighborhood</td>
+                    <td><strong>Rua:</strong> @transaction.Shipping.Address.Street</td>
+                    <td><strong>N° casa/apart:</strong> @transaction.Shipping.Address.StreetNumber</td>
+                </tr>
+                <tr>
+                    <td><strong>Empresa de entrega:</strong> @Model.FreteCompany</td>
+                    <td><strong>Valor do frete:</strong> @Mask.ConvertPagarMeIntToDecimal(transaction.Shipping.Fee).ToString("C")</td>
+                    <td colspan="4"><strong>Código de rastreamento:</strong> @Model.FreteTrackingCod</td>
+                </tr>
+            </table>
+
+            <h3 class="display-4 text-center my-4">Produtos do pedido</h3>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Nome</th>
+                    <th>Quantidade</th>
+                    <th>Valor (unid)</th>
+                    <th>Valor total (todas unid)</th>
+                </tr>
+
+                @foreach (var product in products)
+                {
+                    <tr>
+                        <td>@product.Name</td>
+                        <td>@product.ItensKartAmount</td>
+                        <td>@product.Price.ToString("C")</td>
+                        <td>@((product.Price * product.ItensKartAmount).ToString("C"))</td>
+                    </tr>
+                }
+
+                <tr>
+                    <td colspan="3"><strong>FRETE</strong></td>
+                    <td><strong>@Mask.ConvertPagarMeIntToDecimal(transaction.Shipping.Fee).ToString("C")</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="3"><strong>TOTAL</strong></td>
+                    <td><strong>@Model.TotalValue.ToString("C")</strong></td>
+                </tr>
+            </table>
+
+            <button class="mt-5 btn btn-dark btn-imprimir">Imprimir</button>
+
+        </div>
+    </div>
+</div>
+

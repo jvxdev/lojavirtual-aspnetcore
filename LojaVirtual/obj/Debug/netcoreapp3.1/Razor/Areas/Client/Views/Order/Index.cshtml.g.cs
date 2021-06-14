@@ -63,20 +63,20 @@ using Newtonsoft.Json;
 #nullable disable
 #nullable restore
 #line 13 "C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\Areas\Client\Views\_ViewImports.cshtml"
-using LojaVirtual.Libraries.Text;
+using LojaVirtual.Libraries.Json.Resolver;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\Areas\Client\Views\_ViewImports.cshtml"
-using LojaVirtual.Libraries.Json.Resolver;
+using LojaVirtual.Libraries.Text;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5b8cd662eee05b09239a4c5836bbff0abb574e7f", @"/Areas/Client/Views/Order/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"51489c8c01398815a41a95753129e2be6108ff3c", @"/Areas/Client/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"91eec42277e3398aa950d3a2d36a21085de3ff73", @"/Areas/Client/Views/_ViewImports.cshtml")]
     public class Areas_Client_Views_Order_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IPagedList<Order>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("btn btn-dark"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
