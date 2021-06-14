@@ -7,7 +7,7 @@
     var searchCpf = Context.Request.Query["cpf"];
 }
 
-<div class="container">
+<div>
     @{ await Html.RenderPartialAsync("~/Views/Shared/_Message.cshtml"); }
 
     @if (Model.Count > 0)
@@ -16,18 +16,18 @@
 
         <form method="get">
             <div>
-                <label for="numOrder" class="form-label font-weight-bold">N° DO PEDIDO</label>
+                <label for="numOrder" class="form-label font-weight-bold">N° do pedido</label>
                 <input type="text" class="form-control" name="codOrder" id="numOrder" value="@searchCodOrder" placeholder="Digite o número do pedido">
             </div>
             <div class="my-2">
-                <label for="cpf" class="form-label font-weight-bold">CPF</label>
+                <label for="cpf" class="form-label font-weight-bold">CPF do cliente</label>
                 <input type="text" class="form-control" name="cpf" id="cpf" value="@searchCpf" placeholder="Digite o CPF do cliente">
             </div>
 
             <button type="submit" class="btn btn-primary mt-2">Buscar pedido</button>
         </form>
 
-        <h3 class="display-4 my-4">Todos pedidos registrados</h3>
+        <h3 class="my-4 font-weight-normal text-center">Todos pedidos registrados</h3>
 
         <div class="table-responsive">
             <table class="table">
@@ -70,7 +70,7 @@
             <br />
             <div class="row">
                 <div class="col-md-12 text-center display-4">
-                    Não encontramos nenhum pedido. Você já fez alguma compra em nossa loja?
+                    Não encontramos nenhum pedido. Você digitiu o número do pedido ou o CPF do cliente corretamente?
                 </div>
             </div>
         </div>

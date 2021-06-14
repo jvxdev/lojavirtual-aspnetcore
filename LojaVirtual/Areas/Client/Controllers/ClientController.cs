@@ -1,6 +1,7 @@
 ﻿using LojaVirtual.Libraries.Filters;
 using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Libraries.Login;
+using LojaVirtual.Models.Const;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -43,6 +44,8 @@ namespace LojaVirtual.Areas.Client.Controllers
         {
             if (ModelState.IsValid)
             {
+                client.Situation = SituationConst.Active;
+
                 _clientRepository.Create(client);
                 _clientLogin.Login(client);
 

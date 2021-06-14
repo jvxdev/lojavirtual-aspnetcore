@@ -5,18 +5,15 @@
     var Search = Context.Request.Query["Search"];
 }
 
-<h1 class="my-4">Clientes</h1>
+<h1 class="mt-4 display-4">Clientes</h1>
 
 <form method="get">
     <div class="form-group">
         <label for="Search" class="form-label"></label>
         <input type="text" for="Search" name="Search" value="@Search" id="Search" class="form-control" placeholder="Digite o nome ou e-mail do cliente.">
     </div>
-    <button type="submit" class="btn btn-primary">Pesquisar</button>
+    <button type="submit" class="btn btn-primary mb-3">Buscar cliente</button>
 </form>
-
-<br />
-<br />
 
 @if (TempData["MSG_S"] != null)
 {
