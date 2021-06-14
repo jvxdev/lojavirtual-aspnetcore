@@ -80,7 +80,7 @@ namespace LojaVirtual.Repositories
 
         public List<Order> GetAllOrdersPlaced()
         {
-            return _database.Orders.Include(a => a.OrderSituations).Where(a => a.Situation == OrderSituationConst.PEDIDO_REALIZADO).ToList();
+            return _database.Orders.Include(a => a.OrderSituations).Include(a => a.Client).Where(a => a.Situation == OrderSituationConst.PEDIDO_REALIZADO).ToList();
         }
     }
 }

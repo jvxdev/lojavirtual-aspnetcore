@@ -37,7 +37,8 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
 
             foreach (var order in ordersPlaced)
             {
-                string situation = String.Empty;
+                string situation = null;
+
                 var transaction = _managePagarMe.GetTransaction(order.TransactionId);
 
                 if (transaction.Status == TransactionStatus.Refused)
@@ -47,14 +48,14 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
 
                 if (transaction.Status == TransactionStatus.Authorized || transaction.Status == TransactionStatus.Paid)
                 {
-                    
-
                     situation = OrderSituationConst.PAGAMENTO_APROVADO;
                 }
                     
                 if (situation != null)
                 {
                     TransactionPagarMe transactionPagarMe = _mapper.Map<Transaction, TransactionPagarMe>(transaction);
+
+                    transactionPagarMe.Customer.Gender = (order.Client.Sex == "M") ? Gender.Male : Gender.Female;
 
                     OrderSituation orderSituation = new OrderSituation();
 
