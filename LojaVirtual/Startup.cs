@@ -20,6 +20,8 @@ using System.Net;
 using System.Net.Mail;
 using WSCorreios;
 using AutoMapper;
+using Coravel;
+using LojaVirtual.Libraries.Manager.Scheduler.Invocable;
 
 namespace LojaVirtual
 {
@@ -96,6 +98,10 @@ namespace LojaVirtual
             string connection = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=LojaVirtual;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
             services.AddDbContext<LojaVirtualContext>(options => options.UseSqlServer(connection));
+
+            services.AddTransient<OrderPaymentSituationJob>();
+
+            services.AddScheduler();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -136,7 +142,12 @@ namespace LojaVirtual
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            //Scheduler - Coravel
 
+            app.ApplicationServices.UseScheduler(scheduler =>
+            {
+                scheduler.Schedule<OrderPaymentSituationJob>().EveryTenSeconds();
+            });
         }
     }
 }

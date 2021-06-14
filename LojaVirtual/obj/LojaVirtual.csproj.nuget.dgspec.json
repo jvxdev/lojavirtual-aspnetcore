@@ -44,6 +44,10 @@
               "target": "Package",
               "version": "[6.1.0, )"
             },
+            "Coravel": {
+              "target": "Package",
+              "version": "[2.5.1, )"
+            },
             "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
               "target": "Package",
               "version": "[3.1.12, )"
