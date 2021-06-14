@@ -1,9 +1,11 @@
 ﻿using LojaVirtual.Database;
 using LojaVirtual.Libraries.Text;
 using LojaVirtual.Models;
+using LojaVirtual.Models.Const;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 using System.Linq;
 using X.PagedList;
 
@@ -28,6 +30,7 @@ namespace LojaVirtual.Repositories
             _database.SaveChanges();
         }
 
+        
 
         public Order Read(int Id)
         {
@@ -67,10 +70,17 @@ namespace LojaVirtual.Repositories
             return query.ToPagedList<Order>(pageNumber, registryPerPage);
         }
 
+
         public void Update(Order order)
         {
             _database.Update(order);
             _database.SaveChanges();
+        }
+
+
+        public List<Order> GetAllOrdersPlaced()
+        {
+            return _database.Orders.Include(a => a.OrderSituations).Where(a => a.Situation == OrderSituationConst.PEDIDO_REALIZADO).ToList();
         }
     }
 }

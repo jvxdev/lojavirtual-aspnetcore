@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Models;
+using System.Collections.Generic;
 using X.PagedList;
 
 namespace LojaVirtual.Repositories.Contracts
@@ -15,6 +16,9 @@ namespace LojaVirtual.Repositories.Contracts
 
 
         IPagedList<Order> ReadAllOrders(int? Page, string codOrder, string cpf);
+
+
+        List<Order> GetAllOrdersPlaced();
 
 
         void Update(Order order);
