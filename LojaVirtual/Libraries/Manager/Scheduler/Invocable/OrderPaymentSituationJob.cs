@@ -41,6 +41,11 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
 
                 var transaction = _managePagarMe.GetTransaction(order.TransactionId);
 
+                if (transaction.Status == TransactionStatus.WaitingPayment && transaction.PaymentMethod == PaymentMethod.Boleto && DateTime.Now > order.RegistryDate.AddDays(5))
+                {
+                    situation = OrderSituationConst.PAGAMENTO_NAO_REALIZADO;
+                }
+
                 if (transaction.Status == TransactionStatus.Refused)
                 {
                     situation = OrderSituationConst.PAGAMENTO_REJEITADO;

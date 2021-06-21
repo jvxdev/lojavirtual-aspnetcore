@@ -7,8 +7,8 @@ namespace LojaVirtual.Models.Const
 {
     public class PaymentMethodConst
     {
-        public const string CreditCard = "Cartão de crédito";
-        public const string Boleto = "Boleto";
+        public const string CreditCard = "Cartão de Crédito";
+        public const string Boleto = "Boleto Bancário";
 
         public static string GetName(string code)
         {
