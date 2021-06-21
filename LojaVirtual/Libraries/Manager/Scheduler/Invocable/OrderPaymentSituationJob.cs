@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Coravel.Invocable;
+using LojaVirtual.Libraries.Json.Resolver;
 using LojaVirtual.Libraries.Manager.Payment;
 using LojaVirtual.Models;
 using LojaVirtual.Models.Const;
+using LojaVirtual.Models.ProductAggregator;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -20,15 +22,17 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
         private ManagePagarMe _managePagarMe;
         private IOrderRepository _orderRepository;
         private IOrderSituationRepository _orderSituationRepository;
+        private IProductRepository _productRepository;
         private IMapper _mapper;
         private IConfiguration _conf;
 
 
-        public OrderPaymentSituationJob(ManagePagarMe managePagarMe, IOrderRepository orderRepository, IOrderSituationRepository orderSituationRepository, IMapper mapper, IConfiguration conf)
+        public OrderPaymentSituationJob(ManagePagarMe managePagarMe, IOrderRepository orderRepository, IOrderSituationRepository orderSituationRepository, IProductRepository productRepository, IMapper mapper, IConfiguration conf)
         {
             _managePagarMe = managePagarMe;
             _orderRepository = orderRepository;
             _orderSituationRepository = orderSituationRepository;
+            _productRepository = productRepository;
             _mapper = mapper;
             _conf = conf;
         }
@@ -49,11 +53,15 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
                 if (transaction.Status == TransactionStatus.WaitingPayment && transaction.PaymentMethod == PaymentMethod.Boleto && DateTime.Now > order.RegistryDate.AddDays(ToleranceDays))
                 {
                     situation = OrderSituationConst.PAGAMENTO_NAO_REALIZADO;
+
+                    ProductsRefundStock(order); 
                 }
 
                 if (transaction.Status == TransactionStatus.Refused)
                 {
                     situation = OrderSituationConst.PAGAMENTO_REJEITADO;
+
+                    ProductsRefundStock(order);
                 }
 
                 if (transaction.Status == TransactionStatus.Authorized || transaction.Status == TransactionStatus.Paid)
@@ -76,15 +84,31 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
 
                     _orderSituationRepository.Create(orderSituation);
 
-                    order.Situation = OrderSituationConst.PAGAMENTO_APROVADO;
+                    order.Situation = situation;
 
                     _orderRepository.Update(order);
                 }
             }
 
-            Debug.WriteLine("----- OrderPaymentSituationJob - Executado -----");
+            Debug.WriteLine("OrderPaymentSituationJob - Executado");
 
             return Task.CompletedTask;
+        }
+
+
+        private void ProductsRefundStock(Order order)
+        {
+            List<ProductItem> products = JsonConvert.DeserializeObject<List<ProductItem>>(order.ProductsData, new JsonSerializerSettings() { ContractResolver = new ProductItemResolver<List<ProductItem>>() });
+        
+            foreach(var product in products)
+            {
+                Product productDB = _productRepository.Read(product.Id);
+
+                productDB.Amount += product.ItensKartAmount;
+
+                _productRepository.Update(productDB);
+            }
+        
         }
     }
 }
