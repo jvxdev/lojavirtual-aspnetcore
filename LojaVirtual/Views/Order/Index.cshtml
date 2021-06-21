@@ -54,7 +54,7 @@
 
             @if (Model.PaymentForm == PaymentMethodConst.Boleto)
             {
-                <h3 class="display-4 m-5">Boleto bancário</h3>
+                <h3 class="display-4 m-5">Boleto Bancário</h3>
                 <iframe src="@ViewBag.Transaction.BoletoUrl" style="width: 100%; min-height: 400px; border: 1px solid #CCC;"></iframe>
                 <a href="@ViewBag.Transaction.BoletoUrl" class="btn btn-success mt-3">Imprimir boleto</a>
             }

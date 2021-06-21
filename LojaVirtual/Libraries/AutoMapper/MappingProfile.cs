@@ -2,6 +2,7 @@
 using LojaVirtual.Libraries.Json.Resolver;
 using LojaVirtual.Libraries.Text;
 using LojaVirtual.Models;
+using LojaVirtual.Models.Const;
 using LojaVirtual.Models.ProductAggregator;
 using Newtonsoft.Json;
 using PagarMe;
@@ -52,7 +53,7 @@ namespace LojaVirtual.Libraries.AutoMapper
                 .ForMember(
                 dest => dest.PaymentForm,
                 opt => opt.MapFrom(
-                orig => (orig.PaymentMethod == 0) ? PaymentMethod.CreditCard : PaymentMethod.Boleto
+                orig => (orig.PaymentMethod == 0) ? PaymentMethodConst.CreditCard : PaymentMethodConst.Boleto
                 ))
                 .ForMember(
                 dest => dest.TransactionData,
