@@ -68,6 +68,13 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
                 {
                     situation = OrderSituationConst.PAGAMENTO_APROVADO;
                 }
+
+                if (transaction.Status == TransactionStatus.Refunded || transaction.Status == TransactionStatus.Refunded)
+                {
+                    situation = OrderSituationConst.ESTORNO;
+
+                    ProductsRefundStock(order);
+                }
                     
                 if (situation != null)
                 {
@@ -90,7 +97,7 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
                 }
             }
 
-            Debug.WriteLine("OrderPaymentSituationJob - Executado");
+            Debug.WriteLine("OrderPaymentSituationJob - EXECUTANDO");
 
             return Task.CompletedTask;
         }
