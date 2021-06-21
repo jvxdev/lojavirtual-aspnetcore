@@ -28,11 +28,13 @@ namespace LojaVirtual.Libraries.Manager.Payment
 
             PagarMeService.DefaultApiKey = _conf.GetValue<String>("Payment:PagarMe:ApiKey");
             PagarMeService.DefaultEncryptionKey = _conf.GetValue<String>("Payment:PagarMe:EcryptionKey");
+            int ExpirationDays = _conf.GetValue<int>("Payment:PagarMe:BoletoExpirationDays");
 
             Transaction transaction = new Transaction();
 
             transaction.Amount = Convert.ToInt32(value);
             transaction.PaymentMethod = PaymentMethod.Boleto;
+            transaction.BoletoExpirationDate = DateTime.Now.AddDays(ExpirationDays);
 
             transaction.Customer = new Customer
             {

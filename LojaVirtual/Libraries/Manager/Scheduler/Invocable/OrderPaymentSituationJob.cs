@@ -4,6 +4,7 @@ using LojaVirtual.Libraries.Manager.Payment;
 using LojaVirtual.Models;
 using LojaVirtual.Models.Const;
 using LojaVirtual.Repositories.Contracts;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using PagarMe;
 using System;
@@ -20,14 +21,16 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
         private IOrderRepository _orderRepository;
         private IOrderSituationRepository _orderSituationRepository;
         private IMapper _mapper;
+        private IConfiguration _conf;
 
 
-        public OrderPaymentSituationJob(ManagePagarMe managePagarMe, IOrderRepository orderRepository, IOrderSituationRepository orderSituationRepository, IMapper mapper)
+        public OrderPaymentSituationJob(ManagePagarMe managePagarMe, IOrderRepository orderRepository, IOrderSituationRepository orderSituationRepository, IMapper mapper, IConfiguration conf)
         {
             _managePagarMe = managePagarMe;
             _orderRepository = orderRepository;
             _orderSituationRepository = orderSituationRepository;
             _mapper = mapper;
+            _conf = conf;
         }
 
 
@@ -41,7 +44,9 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
 
                 var transaction = _managePagarMe.GetTransaction(order.TransactionId);
 
-                if (transaction.Status == TransactionStatus.WaitingPayment && transaction.PaymentMethod == PaymentMethod.Boleto && DateTime.Now > order.RegistryDate.AddDays(5))
+                int ToleranceDays =_conf.GetValue<int>("Payment:PagarMe:BoletoExpirationDays") + _conf.GetValue<int>("Payment:PagarMe:BoletoToleranceDays");
+
+                if (transaction.Status == TransactionStatus.WaitingPayment && transaction.PaymentMethod == PaymentMethod.Boleto && DateTime.Now > order.RegistryDate.AddDays(ToleranceDays))
                 {
                     situation = OrderSituationConst.PAGAMENTO_NAO_REALIZADO;
                 }
