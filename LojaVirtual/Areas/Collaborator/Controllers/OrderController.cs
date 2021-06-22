@@ -46,7 +46,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         {
             string Url = HttpContext.Request.Form["nfe_url"];
 
-            Order order =_orderRepository.Read(Id);
+            Order order = _orderRepository.Read(Id);
 
             order.NFE = Url;
             order.Situation = OrderSituationConst.NF_EMITIDA;
