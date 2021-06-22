@@ -46,16 +46,16 @@ namespace LojaVirtual.Repositories
             return _database.Orders.Include(a => a.OrderSituations).ToPagedList<Order>(pageNumber, registryPerPage);
         }
 
-        public IPagedList<Order> ReadAllOrders(int? Page, string codOrder, string cpf)
+        public IPagedList<Order> ReadAllOrders(int? Page, string codOrder, string Cpf)
         {
             int registryPerPage = _conf.GetValue<int>("registryPerPage");
             int pageNumber = Page ?? 1;
 
             var query = _database.Orders.Include(a => a.OrderSituations).Include(a => a.Client).AsQueryable();
 
-            if (cpf != null)
+            if (Cpf != null)
             {
-                query = query.Where(a => a.Client.CPF == cpf);
+                query = query.Where(a => a.Client.CPF == Cpf);
             }
 
             if (codOrder != null)

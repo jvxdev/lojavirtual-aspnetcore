@@ -15,7 +15,7 @@ namespace LojaVirtual.Repositories.Contracts
         IPagedList<Order> ReadAll(int? Page, int ClientId);
 
 
-        IPagedList<Order> ReadAllOrders(int? Page, string codOrder, string cpf);
+        IPagedList<Order> ReadAllOrders(int? Page, string codOrder, string Cpf);
 
 
         List<Order> GetAllOrdersPlaced();

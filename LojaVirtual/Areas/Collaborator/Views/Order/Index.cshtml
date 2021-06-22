@@ -4,7 +4,7 @@
     ViewData["Title"] = "Registro de pedidos";
 
     var searchCodOrder = Context.Request.Query["codOrder"];
-    var searchCpf = Context.Request.Query["cpf"];
+    var searchCpf = Context.Request.Query["Cpf"];
 }
 
 <div>
@@ -20,14 +20,14 @@
                 <input type="text" class="form-control" name="codOrder" id="numOrder" value="@searchCodOrder" placeholder="Digite o número do pedido">
             </div>
             <div class="my-2">
-                <label for="cpf" class="form-label font-weight-bold">CPF do cliente</label>
-                <input type="text" class="form-control" name="cpf" id="cpf" value="@searchCpf" placeholder="Digite o CPF do cliente">
+                <label for="Cpf" class="form-label font-weight-bold">CPF do cliente</label>
+                <input type="text" class="form-control" name="Cpf" id="Cpf" value="@searchCpf" placeholder="Digite o CPF do cliente">
             </div>
 
             <button type="submit" class="btn btn-primary mt-2">Buscar pedido</button>
         </form>
 
-        <h3 class="my-4 font-weight-normal text-center">Todos pedidos registrados</h3>
+        <h3 class="my-4 font-weight-normal">Todos pedidos registrados</h3>
 
         <div class="table-responsive">
             <table class="table">

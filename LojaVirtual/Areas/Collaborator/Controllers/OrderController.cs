@@ -1,5 +1,7 @@
 ﻿using LojaVirtual.Libraries.Filters;
 using LojaVirtual.Models;
+using LojaVirtual.Models.Const;
+using LojaVirtual.Repositories;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,17 +16,19 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
     public class OrderController : Controller
     {
         private IOrderRepository _orderRepository;
+        private IOrderSituationRepository _orderSituationRepository;
 
 
-        public OrderController(IOrderRepository orderRepository)
+        public OrderController(IOrderRepository orderRepository, IOrderSituationRepository orderSituationRepository)
         {
             _orderRepository = orderRepository;
+            _orderSituationRepository = orderSituationRepository;
         }
 
 
-        public IActionResult Index(int? Page, string codOrder, string cpf)
+        public IActionResult Index(int? Page, string codOrder, string Cpf)
         {
-            var orders = _orderRepository.ReadAllOrders(Page, codOrder, cpf);
+            var orders = _orderRepository.ReadAllOrders(Page, codOrder, Cpf);
 
             return View(orders);
         }
@@ -35,6 +39,29 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             Order order = _orderRepository.Read(Id);
 
             return View(order);
+        }
+
+
+        public IActionResult NFE(int Id)
+        {
+            string Url = HttpContext.Request.Form["nfe_url"];
+
+            Order order =_orderRepository.Read(Id);
+
+            order.NFE = Url;
+            order.Situation = OrderSituationConst.NF_EMITIDA;
+
+            var orderSituation = new OrderSituation();
+            orderSituation.Date = DateTime.Now;
+            orderSituation.Data = Url;
+            orderSituation.OrderId = Id;
+            orderSituation.Situation = OrderSituationConst.NF_EMITIDA;
+
+            _orderSituationRepository.Create(orderSituation);
+
+            _orderRepository.Update(order);
+
+            return RedirectToAction(nameof(Show), new { Id = Id });
         }
     }
 }
