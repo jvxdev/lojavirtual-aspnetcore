@@ -14,5 +14,8 @@ namespace LojaVirtual.Models
 
 
         public bool Concluded { get; set; }
+
+
+        public string Color { get; set; }
     }
 }

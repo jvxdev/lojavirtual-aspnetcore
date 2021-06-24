@@ -9,27 +9,9 @@ namespace LojaVirtual.Libraries.Component
 {
     public class OrderSituationViewComponent : ViewComponent
     {
-        List<OrderSituationStatus> timeline1 { get; set; }
+        List<OrderSituationStatus> Timeline1 { get; set; }
 
-        public OrderSituationViewComponent()
-        {
-            timeline1 = new List<OrderSituationStatus>();
-
-            timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.PEDIDO_REALIZADO, Concluded = false });
-            timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.PAGAMENTO_APROVADO, Concluded = false });
-            timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.NF_EMITIDA, Concluded = false });
-            timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.EM_TRANSPORTE, Concluded = false });
-            timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.ENTREGUE, Concluded = false });
-            timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.FINALIZADO, Concluded = false });
-        }
-
-
-        public async Task<IViewComponentResult> InvokeAsync(Order order)
-        {
-            List<OrderSituationStatus> timeline = null;
-
-            var listStatusTimeline1 = new List<string>()
-            {
+        List<string> StatusTimeline1 = new List<string>() {
                 OrderSituationConst.PEDIDO_REALIZADO,
                 OrderSituationConst.PAGAMENTO_APROVADO,
                 OrderSituationConst.NF_EMITIDA,
@@ -38,13 +20,50 @@ namespace LojaVirtual.Libraries.Component
                 OrderSituationConst.FINALIZADO
             };
 
-            if (listStatusTimeline1.Contains(order.Situation))
-            {
-                timeline = timeline1;
 
+        List<OrderSituationStatus> Timeline2 { get; set; }
+
+        List<string> StatusTimeline2 = new List<string>() {
+                OrderSituationConst.PAGAMENTO_NAO_REALIZADO
+            };
+
+
+        public OrderSituationViewComponent()
+        {
+            Timeline1 = new List<OrderSituationStatus>();
+
+            Timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.PEDIDO_REALIZADO, Concluded = false, Color = "complete" });
+            Timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.PAGAMENTO_APROVADO, Concluded = false, Color = "complete" });
+            Timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.NF_EMITIDA, Concluded = false, Color = "complete" });
+            Timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.EM_TRANSPORTE, Concluded = false, Color = "complete" });
+            Timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.ENTREGUE, Concluded = false, Color = "complete" });
+            Timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.FINALIZADO, Concluded = false, Color = "complete" });
+
+            Timeline2 = new List<OrderSituationStatus>();
+            Timeline2.Add(new OrderSituationStatus() { Situation = OrderSituationConst.PEDIDO_REALIZADO, Concluded = false, Color = "complete" });
+            Timeline2.Add(new OrderSituationStatus() { Situation = OrderSituationConst.PAGAMENTO_NAO_REALIZADO, Concluded = false, Color = "complete-red" });
+        }
+
+
+        public async Task<IViewComponentResult> InvokeAsync(Order order)
+        {
+            List<OrderSituationStatus> timeline = null;
+
+            if (StatusTimeline1.Contains(order.Situation))
+            {
+                timeline = Timeline1;
+            }
+
+            if (StatusTimeline2.Contains(order.Situation))
+            {
+                timeline = Timeline2;
+            }
+
+            if (timeline != null)
+            {
                 foreach (var orderSituation in order.OrderSituations)
                 {
-                    var orderSituationTimeline = timeline1.Where(a => a.Situation == orderSituation.Situation).FirstOrDefault();
+                    var orderSituationTimeline = timeline.Where(a => a.Situation == orderSituation.Situation).FirstOrDefault();
 
                     orderSituationTimeline.Date = orderSituation.Date;
                     orderSituationTimeline.Concluded = true;

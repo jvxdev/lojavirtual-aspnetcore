@@ -62,7 +62,7 @@ div .left-border {
 }
 
 .table {
-    margin-bottom: 0px !important; 
+    margin-bottom: 0px !important;
 }
 
 /****** NAV BAR MULTILEVEL ******/
@@ -71,51 +71,51 @@ div .left-border {
     position: relative;
 }
 
-.dropdown-submenu > .dropdown-menu {
-    top: 0;
-    left: 100%;
-    margin-top: -6px;
-    margin-left: -1px;
-    -webkit-border-radius: 0 6px 6px 6px;
-    -moz-border-radius: 0 6px 6px;
-    border-radius: 0 6px 6px 6px;
-}
+    .dropdown-submenu > .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -6px;
+        margin-left: -1px;
+        -webkit-border-radius: 0 6px 6px 6px;
+        -moz-border-radius: 0 6px 6px;
+        border-radius: 0 6px 6px 6px;
+    }
 
-.dropdown-submenu:hover > .dropdown-menu {
-    display: block;
-}
+    .dropdown-submenu:hover > .dropdown-menu {
+        display: block;
+    }
 
-.dropdown-submenu > a:after {
-    display: block;
-    content: " ";
-    float: right;
-    width: 0;
-    height: 0;
-    border-color: transparent;
-    border-style: solid;
-    border-width: 5px 0 5px 5px;
-    border-left-color: #ccc;
-    margin-top: 5px;
-    margin-right: -10px;
-}
+    .dropdown-submenu > a:after {
+        display: block;
+        content: " ";
+        float: right;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+        border-width: 5px 0 5px 5px;
+        border-left-color: #ccc;
+        margin-top: 5px;
+        margin-right: -10px;
+    }
 
-.dropdown-submenu:hover > a:after {
-    border-left-color: #fff;
-}
+    .dropdown-submenu:hover > a:after {
+        border-left-color: #fff;
+    }
 
-.dropdown-submenu.pull-left {
-    float: none;
-}
+    .dropdown-submenu.pull-left {
+        float: none;
+    }
 
-.dropdown-submenu.pull-left > .dropdown-menu {
-    left: -100%;
-    margin-left: 10px;
-    -webkit-border-radius: 6px 0 6px 6px;
-    -moz-border-radius: 6px 0 6px 6px;
-    border-radius: 6px 0 6px 6px;
-}
+        .dropdown-submenu.pull-left > .dropdown-menu {
+            left: -100%;
+            margin-left: 10px;
+            -webkit-border-radius: 6px 0 6px 6px;
+            -moz-border-radius: 6px 0 6px 6px;
+            border-radius: 6px 0 6px 6px;
+        }
 
-/****** NAV BAR MULTILEVEL ******/
+/****** NAV BAR MULTILEVEL END ******/
 
 .container-frete {
     text-align: center;
@@ -142,10 +142,10 @@ div .left-border {
     border-bottom: 2px solid #50b708;
 }
 
-/****** ORDER ******/
+/****** ORDER END ******/
 
 
-/****** ORDER SITUATION ******/
+/****** ORDER SITUATION TIMELINE STATUS ******/
 
 .timeline {
     list-style-type: none;
@@ -195,6 +195,8 @@ div .left-border {
         transition: all 200ms ease-in;
     }
 
+/**** STATUS DA TIMELINE: SUCESSO ****/
+
 .li.complete .status {
     border-top: 2px solid #66DC71;
 }
@@ -208,6 +210,24 @@ div .left-border {
     .li.complete .status h4 {
         color: #66DC71;
     }
+
+/**** STATUS DA TIMELINE: ERRO ****/
+
+.li.complete-red .status {
+    border-top: 2px solid red;
+}
+
+    .li.complete-red .status:before {
+        background-color: red;
+        border: none;
+        transition: all 200ms ease-in;
+    }
+
+    .li.complete-red .status h4 {
+        color: red;
+    }
+
+/****** ORDER SITUATION TIMELINE STATUS END ******/
 
 @media (min-device-width: 320px) and (max-device-width: 700px) {
     .timeline {

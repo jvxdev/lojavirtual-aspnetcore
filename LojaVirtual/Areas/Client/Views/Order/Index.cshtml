@@ -4,7 +4,7 @@
     ViewData["Title"] = "Meus pedidos";
 }
 
-<div class="container">
+<div class="container col-md-8">
 
     @{ await Html.RenderPartialAsync("~/Views/Shared/_Message.cshtml"); }
 
@@ -31,12 +31,12 @@
                     @foreach (var order in Model)
                     {
                         <tr>
-                            <td>@order.Id - @order.TransactionId</td>
+                            <td>@order.Id-@order.TransactionId</td>
                             <td>@order.RegistryDate.ToString("dd/MM/yyyy")</td>
                             <td>@order.PaymentForm</td>
                             <td>@order.TotalValue.ToString("C")</td>
                             <td>@order.Situation</td>
-                            <td>@order.NFE</td>
+                            <td><strong>@Html.Raw(order.NFE == null ? "-" : "<a href='" + order.NFE + "' target='blank'>NOTA FISCAL ELETRÔNICA</a>")</strong></td>
                             <td><a class="btn btn-dark" asp-action="Show" asp-route-id="@order.Id">Visualizar pedido</a></td>
                         </tr>
                     }
