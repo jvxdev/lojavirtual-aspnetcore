@@ -21,6 +21,13 @@
                     REGISTRAR NOTA FISCAL
                 </button>
             }
+
+            @if (Model.Situation == OrderSituationConst.NF_EMITIDA)
+            {
+                <button type="button" class="btn btn-dark p-3" data-toggle="modal" data-target="#tracking_cod">
+                    REGISTRAR CÓDIGO DE RASTRAMENTO
+                </button>
+            }
         </div>
     </div>
 
@@ -57,7 +64,7 @@
                 <tr>
                     <td><strong>Empresa de entrega:</strong> @Model.FreteCompany</td>
                     <td><strong>Valor do frete:</strong> @Mask.ConvertPagarMeIntToDecimal(transaction.Shipping.Fee).ToString("C")</td>
-                    <td colspan="4"><strong>Código de rastreamento:</strong> @Model.FreteTrackingCod</td>
+                    <td colspan="4"><strong>Código de rastreamento:</strong> @Html.Raw(Model.NFE == null ? "-" : "<a href='https://www.linkcorreios.com.br/" + Model.FreteTrackingCod + "' target='blank'>" + Model.FreteTrackingCod + "</a>")</td>
                 </tr>
             </table>
 
@@ -108,6 +115,33 @@
                     <div class="form-group">
                         <label for="control-nfe">Link da NF-e:</label>
                         <input type="url" class="form-control" id="control-nfe" name="nfe_url" placeholder="Digite o link da nota fiscal eletrônica">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form method="post" asp-action="TrackingCod" asp-route-id="@Model.Id">
+    <div class="modal fade" id="tracking_cod" tabindex="-1" role="dialog" aria-labelledby="tracking_cod" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Código de rastreamento</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="tracking_cod">Código:</label>
+                        <input type="text" class="form-control" id="tracking_cod" name="tracking_cod" placeholder="Digite o código de rastreamento">
                     </div>
 
                 </div>

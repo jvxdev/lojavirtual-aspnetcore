@@ -63,5 +63,28 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
             return RedirectToAction(nameof(Show), new { Id = Id });
         }
+
+
+        public IActionResult TrackingCod(int Id)
+        {
+            string trackingCod = HttpContext.Request.Form["tracking_cod"];
+
+            Order order = _orderRepository.Read(Id);
+
+            order.FreteTrackingCod = trackingCod;
+            order.Situation = OrderSituationConst.EM_TRANSPORTE;
+
+            var orderSituation = new OrderSituation();
+            orderSituation.Date = DateTime.Now;
+            orderSituation.Data = trackingCod;
+            orderSituation.OrderId = Id;
+            orderSituation.Situation = OrderSituationConst.EM_TRANSPORTE;
+
+            _orderSituationRepository.Create(orderSituation);
+
+            _orderRepository.Update(order);
+
+            return RedirectToAction(nameof(Show), new { Id = Id });
+        }
     }
 }
