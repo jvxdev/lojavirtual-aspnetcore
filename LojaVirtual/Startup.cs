@@ -100,6 +100,7 @@ namespace LojaVirtual
             services.AddDbContext<LojaVirtualContext>(options => options.UseSqlServer(connection));
 
             services.AddTransient<OrderPaymentSituationJob>();
+            services.AddTransient<OrderDeliveredJob>();
 
             services.AddScheduler();
         }
@@ -147,6 +148,7 @@ namespace LojaVirtual
             app.ApplicationServices.UseScheduler(scheduler =>
             {
                 scheduler.Schedule<OrderPaymentSituationJob>().EveryTenSeconds();
+                scheduler.Schedule<OrderDeliveredJob>().EveryTenSeconds();
             });
         }
     }

@@ -78,9 +78,9 @@ namespace LojaVirtual.Repositories
         }
 
 
-        public List<Order> GetAllOrdersPlaced()
+        public List<Order> GetAllOrdersBySituation(string status)
         {
-            return _database.Orders.Include(a => a.OrderSituations).Include(a => a.Client).Where(a => a.Situation == OrderSituationConst.PEDIDO_REALIZADO).ToList();
+            return _database.Orders.Include(a => a.OrderSituations).Include(a => a.Client).Where(a => a.Situation == status).ToList();
         }
     }
 }

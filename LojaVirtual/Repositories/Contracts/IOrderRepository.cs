@@ -18,7 +18,7 @@ namespace LojaVirtual.Repositories.Contracts
         IPagedList<Order> ReadAllOrders(int? Page, string codOrder, string Cpf);
 
 
-        List<Order> GetAllOrdersPlaced();
+        List<Order> GetAllOrdersBySituation(string status);
 
 
         void Update(Order order);

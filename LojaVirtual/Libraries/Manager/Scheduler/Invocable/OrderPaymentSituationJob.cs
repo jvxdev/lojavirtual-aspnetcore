@@ -40,7 +40,7 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
 
         public Task Invoke()
         {
-            var ordersPlaced = _orderRepository.GetAllOrdersPlaced();
+            var ordersPlaced = _orderRepository.GetAllOrdersBySituation(OrderSituationConst.PEDIDO_REALIZADO) ;
 
             foreach (var order in ordersPlaced)
             {
