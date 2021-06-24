@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "AngleSharp/0.14.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Text.Encoding.CodePages": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/AngleSharp.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AngleSharp.dll": {}
+        }
+      },
       "AutoMapper/8.1.0": {
         "type": "package",
         "dependencies": {
@@ -40,6 +52,19 @@
         },
         "runtime": {
           "lib/netstandard2.0/Coravel.dll": {}
+        }
+      },
+      "Correios.NET/1.3.2": {
+        "type": "package",
+        "dependencies": {
+          "AngleSharp": "0.14.0",
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/Correios.NET.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Correios.NET.dll": {}
         }
       },
       "Humanizer.Core/2.8.26": {
@@ -3366,6 +3391,27 @@
     }
   },
   "libraries": {
+    "AngleSharp/0.14.0": {
+      "sha512": "34w9I7nyszfEYBY8g7T3B0AtWlOivNh+QoWc3KECRwbmcNyqWmb4huihtmpH2Ds7rIRRHMMPv9yfPBxxjBn03g==",
+      "type": "package",
+      "path": "anglesharp/0.14.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "anglesharp.0.14.0.nupkg.sha512",
+        "anglesharp.nuspec",
+        "lib/net46/AngleSharp.dll",
+        "lib/net46/AngleSharp.xml",
+        "lib/net461/AngleSharp.dll",
+        "lib/net461/AngleSharp.xml",
+        "lib/net472/AngleSharp.dll",
+        "lib/net472/AngleSharp.xml",
+        "lib/netstandard1.3/AngleSharp.dll",
+        "lib/netstandard1.3/AngleSharp.xml",
+        "lib/netstandard2.0/AngleSharp.dll",
+        "lib/netstandard2.0/AngleSharp.xml"
+      ]
+    },
     "AutoMapper/8.1.0": {
       "sha512": "Go75WXHE7p/8CtRaxZnvVEfcSh7xpE6zx9wkgN4I1BxvlzP0hoiTLHSXDYXgv9CoxaRj4ahwzCA/iwdpvyQyOA==",
       "type": "package",
@@ -3406,6 +3452,20 @@
         "coravel.2.5.1.nupkg.sha512",
         "coravel.nuspec",
         "lib/netstandard2.0/Coravel.dll"
+      ]
+    },
+    "Correios.NET/1.3.2": {
+      "sha512": "4LHXQ/MMPLT/GKAR8QQbEOmUov7lJB4d8Cy6K15K2mbXpKGhxxacZ8dmiXfAbQ7ZVLIWKuKnOLCOGzEhqegtrg==",
+      "type": "package",
+      "path": "correios.net/1.3.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "correios.net.1.3.2.nupkg.sha512",
+        "correios.net.nuspec",
+        "icon.png",
+        "lib/netstandard2.0/Correios.NET.dll"
       ]
     },
     "Humanizer.Core/2.8.26": {
@@ -10361,6 +10421,7 @@
     ".NETCoreApp,Version=v3.1": [
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 6.1.0",
       "Coravel >= 2.5.1",
+      "Correios.NET >= 1.3.2",
       "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 3.1.12",
       "Microsoft.EntityFrameworkCore >= 5.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.0",
@@ -10421,6 +10482,10 @@
           "Coravel": {
             "target": "Package",
             "version": "[2.5.1, )"
+          },
+          "Correios.NET": {
+            "target": "Package",
+            "version": "[1.3.2, )"
           },
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
             "target": "Package",

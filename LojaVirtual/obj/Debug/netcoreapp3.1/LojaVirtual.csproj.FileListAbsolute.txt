@@ -2361,3 +2361,5 @@ C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\net
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Collaborator\Views\Order\Index.cshtml.g.cs
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Collaborator\Views\Order\Show.cshtml.g.cs
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Coravel.dll
+C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\AngleSharp.dll
+C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Correios.NET.dll

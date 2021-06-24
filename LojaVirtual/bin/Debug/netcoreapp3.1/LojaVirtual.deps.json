@@ -33,6 +33,7 @@
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "6.1.0",
           "Coravel": "2.5.1",
+          "Correios.NET": "1.3.2",
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "3.1.12",
           "Microsoft.EntityFrameworkCore": "5.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.0",
@@ -323,6 +324,20 @@
           "LojaVirtual.dll": {}
         }
       },
+      "AngleSharp/0.14.0": {
+        "dependencies": {
+          "System.Text.Encoding.CodePages": "4.7.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AngleSharp.dll": {
+            "assemblyVersion": "0.14.0.0",
+            "fileVersion": "0.14.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/AngleSharp.dll": {}
+        }
+      },
       "AutoMapper/8.1.0": {
         "dependencies": {
           "Microsoft.CSharp": "4.7.0",
@@ -367,6 +382,21 @@
         },
         "compile": {
           "lib/netstandard2.0/Coravel.dll": {}
+        }
+      },
+      "Correios.NET/1.3.2": {
+        "dependencies": {
+          "AngleSharp": "0.14.0",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Correios.NET.dll": {
+            "assemblyVersion": "1.3.2.0",
+            "fileVersion": "1.3.2.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Correios.NET.dll": {}
         }
       },
       "Humanizer.Core/2.8.26": {
@@ -4368,6 +4398,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "AngleSharp/0.14.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-34w9I7nyszfEYBY8g7T3B0AtWlOivNh+QoWc3KECRwbmcNyqWmb4huihtmpH2Ds7rIRRHMMPv9yfPBxxjBn03g==",
+      "path": "anglesharp/0.14.0",
+      "hashPath": "anglesharp.0.14.0.nupkg.sha512"
+    },
     "AutoMapper/8.1.0": {
       "type": "package",
       "serviceable": true,
@@ -4388,6 +4425,13 @@
       "sha512": "sha512-p6DWhQovsGY2BYFz/X2/Yq07qAXgU2jdNqmuG6LUDn48W120TP3/LjVx5HVtsiBRVE4u37NV9yYdXONgEL56gg==",
       "path": "coravel/2.5.1",
       "hashPath": "coravel.2.5.1.nupkg.sha512"
+    },
+    "Correios.NET/1.3.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4LHXQ/MMPLT/GKAR8QQbEOmUov7lJB4d8Cy6K15K2mbXpKGhxxacZ8dmiXfAbQ7ZVLIWKuKnOLCOGzEhqegtrg==",
+      "path": "correios.net/1.3.2",
+      "hashPath": "correios.net.1.3.2.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",

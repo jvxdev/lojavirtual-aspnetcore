@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "WKRE24dNxOSQh68uzouu9sRrIJHUNkt6rtFWIr7cTK8K8lSj+Iq2yzMmfeDGYZ31c8iIpp3yjwwUUpoPGbMH7w==",
+  "dgSpecHash": "S1PNOm9MycapveQo1GrGpJcpcT0NpY4njmgYQ4znw92BUDIV+oKlho1SmkDHo4gJ6Hk92qvC5kzFnjkqhv8a4w==",
   "success": true,
   "projectFilePath": "C:\\Users\\jvXvj\\Documents\\GitHub\\lojavirtual-aspnetcore\\LojaVirtual\\LojaVirtual.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\jvXvj\\.nuget\\packages\\anglesharp\\0.14.0\\anglesharp.0.14.0.nupkg.sha512",
     "C:\\Users\\jvXvj\\.nuget\\packages\\automapper\\8.1.0\\automapper.8.1.0.nupkg.sha512",
     "C:\\Users\\jvXvj\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\6.1.0\\automapper.extensions.microsoft.dependencyinjection.6.1.0.nupkg.sha512",
     "C:\\Users\\jvXvj\\.nuget\\packages\\coravel\\2.5.1\\coravel.2.5.1.nupkg.sha512",
+    "C:\\Users\\jvXvj\\.nuget\\packages\\correios.net\\1.3.2\\correios.net.1.3.2.nupkg.sha512",
     "C:\\Users\\jvXvj\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\jvXvj\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Users\\jvXvj\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

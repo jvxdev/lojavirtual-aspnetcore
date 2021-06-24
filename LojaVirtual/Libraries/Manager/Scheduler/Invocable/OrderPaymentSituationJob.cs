@@ -97,7 +97,6 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
                 }
             }
 
-            Debug.WriteLine("OrderPaymentSituationJob - EXECUTANDO");
 
             return Task.CompletedTask;
         }

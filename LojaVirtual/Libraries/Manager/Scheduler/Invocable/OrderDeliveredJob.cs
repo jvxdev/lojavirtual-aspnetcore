@@ -1,6 +1,8 @@
 ﻿using Coravel.Invocable;
+using LojaVirtual.Models;
 using LojaVirtual.Models.Const;
 using LojaVirtual.Repositories.Contracts;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +29,23 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
             
             foreach(var order in orders)
             {
+                var result = new Correios.NET.Services().GetPackageTracking(order.FreteTrackingCod);
 
+                if (result.IsDelivered)
+                {
+                    OrderSituation orderSituation = new OrderSituation();
+
+                    orderSituation.OrderId = order.Id;
+                    orderSituation.Situation = OrderSituationConst.ENTREGUE;
+                    orderSituation.Date = result.DeliveryDate.Value;
+                    orderSituation.Data = JsonConvert.SerializeObject(result);
+
+                    _orderSituationRepository.Create(orderSituation);
+
+                    order.Situation = OrderSituationConst.ENTREGUE;
+
+                    _orderRepository.Update(order);
+                }
             }
 
             return Task.CompletedTask;
