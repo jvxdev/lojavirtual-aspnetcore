@@ -199,3 +199,69 @@
         </div>
     </div>
 </form>
+
+<form method="post" asp-action="TrackingCod" asp-route-id="@Model.Order.Id">
+    <div class="modal fade" id="cancel-boleto-bancario" tabindex="-1" role="dialog" aria-labelledby="cancel-boleto-bancario" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cancelar pedido (Cartão de crédito)</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="cancel-reason">Motivo para o cancelamento:</label>
+                        <textarea type="text" class="form-control" id="cancel-reason" asp-for="@Model.CreditCard.CancelReason" placeholder="Digite o motivo do cancelamento."></textarea>
+                        <span asp-validation-for="@Model.CreditCard.CancelReason" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cod-bank">Código do banco:</label>
+                        <input type="text" class="form-control" id="cod_bank" asp-for="@Model.CreditCard.Bank_code" placeholder="Digite o código do banco.">
+                        <span asp-validation-for="@Model.CreditCard.Bank_code" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="agency">Agência:</label>
+                        <input type="text" class="form-control" id="agency" asp-for="@Model.CreditCard.Agency" placeholder="Digite o número da agência.">
+                        <input type="text" class="form-control" id="agency_dv" asp-for="@Model.CreditCard.Agency_dv" maxlength="2" placeholder="Digite o código verificador da agência.">
+                        
+                        <span asp-validation-for="@Model.CreditCard.Agency" class="text-danger"></span>
+                        <span asp-validation-for="@Model.CreditCard.Agency_dv" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cc">Conta Corrente:</label>
+                        <input type="text" class="form-control" id="cc" asp-for="@Model.CreditCard.Account" placeholder="Digite a conta corrente do cliente.">
+                        <input type="text" class="form-control" id="cc_dv" asp-for="@Model.CreditCard.Account_dv" placeholder="Digite o código verificador da conta corrente.">
+
+                        <span asp-validation-for="@Model.CreditCard.Account" class="text-danger"></span>
+                        <span asp-validation-for="@Model.CreditCard.Account_dv" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="legal_name">Nome do proprietário da conta:</label>
+                        <input type="text" class="form-control" id="legal_name" asp-for="@Model.CreditCard.Legal_name" placeholder="Digite o nome do proprietário da conta.">
+                    
+                        <span asp-validation-for="@Model.CreditCard.Legal_name" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cpf">CPF do proprietário da conta:</label>
+                        <input type="text" class="form-control" id="cpf" asp-for="@Model.CreditCard.CPF" placeholder="Digite o CPF do proprietário da conta.">
+                    
+                        <span asp-validation-for="@Model.CreditCard.CPF" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
