@@ -4,6 +4,7 @@ using LojaVirtual.Libraries.Manager.Payment;
 using LojaVirtual.Models;
 using LojaVirtual.Models.Const;
 using LojaVirtual.Models.ProductAggregator;
+using LojaVirtual.Models.ViewModel.Order;
 using LojaVirtual.Repositories;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -46,7 +47,9 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         {
             Order order = _orderRepository.Read(Id);
 
-            return View(order);
+            var viewModel = new ShowViewModel() { Order = order };
+
+            return View(viewModel);
         }
 
 

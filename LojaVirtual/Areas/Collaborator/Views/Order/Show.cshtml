@@ -1,9 +1,9 @@
-﻿@model Order
+﻿@model ShowViewModel
 
 @{
-    ViewData["Title"] = "Visualizar pedido";
-    TransactionPagarMe transaction = JsonConvert.DeserializeObject<TransactionPagarMe>(Model.TransactionData);
-    List<ProductItem> products = JsonConvert.DeserializeObject<List<ProductItem>>(Model.ProductsData, new JsonSerializerSettings() { ContractResolver = new ProductItemResolver<List<ProductItem>>() });
+    ViewData["Title"] = "Pedido "+ Model.Order.Id + "-" + Model.Order.TransactionId;
+    TransactionPagarMe transaction = JsonConvert.DeserializeObject<TransactionPagarMe>(Model.Order.TransactionData);
+    List<ProductItem> products = JsonConvert.DeserializeObject<List<ProductItem>>(Model.Order.ProductsData, new JsonSerializerSettings() { ContractResolver = new ProductItemResolver<List<ProductItem>>() });
 
     var birthDay = DateTime.Parse(transaction.Customer.Birthday);
 }
@@ -11,36 +11,36 @@
 <div class="container my-3">
     <div class="row">
         <div class="col-md-12">
-            <vc:order-situation order="@Model" />
+            <vc:order-situation order="@Model.Order" />
         </div>
     </div>
 
     <div class="row my-3 text-center">
         <div class="col-md-12">
-            @if (Model.Situation == OrderSituationConst.PAGAMENTO_APROVADO)
+            @if (Model.Order.Situation == OrderSituationConst.PAGAMENTO_APROVADO)
             {
                 <button type="button" class="btn btn-dark p-3" data-toggle="modal" data-target="#nfe">
                     REGISTRAR NOTA FISCAL
                 </button>
             }
 
-            @if (Model.Situation == OrderSituationConst.NF_EMITIDA)
+            @if (Model.Order.Situation == OrderSituationConst.NF_EMITIDA)
             {
                 <button type="button" class="btn btn-dark p-3" data-toggle="modal" data-target="#tracking_cod">
                     REGISTRAR CÓDIGO DE RASTRAMENTO
                 </button>
             }
 
-            @if (Model.Situation == OrderSituationConst.NF_EMITIDA || Model.Situation == OrderSituationConst.PAGAMENTO_APROVADO)
+            @if (Model.Order.Situation == OrderSituationConst.NF_EMITIDA || Model.Order.Situation == OrderSituationConst.PAGAMENTO_APROVADO)
             {
-                if (Model.PaymentForm == PaymentMethodConst.CreditCard)
+                if (Model.Order.PaymentForm == PaymentMethodConst.CreditCard)
                 {
                     <button type="button" class="btn btn-outline-dark p-3" data-toggle="modal" data-target="#cancel-credit-card">
                         CANCELAR PEDIDO
                     </button>
                 }
 
-                if (Model.PaymentForm == PaymentMethodConst.Boleto)
+                if (Model.Order.PaymentForm == PaymentMethodConst.Boleto)
                 {
                     <button type="button" class="btn btn-outline-dark p-3" data-toggle="modal" data-target="#cancel-boleto-bancario">
                         CANCELAR PEDIDO
@@ -55,14 +55,14 @@
             <h3 class="display-4 text-center mb-4">Informações do pedido</h3>
             <table class="table table-bordered">
                 <tr>
-                    <td colspan="6" class="text-center"><strong>SITUAÇÃO DO PEDIDO:</strong> @Model.Situation</td>
+                    <td colspan="6" class="text-center"><strong>SITUAÇÃO DO PEDIDO:</strong> @Model.Order.Situation</td>
                 </tr>
                 <tr>
                     <td><strong>Cliente:</strong> @transaction.Customer.Name</td>
                     <td><strong>Data de nascimento:</strong> @birthDay.ToString("dd/MM/yyyy")</td>
                 </tr>
                 <tr>
-                    <td><strong>Forma de pagamento:</strong> @Model.PaymentForm</td>
+                    <td><strong>Forma de pagamento:</strong> @Model.Order.PaymentForm</td>
                     <td><strong>Nota Fiscal Eletrônica:</strong> @Html.Raw(Model.NFE == null ? "-" : "<a href='" + Model.NFE + "' target='blank'>Visualizar</a>")</td>
                 </tr>
             </table>
@@ -81,9 +81,9 @@
                     <td><strong>N° casa/apart:</strong> @transaction.Shipping.Address.StreetNumber</td>
                 </tr>
                 <tr>
-                    <td><strong>Empresa de entrega:</strong> @Model.FreteCompany</td>
+                    <td><strong>Empresa de entrega:</strong> @Model.Order.FreteCompany</td>
                     <td><strong>Valor do frete:</strong> @Mask.ConvertPagarMeIntToDecimal(transaction.Shipping.Fee).ToString("C")</td>
-                    <td colspan="4"><strong>Código de rastreamento:</strong> @Html.Raw(Model.NFE == null ? "-" : "<a href='https://www.linkcorreios.com.br/" + Model.FreteTrackingCod + "' target='blank'>" + Model.FreteTrackingCod + "</a>")</td>
+                    <td colspan="4"><strong>Código de rastreamento:</strong> @Html.Raw(Model.NFE == null ? "-" : "<a href='https://www.linkcorreios.com.br/" + Model.Order.FreteTrackingCod + "' target='blank'>" + Model.Order.FreteTrackingCod + "</a>")</td>
                 </tr>
             </table>
 
@@ -112,14 +112,14 @@
                 </tr>
                 <tr>
                     <td colspan="3"><strong>TOTAL</strong></td>
-                    <td><strong>@Model.TotalValue.ToString("C")</strong></td>
+                    <td><strong>@Model.Order.TotalValue.ToString("C")</strong></td>
                 </tr>
             </table>
         </div>
     </div>
 </div>
 
-<form method="post" asp-action="NFE" asp-route-id="@Model.Id">
+<form method="post" asp-action="NFE" asp-route-id="@Model.Order.Id">
     <div class="modal fade" id="nfe" tabindex="-1" role="dialog" aria-labelledby="nfe" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -133,7 +133,7 @@
 
                     <div class="form-group">
                         <label for="control-nfe">Link da NF-e:</label>
-                        <input type="url" class="form-control" id="control-nfe" name="nfe_url" placeholder="Digite o link da nota fiscal eletrônica">
+                        <input type="url" class="form-control" id="control-nfe" asp-for="@Model.NFE.NFE_Url" placeholder="Digite o link da nota fiscal eletrônica">
                     </div>
 
                 </div>
@@ -146,7 +146,7 @@
     </div>
 </form>
 
-<form method="post" asp-action="TrackingCod" asp-route-id="@Model.Id">
+<form method="post" asp-action="TrackingCod" asp-route-id="@Model.Order.Id">
     <div class="modal fade" id="tracking_cod" tabindex="-1" role="dialog" aria-labelledby="tracking_cod" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -160,7 +160,7 @@
 
                     <div class="form-group">
                         <label for="tracking_cod">Código:</label>
-                        <input type="text" class="form-control" id="tracking_cod" name="tracking_cod" placeholder="Digite o código de rastreamento">
+                        <input type="text" class="form-control" id="tracking_cod" asp-for="@Model.TrackingCode.Code" placeholder="Digite o código de rastreamento">
                     </div>
 
                 </div>
@@ -173,7 +173,7 @@
     </div>
 </form>
 
-<form method="post" asp-action="TrackingCod" asp-route-id="@Model.Id">
+<form method="post" asp-action="TrackingCod" asp-route-id="@Model.Order.Id">
     <div class="modal fade" id="cancel-credit-card" tabindex="-1" role="dialog" aria-labelledby="cancel-credit-card" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -187,7 +187,7 @@
 
                     <div class="form-group">
                         <label for="cancel-reason">Motivo para o cancelamento:</label>
-                        <input type="text" class="form-control" id="cancel-reason" name="cancel-reason" placeholder="Digite o motivo do cancelamento.">
+                        <input type="text" class="form-control" id="cancel-reason" asp-for="@Model.CreditCard.CancelReason" placeholder="Digite o motivo do cancelamento.">
                     </div>
 
                 </div>
