@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Order
+
+@{
     ViewData["Title"] = "Visualizar pedido";
     TransactionPagarMe transaction = JsonConvert.DeserializeObject<TransactionPagarMe>(Model.TransactionData);
     List<ProductItem> products = JsonConvert.DeserializeObject<List<ProductItem>>(Model.ProductsData, new JsonSerializerSettings() { ContractResolver = new ProductItemResolver<List<ProductItem>>() });
