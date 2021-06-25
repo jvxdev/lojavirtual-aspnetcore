@@ -53,73 +53,98 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         }
 
 
-        public IActionResult NFE(int Id)
+        public IActionResult NFE([FromForm] ShowViewModel viewModel, int Id)
         {
-            string Url = HttpContext.Request.Form["nfe_url"];
+            ModelState.Remove("Order");
+            ModelState.Remove("TrackingCode");
+            ModelState.Remove("CreditCard");
+            ModelState.Remove("BoletoBancario");
 
-            Order order = _orderRepository.Read(Id);
+            if (ModelState.IsValid)
+            {
+                string Url = viewModel.NFE.NFE_Url;
 
-            order.NFE = Url;
-            order.Situation = OrderSituationConst.NF_EMITIDA;
+                Order order = _orderRepository.Read(Id);
 
-            var orderSituation = new OrderSituation();
-            orderSituation.Date = DateTime.Now;
-            orderSituation.Data = Url;
-            orderSituation.OrderId = Id;
-            orderSituation.Situation = OrderSituationConst.NF_EMITIDA;
+                order.NFE = Url;
+                order.Situation = OrderSituationConst.NF_EMITIDA;
 
-            _orderSituationRepository.Create(orderSituation);
+                var orderSituation = new OrderSituation();
+                orderSituation.Date = DateTime.Now;
+                orderSituation.Data = Url;
+                orderSituation.OrderId = Id;
+                orderSituation.Situation = OrderSituationConst.NF_EMITIDA;
 
-            _orderRepository.Update(order);
+                _orderSituationRepository.Create(orderSituation);
+
+                _orderRepository.Update(order);
+            }
 
             return RedirectToAction(nameof(Show), new { Id = Id });
         }
 
 
-        public IActionResult TrackingCod(int Id)
+        public IActionResult TrackingCod([FromForm] ShowViewModel viewModel, int Id)
         {
-            string trackingCod = HttpContext.Request.Form["tracking_cod"];
+            ModelState.Remove("Order");
+            ModelState.Remove("NFE");
+            ModelState.Remove("CreditCard");
+            ModelState.Remove("BoletoBancario");
 
-            Order order = _orderRepository.Read(Id);
+            if (ModelState.IsValid)
+            {
+                string trackingCod = viewModel.TrackingCode.Code;
 
-            order.FreteTrackingCod = trackingCod;
-            order.Situation = OrderSituationConst.EM_TRANSPORTE;
+                Order order = _orderRepository.Read(Id);
 
-            var orderSituation = new OrderSituation();
-            orderSituation.Date = DateTime.Now;
-            orderSituation.Data = trackingCod;
-            orderSituation.OrderId = Id;
-            orderSituation.Situation = OrderSituationConst.EM_TRANSPORTE;
+                order.FreteTrackingCod = trackingCod;
+                order.Situation = OrderSituationConst.EM_TRANSPORTE;
 
-            _orderSituationRepository.Create(orderSituation);
+                var orderSituation = new OrderSituation();
+                orderSituation.Date = DateTime.Now;
+                orderSituation.Data = trackingCod;
+                orderSituation.OrderId = Id;
+                orderSituation.Situation = OrderSituationConst.EM_TRANSPORTE;
 
-            _orderRepository.Update(order);
+                _orderSituationRepository.Create(orderSituation);
+
+                _orderRepository.Update(order);
+
+            }
 
             return RedirectToAction(nameof(Show), new { Id = Id });
         }
 
 
-        public IActionResult CancelOrderCreditCard(int Id)
+        public IActionResult CancelOrderCreditCard([FromForm] ShowViewModel viewModel, int Id)
         {
-            string reason = HttpContext.Request.Form["cancel_reason"];
+            ModelState.Remove("Order");
+            ModelState.Remove("NFE");
+            ModelState.Remove("TrackingCode");
+            ModelState.Remove("BoletoBancario");
 
-            Order order = _orderRepository.Read(Id);
+            if (ModelState.IsValid)
+            {
+                viewModel.CreditCard.PaymentForm = PaymentMethodConst.CreditCard;
 
-            _managePagarMe.EstornoCreditCard(order.TransactionId);
+                Order order = _orderRepository.Read(Id);
 
-            order.Situation = OrderSituationConst.ESTORNO;
+                _managePagarMe.EstornoCreditCard(order.TransactionId);
 
-            var orderSituation = new OrderSituation();
-            orderSituation.Date = DateTime.Now;
-            orderSituation.Data = JsonConvert.SerializeObject(new CancelData() { CancelReason = reason });
-            orderSituation.OrderId = Id;
-            orderSituation.Situation = OrderSituationConst.ESTORNO;
+                order.Situation = OrderSituationConst.ESTORNO;
 
-            _orderSituationRepository.Create(orderSituation);
+                var orderSituation = new OrderSituation();
+                orderSituation.Date = DateTime.Now;
+                orderSituation.Data = JsonConvert.SerializeObject(viewModel.CreditCard);
+                orderSituation.OrderId = Id;
+                orderSituation.Situation = OrderSituationConst.ESTORNO;
 
-            _orderRepository.Update(order);
+                _orderSituationRepository.Create(orderSituation);
 
-            ProductsRefundStock(order);
+                _orderRepository.Update(order);
+
+                ProductsRefundStock(order);
+            }
 
             return RedirectToAction(nameof(Show), new { Id = Id });
         }
