@@ -274,5 +274,17 @@ namespace LojaVirtual.Libraries.Manager.Payment
 
             return transaction;
         }
+
+
+        public Transaction EstornoBoletoBancario(string transactionId)
+        {
+            PagarMeService.DefaultApiKey = _conf.GetValue<String>("Payment:PagarMe:ApiKey");
+
+            var transaction = PagarMeService.GetDefaultService().Transactions.Find(transactionId);
+            
+            transaction.Refund();
+
+            return transaction;
+        }
     }
 }

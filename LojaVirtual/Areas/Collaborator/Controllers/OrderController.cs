@@ -150,6 +150,40 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         }
 
 
+        public IActionResult CancelOrderBoletoBancario([FromForm] ShowViewModel viewModel, int Id)
+        {
+            ModelState.Remove("Order");
+            ModelState.Remove("NFE");
+            ModelState.Remove("TrackingCode");
+            ModelState.Remove("CreditCard");
+
+            if (ModelState.IsValid)
+            {
+                viewModel.CreditCard.PaymentForm = PaymentMethodConst.Boleto;
+
+                Order order = _orderRepository.Read(Id);
+
+                _managePagarMe.EstornoBoletoBancario(order.TransactionId);
+
+                order.Situation = OrderSituationConst.ESTORNO;
+
+                var orderSituation = new OrderSituation();
+                orderSituation.Date = DateTime.Now;
+                orderSituation.Data = JsonConvert.SerializeObject(viewModel.BoletoBancario);
+                orderSituation.OrderId = Id;
+                orderSituation.Situation = OrderSituationConst.ESTORNO;
+
+                _orderSituationRepository.Create(orderSituation);
+
+                _orderRepository.Update(order);
+
+                ProductsRefundStock(order);
+            }
+
+            return RedirectToAction(nameof(Show), new { Id = Id });
+        }
+
+
         private void ProductsRefundStock(Order order)
         {
             List<ProductItem> products = JsonConvert.DeserializeObject<List<ProductItem>>(order.ProductsData, new JsonSerializerSettings() { ContractResolver = new ProductItemResolver<List<ProductItem>>() });
