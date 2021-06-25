@@ -114,7 +114,6 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
 
                 _productRepository.Update(productDB);
             }
-        
         }
     }
 }
