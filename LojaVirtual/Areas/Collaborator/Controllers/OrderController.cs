@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Libraries.Filters;
+using LojaVirtual.Libraries.Manager.Payment;
 using LojaVirtual.Models;
 using LojaVirtual.Models.Const;
 using LojaVirtual.Repositories;
@@ -17,12 +18,14 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
     {
         private IOrderRepository _orderRepository;
         private IOrderSituationRepository _orderSituationRepository;
+        private ManagePagarMe _managePagarMe;
 
 
-        public OrderController(IOrderRepository orderRepository, IOrderSituationRepository orderSituationRepository)
+        public OrderController(IOrderRepository orderRepository, IOrderSituationRepository orderSituationRepository, ManagePagarMe managePagarMe)
         {
             _orderRepository = orderRepository;
             _orderSituationRepository = orderSituationRepository;
+            _managePagarMe = managePagarMe;
         }
 
 
@@ -85,6 +88,16 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             _orderRepository.Update(order);
 
             return RedirectToAction(nameof(Show), new { Id = Id });
+        }
+
+
+        public IActionResult CancelOrderCreditCard(int Id)
+        {
+            string reason = HttpContext.Request.Form["cancel_reason"];
+
+            Order order = _orderRepository.Read(Id);
+
+            _managePagarMe.EstornoCreditCard(order.TransactionId);
         }
     }
 }
