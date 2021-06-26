@@ -65,15 +65,9 @@
     }
     else
     {
-        <div class="container">
-            <br />
-            <br />
-            <div class="row">
-                <div class="col-md-12 text-center display-4">
-                    Não encontramos nenhum pedido. Você digitiu o número do pedido ou o CPF do cliente corretamente?
-                </div>
-            </div>
-        </div>
+        <h1 class="my-4 display-4">Pedidos</h1>
+
+        <p>Nenhum pedido cadastrado.</p>
     }
 
     @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page = Page, searchCodOrder = searchCodOrder, searchCpf = searchCpf }))
