@@ -35,14 +35,14 @@
             {
                 if (Model.Order.PaymentForm == PaymentMethodConst.CreditCard)
                 {
-                    <button type="button" class="btn btn-danger p-3" data-toggle="modal" data-target="#cancel-credit-card">
+                    <button type="button" class="btn btn-outline-danger p-3" data-toggle="modal" data-target="#cancel-credit-card">
                         CANCELAR PEDIDO
                     </button>
                 }
 
                 if (Model.Order.PaymentForm == PaymentMethodConst.Boleto)
                 {
-                    <button type="button" class="btn btn-danger p-3" data-toggle="modal" data-target="#cancel-boleto-bancario">
+                    <button type="button" class="btn btn-outline-danger p-3" data-toggle="modal" data-target="#cancel-boleto-bancario">
                         CANCELAR PEDIDO
                     </button>
                 }
@@ -187,7 +187,7 @@
 
                     <div class="form-group">
                         <label for="cancel-reason">Motivo para o cancelamento:</label>
-                        <input type="text" class="form-control" id="cancel-reason" asp-for="@Model.CreditCard.CancelReason" placeholder="Digite o motivo do cancelamento.">
+                        <textarea type="text" class="form-control" id="cancel-reason" asp-for="@Model.CreditCard.CancelReason" placeholder="Digite o motivo do cancelamento."></textarea>
                     </div>
 
                 </div>

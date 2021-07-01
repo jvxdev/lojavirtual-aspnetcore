@@ -27,6 +27,12 @@ namespace LojaVirtual.Libraries.Component
                 OrderSituationConst.PAGAMENTO_NAO_REALIZADO
             };
 
+        List<OrderSituationStatus> Timeline3 { get; set; }
+
+        List<string> StatusTimeline3 = new List<string>() {
+                OrderSituationConst.ESTORNO
+            };
+
 
         public OrderSituationViewComponent()
         {
@@ -42,6 +48,12 @@ namespace LojaVirtual.Libraries.Component
             Timeline2 = new List<OrderSituationStatus>();
             Timeline2.Add(new OrderSituationStatus() { Situation = OrderSituationConst.PEDIDO_REALIZADO, Concluded = false, Color = "complete" });
             Timeline2.Add(new OrderSituationStatus() { Situation = OrderSituationConst.PAGAMENTO_NAO_REALIZADO, Concluded = false, Color = "complete-red" });
+
+            Timeline3 = new List<OrderSituationStatus>();
+            Timeline3.Add(new OrderSituationStatus() { Situation = OrderSituationConst.PEDIDO_REALIZADO, Concluded = false, Color = "complete" });
+            Timeline3.Add(new OrderSituationStatus() { Situation = OrderSituationConst.PAGAMENTO_APROVADO, Concluded = false, Color = "complete" });
+            Timeline3.Add(new OrderSituationStatus() { Situation = OrderSituationConst.NF_EMITIDA, Concluded = false, Color = "complete" });
+            Timeline3.Add(new OrderSituationStatus() { Situation = OrderSituationConst.ESTORNO, Concluded = false, Color = "complete-purple" });
         }
 
 
@@ -57,6 +69,18 @@ namespace LojaVirtual.Libraries.Component
             if (StatusTimeline2.Contains(order.Situation))
             {
                 timeline = Timeline2;
+            }
+
+            if (StatusTimeline3.Contains(order.Situation))
+            {
+                timeline = Timeline3;
+
+                var nfe = order.OrderSituations.Where(a => a.Situation == OrderSituationConst.NF_EMITIDA).FirstOrDefault();
+
+                if (nfe == null)
+                {
+                    timeline.Remove(timeline.FirstOrDefault(a => a.Situation == OrderSituationConst.NF_EMITIDA));
+                }
             }
 
             if (timeline != null)

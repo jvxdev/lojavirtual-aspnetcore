@@ -211,7 +211,7 @@ div .left-border {
         color: #66DC71;
     }
 
-/**** STATUS DA TIMELINE: ERRO ****/
+/**** STATUS DA TIMELINE: PAGAMENTO NÃO REALIZADO ****/
 
 .li.complete-red .status {
     border-top: 2px solid red;
@@ -225,6 +225,22 @@ div .left-border {
 
     .li.complete-red .status h4 {
         color: red;
+    }
+
+/**** STATUS DA TIMELINE: ESTORNO ****/
+
+.li.complete-purple .status {
+    border-top: 2px solid mediumpurple;
+}
+
+    .li.complete-purple .status:before {
+        background-color: mediumpurple;
+        border: none;
+        transition: all 200ms ease-in;
+    }
+
+    .li.complete-purple .status h4 {
+        color: mediumpurple;
     }
 
 /****** ORDER SITUATION TIMELINE STATUS END ******/
