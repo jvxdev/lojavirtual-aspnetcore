@@ -159,11 +159,11 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
             if (ModelState.IsValid)
             {
-                viewModel.CreditCard.PaymentForm = PaymentMethodConst.Boleto;
+                viewModel.BoletoBancario.PaymentForm = PaymentMethodConst.Boleto;
 
                 Order order = _orderRepository.Read(Id);
 
-                _managePagarMe.EstornoBoletoBancario(order.TransactionId);
+                _managePagarMe.EstornoBoletoBancario(order.TransactionId, viewModel.BoletoBancario);
 
                 order.Situation = OrderSituationConst.ESTORNO;
 

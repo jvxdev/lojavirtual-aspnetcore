@@ -1,7 +1,7 @@
 ﻿@model ShowViewModel
 
 @{
-    ViewData["Title"] = "Pedido ("+ Model.Order.Id + "-" + Model.Order.TransactionId + ")";
+    ViewData["Title"] = "Pedido (" + Model.Order.Id + "-" + Model.Order.TransactionId + ")";
     TransactionPagarMe transaction = JsonConvert.DeserializeObject<TransactionPagarMe>(Model.Order.TransactionData);
     List<ProductItem> products = JsonConvert.DeserializeObject<List<ProductItem>>(Model.Order.ProductsData, new JsonSerializerSettings() { ContractResolver = new ProductItemResolver<List<ProductItem>>() });
 
@@ -226,17 +226,17 @@
 
                     <div class="form-group">
                         <label for="agency">Agência:</label>
-                        <input type="text" class="form-control" id="agency" asp-for="@Model.BoletoBancario.Agency" placeholder="Digite o número da agência.">
-                        <input type="text" class="form-control" id="agency_dv" asp-for="@Model.BoletoBancario.Agency_dv" maxlength="2" placeholder="Digite o código verificador da agência.">
-                        
+                        <input type="text" class="form-control mb-2" id="agency" asp-for="@Model.BoletoBancario.Agency" maxlength="15" placeholder="Digite o número da agência.">
+                        <input type="text" class="form-control mb-2" id="agency_dv" asp-for="@Model.BoletoBancario.Agency_dv" maxlength="2" placeholder="Digite o código verificador da agência.">
+
                         <span asp-validation-for="@Model.BoletoBancario.Agency" class="text-danger"></span>
                         <span asp-validation-for="@Model.BoletoBancario.Agency_dv" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
                         <label for="cc">Conta Corrente:</label>
-                        <input type="text" class="form-control" id="cc" asp-for="@Model.BoletoBancario.Account" placeholder="Digite a conta corrente do cliente.">
-                        <input type="text" class="form-control" id="cc_dv" asp-for="@Model.BoletoBancario.Account_dv" placeholder="Digite o código verificador da conta corrente.">
+                        <input type="text" class="form-control mb-2" id="cc" asp-for="@Model.BoletoBancario.Account" maxlength="15" placeholder="Digite a conta corrente do cliente.">
+                        <input type="text" class="form-control mb-2" id="cc_dv" asp-for="@Model.BoletoBancario.Account_dv" maxlength="5" placeholder="Digite o código verificador da conta corrente.">
 
                         <span asp-validation-for="@Model.BoletoBancario.Account" class="text-danger"></span>
                         <span asp-validation-for="@Model.BoletoBancario.Account_dv" class="text-danger"></span>
@@ -245,14 +245,14 @@
                     <div class="form-group">
                         <label for="legal_name">Nome do proprietário da conta:</label>
                         <input type="text" class="form-control" id="legal_name" asp-for="@Model.BoletoBancario.Legal_name" placeholder="Digite o nome do proprietário da conta.">
-                    
+
                         <span asp-validation-for="@Model.BoletoBancario.Legal_name" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
                         <label for="cpf">CPF do proprietário da conta:</label>
-                        <input type="text" class="form-control" id="cpf" asp-for="@Model.BoletoBancario.CPF" placeholder="Digite o CPF do proprietário da conta.">
-                    
+                        <input type="text" class="form-control" id="cpf" asp-for="@Model.BoletoBancario.CPF" maxlength="15" placeholder="Digite o CPF do proprietário da conta.">
+
                         <span asp-validation-for="@Model.BoletoBancario.CPF" class="text-danger"></span>
                     </div>
 

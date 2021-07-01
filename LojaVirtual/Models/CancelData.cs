@@ -31,13 +31,10 @@ namespace LojaVirtual.Models
         public string Account_dv { get; set; }
 
 
-        public string CPF { get; set; }
-
-
         [MinLength(4, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E002")]
         public string Legal_name { get; set; }
 
 
-        public string Type { get; set; }
+        public string CPF { get; set; }
     }
 }

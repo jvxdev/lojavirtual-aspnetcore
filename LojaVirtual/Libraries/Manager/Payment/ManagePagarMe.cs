@@ -1,4 +1,5 @@
-﻿using LojaVirtual.Libraries.Login;
+﻿using AutoMapper;
+using LojaVirtual.Libraries.Login;
 using LojaVirtual.Libraries.Text;
 using LojaVirtual.Models;
 using LojaVirtual.Models.ProductAggregator;
@@ -13,12 +14,14 @@ namespace LojaVirtual.Libraries.Manager.Payment
     {
         private IConfiguration _conf;
         private ClientLogin _clientLogin;
+        private IMapper _mapper;
 
 
-        public ManagePagarMe(IConfiguration conf, ClientLogin clientLogin)
+        public ManagePagarMe(IConfiguration conf, ClientLogin clientLogin, IMapper mapper)
         {
             _conf = conf;
             _clientLogin = clientLogin;
+            _mapper = mapper;
         }
 
 
@@ -276,13 +279,15 @@ namespace LojaVirtual.Libraries.Manager.Payment
         }
 
 
-        public Transaction EstornoBoletoBancario(string transactionId)
+        public Transaction EstornoBoletoBancario(string transactionId, CancelData boleto)
         {
             PagarMeService.DefaultApiKey = _conf.GetValue<String>("Payment:PagarMe:ApiKey");
 
             var transaction = PagarMeService.GetDefaultService().Transactions.Find(transactionId);
-            
-            transaction.Refund();
+
+            var bankAccount = _mapper.Map<CancelData, BankAccount>(boleto);
+
+            transaction.Refund(bankAccount);
 
             return transaction;
         }

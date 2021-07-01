@@ -105,6 +105,43 @@ namespace LojaVirtual.Libraries.AutoMapper
                 opt => opt.MapFrom(
                 orig => JsonConvert.SerializeObject(orig, new JsonSerializerSettings() { ContractResolver = new ProductItemResolver<List<ProductItem>>(), ReferenceLoopHandling = ReferenceLoopHandling.Ignore })
                 ));
+
+            CreateMap<CancelData, BankAccount>()
+                .ForMember(
+                dest => dest.BankCode,
+                opt => opt.MapFrom(
+                orig => orig.Bank_code
+                ))
+                .ForMember(
+                dest => dest.Agencia,
+                opt => opt.MapFrom(
+                orig => orig.Agency
+                ))
+                .ForMember(
+                dest => dest.AgenciaDv,
+                opt => opt.MapFrom(
+                orig => orig.Agency_dv
+                ))
+                .ForMember(
+                dest => dest.Conta,
+                opt => opt.MapFrom(
+                orig => orig.Account
+                ))
+                .ForMember(
+                dest => dest.ContaDv,
+                opt => opt.MapFrom(
+                orig => orig.Account_dv
+                ))
+                .ForMember(
+                dest => dest.LegalName,
+                opt => opt.MapFrom(
+                orig => orig.Legal_name
+                ))
+                .ForMember(
+                dest => dest.DocumentNumber,
+                opt => opt.MapFrom(
+                orig => orig.CPF
+                ));
         }
     }
 }
