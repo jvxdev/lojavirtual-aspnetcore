@@ -79,8 +79,14 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
                 _orderRepository.Update(order);
             }
+            else
+            {
+                ViewBag.MODAL_NFE = true;
+            }
 
-            return RedirectToAction(nameof(Show), new { Id = Id });
+            viewModel.Order = _orderRepository.Read(Id);
+
+            return View(nameof(Show), viewModel);
         }
 
 

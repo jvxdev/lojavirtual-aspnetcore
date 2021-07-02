@@ -8,6 +8,15 @@
     var birthDay = DateTime.Parse(transaction.Customer.Birthday);
 }
 
+@section script {
+    @if (ViewBag.MODAL_NFE != null)
+    {
+        <script type="text/javascript">
+            $('#nfe').modal()
+        </script>
+    }
+}
+
 <div class="container my-3">
     <div class="row">
         <div class="col-md-12">
@@ -20,14 +29,14 @@
             @if (Model.Order.Situation == OrderSituationConst.PAGAMENTO_APROVADO)
             {
                 <button type="button" class="btn btn-dark p-3" data-toggle="modal" data-target="#nfe">
-                    REGISTRAR NOTA FISCAL
+                    Registrar Nota Fiscal
                 </button>
             }
 
             @if (Model.Order.Situation == OrderSituationConst.NF_EMITIDA)
             {
                 <button type="button" class="btn btn-dark p-3" data-toggle="modal" data-target="#tracking_cod">
-                    REGISTRAR CÓDIGO DE RASTREAMENTO
+                    Registrar Código de Rastreamento
                 </button>
             }
 
@@ -36,14 +45,14 @@
                 if (Model.Order.PaymentForm == PaymentMethodConst.CreditCard)
                 {
                     <button type="button" class="btn btn-outline-danger p-3" data-toggle="modal" data-target="#cancel-credit-card">
-                        CANCELAR PEDIDO
+                        Cancelar Pedido
                     </button>
                 }
 
                 if (Model.Order.PaymentForm == PaymentMethodConst.Boleto)
                 {
                     <button type="button" class="btn btn-outline-danger p-3" data-toggle="modal" data-target="#cancel-boleto-bancario">
-                        CANCELAR PEDIDO
+                        Cancelar Pedido
                     </button>
                 }
             }
@@ -134,6 +143,7 @@
                     <div class="form-group">
                         <label for="control-nfe">Link da NF-e:</label>
                         <input type="url" class="form-control" id="control-nfe" asp-for="@Model.NFE.NFE_Url" placeholder="Digite o link da nota fiscal eletrônica">
+                        <span asp-validation-for="@Model.NFE.NFE_Url" class="text-danger"></span>
                     </div>
 
                 </div>
@@ -161,6 +171,7 @@
                     <div class="form-group">
                         <label for="tracking_cod">Código:</label>
                         <input type="text" class="form-control" id="tracking_cod" asp-for="@Model.TrackingCode.Code" placeholder="Digite o código de rastreamento">
+                        <span asp-validation-for="@Model.TrackingCode.Code" class="text-danger"></span>
                     </div>
 
                 </div>
@@ -188,6 +199,7 @@
                     <div class="form-group">
                         <label for="cancel-reason">Motivo para o cancelamento:</label>
                         <textarea type="text" class="form-control" id="cancel-reason" asp-for="@Model.CreditCard.CancelReason" placeholder="Digite o motivo do cancelamento."></textarea>
+                        <span asp-validation-for="@Model.CreditCard.CancelReason" class="text-danger"></span>
                     </div>
 
                 </div>
