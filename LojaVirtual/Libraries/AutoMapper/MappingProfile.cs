@@ -106,7 +106,7 @@ namespace LojaVirtual.Libraries.AutoMapper
                 orig => JsonConvert.SerializeObject(orig, new JsonSerializerSettings() { ContractResolver = new ProductItemResolver<List<ProductItem>>(), ReferenceLoopHandling = ReferenceLoopHandling.Ignore })
                 ));
 
-            CreateMap<CancelData, BankAccount>()
+            CreateMap<CancelDataBoleto, BankAccount>()
                 .ForMember(
                 dest => dest.BankCode,
                 opt => opt.MapFrom(

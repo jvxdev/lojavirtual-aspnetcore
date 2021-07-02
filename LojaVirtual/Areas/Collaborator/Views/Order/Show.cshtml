@@ -15,6 +15,27 @@
             $('#nfe').modal()
         </script>
     }
+
+    @if (ViewBag.MODAL_TRACKING_COD != null)
+    {
+        <script type="text/javascript">
+            $('#tracking_cod').modal()
+        </script>
+    }
+
+    @if (ViewBag.MODAL_CREDIT_CARD != null)
+    {
+        <script type="text/javascript">
+            $('#cancel-credit-card').modal()
+        </script>
+    }
+
+    @if (ViewBag.MODAL_BOLETO != null)
+    {
+        <script type="text/javascript">
+            $('#cancel-boleto-bancario').modal()
+        </script>
+    }
 }
 
 <div class="container my-3">
@@ -239,18 +260,18 @@
                     <div class="form-group">
                         <label for="agency">Agência:</label>
                         <input type="text" class="form-control mb-2" id="agency" asp-for="@Model.BoletoBancario.Agency" maxlength="15" placeholder="Digite o número da agência.">
-                        <input type="text" class="form-control mb-2" id="agency_dv" asp-for="@Model.BoletoBancario.Agency_dv" maxlength="2" placeholder="Digite o código verificador da agência.">
-
                         <span asp-validation-for="@Model.BoletoBancario.Agency" class="text-danger"></span>
+                        
+                        <input type="text" class="form-control mb-2" id="agency_dv" asp-for="@Model.BoletoBancario.Agency_dv" maxlength="2" placeholder="Digite o código verificador da agência.">
                         <span asp-validation-for="@Model.BoletoBancario.Agency_dv" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
                         <label for="cc">Conta Corrente:</label>
                         <input type="text" class="form-control mb-2" id="cc" asp-for="@Model.BoletoBancario.Account" maxlength="15" placeholder="Digite a conta corrente do cliente.">
-                        <input type="text" class="form-control mb-2" id="cc_dv" asp-for="@Model.BoletoBancario.Account_dv" maxlength="5" placeholder="Digite o código verificador da conta corrente.">
-
                         <span asp-validation-for="@Model.BoletoBancario.Account" class="text-danger"></span>
+                        
+                        <input type="text" class="form-control mb-2" id="cc_dv" asp-for="@Model.BoletoBancario.Account_dv" maxlength="5" placeholder="Digite o código verificador da conta corrente.">
                         <span asp-validation-for="@Model.BoletoBancario.Account_dv" class="text-danger"></span>
                     </div>
 

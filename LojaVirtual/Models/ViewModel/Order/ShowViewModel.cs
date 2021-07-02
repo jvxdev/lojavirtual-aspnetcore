@@ -16,9 +16,9 @@ namespace LojaVirtual.Models.ViewModel.Order
         public TrackingCod TrackingCode { get; set; }
 
 
-        public CancelData CreditCard { get; set; }
+        public CancelDataCreditCard CreditCard { get; set; }
 
 
-        public CancelData BoletoBancario { get; set; }
+        public CancelDataBoleto BoletoBancario { get; set; }
     }
 }

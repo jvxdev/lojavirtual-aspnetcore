@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace LojaVirtual.Models
 {
-    public class NFE
+    public class CancelDataCreditCard
     {
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
-        [Url(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E004")]
-        public string NFE_Url { get; set; }
+        public string CancelReason { get; set; }
+
+
+        public string PaymentForm { get; set; }
     }
 }
