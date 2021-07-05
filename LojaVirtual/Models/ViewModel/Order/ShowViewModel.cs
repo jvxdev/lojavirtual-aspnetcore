@@ -1,5 +1,7 @@
-﻿using System;
+﻿using LojaVirtual.Libraries.Lang;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,7 +14,7 @@ namespace LojaVirtual.Models.ViewModel.Order
 
         public NFE NFE { get; set; }
 
-        
+
         public TrackingCod TrackingCod { get; set; }
 
 
@@ -23,5 +25,9 @@ namespace LojaVirtual.Models.ViewModel.Order
 
 
         public RefundData Refund { get; set; }
+
+
+        [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
+        public string RefundRejectReason { get; set; }
     }
 }

@@ -60,6 +60,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             ModelState.Remove("CreditCard");
             ModelState.Remove("BoletoBancario"); 
             ModelState.Remove("Refund");
+            ModelState.Remove("RefundRejectReason");
 
             if (ModelState.IsValid)
             {
@@ -98,6 +99,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             ModelState.Remove("CreditCard");
             ModelState.Remove("BoletoBancario");
             ModelState.Remove("Refund");
+            ModelState.Remove("RefundRejectReason");
 
             if (ModelState.IsValid)
             {
@@ -136,7 +138,8 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             ModelState.Remove("NFE");
             ModelState.Remove("TrackingCod");
             ModelState.Remove("BoletoBancario");
-            ModelState.Remove("Refund");
+            ModelState.Remove("Refund"); 
+            ModelState.Remove("RefundRejectReason");
 
             if (ModelState.IsValid)
             {
@@ -178,6 +181,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             ModelState.Remove("TrackingCod");
             ModelState.Remove("CreditCard");
             ModelState.Remove("Refund");
+            ModelState.Remove("RefundRejectReason");
 
             if (ModelState.IsValid)
             {
@@ -219,6 +223,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             ModelState.Remove("TrackingCod");
             ModelState.Remove("CreditCard");
             ModelState.Remove("BoletoBancario");
+            ModelState.Remove("RefundRejectReason");
 
             if (ModelState.IsValid)
             {
@@ -239,6 +244,41 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             else
             {
                 ViewBag.MODAL_REFUND = true;
+            }
+
+            viewModel.Order = _orderRepository.Read(Id);
+
+            return View(nameof(Show), viewModel);
+        }
+
+
+        public IActionResult RefundOrderRejected([FromForm] ShowViewModel viewModel, int Id)
+        {
+            ModelState.Remove("Order");
+            ModelState.Remove("NFE");
+            ModelState.Remove("TrackingCod");
+            ModelState.Remove("CreditCard");
+            ModelState.Remove("BoletoBancario");
+
+            if (ModelState.IsValid)
+            {
+                Order order = _orderRepository.Read(Id);
+
+                order.Situation = OrderSituationConst.DEVOLUCAO_REJEITADA;
+
+                var orderSituation = new OrderSituation();
+                orderSituation.Date = DateTime.Now;
+                orderSituation.Data = viewModel.RefundRejectReason;
+                orderSituation.OrderId = Id;
+                orderSituation.Situation = OrderSituationConst.DEVOLUCAO_REJEITADA;
+
+                _orderSituationRepository.Create(orderSituation);
+
+                _orderRepository.Update(order);
+            }
+            else
+            {
+                ViewBag.MODAL_REFUND_REJECT = true;
             }
 
             viewModel.Order = _orderRepository.Read(Id);

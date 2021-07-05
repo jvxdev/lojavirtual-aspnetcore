@@ -43,6 +43,13 @@
             $('#refund').modal()
         </script>
     }
+
+    @if (ViewBag.MODAL_REFUND_REJECT != null)
+    {
+        <script type="text/javascript">
+            $('#refund-reject').modal()
+        </script>
+    }
 }
 
 <div class="container my-3">
@@ -84,6 +91,7 @@
                     </button>
                 }
             }
+
             @if (Model.Order.Situation == OrderSituationConst.ENTREGUE)
             {
                 var orderSitatuon = Model.Order.OrderSituations.FirstOrDefault(a => a.Situation == OrderSituationConst.ENTREGUE);
@@ -95,6 +103,17 @@
                     </button>
                 }
 
+            }
+
+            @if (Model.Order.Situation == OrderSituationConst.DEVOLUCAO_ENTREGUE)
+            {
+                <button type="button" class="btn btn-success p-3">
+                    Aprovar devolução
+                </button>
+
+                <button type="button" class="btn btn-danger p-3" data-toggle="modal" data-target="#refund-reject">
+                    Rejeitar devolução
+                </button>
             }
         </div>
     </div>
@@ -352,6 +371,40 @@
 
                     <div class="form-group">
                         <label asp-for="@Model.Refund.RefundReason">Motivo para a devolução:</label>
+                        <textarea type="text" class="form-control" asp-for="@Model.Refund.RefundReason" placeholder="Digite o motivo da devolução."></textarea>
+                        <span asp-validation-for="@Model.Refund.RefundReason" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="@Model.Refund.TrackingCod">Código de rastreamento:</label>
+                        <textarea type="text" class="form-control" asp-for="@Model.Refund.TrackingCod" placeholder="Digite o código de rastreamento."></textarea>
+                        <span asp-validation-for="@Model.Refund.TrackingCod" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form method="post" asp-action="RefundOrderRejected" asp-route-id="@Model.Order.Id">
+    <div class="modal fade" id="refund-reject" tabindex="-1" role="dialog" aria-labelledby="refund-reject" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Rejeitar Devolução</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label asp-for="@Model.Refund.RefundReason">Motivo para a rejeição da devolução:</label>
                         <textarea type="text" class="form-control" asp-for="@Model.Refund.RefundReason" placeholder="Digite o motivo da devolução."></textarea>
                         <span asp-validation-for="@Model.Refund.RefundReason" class="text-danger"></span>
                     </div>
