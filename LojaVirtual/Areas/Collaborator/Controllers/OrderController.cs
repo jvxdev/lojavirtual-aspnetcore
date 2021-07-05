@@ -56,9 +56,10 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         public IActionResult NFE([FromForm] ShowViewModel viewModel, int Id)
         {
             ModelState.Remove("Order");
-            ModelState.Remove("TrackingCode");
+            ModelState.Remove("TrackingCod");
             ModelState.Remove("CreditCard");
-            ModelState.Remove("BoletoBancario");
+            ModelState.Remove("BoletoBancario"); 
+            ModelState.Remove("Devolution");
 
             if (ModelState.IsValid)
             {
@@ -96,10 +97,11 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             ModelState.Remove("NFE");
             ModelState.Remove("CreditCard");
             ModelState.Remove("BoletoBancario");
+            ModelState.Remove("Devolution");
 
             if (ModelState.IsValid)
             {
-                string trackingCod = viewModel.TrackingCode.Code;
+                string trackingCod = viewModel.TrackingCod.Code;
 
                 Order order = _orderRepository.Read(Id);
 
@@ -132,8 +134,9 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         {
             ModelState.Remove("Order");
             ModelState.Remove("NFE");
-            ModelState.Remove("TrackingCode");
+            ModelState.Remove("TrackingCod");
             ModelState.Remove("BoletoBancario");
+            ModelState.Remove("Devolution");
 
             if (ModelState.IsValid)
             {
@@ -172,8 +175,9 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         {
             ModelState.Remove("Order");
             ModelState.Remove("NFE");
-            ModelState.Remove("TrackingCode");
+            ModelState.Remove("TrackingCod");
             ModelState.Remove("CreditCard");
+            ModelState.Remove("Devolution");
 
             if (ModelState.IsValid)
             {

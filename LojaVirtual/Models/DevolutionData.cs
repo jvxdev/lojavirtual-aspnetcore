@@ -7,11 +7,15 @@ using System.Threading.Tasks;
 
 namespace LojaVirtual.Models
 {
-    public class TrackingCod
+    public class DevolutionData
     {
+        [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
+        public string DevolutionReason { get; set; }
+
+
         [Display(Name = "Código de rastreamento")]
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
         [MinLength(5, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E002")]
-        public string Code { get; set; }
+        public string TrackingCod { get; set; }
     }
 }

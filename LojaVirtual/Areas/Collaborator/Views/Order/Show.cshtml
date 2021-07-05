@@ -77,6 +77,18 @@
                     </button>
                 }
             }
+            @if (Model.Order.Situation == OrderSituationConst.ENTREGUE)
+            {
+                var orderSitatuon = Model.Order.OrderSituations.FirstOrDefault(a => a.Situation == OrderSituationConst.ENTREGUE);
+
+                if (orderSitatuon != null && DateTime.Now <= orderSitatuon.Date.AddDays(7))
+                {
+                    <button type="button" class="btn btn-dark p-3" data-toggle="modal" data-target="#devolucao">
+                        Devolver
+                    </button>
+                }
+
+            }
         </div>
     </div>
 
@@ -191,8 +203,8 @@
 
                     <div class="form-group">
                         <label for="tracking_cod">Código:</label>
-                        <input type="text" class="form-control" id="tracking_cod" asp-for="@Model.TrackingCode.Code" placeholder="Digite o código de rastreamento">
-                        <span asp-validation-for="@Model.TrackingCode.Code" class="text-danger"></span>
+                        <input type="text" class="form-control" id="tracking_cod" asp-for="@Model.TrackingCod.Code" placeholder="Digite o código de rastreamento">
+                        <span asp-validation-for="@Model.TrackingCod.Code" class="text-danger"></span>
                     </div>
 
                 </div>
@@ -287,6 +299,40 @@
                         <input type="text" class="form-control" id="cpf" asp-for="@Model.BoletoBancario.CPF" maxlength="15" placeholder="Digite o CPF do proprietário da conta.">
 
                         <span asp-validation-for="@Model.BoletoBancario.CPF" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form method="post" asp-action="CancelOrderCreditCard" asp-route-id="@Model.Order.Id">
+    <div class="modal fade" id="devolucao" tabindex="-1" role="dialog" aria-labelledby="devolucao" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Devolução</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label asp-for="@Model.Devolution.DevolutionReason">Motivo para a devolução:</label>
+                        <textarea type="text" class="form-control" id="devolution-reason" asp-for="@Model.Devolution.DevolutionReason" placeholder="Digite o motivo da devolução."></textarea>
+                        <span asp-validation-for="@Model.Devolution.DevolutionReason" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="@Model.Devolution.TrackingCod">Código de rastreamento:</label>
+                        <textarea type="text" class="form-control" id="devolution-reason" asp-for="@Model.Devolution.TrackingCod" placeholder="Digite o código de rastreamento."></textarea>
+                        <span asp-validation-for="@Model.Devolution.TrackingCod" class="text-danger"></span>
                     </div>
 
                 </div>

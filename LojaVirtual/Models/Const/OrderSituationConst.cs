@@ -6,15 +6,17 @@
         public const string PAGAMENTO_APROVADO = "Pagamento aprovado";
         public const string PAGAMENTO_REJEITADO = "Pagamento rejeitado";
         public const string PAGAMENTO_NAO_REALIZADO = "Pagamento não realizado (vencido)";
+        
         public const string NF_EMITIDA = "Nota fiscal emitida";
         public const string EM_TRANSPORTE = "Em transporte";
         public const string ENTREGUE = "Entregue";
         public const string FINALIZADO = "Finalizado";
-        public const string EM_CANCELAMENTO = "Em cancelamento";
-        public const string EM_ANALISE = "Em análise";
-        public const string CANCELAMENTO_APROVADO = "Cancelamento aprovado";
-        public const string CANCELAMENTO_REJEITADO = "Cancelamento rejeitado";
         public const string ESTORNO = "Estorno";
+
+        public const string DEVOLUCAO = "Devolução (em transporte)";
+        public const string DEVOLUCAO_ENTREGUE = "Devolução (entregue)";
+        public const string DEVOLUCAO_APROVADA = "Devolução aprovada";
+        public const string DEVOLUCAO_REJEITADA = "Devolução rejeitada";
 
         public static string GetName(string code)
         {

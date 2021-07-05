@@ -13,12 +13,15 @@ namespace LojaVirtual.Models.ViewModel.Order
         public NFE NFE { get; set; }
 
         
-        public TrackingCod TrackingCode { get; set; }
+        public TrackingCod TrackingCod { get; set; }
 
 
         public CancelDataCreditCard CreditCard { get; set; }
 
 
         public CancelDataBoleto BoletoBancario { get; set; }
+
+
+        public DevolutionData Devolution { get; set; }
     }
 }
