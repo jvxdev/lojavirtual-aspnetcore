@@ -50,6 +50,13 @@
             $('#refund-reject').modal()
         </script>
     }
+
+    @if (ViewBag.MODAL_REFUND_BOLETO != null)
+    {
+        <script type="text/javascript">
+            $('#refund-approve-boleto').modal()
+        </script>
+    }
 }
 
 <div class="container my-3">
@@ -116,7 +123,7 @@
 
                 if (Model.Order.PaymentForm == PaymentMethodConst.Boleto)
                 {
-                    <button type="button" class="btn btn-success p-3" asp-action="RefundOrderApprovedBoletoBancario" asp-route-id="@Model.Order.Id">
+                    <button type="button" class="btn btn-success p-3" data-toggle="modal" data-target="#refund-approve-boleto">
                         Aprovar devolução
                     </button>
                 }
@@ -422,6 +429,66 @@
                         <label asp-for="@Model.Refund.RefundReason">Motivo para a rejeição da devolução:</label>
                         <textarea type="text" class="form-control" asp-for="@Model.Refund.RefundReason" placeholder="Digite o motivo para a rejeição da devolução."></textarea>
                         <span asp-validation-for="@Model.Refund.RefundReason" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form method="post" asp-action="RefundOrderApprovedBoletoBancario" asp-route-id="@Model.Order.Id">
+    <div class="modal fade" id="refund-approve-boleto" tabindex="-1" role="dialog" aria-labelledby="refund-approve-boleto" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Devolver dinheiro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="cod-bank">Código do banco:</label>
+                        <input type="text" class="form-control" id="cod_bank" asp-for="@Model.BoletoBancario.Bank_code" placeholder="Digite o código do banco.">
+                        <span asp-validation-for="@Model.BoletoBancario.Bank_code" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="agency">Agência:</label>
+                        <input type="text" class="form-control mb-2" id="agency" asp-for="@Model.BoletoBancario.Agency" maxlength="15" placeholder="Digite o número da agência.">
+                        <span asp-validation-for="@Model.BoletoBancario.Agency" class="text-danger"></span>
+
+                        <input type="text" class="form-control mb-2" id="agency_dv" asp-for="@Model.BoletoBancario.Agency_dv" maxlength="2" placeholder="Digite o código verificador da agência.">
+                        <span asp-validation-for="@Model.BoletoBancario.Agency_dv" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cc">Conta Corrente:</label>
+                        <input type="text" class="form-control mb-2" id="cc" asp-for="@Model.BoletoBancario.Account" maxlength="15" placeholder="Digite a conta corrente do cliente.">
+                        <span asp-validation-for="@Model.BoletoBancario.Account" class="text-danger"></span>
+
+                        <input type="text" class="form-control mb-2" id="cc_dv" asp-for="@Model.BoletoBancario.Account_dv" maxlength="5" placeholder="Digite o código verificador da conta corrente.">
+                        <span asp-validation-for="@Model.BoletoBancario.Account_dv" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="legal_name">Nome do proprietário da conta:</label>
+                        <input type="text" class="form-control" id="legal_name" asp-for="@Model.BoletoBancario.Legal_name" placeholder="Digite o nome do proprietário da conta.">
+
+                        <span asp-validation-for="@Model.BoletoBancario.Legal_name" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cpf">CPF do proprietário da conta:</label>
+                        <input type="text" class="form-control" id="cpf" asp-for="@Model.BoletoBancario.CPF" maxlength="15" placeholder="Digite o CPF do proprietário da conta.">
+
+                        <span asp-validation-for="@Model.BoletoBancario.CPF" class="text-danger"></span>
                     </div>
 
                 </div>

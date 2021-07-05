@@ -324,9 +324,53 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         }
 
 
-        public IActionResult RefundOrderApprovedBoletoBancario(int Id)
+        public IActionResult RefundOrderApprovedBoletoBancario([FromForm] ShowViewModel viewModel, int Id)
         {
+            ModelState.Remove("Order");
+            ModelState.Remove("NFE");
+            ModelState.Remove("TrackingCod");
+            ModelState.Remove("CreditCard");
+            ModelState.Remove("Refund");
+            ModelState.Remove("RefundRejectReason");
+            ModelState.Remove("BoletoBancario.CancelReason");
+                
+            Order order = _orderRepository.Read(Id);
 
+            if (ModelState.IsValid)
+            {
+                var orderSituation = new OrderSituation();
+                orderSituation.Date = DateTime.Now;
+                orderSituation.OrderId = Id;
+                orderSituation.Situation = OrderSituationConst.DEVOLUCAO_APROVADA;
+
+                _orderSituationRepository.Create(orderSituation);
+
+                viewModel.BoletoBancario.PaymentForm = PaymentMethodConst.Boleto;
+
+                _managePagarMe.EstornoBoletoBancario(order.TransactionId, viewModel.BoletoBancario);
+
+                orderSituation = new OrderSituation();
+                orderSituation.Date = DateTime.Now;
+                orderSituation.Data = JsonConvert.SerializeObject(viewModel.BoletoBancario);
+                orderSituation.OrderId = Id;
+                orderSituation.Situation = OrderSituationConst.ESTORNO;
+
+                _orderSituationRepository.Create(orderSituation);
+
+                order.Situation = OrderSituationConst.ESTORNO;
+
+                _orderRepository.Update(order);
+
+                ProductsRefundStock(order);
+            }
+            else
+            {
+                ViewBag.MODAL_REFUND_BOLETO = true;
+            }
+
+            viewModel.Order = order;
+
+            return View(nameof(Show), viewModel);
         }
 
 
