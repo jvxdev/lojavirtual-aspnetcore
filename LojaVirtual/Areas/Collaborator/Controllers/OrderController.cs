@@ -287,6 +287,49 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         }
 
 
+        public IActionResult RefundOrderApprovedCreditCard(int Id)
+        {
+            Order order = _orderRepository.Read(Id);
+
+            if (order.Situation == OrderSituationConst.DEVOLUCAO_ENTREGUE)
+            {
+                var orderSituation = new OrderSituation();
+                orderSituation.Date = DateTime.Now;
+                orderSituation.OrderId = Id;
+                orderSituation.Situation = OrderSituationConst.DEVOLUCAO_APROVADA;
+
+                _orderSituationRepository.Create(orderSituation);
+
+                _managePagarMe.EstornoCreditCard(order.TransactionId);
+
+                orderSituation = new OrderSituation();
+                orderSituation.Date = DateTime.Now;
+                orderSituation.OrderId = Id;
+                orderSituation.Situation = OrderSituationConst.ESTORNO;
+
+                _orderSituationRepository.Create(orderSituation);
+
+                ProductsRefundStock(order);
+
+                order.Situation = OrderSituationConst.ESTORNO;
+
+                _orderRepository.Update(order);
+            }
+
+            ShowViewModel viewModel = new ShowViewModel();
+
+            viewModel.Order = order;
+
+            return View(nameof(Show), viewModel);
+        }
+
+
+        public IActionResult RefundOrderApprovedBoletoBancario(int Id)
+        {
+
+        }
+
+
         private void ProductsRefundStock(Order order)
         {
             List<ProductItem> products = JsonConvert.DeserializeObject<List<ProductItem>>(order.ProductsData, new JsonSerializerSettings() { ContractResolver = new ProductItemResolver<List<ProductItem>>() });

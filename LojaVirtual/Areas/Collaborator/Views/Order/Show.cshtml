@@ -107,11 +107,26 @@
 
             @if (Model.Order.Situation == OrderSituationConst.DEVOLUCAO_ENTREGUE)
             {
+                if (Model.Order.PaymentForm == PaymentMethodConst.CreditCard)
+                {
+                    <button type="button" class="btn btn-success p-3" asp-action="RefundOrderApprovedCreditCard" asp-route-id="@Model.Order.Id">
+                        Aprovar devolução
+                    </button>
+                }
+
+                if (Model.Order.PaymentForm == PaymentMethodConst.Boleto)
+                {
+                    <button type="button" class="btn btn-success p-3" asp-action="RefundOrderApprovedBoletoBancario" asp-route-id="@Model.Order.Id">
+                        Aprovar devolução
+                    </button>
+                }
+
+
                 <button type="button" class="btn btn-success p-3">
                     Aprovar devolução
                 </button>
 
-                <button type="button" class="btn btn-danger p-3" data-toggle="modal" data-target="#refund-reject">
+                <button type="button" class="btn btn-outline-danger p-3" data-toggle="modal" data-target="#refund-reject">
                     Rejeitar devolução
                 </button>
             }
@@ -405,14 +420,8 @@
 
                     <div class="form-group">
                         <label asp-for="@Model.Refund.RefundReason">Motivo para a rejeição da devolução:</label>
-                        <textarea type="text" class="form-control" asp-for="@Model.Refund.RefundReason" placeholder="Digite o motivo da devolução."></textarea>
+                        <textarea type="text" class="form-control" asp-for="@Model.Refund.RefundReason" placeholder="Digite o motivo para a rejeição da devolução."></textarea>
                         <span asp-validation-for="@Model.Refund.RefundReason" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label asp-for="@Model.Refund.TrackingCod">Código de rastreamento:</label>
-                        <textarea type="text" class="form-control" asp-for="@Model.Refund.TrackingCod" placeholder="Digite o código de rastreamento."></textarea>
-                        <span asp-validation-for="@Model.Refund.TrackingCod" class="text-danger"></span>
                     </div>
 
                 </div>
