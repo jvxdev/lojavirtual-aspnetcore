@@ -59,7 +59,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             ModelState.Remove("TrackingCod");
             ModelState.Remove("CreditCard");
             ModelState.Remove("BoletoBancario"); 
-            ModelState.Remove("Devolution");
+            ModelState.Remove("Refund");
 
             if (ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             ModelState.Remove("NFE");
             ModelState.Remove("CreditCard");
             ModelState.Remove("BoletoBancario");
-            ModelState.Remove("Devolution");
+            ModelState.Remove("Refund");
 
             if (ModelState.IsValid)
             {
@@ -136,7 +136,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             ModelState.Remove("NFE");
             ModelState.Remove("TrackingCod");
             ModelState.Remove("BoletoBancario");
-            ModelState.Remove("Devolution");
+            ModelState.Remove("Refund");
 
             if (ModelState.IsValid)
             {
@@ -177,7 +177,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             ModelState.Remove("NFE");
             ModelState.Remove("TrackingCod");
             ModelState.Remove("CreditCard");
-            ModelState.Remove("Devolution");
+            ModelState.Remove("Refund");
 
             if (ModelState.IsValid)
             {
@@ -204,6 +204,41 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             else
             {
                 ViewBag.MODAL_BOLETO = true;
+            }
+
+            viewModel.Order = _orderRepository.Read(Id);
+
+            return View(nameof(Show), viewModel);
+        }
+
+
+        public IActionResult RefundOrder([FromForm] ShowViewModel viewModel, int Id)
+        {
+            ModelState.Remove("Order");
+            ModelState.Remove("NFE");
+            ModelState.Remove("TrackingCod");
+            ModelState.Remove("CreditCard");
+            ModelState.Remove("BoletoBancario");
+
+            if (ModelState.IsValid)
+            {
+                Order order = _orderRepository.Read(Id);
+
+                order.Situation = OrderSituationConst.DEVOLUCAO;
+
+                var orderSituation = new OrderSituation();
+                orderSituation.Date = DateTime.Now;
+                orderSituation.Data = JsonConvert.SerializeObject(viewModel.Refund);
+                orderSituation.OrderId = Id;
+                orderSituation.Situation = OrderSituationConst.DEVOLUCAO;
+
+                _orderSituationRepository.Create(orderSituation);
+
+                _orderRepository.Update(order);
+            }
+            else
+            {
+                ViewBag.MODAL_REFUND = true;
             }
 
             viewModel.Order = _orderRepository.Read(Id);

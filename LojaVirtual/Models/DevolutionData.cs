@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace LojaVirtual.Models
 {
-    public class DevolutionData
+    public class RefundData
     {
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
-        public string DevolutionReason { get; set; }
+        public string RefundReason { get; set; }
 
 
         [Display(Name = "Código de rastreamento")]

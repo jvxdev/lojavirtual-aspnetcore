@@ -22,6 +22,6 @@ namespace LojaVirtual.Models.ViewModel.Order
         public CancelDataBoleto BoletoBancario { get; set; }
 
 
-        public DevolutionData Devolution { get; set; }
+        public RefundData Refund { get; set; }
     }
 }

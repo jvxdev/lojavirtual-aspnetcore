@@ -36,6 +36,13 @@
             $('#cancel-boleto-bancario').modal()
         </script>
     }
+
+    @if (ViewBag.MODAL_REFUND != null)
+    {
+        <script type="text/javascript">
+            $('#refund').modal()
+        </script>
+    }
 }
 
 <div class="container my-3">
@@ -83,8 +90,8 @@
 
                 if (orderSitatuon != null && DateTime.Now <= orderSitatuon.Date.AddDays(7))
                 {
-                    <button type="button" class="btn btn-dark p-3" data-toggle="modal" data-target="#devolucao">
-                        Devolver
+                    <button type="button" class="btn btn-dark p-3" data-toggle="modal" data-target="#refund">
+                        Devolução
                     </button>
                 }
 
@@ -273,7 +280,7 @@
                         <label for="agency">Agência:</label>
                         <input type="text" class="form-control mb-2" id="agency" asp-for="@Model.BoletoBancario.Agency" maxlength="15" placeholder="Digite o número da agência.">
                         <span asp-validation-for="@Model.BoletoBancario.Agency" class="text-danger"></span>
-                        
+
                         <input type="text" class="form-control mb-2" id="agency_dv" asp-for="@Model.BoletoBancario.Agency_dv" maxlength="2" placeholder="Digite o código verificador da agência.">
                         <span asp-validation-for="@Model.BoletoBancario.Agency_dv" class="text-danger"></span>
                     </div>
@@ -282,7 +289,7 @@
                         <label for="cc">Conta Corrente:</label>
                         <input type="text" class="form-control mb-2" id="cc" asp-for="@Model.BoletoBancario.Account" maxlength="15" placeholder="Digite a conta corrente do cliente.">
                         <span asp-validation-for="@Model.BoletoBancario.Account" class="text-danger"></span>
-                        
+
                         <input type="text" class="form-control mb-2" id="cc_dv" asp-for="@Model.BoletoBancario.Account_dv" maxlength="5" placeholder="Digite o código verificador da conta corrente.">
                         <span asp-validation-for="@Model.BoletoBancario.Account_dv" class="text-danger"></span>
                     </div>
@@ -311,8 +318,8 @@
     </div>
 </form>
 
-<form method="post" asp-action="CancelOrderCreditCard" asp-route-id="@Model.Order.Id">
-    <div class="modal fade" id="devolucao" tabindex="-1" role="dialog" aria-labelledby="devolucao" aria-hidden="true">
+<form method="post" asp-action="RefundOrder" asp-route-id="@Model.Order.Id">
+    <div class="modal fade" id="refund" tabindex="-1" role="dialog" aria-labelledby="refund" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -324,15 +331,15 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label asp-for="@Model.Devolution.DevolutionReason">Motivo para a devolução:</label>
-                        <textarea type="text" class="form-control" id="devolution-reason" asp-for="@Model.Devolution.DevolutionReason" placeholder="Digite o motivo da devolução."></textarea>
-                        <span asp-validation-for="@Model.Devolution.DevolutionReason" class="text-danger"></span>
+                        <label asp-for="@Model.Refund.RefundReason">Motivo para a devolução:</label>
+                        <textarea type="text" class="form-control" asp-for="@Model.Refund.RefundReason" placeholder="Digite o motivo da devolução."></textarea>
+                        <span asp-validation-for="@Model.Refund.RefundReason" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <label asp-for="@Model.Devolution.TrackingCod">Código de rastreamento:</label>
-                        <textarea type="text" class="form-control" id="devolution-reason" asp-for="@Model.Devolution.TrackingCod" placeholder="Digite o código de rastreamento."></textarea>
-                        <span asp-validation-for="@Model.Devolution.TrackingCod" class="text-danger"></span>
+                        <label asp-for="@Model.Refund.TrackingCod">Código de rastreamento:</label>
+                        <textarea type="text" class="form-control" asp-for="@Model.Refund.TrackingCod" placeholder="Digite o código de rastreamento."></textarea>
+                        <span asp-validation-for="@Model.Refund.TrackingCod" class="text-danger"></span>
                     </div>
 
                 </div>
