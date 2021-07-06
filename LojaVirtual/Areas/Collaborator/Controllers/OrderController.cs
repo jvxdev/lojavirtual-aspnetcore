@@ -306,13 +306,13 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
                 orderSituation = new OrderSituation();
                 orderSituation.Date = DateTime.Now;
                 orderSituation.OrderId = Id;
-                orderSituation.Situation = OrderSituationConst.ESTORNO;
+                orderSituation.Situation = OrderSituationConst.DEVOLUCAO_ESTORNO;
 
                 _orderSituationRepository.Create(orderSituation);
 
                 ProductsRefundStock(order);
 
-                order.Situation = OrderSituationConst.ESTORNO;
+                order.Situation = OrderSituationConst.DEVOLUCAO_ESTORNO;
 
                 _orderRepository.Update(order);
             }
@@ -354,11 +354,11 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
                 orderSituation.Date = DateTime.Now;
                 orderSituation.Data = JsonConvert.SerializeObject(viewModel.BoletoBancario);
                 orderSituation.OrderId = Id;
-                orderSituation.Situation = OrderSituationConst.ESTORNO;
+                orderSituation.Situation = OrderSituationConst.DEVOLUCAO_ESTORNO;
 
                 _orderSituationRepository.Create(orderSituation);
 
-                order.Situation = OrderSituationConst.ESTORNO;
+                order.Situation = OrderSituationConst.DEVOLUCAO_ESTORNO;
 
                 _orderRepository.Update(order);
 

@@ -17,7 +17,7 @@
         public const string DEVOLUCAO_ENTREGUE = "Devolução (Entregue)";
         public const string DEVOLUCAO_APROVADA = "Devolução aprovada";
         public const string DEVOLUCAO_REJEITADA = "Devolução rejeitada";
-        public const string DEVOLUCAO_ESTORNO = "Estorno de devolução";
+        public const string DEVOLUCAO_ESTORNO = "Estorno (Devolução de mercadoria)";
 
         public static string GetName(string code)
         {
