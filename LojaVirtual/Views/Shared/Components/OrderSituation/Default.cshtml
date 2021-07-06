@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Situação do pedido";
+    var lineBreak = 0;
 }
 
 @if (Model != null)
@@ -9,6 +10,8 @@
     <ul class="timeline" id="timeline">
         @foreach (var orderStatus in Model)
         {
+            lineBreak++;
+
             <li class="li @((orderStatus.Concluded) ? orderStatus.Color : "")">
                 <div class="timestamp">
                     <span class="date">@((orderStatus.Date != null) ? orderStatus.Date.ToString() : "-")</span>
@@ -17,6 +20,13 @@
                     <h4 class="font-weight-light"> @orderStatus.Situation </h4>
                 </div>
             </li>
+
+            if (lineBreak == 5)
+            {
+                @Html.Raw("</ul>");
+                @Html.Raw("<ul class='timeline' id =\"timeline\">");
+                lineBreak = 0;
+            }
         }
     </ul>
 }
