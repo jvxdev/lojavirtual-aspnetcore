@@ -53,6 +53,36 @@
                 </tr>
             </table>
 
+            @{
+                var refundDelivery = Model.OrderSituations.FirstOrDefault(a => a.Situation == OrderSituationConst.DEVOLUCAO_ENTREGUE);
+            }
+
+            @if (refundDelivery != null)
+            {
+                var refund = Model.OrderSituations.FirstOrDefault(a => a.Situation == OrderSituationConst.DEVOLUCAO);
+
+                RefundData refundData = JsonConvert.DeserializeObject<RefundData>(refund.Data);
+
+                var refundRejectedReason = Model.OrderSituations.FirstOrDefault(a => a.Situation == OrderSituationConst.DEVOLUCAO_REJEITADA);
+
+                var dataCorreiosRefund = JsonConvert.DeserializeObject<Correios.NET.Models.Package>(refundDelivery.Data);
+
+                <h3 class="display-4 text-center my-4">Devolução</h3>
+                <table class="table table-bordered">
+                    <tr>
+                        <td><strong>Empresa de entrega:</strong> @Model.FreteCompany</td>
+                        <td><strong>Código de rastreamento:</strong> @Html.Raw(refundData.TrackingCod == null ? "-" : "<a href='https://www.linkcorreios.com.br/" + refundData.TrackingCod + "' target='blank'>" + refundData.TrackingCod + "</a>")</td>
+                        <td><strong>Data da devolução (Na loja): </strong>@dataCorreiosRefund.DeliveryDate.ToString()</td>
+                    </tr>
+                    @if (refundRejectedReason != null)
+                    {
+                        <tr>
+                            <td colspan="3" class="text-center"><strong style="color: red;">Motivo da rejeição da devolução:</strong> @refundRejectedReason.Data</td>
+                        </tr>
+                    }
+                </table>
+            }
+
             <h3 class="display-4 text-center my-5">Produtos do pedido</h3>
             <table class="table table-bordered">
                 <tr>

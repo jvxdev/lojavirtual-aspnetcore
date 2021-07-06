@@ -259,6 +259,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             ModelState.Remove("TrackingCod");
             ModelState.Remove("CreditCard");
             ModelState.Remove("BoletoBancario");
+            ModelState.Remove("Refund");
 
             if (ModelState.IsValid)
             {

@@ -27,6 +27,7 @@ namespace LojaVirtual.Models.ViewModel.Order
         public RefundData Refund { get; set; }
 
 
+        [Display(Name = "Motivo para devolução")]
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
         public string RefundRejectReason { get; set; }
     }

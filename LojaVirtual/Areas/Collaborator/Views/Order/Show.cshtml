@@ -172,13 +172,17 @@
                 </tr>
             </table>
 
-            @if (Model.Order.Situation == OrderSituationConst.DEVOLUCAO_ENTREGUE)
+            @{
+                var refundDelivery = Model.Order.OrderSituations.FirstOrDefault(a => a.Situation == OrderSituationConst.DEVOLUCAO_ENTREGUE);
+            }
+
+            @if (refundDelivery != null)
             {
                 var refund = Model.Order.OrderSituations.FirstOrDefault(a => a.Situation == OrderSituationConst.DEVOLUCAO);
 
                 RefundData refundData = JsonConvert.DeserializeObject<RefundData>(refund.Data);
 
-                var refundDelivery = Model.Order.OrderSituations.FirstOrDefault(a => a.Situation == OrderSituationConst.DEVOLUCAO_ENTREGUE);
+                var refundRejectedReason = Model.Order.OrderSituations.FirstOrDefault(a => a.Situation == OrderSituationConst.DEVOLUCAO_REJEITADA);
 
                 var dataCorreiosRefund = JsonConvert.DeserializeObject<Correios.NET.Models.Package>(refundDelivery.Data);
 
@@ -189,6 +193,12 @@
                         <td><strong>Código de rastreamento:</strong> @Html.Raw(refundData.TrackingCod == null ? "-" : "<a href='https://www.linkcorreios.com.br/" + refundData.TrackingCod + "' target='blank'>" + refundData.TrackingCod + "</a>")</td>
                         <td><strong>Data da devolução (Na loja): </strong>@dataCorreiosRefund.DeliveryDate.ToString()</td>
                     </tr>
+                    @if (refundRejectedReason != null)
+                {
+                    <tr>
+                        <td colspan="3"  class="text-center"><strong style="color: red;">Motivo da rejeição da devolução:</strong> @refundRejectedReason.Data</td>
+                    </tr>
+                }
                 </table>
             }
 
@@ -421,9 +431,9 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label asp-for="@Model.Refund.RefundReason">Motivo para a rejeição da devolução:</label>
-                        <textarea type="text" class="form-control" asp-for="@Model.Refund.RefundReason" placeholder="Digite o motivo para a rejeição da devolução."></textarea>
-                        <span asp-validation-for="@Model.Refund.RefundReason" class="text-danger"></span>
+                        <label asp-for="@Model.RefundRejectReason">Motivo para a rejeição da devolução:</label>
+                        <textarea type="text" class="form-control" asp-for="@Model.RefundRejectReason" placeholder="Digite o motivo para a rejeição."></textarea>
+                        <span asp-validation-for="@Model.RefundRejectReason" class="text-danger"></span>
                     </div>
 
                 </div>
