@@ -149,13 +149,13 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
                 _managePagarMe.EstornoCreditCard(order.TransactionId);
 
-                order.Situation = OrderSituationConst.ESTORNO;
+                order.Situation = OrderSituationConst.DEVOLUCAO_ESTORNO;
 
                 var orderSituation = new OrderSituation();
                 orderSituation.Date = DateTime.Now;
                 orderSituation.Data = JsonConvert.SerializeObject(viewModel.CreditCard);
                 orderSituation.OrderId = Id;
-                orderSituation.Situation = OrderSituationConst.ESTORNO;
+                orderSituation.Situation = OrderSituationConst.DEVOLUCAO_ESTORNO;
 
                 _orderSituationRepository.Create(orderSituation);
 
@@ -191,13 +191,13 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
                 _managePagarMe.EstornoBoletoBancario(order.TransactionId, viewModel.BoletoBancario);
 
-                order.Situation = OrderSituationConst.ESTORNO;
+                order.Situation = OrderSituationConst.DEVOLUCAO_ESTORNO;
 
                 var orderSituation = new OrderSituation();
                 orderSituation.Date = DateTime.Now;
                 orderSituation.Data = JsonConvert.SerializeObject(viewModel.BoletoBancario);
                 orderSituation.OrderId = Id;
-                orderSituation.Situation = OrderSituationConst.ESTORNO;
+                orderSituation.Situation = OrderSituationConst.DEVOLUCAO_ESTORNO;
 
                 _orderSituationRepository.Create(orderSituation);
 

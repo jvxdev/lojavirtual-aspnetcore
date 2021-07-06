@@ -33,11 +33,25 @@ namespace LojaVirtual.Libraries.Component
                 OrderSituationConst.ESTORNO
             };
 
+        List<OrderSituationStatus> Timeline4 { get; set; }
+
+        List<string> StatusTimeline4 = new List<string>() {
+                OrderSituationConst.DEVOLUCAO,
+                OrderSituationConst.DEVOLUCAO_ENTREGUE,
+                OrderSituationConst.DEVOLUCAO_APROVADA,
+                OrderSituationConst.DEVOLUCAO_ESTORNO
+            };
+
+        List<OrderSituationStatus> Timeline5 { get; set; }
+
+        List<string> StatusTimeline5 = new List<string>() {
+                OrderSituationConst.DEVOLUCAO_REJEITADA
+            };
+
 
         public OrderSituationViewComponent()
         {
             Timeline1 = new List<OrderSituationStatus>();
-
             Timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.PEDIDO_REALIZADO, Concluded = false, Color = "complete" });
             Timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.PAGAMENTO_APROVADO, Concluded = false, Color = "complete" });
             Timeline1.Add(new OrderSituationStatus() { Situation = OrderSituationConst.NF_EMITIDA, Concluded = false, Color = "complete" });
@@ -54,6 +68,27 @@ namespace LojaVirtual.Libraries.Component
             Timeline3.Add(new OrderSituationStatus() { Situation = OrderSituationConst.PAGAMENTO_APROVADO, Concluded = false, Color = "complete" });
             Timeline3.Add(new OrderSituationStatus() { Situation = OrderSituationConst.NF_EMITIDA, Concluded = false, Color = "complete" });
             Timeline3.Add(new OrderSituationStatus() { Situation = OrderSituationConst.ESTORNO, Concluded = false, Color = "complete-purple" });
+
+            Timeline4 = new List<OrderSituationStatus>();
+            Timeline4.Add(new OrderSituationStatus() { Situation = OrderSituationConst.PEDIDO_REALIZADO, Concluded = false, Color = "complete" });
+            Timeline4.Add(new OrderSituationStatus() { Situation = OrderSituationConst.PAGAMENTO_APROVADO, Concluded = false, Color = "complete" });
+            Timeline4.Add(new OrderSituationStatus() { Situation = OrderSituationConst.NF_EMITIDA, Concluded = false, Color = "complete" });
+            Timeline4.Add(new OrderSituationStatus() { Situation = OrderSituationConst.EM_TRANSPORTE, Concluded = false, Color = "complete" });
+            Timeline4.Add(new OrderSituationStatus() { Situation = OrderSituationConst.ENTREGUE, Concluded = false, Color = "complete" });
+            Timeline4.Add(new OrderSituationStatus() { Situation = OrderSituationConst.DEVOLUCAO, Concluded = false, Color = "complete" });
+            Timeline4.Add(new OrderSituationStatus() { Situation = OrderSituationConst.DEVOLUCAO_ENTREGUE, Concluded = false, Color = "complete" });
+            Timeline4.Add(new OrderSituationStatus() { Situation = OrderSituationConst.DEVOLUCAO_APROVADA, Concluded = false, Color = "complete" });
+            Timeline4.Add(new OrderSituationStatus() { Situation = OrderSituationConst.DEVOLUCAO_ESTORNO, Concluded = false, Color = "complete-purple" });
+
+            Timeline5 = new List<OrderSituationStatus>();
+            Timeline5.Add(new OrderSituationStatus() { Situation = OrderSituationConst.PEDIDO_REALIZADO, Concluded = false, Color = "complete" });
+            Timeline5.Add(new OrderSituationStatus() { Situation = OrderSituationConst.PAGAMENTO_APROVADO, Concluded = false, Color = "complete" });
+            Timeline5.Add(new OrderSituationStatus() { Situation = OrderSituationConst.NF_EMITIDA, Concluded = false, Color = "complete" });
+            Timeline5.Add(new OrderSituationStatus() { Situation = OrderSituationConst.EM_TRANSPORTE, Concluded = false, Color = "complete" });
+            Timeline5.Add(new OrderSituationStatus() { Situation = OrderSituationConst.ENTREGUE, Concluded = false, Color = "complete" });
+            Timeline5.Add(new OrderSituationStatus() { Situation = OrderSituationConst.DEVOLUCAO, Concluded = false, Color = "complete" });
+            Timeline5.Add(new OrderSituationStatus() { Situation = OrderSituationConst.DEVOLUCAO_ENTREGUE, Concluded = false, Color = "complete" });
+            Timeline5.Add(new OrderSituationStatus() { Situation = OrderSituationConst.DEVOLUCAO_REJEITADA, Concluded = false, Color = "complete-red" });
         }
 
 
@@ -81,6 +116,16 @@ namespace LojaVirtual.Libraries.Component
                 {
                     timeline.Remove(timeline.FirstOrDefault(a => a.Situation == OrderSituationConst.NF_EMITIDA));
                 }
+            }
+
+            if (StatusTimeline4.Contains(order.Situation))
+            {
+                timeline = Timeline4;
+            }
+
+            if (StatusTimeline5.Contains(order.Situation))
+            {
+                timeline = Timeline5;
             }
 
             if (timeline != null)
