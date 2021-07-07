@@ -58,7 +58,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             ModelState.Remove("Order");
             ModelState.Remove("TrackingCod");
             ModelState.Remove("CreditCard");
-            ModelState.Remove("BoletoBancario"); 
+            ModelState.Remove("BoletoBancario");
             ModelState.Remove("Refund");
             ModelState.Remove("RefundRejectReason");
 
@@ -80,11 +80,11 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
                 _orderSituationRepository.Create(orderSituation);
 
                 _orderRepository.Update(order);
+
+                return RedirectToAction(nameof(Show), new { Id = Id });
             }
-            else
-            {
-                ViewBag.MODAL_NFE = true;
-            }
+
+            ViewBag.MODAL_NFE = true;
 
             viewModel.Order = _orderRepository.Read(Id);
 
@@ -120,11 +120,11 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
                 _orderRepository.Update(order);
 
+                return RedirectToAction(nameof(Show), new { Id = Id });
+
             }
-            else
-            {
-                ViewBag.MODAL_TRACKING_COD = true;
-            }
+
+            ViewBag.MODAL_TRACKING_COD = true;
 
             viewModel.Order = _orderRepository.Read(Id);
 
@@ -138,7 +138,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             ModelState.Remove("NFE");
             ModelState.Remove("TrackingCod");
             ModelState.Remove("BoletoBancario");
-            ModelState.Remove("Refund"); 
+            ModelState.Remove("Refund");
             ModelState.Remove("RefundRejectReason");
 
             if (ModelState.IsValid)
@@ -162,11 +162,11 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
                 _orderRepository.Update(order);
 
                 ProductsRefundStock(order);
+
+                return RedirectToAction(nameof(Show), new { Id = Id });
             }
-            else
-            {
-                ViewBag.MODAL_CREDIT_CARD = true;
-            }
+
+            ViewBag.MODAL_CREDIT_CARD = true;
 
             viewModel.Order = _orderRepository.Read(Id);
 
@@ -204,11 +204,11 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
                 _orderRepository.Update(order);
 
                 ProductsRefundStock(order);
+
+                return RedirectToAction(nameof(Show), new { Id = Id });
             }
-            else
-            {
-                ViewBag.MODAL_BOLETO = true;
-            }
+
+            ViewBag.MODAL_BOLETO = true;
 
             viewModel.Order = _orderRepository.Read(Id);
 
@@ -240,11 +240,11 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
                 _orderSituationRepository.Create(orderSituation);
 
                 _orderRepository.Update(order);
+
+                return RedirectToAction(nameof(Show), new { Id = Id });
             }
-            else
-            {
-                ViewBag.MODAL_REFUND = true;
-            }
+
+            ViewBag.MODAL_REFUND = true;
 
             viewModel.Order = _orderRepository.Read(Id);
 
@@ -276,11 +276,11 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
                 _orderSituationRepository.Create(orderSituation);
 
                 _orderRepository.Update(order);
+
+                return RedirectToAction(nameof(Show), new { Id = Id });
             }
-            else
-            {
-                ViewBag.MODAL_REFUND_REJECT = true;
-            }
+
+            ViewBag.MODAL_REFUND_REJECT = true;
 
             viewModel.Order = _orderRepository.Read(Id);
 
@@ -315,6 +315,8 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
                 order.Situation = OrderSituationConst.DEVOLUCAO_ESTORNO;
 
                 _orderRepository.Update(order);
+
+                return RedirectToAction(nameof(Show), new { Id = Id });
             }
 
             ShowViewModel viewModel = new ShowViewModel();
@@ -334,7 +336,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             ModelState.Remove("Refund");
             ModelState.Remove("RefundRejectReason");
             ModelState.Remove("BoletoBancario.CancelReason");
-                
+
             Order order = _orderRepository.Read(Id);
 
             if (ModelState.IsValid)
@@ -363,11 +365,11 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
                 _orderRepository.Update(order);
 
                 ProductsRefundStock(order);
+
+                return RedirectToAction(nameof(Show), new { Id = Id });
             }
-            else
-            {
-                ViewBag.MODAL_REFUND_BOLETO = true;
-            }
+
+            ViewBag.MODAL_REFUND_BOLETO = true;
 
             viewModel.Order = order;
 

@@ -5,7 +5,17 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LojaVirtual", "LojaVirtual\LojaVirtual.csproj", "{0479F8BF-9B58-4400-8083-635272A63404}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PagarMe", "PagarMe", "{6304805F-102E-42B1-B315-67C275E52510}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PagarMeCore", "PagarMe\PagarMeCore\PagarMeCore.csproj", "{2B8EA91A-B480-4419-AA46-021002A88239}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "PagarMe.Shared", "PagarMe\PagarMe.Shared\PagarMe.Shared.shproj", "{A1E35F76-C32B-4490-BB52-282A27E0A37D}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		PagarMe\PagarMe.Shared\PagarMe.Shared.projitems*{2b8ea91a-b480-4419-aa46-021002a88239}*SharedItemsImports = 5
+		PagarMe\PagarMe.Shared\PagarMe.Shared.projitems*{a1e35f76-c32b-4490-bb52-282a27e0a37d}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -15,9 +25,17 @@ Global
 		{0479F8BF-9B58-4400-8083-635272A63404}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0479F8BF-9B58-4400-8083-635272A63404}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0479F8BF-9B58-4400-8083-635272A63404}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B8EA91A-B480-4419-AA46-021002A88239}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B8EA91A-B480-4419-AA46-021002A88239}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B8EA91A-B480-4419-AA46-021002A88239}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B8EA91A-B480-4419-AA46-021002A88239}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2B8EA91A-B480-4419-AA46-021002A88239} = {6304805F-102E-42B1-B315-67C275E52510}
+		{A1E35F76-C32B-4490-BB52-282A27E0A37D} = {6304805F-102E-42B1-B315-67C275E52510}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7DA3F2AC-1058-49F7-A3B7-6673B78643B1}

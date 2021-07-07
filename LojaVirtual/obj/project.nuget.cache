@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "RVKU3K6beBTOkHdM8Jx/s0g9x2it1stECZf5MRUEZ3PoRSjpJQ1C8bnIxQzAzC5rYZSeiNMeBq2nr8AMJVDwUA==",
+  "dgSpecHash": "pHAYWyjiT4RDHMmgIXtE3lQRFsxBhSdLtBXdFa5lER40q7lqpIldcRS9nhVU/Hdd0oQSeuF+zTETvjc4TsRiuA==",
   "success": true,
   "projectFilePath": "C:\\Users\\jvXvj\\Documents\\GitHub\\lojavirtual-aspnetcore\\LojaVirtual\\LojaVirtual.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jvXvj\\.nuget\\packages\\anglesharp\\0.14.0\\anglesharp.0.14.0.nupkg.sha512",
     "C:\\Users\\jvXvj\\.nuget\\packages\\automapper\\8.1.0\\automapper.8.1.0.nupkg.sha512",
     "C:\\Users\\jvXvj\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\6.1.0\\automapper.extensions.microsoft.dependencyinjection.6.1.0.nupkg.sha512",
+    "C:\\Users\\jvXvj\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\jvXvj\\.nuget\\packages\\coravel\\2.5.1\\coravel.2.5.1.nupkg.sha512",
     "C:\\Users\\jvXvj\\.nuget\\packages\\correios.net\\1.3.2\\correios.net.1.3.2.nupkg.sha512",
     "C:\\Users\\jvXvj\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
