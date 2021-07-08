@@ -38,7 +38,7 @@ namespace LojaVirtual.Repositories
 
         public List<Collaborator> GetCollaboratorEmail(string email)
         {
-            return _database.Collaborators.Where(a => a.Email == email).AsNoTracking().ToList();
+            return _database.Collaborators.Where(a => a.Email == email).ToList();
         }
 
 

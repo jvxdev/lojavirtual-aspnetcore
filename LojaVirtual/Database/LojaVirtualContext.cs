@@ -8,6 +8,7 @@ namespace LojaVirtual.Database
     {
         public LojaVirtualContext(DbContextOptions<LojaVirtualContext> options) : base(options)
         {
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
 

@@ -12,7 +12,11 @@ namespace LojaVirtual.Repositories.Contracts
         Category Read(int Id);
 
 
-        Category Read(string Slug);
+        Category Read(string slug);
+
+
+        Category ReadCategoryName(string name);
+
 
 
         IEnumerable<Category> ReadRecursiveCategories(Category fatherCategory);

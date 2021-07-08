@@ -29,15 +29,21 @@ namespace LojaVirtual.Repositories
         }
 
 
-        public Category Read(int Id)
+        public Category Read(int id)
         {
-            return _database.Categories.Find(Id);
+            return _database.Categories.Find(id);
         }
 
 
-        public Category Read(string Slug)
+        public Category Read(string slug)
         {
-            return _database.Categories.Where(a => a.Slug == Slug).FirstOrDefault();
+            return _database.Categories.Where(a => a.Slug == slug).FirstOrDefault();
+        }
+
+
+        public Category ReadCategoryName(string name)
+        {
+            return _database.Categories.Where(a => a.Name == name).FirstOrDefault();
         }
 
 
@@ -93,9 +99,9 @@ namespace LojaVirtual.Repositories
         }
 
 
-        public void Delete(int Id)
+        public void Delete(int id)
         {
-            Category category = Read(Id);
+            Category category = Read(id);
             _database.Remove(category);
             _database.SaveChanges();
         }

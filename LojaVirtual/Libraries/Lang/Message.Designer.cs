@@ -169,6 +169,15 @@ namespace LojaVirtual.Libraries.Lang {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O valor informado já está registrado no banco!.
+        /// </summary>
+        public static string MSG_E013 {
+            get {
+                return ResourceManager.GetString("MSG_E013", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Registro cadastrado com sucesso!.
         /// </summary>
         public static string MSG_S001 {
@@ -223,7 +232,7 @@ namespace LojaVirtual.Libraries.Lang {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Endereço de entrega atualizado com sucesso! ;).
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Endereço de entrega atualizado com sucesso!.
         /// </summary>
         public static string MSG_S007 {
             get {
@@ -232,7 +241,7 @@ namespace LojaVirtual.Libraries.Lang {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Endereço de entrega removido com sucesso! ;).
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Endereço de entrega removido com sucesso!.
         /// </summary>
         public static string MSG_S008 {
             get {
@@ -241,7 +250,7 @@ namespace LojaVirtual.Libraries.Lang {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Endereço de entrega cadastrado com sucesso! ;).
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Endereço de entrega cadastrado com sucesso!.
         /// </summary>
         public static string MSG_S009 {
             get {
