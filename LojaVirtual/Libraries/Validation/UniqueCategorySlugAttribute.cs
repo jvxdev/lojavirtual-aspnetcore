@@ -4,17 +4,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LojaVirtual.Libraries.Validation
 {
-    public class UniqueCategoryNameAttribute : ValidationAttribute
+    public class UniqueCategorySlugAttribute : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             ICategoryRepository _categoryRepository = (ICategoryRepository)validationContext.GetService(typeof(ICategoryRepository));
 
-            Category category = (Category) validationContext.ObjectInstance;
+            Category category = (Category)validationContext.ObjectInstance;
 
             if (category.Id == 0)
             {
-                Category categoryDB = _categoryRepository.ReadCategoryName(category.Name);
+                Category categoryDB = _categoryRepository.Read(category.Slug);
 
                 if (categoryDB == null)
                 {
@@ -27,7 +27,7 @@ namespace LojaVirtual.Libraries.Validation
             }
             else
             {
-                Category categoryDB = _categoryRepository.ReadCategoryName(category.Name);
+                Category categoryDB = _categoryRepository.Read(category.Slug);
 
                 if (categoryDB == null)
                 {

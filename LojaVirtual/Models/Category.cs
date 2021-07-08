@@ -23,6 +23,7 @@ namespace LojaVirtual.Models
         [Display(Name = "Slug")]
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
         [MinLength(2, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E002")]
+        [UniqueCategorySlug(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E013")]
         public String Slug { get; set; }
 
 
