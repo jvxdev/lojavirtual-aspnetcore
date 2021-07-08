@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Libraries.Lang;
+using LojaVirtual.Libraries.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -43,6 +44,7 @@ namespace LojaVirtual.Models
         public string Legal_name { get; set; }
 
 
+        [CPF(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E004")]
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
         public string CPF { get; set; }
     }

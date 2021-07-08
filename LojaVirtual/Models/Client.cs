@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Libraries.Lang;
+using LojaVirtual.Libraries.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,9 +13,9 @@ namespace LojaVirtual.Models
         public int Id { get; set; }
 
 
-        [Display(Name = "Nome")]
+        [Display(Name = "Nome e sobrenome")]
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
-        [MinLength(4, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E002")]
+        [MinLength(8, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E002")]
         public string Name { get; set; }
 
 
@@ -28,6 +29,7 @@ namespace LojaVirtual.Models
         public string Sex { get; set; }
 
 
+        [CPF(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E004")]
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
         [MinLength(11, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E002")]
         public string CPF { get; set; }
@@ -77,12 +79,14 @@ namespace LojaVirtual.Models
 
         [Display(Name = "Senha")]
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
+        [MinLength(6, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E002")]
         public string Password { get; set; }
 
 
         [NotMapped]
         [Display(Name = "Confirmação de senha")]
         [Compare("Password", ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E006")]
+        [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
         public string PasswordConfirmation { get; set; }
 
 

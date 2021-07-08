@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LojaVirtual.Libraries.Validation
 {
-    public class UniqueEmail : ValidationAttribute
+    public class UniqueEmailAttribute : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {

@@ -18,7 +18,7 @@ namespace LojaVirtual.Models
 
 
         [Display(Name = "E-mail")]
-        [UniqueEmail]
+        [UniqueEmailAttribute]
         public string Email { get; set; }
 
 
