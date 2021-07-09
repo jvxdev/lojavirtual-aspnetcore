@@ -33,6 +33,8 @@ namespace LojaVirtual.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            throw new Exception("Carambolas... tivemos um problema no servidor. Por favor, nos perdoe. :(");
+
             return View();
         }
 
