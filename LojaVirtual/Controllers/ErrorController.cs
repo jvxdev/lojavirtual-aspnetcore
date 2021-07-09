@@ -9,7 +9,9 @@ namespace LojaVirtual.Controllers
         [Route("Error/{statusCode}")]
         public IActionResult GenericError(int statusCode)
         {
-            ViewBag.Message = string.Format("Código de erro: {0}. Status: {1}", statusCode, ReasonPhrases.GetReasonPhrase(statusCode));
+            ViewBag.StatusCode = statusCode;
+
+            ViewBag.Message = ReasonPhrases.GetReasonPhrase(statusCode);
 
             return View();
         }
