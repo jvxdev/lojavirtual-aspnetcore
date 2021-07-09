@@ -1,15 +1,19 @@
 ﻿@{
-    ViewData["Title"] = "Error 500";
+    ViewData["Title"] = "Poxa... :(";
 }
 
 <div class="container">
-    <div class="row">
+    <div class="row text-center">
         <div class="col-md-12">
-            <h1 class="display-4 my-5">Deu ruim</h1>
+            <h1 class="display-4 mt-5">503 - Servidor indisponível!</h1>
 
-            <p>
-                @ViewBag.Message
+            <p class="my-4">
+                <strong>O nosso servidor infelizmente está indisponível no momento! Tente novamente mais tarde!</strong>
             </p>
+
+            <div>
+                <img src="~/img/img-error-503.jpg" width="1000px" alt="Error 503" />
+            </div>
         </div>
     </div>
 </div>
