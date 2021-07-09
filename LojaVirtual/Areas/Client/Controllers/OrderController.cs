@@ -44,7 +44,7 @@ namespace LojaVirtual.Areas.Client.Controllers
 
             if (order.ClientId != client.Id)
             {
-                return new ContentResult() { Content = "Acesso negado." };
+                return new StatusCodeResult(403);
             }
 
             return View(order);

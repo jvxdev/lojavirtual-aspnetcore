@@ -29,7 +29,7 @@ namespace LojaVirtual.Controllers
 
             if (order.ClientId != _clientLogin.GetClient().Id)
             {
-                return new ContentResult() { Content = "Você não tem permissão para acessar esta página." };
+                return new StatusCodeResult(403);
             }
 
             ViewBag.Products = JsonConvert.DeserializeObject<List<ProductItem>>(order.ProductsData,

@@ -35,7 +35,7 @@ namespace LojaVirtual.Libraries.Filters
             {
                 if (collaborator.Position == CollaboratorPositionConst.Commun && _authorizedCollaborator == CollaboratorPositionConst.Manager)
                 {
-                    context.Result = new ForbidResult();
+                    context.Result = new StatusCodeResult(403);
                 }
             }
         }

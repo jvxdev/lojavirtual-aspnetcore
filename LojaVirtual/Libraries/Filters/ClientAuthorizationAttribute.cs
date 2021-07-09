@@ -19,7 +19,7 @@ namespace LojaVirtual.Libraries.Filters
             if (client == null)
 
             {
-                context.Result = new ContentResult() { Content = "Você não tem permissão para acessar esta página." };
+                context.Result = new StatusCodeResult(403);
             }
         }
     }
