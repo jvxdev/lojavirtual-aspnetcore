@@ -6,6 +6,15 @@ namespace LojaVirtual.Controllers
 {
     public class ErrorController : Controller
     {
+        [Route("Error/{statusCode}")]
+        public IActionResult GenericError(int statusCode)
+        {
+            ViewBag.Message = string.Format("Código de erro: {0}. Status: {1}", statusCode, ReasonPhrases.GetReasonPhrase(statusCode));
+
+            return View();
+        }
+
+
         public IActionResult Error500()
         {
             var exception = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
@@ -16,12 +25,24 @@ namespace LojaVirtual.Controllers
         }
 
 
-        [Route("Error/{statusCode}")]
-        public IActionResult GenericError(int statusCode)
+        [Route("Error/503")]
+        public IActionResult Error503()
         {
-            ViewBag.Message = string.Format("Código de erro: {0}. Status: {1}", statusCode, ReasonPhrases.GetReasonPhrase(statusCode));
+            return View();
+        }
 
-            return View("Error500");
+
+        [Route("Error/404")]
+        public IActionResult Error404()
+        {
+            return View();
+        }
+
+
+            [Route("Error/403")]
+        public IActionResult Error403()
+        {
+            return View();
         }
     }
 }
