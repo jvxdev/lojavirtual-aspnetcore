@@ -27,9 +27,9 @@ namespace LojaVirtual.Repositories
         }
 
 
-        public OrderSituation Read(int Id)
+        public OrderSituation Read(int id)
         {
-            return _database.OrderSituations.Include(a => a.Order).Where(a => a.Id == Id).FirstOrDefault();
+            return _database.OrderSituations.Include(a => a.Order).Where(a => a.Id == id).FirstOrDefault();
         }
 
 
@@ -40,9 +40,9 @@ namespace LojaVirtual.Repositories
         }
 
 
-        public void Delete(int Id)
+        public void Delete(int id)
         {
-            OrderSituation order = Read(Id);
+            OrderSituation order = Read(id);
             _database.Remove(order);
             _database.SaveChanges();
         }

@@ -32,30 +32,30 @@ namespace LojaVirtual.Repositories
 
         
 
-        public Order Read(int Id)
+        public Order Read(int id)
         {
-            return _database.Orders.Include(a => a.OrderSituations).Where(a => a.Id == Id).FirstOrDefault();
+            return _database.Orders.Include(a => a.OrderSituations).Where(a => a.Id == id).FirstOrDefault();
         }
 
 
-        public IPagedList<Order> ReadAll(int? Page, int ClientId)
+        public IPagedList<Order> ReadAll(int? page, int clientId)
         {
             int registryPerPage = _conf.GetValue<int>("registryPerPage");
-            int pageNumber = Page ?? 1;
+            int pageNumber = page ?? 1;
 
             return _database.Orders.Include(a => a.OrderSituations).ToPagedList<Order>(pageNumber, registryPerPage);
         }
 
-        public IPagedList<Order> ReadAllOrders(int? Page, string codOrder, string Cpf)
+        public IPagedList<Order> ReadAllOrders(int? page, string codOrder, string cpf)
         {
             int registryPerPage = _conf.GetValue<int>("registryPerPage");
-            int pageNumber = Page ?? 1;
+            int pageNumber = page ?? 1;
 
             var query = _database.Orders.Include(a => a.OrderSituations).Include(a => a.Client).AsQueryable();
 
-            if (Cpf != null)
+            if (cpf != null)
             {
-                query = query.Where(a => a.Client.CPF == Cpf);
+                query = query.Where(a => a.Client.CPF == cpf);
             }
 
             if (codOrder != null)

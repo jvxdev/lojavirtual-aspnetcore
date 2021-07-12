@@ -70,15 +70,15 @@ namespace LojaVirtual.Areas.Client.Controllers
 
 
         [HttpGet]
-        public IActionResult Update(int Id)
+        public IActionResult Update(int id)
         {
             Models.Client client = _clientLogin.GetClient();
 
-            DeliveryAddress deliveryAddress = _deliveryAddressRepository.Read(Id);
+            DeliveryAddress deliveryAddress = _deliveryAddressRepository.Read(id);
 
             if (deliveryAddress.ClientId != client.Id)
             {
-                return new ContentResult() { Content = "Acesso negado." };
+                return new StatusCodeResult(403);
             }
 
             return View(deliveryAddress);
@@ -104,15 +104,15 @@ namespace LojaVirtual.Areas.Client.Controllers
 
 
         [HttpGet]
-        public IActionResult Delete(int Id)
+        public IActionResult Delete(int id)
         {
             Models.Client client = _clientLogin.GetClient();
 
-            DeliveryAddress deliveryAddress = _deliveryAddressRepository.Read(Id);
+            DeliveryAddress deliveryAddress = _deliveryAddressRepository.Read(id);
 
             if (client.Id == deliveryAddress.ClientId)
             {
-                _deliveryAddressRepository.Delete(Id);
+                _deliveryAddressRepository.Delete(id);
 
                 TempData["MSG_S"] = Message.MSG_S008;
 
@@ -120,7 +120,7 @@ namespace LojaVirtual.Areas.Client.Controllers
             }
             else
             {
-                return new ContentResult() { Content = "Acesso negado." };
+                return new StatusCodeResult(403);
             }
         }
     }

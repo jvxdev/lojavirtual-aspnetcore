@@ -31,6 +31,6 @@ namespace LojaVirtual.Repositories.Contracts
         void Update(Category category);
 
 
-        void Delete(int Id);
+        void Delete(int id);
     }
 }

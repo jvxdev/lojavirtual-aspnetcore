@@ -30,9 +30,9 @@ namespace LojaVirtual.Repositories
         }
 
 
-        public Collaborator Read(int Id)
+        public Collaborator Read(int id)
         {
-            return _database.Collaborators.Find(Id);
+            return _database.Collaborators.Find(id);
         }
 
 
@@ -71,17 +71,17 @@ namespace LojaVirtual.Repositories
         }
 
 
-        public void Delete(int Id)
+        public void Delete(int id)
         {
-            Collaborator collaborator = Read(Id);
+            Collaborator collaborator = Read(id);
             _database.Remove(collaborator);
             _database.SaveChanges();
         }
 
 
-        public Collaborator Login(string Email, string Password)
+        public Collaborator Login(string email, string password)
         {
-            Collaborator colaborator = _database.Collaborators.Where(x => x.Email == Email && x.Password == Password).FirstOrDefault();
+            Collaborator colaborator = _database.Collaborators.Where(x => x.Email == email && x.Password == password).FirstOrDefault();
             return colaborator;
         }
     }

@@ -28,9 +28,9 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         }
 
 
-        public IActionResult Index(int? Page, string Search)
+        public IActionResult Index(int? page, string search)
         {
-            var products = _productRepository.ReadAll(Page, Search);
+            var products = _productRepository.ReadAll(page, search);
             return View(products);
         }
 
@@ -69,16 +69,16 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
 
         [HttpGet]
-        public IActionResult Update(int Id)
+        public IActionResult Update(int id)
         {
-            ViewBag.Categories = _categoryRepository.ReadAll().Where(a => a.Id != Id).Select(a => new SelectListItem(a.Name, a.Id.ToString()));
-            Product product = _productRepository.Read(Id);
+            ViewBag.Categories = _categoryRepository.ReadAll().Where(a => a.Id != id).Select(a => new SelectListItem(a.Name, a.Id.ToString()));
+            Product product = _productRepository.Read(id);
             return View(product);
         }
 
 
         [HttpPost]
-        public IActionResult Update(Product product, int Id)
+        public IActionResult Update(Product product, int id)
         {
             if (ModelState.IsValid)
             {
@@ -107,15 +107,15 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
         [HttpGet]
         [HttpReferer]
-        public IActionResult Delete(int Id)
+        public IActionResult Delete(int id)
         {
-            Product product = _productRepository.Read(Id);
+            Product product = _productRepository.Read(id);
 
             ImageManage.DeleteAllProductImage(product.Images.ToList());
 
-            _imageRepository.DeleteAllProductImages(Id);
+            _imageRepository.DeleteAllProductImages(id);
 
-            _productRepository.Delete(Id);
+            _productRepository.Delete(id);
 
             TempData["MSG_S"] = Message.MSG_S002;
 

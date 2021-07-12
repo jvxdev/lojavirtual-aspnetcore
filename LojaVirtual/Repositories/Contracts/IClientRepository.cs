@@ -8,18 +8,18 @@ namespace LojaVirtual.Repositories.Contracts
         void Create(Client client);
 
 
-        Client Read(int Id);
+        Client Read(int id);
 
 
-        IPagedList<Client> ReadAll(int? Page, string Search);
+        IPagedList<Client> ReadAll(int? page, string search);
 
 
         void Update(Client client);
 
 
-        void Delete(int Id);
+        void Delete(int id);
 
 
-        Client Login(string Email, string Password);
+        Client Login(string email, string password);
     }
 }

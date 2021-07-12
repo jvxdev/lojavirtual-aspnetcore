@@ -20,17 +20,17 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         }
 
 
-        public IActionResult Index(int? Page, string Search)
+        public IActionResult Index(int? page, string search)
         {
-            IPagedList<Models.Client> clients = _clientRepository.ReadAll(Page, Search);
+            IPagedList<Models.Client> clients = _clientRepository.ReadAll(page, search);
             return View(clients);
         }
 
 
         [HttpReferer]
-        public IActionResult ActivateDeactivate(int Id)
+        public IActionResult ActivateDeactivate(int id)
         {
-            Models.Client client = _clientRepository.Read(Id);
+            Models.Client client = _clientRepository.Read(id);
 
             client.Situation = (client.Situation == SituationConst.Active) ? client.Situation = SituationConst.Deactivate : client.Situation = SituationConst.Active;
 

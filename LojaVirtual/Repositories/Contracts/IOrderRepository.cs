@@ -9,13 +9,13 @@ namespace LojaVirtual.Repositories.Contracts
         void Create(Order order);
 
 
-        Order Read(int Id);
+        Order Read(int id);
 
 
-        IPagedList<Order> ReadAll(int? Page, int ClientId);
+        IPagedList<Order> ReadAll(int? page, int clientId);
 
 
-        IPagedList<Order> ReadAllOrders(int? Page, string codOrder, string Cpf);
+        IPagedList<Order> ReadAllOrders(int? page, string codOrder, string cpf);
 
 
         List<Order> GetAllOrdersBySituation(string status);

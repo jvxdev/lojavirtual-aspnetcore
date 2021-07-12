@@ -27,22 +27,22 @@ namespace LojaVirtual.Repositories.Contracts
         }
 
 
-        public Client Read(int Id)
+        public Client Read(int id)
         {
-            return _database.Clients.Find(Id);
+            return _database.Clients.Find(id);
         }
 
 
-        public IPagedList<Client> ReadAll(int? Page, string Search)
+        public IPagedList<Client> ReadAll(int? page, string search)
         {
             int registryPerPage = _conf.GetValue<int>("registryPerPage");
-            int pageNumber = Page ?? 1;
+            int pageNumber = page ?? 1;
 
             var databaseClient = _database.Clients.AsQueryable();
 
-            if (!string.IsNullOrEmpty(Search))
+            if (!string.IsNullOrEmpty(search))
             {
-                databaseClient = databaseClient.Where(a => a.Name.Contains(Search.Trim()) || a.Email.Contains(Search.Trim()));
+                databaseClient = databaseClient.Where(a => a.Name.Contains(search.Trim()) || a.Email.Contains(search.Trim()));
             }
 
             return databaseClient.ToPagedList<Client>(pageNumber, registryPerPage);
@@ -56,17 +56,17 @@ namespace LojaVirtual.Repositories.Contracts
         }
 
 
-        public void Delete(int Id)
+        public void Delete(int id)
         {
-            Client cliente = Read(Id);
+            Client cliente = Read(id);
             _database.Remove(cliente);
             _database.SaveChanges();
         }
 
 
-        public Client Login(string Email, string Password)
+        public Client Login(string email, string password)
         {
-            Client client = _database.Clients.Where(x => x.Email == Email && x.Password == Password).FirstOrDefault();
+            Client client = _database.Clients.Where(x => x.Email == email && x.Password == password).FirstOrDefault();
             return client;
         }
     }

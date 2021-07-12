@@ -10,18 +10,18 @@ namespace LojaVirtual.Repositories.Contracts
         void Create(Product product);
 
 
-        Product Read(int Id);
+        Product Read(int id);
 
 
-        IPagedList<Product> ReadAll(int? Page, string Search);
+        IPagedList<Product> ReadAll(int? page, string search);
 
 
-        IPagedList<Product> ReadAll(int? Page, string Search, string Ordination, IEnumerable<Category> categories);
+        IPagedList<Product> ReadAll(int? page, string search, string ordination, IEnumerable<Category> categories);
 
 
         void Update(Product product);
 
 
-        void Delete(int Id);
+        void Delete(int id);
     }
 }

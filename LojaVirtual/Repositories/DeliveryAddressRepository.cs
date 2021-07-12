@@ -24,9 +24,9 @@ namespace LojaVirtual.Repositories
         }
 
 
-        public DeliveryAddress Read(int Id)
+        public DeliveryAddress Read(int id)
         {
-            return _database.DeliveryAddresses.Find(Id);
+            return _database.DeliveryAddresses.Find(id);
         }
 
 
@@ -43,9 +43,9 @@ namespace LojaVirtual.Repositories
         }
 
 
-        public void Delete(int Id)
+        public void Delete(int id)
         {
-            DeliveryAddress deliveryAddress = Read(Id);
+            DeliveryAddress deliveryAddress = Read(id);
             _database.Remove(deliveryAddress);
             _database.SaveChanges();
         }

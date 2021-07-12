@@ -8,15 +8,15 @@ namespace LojaVirtual.Repositories.Contracts
         void Create(DeliveryAddress deliveryAddress);
 
 
-        DeliveryAddress Read(int Id);
+        DeliveryAddress Read(int id);
 
 
-        IList<DeliveryAddress> ReadAll(int ClientId);
+        IList<DeliveryAddress> ReadAll(int clientId);
 
 
         void Update(DeliveryAddress deliveryAddress);
 
 
-        void Delete(int Id);
+        void Delete(int id);
     }
 }

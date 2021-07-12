@@ -25,22 +25,22 @@ namespace LojaVirtual.Areas.Client.Controllers
         }
 
 
-        public IActionResult Index(int? Page)
+        public IActionResult Index(int? page)
         {
             Models.Client client = _clientLogin.GetClient();
 
-            var orders = _orderRepository.ReadAll(Page, client.Id);
+            var orders = _orderRepository.ReadAll(page, client.Id);
 
             return View(orders);
         }
 
 
         [HttpGet]
-        public IActionResult Show(int Id)
+        public IActionResult Show(int id)
         {
             Models.Client client = _clientLogin.GetClient();
 
-            Order order = _orderRepository.Read(Id);
+            Order order = _orderRepository.Read(id);
 
             if (order.ClientId != client.Id)
             {

@@ -30,9 +30,9 @@ namespace LojaVirtual.Repositories
         }
 
 
-        public Product Read(int Id)
+        public Product Read(int id)
         {
-            return _database.Products.Include(a => a.Images).OrderBy(a => a.Name).Where(a => a.Id == Id).FirstOrDefault();
+            return _database.Products.Include(a => a.Images).OrderBy(a => a.Name).Where(a => a.Id == id).FirstOrDefault();
         }
 
 
@@ -42,29 +42,29 @@ namespace LojaVirtual.Repositories
         }
 
 
-        public IPagedList<Product> ReadAll(int? Page, string Search, string Ordination, IEnumerable<Category> categories)
+        public IPagedList<Product> ReadAll(int? page, string search, string ordination, IEnumerable<Category> categories)
         {
             int registryPerPage = _conf.GetValue<int>("registryPerPage");
-            int pageNumber = Page ?? 1;
+            int pageNumber = page ?? 1;
 
             var databaseProduct = _database.Products.AsQueryable();
 
-            if (!string.IsNullOrEmpty(Search))
+            if (!string.IsNullOrEmpty(search))
             {
-                databaseProduct = databaseProduct.Where(a => a.Name.Contains(Search.Trim()));
+                databaseProduct = databaseProduct.Where(a => a.Name.Contains(search.Trim()));
             }
 
-            if (Ordination == "Oa")
+            if (ordination == "Oa")
             {
                 databaseProduct = databaseProduct.OrderBy(a => a.Name);
             }
 
-            if (Ordination == "Mep")
+            if (ordination == "Mep")
             {
                 databaseProduct = databaseProduct.OrderBy(a => a.Price);
             }
 
-            if (Ordination == "Map")
+            if (ordination == "Map")
             {
                 databaseProduct = databaseProduct.OrderByDescending(a => a.Price);
             }
@@ -85,9 +85,9 @@ namespace LojaVirtual.Repositories
         }
 
 
-        public void Delete(int Id)
+        public void Delete(int id)
         {
-            Product product = Read(Id);
+            Product product = Read(id);
             _database.Remove(product);
             _database.SaveChanges();
         }

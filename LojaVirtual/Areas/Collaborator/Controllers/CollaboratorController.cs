@@ -24,9 +24,9 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         }
 
 
-        public IActionResult Index(int? Page)
+        public IActionResult Index(int? page)
         {
-            IPagedList<Models.Collaborator> collaborators = _collaboratorRepository.ReadAll(Page);
+            IPagedList<Models.Collaborator> collaborators = _collaboratorRepository.ReadAll(page);
 
             return View(collaborators);
         }
@@ -59,16 +59,16 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
 
         [HttpGet]
-        public IActionResult Update(int Id)
+        public IActionResult Update(int id)
         {
-            var categoria = _collaboratorRepository.Read(Id);
+            var categoria = _collaboratorRepository.Read(id);
 
             return View(categoria);
         }
 
 
         [HttpPost]
-        public IActionResult Update([FromForm] Models.Collaborator collaborator, int Id)
+        public IActionResult Update([FromForm] Models.Collaborator collaborator, int id)
         {
             ModelState.Remove("Password");
 
@@ -86,9 +86,9 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
         [HttpGet]
         [HttpReferer]
-        public IActionResult NewPasswordGenerator(int Id)
+        public IActionResult NewPasswordGenerator(int id)
         {
-            Models.Collaborator collaborator = _collaboratorRepository.Read(Id);
+            Models.Collaborator collaborator = _collaboratorRepository.Read(id);
 
             collaborator.Password = KeyGenerator.GetUniqueKey(8);
 
@@ -104,9 +104,9 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
         [HttpGet]
         [HttpReferer]
-        public IActionResult Delete(int Id)
+        public IActionResult Delete(int id)
         {
-            _collaboratorRepository.Delete(Id);
+            _collaboratorRepository.Delete(id);
 
             TempData["MSG_S"] = Message.MSG_S002;
 

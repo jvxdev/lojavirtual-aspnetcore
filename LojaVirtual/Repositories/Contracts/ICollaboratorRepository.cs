@@ -9,7 +9,7 @@ namespace LojaVirtual.Repositories.Contracts
         void Create(Collaborator collaborator);
 
 
-        Collaborator Read(int Id);
+        Collaborator Read(int id);
 
 
         IPagedList<Collaborator> ReadAll(int? page);
@@ -24,9 +24,9 @@ namespace LojaVirtual.Repositories.Contracts
         void Update(Collaborator collaborator);
 
 
-        void Delete(int Id);
+        void Delete(int id);
 
 
-        Collaborator Login(string Email, string Password);
+        Collaborator Login(string email, string password);
     }
 }

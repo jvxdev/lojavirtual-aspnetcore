@@ -22,9 +22,9 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         }
 
 
-        public IActionResult Index(int? Page)
+        public IActionResult Index(int? page)
         {
-            var categories = _categoryRepository.ReadAll(Page);
+            var categories = _categoryRepository.ReadAll(page);
             return View(categories);
         }
 
@@ -54,16 +54,16 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
 
         [HttpGet]
-        public IActionResult Update(int Id)
+        public IActionResult Update(int id)
         {
-            var categoria = _categoryRepository.Read(Id);
-            ViewBag.Categories = _categoryRepository.ReadAll().Where(a => a.Id != Id).Select(a => new SelectListItem(a.Name, a.Id.ToString()));
+            var categoria = _categoryRepository.Read(id);
+            ViewBag.Categories = _categoryRepository.ReadAll().Where(a => a.Id != id).Select(a => new SelectListItem(a.Name, a.Id.ToString()));
             return View(categoria);
         }
 
 
         [HttpPost]
-        public IActionResult Update([FromForm] Category category, int Id)
+        public IActionResult Update([FromForm] Category category, int id)
         {
             if (ModelState.IsValid)
             {
@@ -73,16 +73,16 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.Categories = _categoryRepository.ReadAll().Where(a => a.Id != Id).Select(a => new SelectListItem(a.Name, a.Id.ToString()));
+            ViewBag.Categories = _categoryRepository.ReadAll().Where(a => a.Id != id).Select(a => new SelectListItem(a.Name, a.Id.ToString()));
             return View();
         }
 
 
         [HttpGet]
         [HttpReferer]
-        public IActionResult Delete(int Id)
+        public IActionResult Delete(int id)
         {
-            _categoryRepository.Delete(Id);
+            _categoryRepository.Delete(id);
 
             TempData["MSG_S"] = Message.MSG_S002;
 

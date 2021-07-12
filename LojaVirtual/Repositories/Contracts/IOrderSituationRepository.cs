@@ -7,12 +7,12 @@ namespace LojaVirtual.Repositories.Contracts
         void Create(OrderSituation order);
 
 
-        OrderSituation Read(int Id);
+        OrderSituation Read(int id);
 
 
         void Update(OrderSituation order);
 
 
-        void Delete(int Id);
+        void Delete(int id);
     }
 }
