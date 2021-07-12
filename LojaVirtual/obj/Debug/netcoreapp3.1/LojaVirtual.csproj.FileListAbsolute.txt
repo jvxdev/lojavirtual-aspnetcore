@@ -1969,12 +1969,10 @@ C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\net
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.Configuration.Xml.dll
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.Diagnostics.HealthChecks.dll
-C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.FileProviders.Abstractions.dll
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.FileProviders.Composite.dll
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.FileProviders.Embedded.dll
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.FileProviders.Physical.dll
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.FileSystemGlobbing.dll
-C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.Hosting.Abstractions.dll
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.Hosting.dll
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.Http.dll
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.Identity.Core.dll
@@ -2369,3 +2367,14 @@ C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\net
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Error\Error404.cshtml.g.cs
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Error\Error503.cshtml.g.cs
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Error\GenericError.cshtml.g.cs
+C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Hosting.Abstractions.dll
+C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Serilog.dll
+C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Serilog.AspNetCore.dll
+C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Serilog.Extensions.Hosting.dll
+C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Serilog.Extensions.Logging.dll
+C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Serilog.Formatting.Compact.dll
+C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Serilog.Settings.Configuration.dll
+C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Serilog.Sinks.Console.dll
+C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Serilog.Sinks.Debug.dll
+C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Serilog.Sinks.File.dll

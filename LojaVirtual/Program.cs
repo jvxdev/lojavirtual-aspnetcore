@@ -14,7 +14,7 @@ namespace LojaVirtual
             string logPath = Path.Combine(Directory.GetCurrentDirectory(), "Logs.txt");
 
             Log.Logger = new LoggerConfiguration()
-            .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+            .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
             .Enrich.FromLogContext()
             .WriteTo.File(logPath)
             .CreateLogger();
@@ -32,6 +32,8 @@ namespace LojaVirtual
             {
                 Log.CloseAndFlush();
             }
+
+            CreateHostBuilder(args).Build().Run();
         }
 
 

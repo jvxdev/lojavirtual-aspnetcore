@@ -3,6 +3,7 @@ using LojaVirtual.Models;
 using LojaVirtual.Models.Const;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,15 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
         private IOrderRepository _orderRepository;
         private IOrderSituationRepository _orderSituationRepository;
         private IConfiguration _conf;
+        private ILogger<OrderPaymentSituationJob> _ilogger;
 
 
-        public FinishedOrderJob(IOrderRepository orderRepository, IOrderSituationRepository orderSituationRepository, IConfiguration conf)
+        public FinishedOrderJob(IOrderRepository orderRepository, IOrderSituationRepository orderSituationRepository, IConfiguration conf, ILogger<OrderPaymentSituationJob> ilogger)
         {
             _orderRepository = orderRepository;
             _orderSituationRepository = orderSituationRepository;
             _conf = conf;
+            _ilogger = ilogger;
         }
 
 
@@ -32,6 +35,8 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
         
             foreach(var order in orders)
             {
+                _ilogger.LogInformation("> FinishedOrderJob: Iniciando <");
+
                 var orderSituationDB = order.OrderSituations.FirstOrDefault(a => a.Situation == OrderSituationConst.ENTREGUE);
             
                 if (orderSituationDB != null)
@@ -55,6 +60,8 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
                     }
                 }
             }
+
+            _ilogger.LogInformation("> FinishedOrderJob: Finalizado <");
 
             return Task.CompletedTask;
         }

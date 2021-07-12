@@ -7,6 +7,7 @@ using LojaVirtual.Models.Const;
 using LojaVirtual.Models.ProductAggregator;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using PagarMe;
 using System;
@@ -25,9 +26,10 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
         private IProductRepository _productRepository;
         private IMapper _mapper;
         private IConfiguration _conf;
+        private ILogger<OrderPaymentSituationJob> _ilogger;
 
 
-        public OrderPaymentSituationJob(ManagePagarMe managePagarMe, IOrderRepository orderRepository, IOrderSituationRepository orderSituationRepository, IProductRepository productRepository, IMapper mapper, IConfiguration conf)
+        public OrderPaymentSituationJob(ManagePagarMe managePagarMe, IOrderRepository orderRepository, IOrderSituationRepository orderSituationRepository, IProductRepository productRepository, IMapper mapper, IConfiguration conf, ILogger<OrderPaymentSituationJob> ilogger)
         {
             _managePagarMe = managePagarMe;
             _orderRepository = orderRepository;
@@ -35,11 +37,14 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
             _productRepository = productRepository;
             _mapper = mapper;
             _conf = conf;
+            _ilogger = ilogger;
         }
 
 
         public Task Invoke()
         {
+            _ilogger.LogInformation("> OrderPaymentSituationJob: Iniciando <");
+
             var ordersPlaced = _orderRepository.GetAllOrdersBySituation(OrderSituationConst.PEDIDO_REALIZADO) ;
 
             foreach (var order in ordersPlaced)
@@ -97,6 +102,7 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
                 }
             }
 
+            _ilogger.LogInformation("> OrderPaymentSituationJob: Finalizado <");
 
             return Task.CompletedTask;
         }

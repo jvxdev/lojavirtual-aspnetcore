@@ -10870,7 +10870,6 @@
       "Newtonsoft.Json >= 13.0.1",
       "PagarMeCore >= 1.0.0",
       "Serilog.AspNetCore >= 4.1.0",
-      "Serilog.Sinks.Console >= 3.1.1",
       "Serilog.Sinks.File >= 5.0.0",
       "System.ServiceModel.Duplex >= 4.4.*",
       "System.ServiceModel.Http >= 4.4.*",
@@ -10967,10 +10966,6 @@
           "Serilog.AspNetCore": {
             "target": "Package",
             "version": "[4.1.0, )"
-          },
-          "Serilog.Sinks.Console": {
-            "target": "Package",
-            "version": "[3.1.1, )"
           },
           "Serilog.Sinks.File": {
             "target": "Package",

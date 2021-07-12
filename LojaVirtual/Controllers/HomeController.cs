@@ -4,6 +4,7 @@ using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,23 +19,23 @@ namespace LojaVirtual.Controllers
         private INewsletterRepository _newsletterRepository;
         private ClientLogin _clientLogin;
         private EmailManage _emailManage;
+        private ILogger<HomeController> _ilogger;
 
 
-        public HomeController(IProductRepository productRepository, IClientRepository clientRepository, INewsletterRepository newsletterRepository, ClientLogin clientLogin, EmailManage emailManage)
+        public HomeController(IProductRepository productRepository, IClientRepository clientRepository, INewsletterRepository newsletterRepository, ClientLogin clientLogin, EmailManage emailManage, ILogger<HomeController> ilogger)
         {
             _productRepository = productRepository;
             _clientRepository = clientRepository;
             _newsletterRepository = newsletterRepository;
             _clientLogin = clientLogin;
             _emailManage = emailManage;
+            _ilogger = ilogger;
         }
 
 
         [HttpGet]
         public IActionResult Index()
         {
-            throw new Exception("Carambolas... tivemos um problema no servidor. Por favor, nos perdoe. :(");
-
             return View();
         }
 
@@ -97,10 +98,13 @@ namespace LojaVirtual.Controllers
                 }
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 ViewData["MSG_E"] = "Algo de errado aconteceu... Tente novamente mais tarde!";
+
+                _ilogger.LogError(e, "HomeController > ContactPost - Exception");
             }
+
             return View("Contact");
         }
     }

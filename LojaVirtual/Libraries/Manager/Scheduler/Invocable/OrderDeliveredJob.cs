@@ -2,6 +2,7 @@
 using LojaVirtual.Models;
 using LojaVirtual.Models.Const;
 using LojaVirtual.Repositories.Contracts;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,12 +15,14 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
     {
         private IOrderRepository _orderRepository;
         private IOrderSituationRepository _orderSituationRepository;
+        private ILogger<OrderPaymentSituationJob> _ilogger;
 
 
-        public OrderDeliveredJob(IOrderRepository orderRepository, IOrderSituationRepository orderSituationRepository)
+        public OrderDeliveredJob(IOrderRepository orderRepository, IOrderSituationRepository orderSituationRepository, ILogger<OrderPaymentSituationJob> ilogger)
         {
             _orderRepository = orderRepository;
             _orderSituationRepository = orderSituationRepository;
+            _ilogger = ilogger;
         }
 
 
@@ -29,6 +32,8 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
             
             foreach(var order in orders)
             {
+                _ilogger.LogInformation("> OrderDeliveredJob: Iniciando <");
+
                 var result = new Correios.NET.Services().GetPackageTracking(order.FreteTrackingCod);
 
                 if (result.IsDelivered)
@@ -47,6 +52,8 @@ namespace LojaVirtual.Libraries.Manager.Scheduler.Invocable
                     _orderRepository.Update(order);
                 }
             }
+
+            _ilogger.LogInformation("> OrderDeliveredJob: Finalizado <");
 
             return Task.CompletedTask;
         }

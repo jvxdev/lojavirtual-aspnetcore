@@ -39,6 +39,8 @@ namespace LojaVirtual
         {
             services.AddControllersWithViews();
 
+            services.AddLogging();
+
             services.AddAutoMapper(config => config.AddProfile<MappingProfile>());
 
             services.AddHttpContextAccessor();
