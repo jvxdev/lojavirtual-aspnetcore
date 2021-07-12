@@ -1,5 +1,9 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Serilog;
+using Serilog.Events;
+using System;
+using System.IO;
 
 namespace LojaVirtual
 {
@@ -7,14 +11,36 @@ namespace LojaVirtual
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            string logPath = Path.Combine(Directory.GetCurrentDirectory(), "Logs.txt");
+
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+            .Enrich.FromLogContext()
+            .WriteTo.File(logPath)
+            .CreateLogger();
+
+            try
+            {
+                Log.Information("Iniciando o servidor web");
+                CreateHostBuilder(args).Build().Run();
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "O servidor fechou inesperadamente");
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
         }
+
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseSerilog();
                 });
     }
 }
