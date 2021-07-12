@@ -17,6 +17,7 @@ using LojaVirtual.Models.ViewModel.Payment;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Logging;
 using PagarMe;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,7 @@ namespace LojaVirtual.Controllers
         private IOrderRepository _orderRepository;
         private IOrderSituationRepository _orderSituationRepository;
         private EmailManage _emailManage;
+        private ILogger<PaymentController> _illoger;
 
 
         public PaymentController
@@ -49,7 +51,8 @@ namespace LojaVirtual.Controllers
             CookieFrete cookieValorPrazoFrete,
             IMapper mapper, WSCorreiosCalcularFrete wsCorreios,
             CalculatePackage calculatePackage,
-            Cookie cookie
+            Cookie cookie,
+            ILogger<PaymentController> illoger
             )
             :
             base
@@ -69,6 +72,7 @@ namespace LojaVirtual.Controllers
             _managePagarMe = managePagarMe;
             _orderRepository = orderRepository;
             _orderSituationRepository = orderSituationRepository;
+            _illoger = illoger;
         }
 
 
@@ -107,6 +111,8 @@ namespace LojaVirtual.Controllers
                 }
                 catch (PagarMeException e)
                 {
+                    _illoger.LogError(e, "PaymentController > Index");
+
                     TempData["MSG_E"] = CreateErrorMessage(e);
 
                     return Index();
@@ -137,6 +143,8 @@ namespace LojaVirtual.Controllers
             }
             catch (PagarMeException e)
             {
+                _illoger.LogError(e, "PaymentController > BoletoBancario");
+
                 TempData["MSG_E"] = CreateErrorMessage(e);
 
                 return RedirectToAction(nameof(Index));
