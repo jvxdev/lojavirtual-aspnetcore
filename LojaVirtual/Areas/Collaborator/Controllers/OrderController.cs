@@ -1,18 +1,12 @@
 ﻿using LojaVirtual.Libraries.Filters;
-using LojaVirtual.Libraries.Json.Resolver;
 using LojaVirtual.Libraries.Manager.Payment;
 using LojaVirtual.Models;
 using LojaVirtual.Models.Const;
-using LojaVirtual.Models.ProductAggregator;
 using LojaVirtual.Models.ViewModel.Order;
-using LojaVirtual.Repositories;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LojaVirtual.Areas.Collaborator.Controllers
 {
@@ -57,25 +51,16 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         {
             FormValidate(nameof(viewModel.NFE));
 
+            Order order = _orderRepository.Read(id);
+
             if (ModelState.IsValid)
             {
-                string Url = viewModel.NFE.NFE_Url;
+                string url = viewModel.NFE.NFE_Url;
 
-                Order order = _orderRepository.Read(id);
+                SaveOrderSituation(id, url, OrderSituationConst.NF_EMITIDA);
 
-                order.NFE = Url;
-                order.Situation = OrderSituationConst.NF_EMITIDA;
-
-                var orderSituation = new OrderSituation();
-                orderSituation.Date = DateTime.Now;
-                orderSituation.Data = Url;
-                orderSituation.OrderId = id;
-                orderSituation.Situation = OrderSituationConst.NF_EMITIDA;
-
-                _orderSituationRepository.Create(orderSituation);
-
-                _orderRepository.Update(order);
-
+                SaveOrder(order, url, OrderSituationConst.NF_EMITIDA);
+                
                 return RedirectToAction(nameof(Show), new { Id = id });
             }
 
@@ -91,24 +76,15 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         {
             FormValidate(nameof(viewModel.TrackingCod));
 
+            Order order = _orderRepository.Read(id);
+
             if (ModelState.IsValid)
             {
                 string trackingCod = viewModel.TrackingCod.Code;
 
-                Order order = _orderRepository.Read(id);
+                SaveOrderSituation(id, trackingCod, OrderSituationConst.EM_TRANSPORTE);
 
-                order.FreteTrackingCod = trackingCod;
-                order.Situation = OrderSituationConst.EM_TRANSPORTE;
-
-                var orderSituation = new OrderSituation();
-                orderSituation.Date = DateTime.Now;
-                orderSituation.Data = trackingCod;
-                orderSituation.OrderId = id;
-                orderSituation.Situation = OrderSituationConst.EM_TRANSPORTE;
-
-                _orderSituationRepository.Create(orderSituation);
-
-                _orderRepository.Update(order);
+                SaveOrder(order, trackingCod, OrderSituationConst.EM_TRANSPORTE);
 
                 return RedirectToAction(nameof(Show), new { Id = id });
 
@@ -126,25 +102,17 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         {
             FormValidate(nameof(viewModel.CreditCard));
 
+            Order order = _orderRepository.Read(id);
+
             if (ModelState.IsValid)
             {
                 viewModel.CreditCard.PaymentForm = PaymentMethodConst.CreditCard;
 
-                Order order = _orderRepository.Read(id);
-
                 _managePagarMe.EstornoCreditCard(order.TransactionId);
 
-                order.Situation = OrderSituationConst.DEVOLUCAO_ESTORNO;
+                SaveOrderSituation(id, viewModel.CreditCard, OrderSituationConst.ESTORNO);
 
-                var orderSituation = new OrderSituation();
-                orderSituation.Date = DateTime.Now;
-                orderSituation.Data = JsonConvert.SerializeObject(viewModel.CreditCard);
-                orderSituation.OrderId = id;
-                orderSituation.Situation = OrderSituationConst.DEVOLUCAO_ESTORNO;
-
-                _orderSituationRepository.Create(orderSituation);
-
-                _orderRepository.Update(order);
+                SaveOrder(order, OrderSituationConst.DEVOLUCAO_ESTORNO);
 
                 _productRepository.ProductsRefundStock(order);
 
@@ -153,7 +121,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
             ViewBag.MODAL_CREDIT_CARD = true;
 
-            viewModel.Order = _orderRepository.Read(id);
+            viewModel.Order = order;
 
             return View(nameof(Show), viewModel);
         }
@@ -163,25 +131,17 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         {
             FormValidate(nameof(viewModel.BoletoBancario));
 
+            Order order = _orderRepository.Read(id);
+
             if (ModelState.IsValid)
             {
                 viewModel.BoletoBancario.PaymentForm = PaymentMethodConst.Boleto;
 
-                Order order = _orderRepository.Read(id);
-
                 _managePagarMe.EstornoBoletoBancario(order.TransactionId, viewModel.BoletoBancario);
 
-                order.Situation = OrderSituationConst.DEVOLUCAO_ESTORNO;
+                SaveOrderSituation(id, viewModel.BoletoBancario, OrderSituationConst.DEVOLUCAO_ESTORNO);
 
-                var orderSituation = new OrderSituation();
-                orderSituation.Date = DateTime.Now;
-                orderSituation.Data = JsonConvert.SerializeObject(viewModel.BoletoBancario);
-                orderSituation.OrderId = id;
-                orderSituation.Situation = OrderSituationConst.DEVOLUCAO_ESTORNO;
-
-                _orderSituationRepository.Create(orderSituation);
-
-                _orderRepository.Update(order);
+                SaveOrder(order, OrderSituationConst.DEVOLUCAO_ESTORNO);
 
                 _productRepository.ProductsRefundStock(order);
 
@@ -190,7 +150,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
             ViewBag.MODAL_BOLETO = true;
 
-            viewModel.Order = _orderRepository.Read(id);
+            viewModel.Order = order;
 
             return View(nameof(Show), viewModel);
         }
@@ -200,28 +160,20 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         {
             FormValidate(nameof(viewModel.Refund));
 
+            Order order = _orderRepository.Read(id);
+
             if (ModelState.IsValid)
             {
-                Order order = _orderRepository.Read(id);
+                SaveOrderSituation(id, viewModel.Refund, OrderSituationConst.DEVOLUCAO);
 
-                order.Situation = OrderSituationConst.DEVOLUCAO;
-
-                var orderSituation = new OrderSituation();
-                orderSituation.Date = DateTime.Now;
-                orderSituation.Data = JsonConvert.SerializeObject(viewModel.Refund);
-                orderSituation.OrderId = id;
-                orderSituation.Situation = OrderSituationConst.DEVOLUCAO;
-
-                _orderSituationRepository.Create(orderSituation);
-
-                _orderRepository.Update(order);
+                SaveOrder(order, OrderSituationConst.DEVOLUCAO);
 
                 return RedirectToAction(nameof(Show), new { Id = id });
             }
 
             ViewBag.MODAL_REFUND = true;
 
-            viewModel.Order = _orderRepository.Read(id);
+            viewModel.Order = order;
 
             return View(nameof(Show), viewModel);
         }
@@ -231,28 +183,20 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         {
             FormValidate(nameof(viewModel.RefundRejectReason));
 
+            Order order = _orderRepository.Read(id);
+
             if (ModelState.IsValid)
             {
-                Order order = _orderRepository.Read(id);
+                SaveOrderSituation(id, viewModel.RefundRejectReason, OrderSituationConst.DEVOLUCAO_REJEITADA);
 
-                order.Situation = OrderSituationConst.DEVOLUCAO_REJEITADA;
-
-                var orderSituation = new OrderSituation();
-                orderSituation.Date = DateTime.Now;
-                orderSituation.Data = viewModel.RefundRejectReason;
-                orderSituation.OrderId = id;
-                orderSituation.Situation = OrderSituationConst.DEVOLUCAO_REJEITADA;
-
-                _orderSituationRepository.Create(orderSituation);
-
-                _orderRepository.Update(order);
+                SaveOrder(order, OrderSituationConst.DEVOLUCAO_REJEITADA);
 
                 return RedirectToAction(nameof(Show), new { Id = id });
             }
 
             ViewBag.MODAL_REFUND_REJECT = true;
 
-            viewModel.Order = _orderRepository.Read(id);
+            viewModel.Order = order;
 
             return View(nameof(Show), viewModel);
         }
@@ -264,27 +208,14 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
             if (order.Situation == OrderSituationConst.DEVOLUCAO_ENTREGUE)
             {
-                var orderSituation = new OrderSituation();
-                orderSituation.Date = DateTime.Now;
-                orderSituation.OrderId = id;
-                orderSituation.Situation = OrderSituationConst.DEVOLUCAO_APROVADA;
-
-                _orderSituationRepository.Create(orderSituation);
-
                 _managePagarMe.EstornoCreditCard(order.TransactionId);
-
-                orderSituation = new OrderSituation();
-                orderSituation.Date = DateTime.Now;
-                orderSituation.OrderId = id;
-                orderSituation.Situation = OrderSituationConst.DEVOLUCAO_ESTORNO;
-
-                _orderSituationRepository.Create(orderSituation);
-
                 _productRepository.ProductsRefundStock(order);
 
-                order.Situation = OrderSituationConst.DEVOLUCAO_ESTORNO;
+                SaveOrderSituation(id, "", OrderSituationConst.DEVOLUCAO_APROVADA);
 
-                _orderRepository.Update(order);
+                SaveOrderSituation(id, "", OrderSituationConst.DEVOLUCAO_ESTORNO);
+
+                SaveOrder(order, OrderSituationConst.DEVOLUCAO_ESTORNO);
 
                 return RedirectToAction(nameof(Show), new { Id = id });
             }
@@ -305,30 +236,16 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
             if (ModelState.IsValid)
             {
-                var orderSituation = new OrderSituation();
-                orderSituation.Date = DateTime.Now;
-                orderSituation.OrderId = id;
-                orderSituation.Situation = OrderSituationConst.DEVOLUCAO_APROVADA;
-
-                _orderSituationRepository.Create(orderSituation);
-
                 viewModel.BoletoBancario.PaymentForm = PaymentMethodConst.Boleto;
 
                 _managePagarMe.EstornoBoletoBancario(order.TransactionId, viewModel.BoletoBancario);
-
-                orderSituation = new OrderSituation();
-                orderSituation.Date = DateTime.Now;
-                orderSituation.Data = JsonConvert.SerializeObject(viewModel.BoletoBancario);
-                orderSituation.OrderId = id;
-                orderSituation.Situation = OrderSituationConst.DEVOLUCAO_ESTORNO;
-
-                _orderSituationRepository.Create(orderSituation);
-
-                order.Situation = OrderSituationConst.DEVOLUCAO_ESTORNO;
-
-                _orderRepository.Update(order);
-
                 _productRepository.ProductsRefundStock(order);
+
+                SaveOrderSituation(id, "", OrderSituationConst.DEVOLUCAO_APROVADA);
+
+                SaveOrderSituation(id, viewModel.BoletoBancario, OrderSituationConst.DEVOLUCAO_ESTORNO);
+
+                SaveOrder(order, OrderSituationConst.DEVOLUCAO_ESTORNO);
 
                 return RedirectToAction(nameof(Show), new { Id = id });
             }
@@ -357,6 +274,36 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             {
                 ModelState.Remove(removeFromForm);
             }
+        }
+
+
+        private void SaveOrderSituation(int orderId, object data, string situation)
+        {
+            var orderSituation = new OrderSituation();
+            orderSituation.Date = DateTime.Now;
+            orderSituation.Data = JsonConvert.SerializeObject(data);
+            orderSituation.OrderId = orderId;
+            orderSituation.Situation = situation;
+
+            _orderSituationRepository.Create(orderSituation);
+        }
+
+
+        private void SaveOrder(Order order, string situation, string nfe = null, string trackingCod = null)
+        {
+            order.Situation = situation;
+
+            if (nfe != null)
+            {
+                order.NFE = nfe;
+            }
+
+            if (trackingCod != null)
+            {
+                order.FreteTrackingCod = trackingCod;
+            }
+
+            _orderRepository.Update(order);
         }
     }
 }
