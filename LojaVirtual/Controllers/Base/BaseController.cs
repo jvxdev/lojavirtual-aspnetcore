@@ -48,7 +48,7 @@ namespace LojaVirtual.Controllers.Base
                 Product product = _productRepository.Read(item.Id);
 
                 ProductItem productItem = _mapper.Map<ProductItem>(product);
-                productItem.ItensKartAmount = item.ItensKartAmount;
+                productItem.ChosenUnits = item.ChosenUnits;
 
                 productKartItemFull.Add(productItem);
             }

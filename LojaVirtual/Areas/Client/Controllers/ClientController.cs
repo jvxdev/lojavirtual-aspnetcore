@@ -121,6 +121,7 @@ namespace LojaVirtual.Areas.Client.Controllers
             ModelState.Remove("Neighborhood");
             ModelState.Remove("Street");
             ModelState.Remove("HouseNumber");
+            ModelState.Remove("Complement");
             ModelState.Remove("Email");
 
             if (ModelState.IsValid)

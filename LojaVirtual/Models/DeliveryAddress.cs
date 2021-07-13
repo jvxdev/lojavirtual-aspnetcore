@@ -46,6 +46,11 @@ namespace LojaVirtual.Models
         public string HouseNumber { get; set; }
 
 
+        [Display(Name = "Complemento")]
+        [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
+        public string Complement { get; set; }
+
+
         [ForeignKey("Client")]
         public int? ClientId { get; set; }
 

@@ -55,24 +55,24 @@
                                             <div>
                                                 <a href="#" class="btn btn-dark btn-amount btn-less" id="button-plus-less"> <i class="fa fa-minus"></i> </a>
                                             </div>
-                                            <input type="text" class="form-control text-center input-product-amount-kart pr-1 pl-1" value="@item.ItensKartAmount" readonly />
+                                            <input type="text" class="form-control text-center input-product-amount-kart pr-1 pl-1" value="@item.ChosenUnits" readonly />
                                             <div>
                                                 <a href="#" class="btn btn-dark btn-amount btn-more" id="button-plus-more"> <i class="fa fa-plus"></i> </a>
                                             </div>
 
                                             <input type="hidden" class="input-product-id" value="@item.Id" />
-                                            <input type="hidden" class="input-product-stock" value="@item.Amount" />
+                                            <input type="hidden" class="input-product-stock" value="@item.Stock" />
                                             <input type="hidden" class="input-product-unitary-price" value="@item.Price" />
                                         </div>
                                     </div>
                                 </td>
                                 @{
-                                    var subtotalItem = item.Price * item.ItensKartAmount;
+                                    var subtotalItem = item.Price * item.ChosenUnits;
                                     Subtotal = Subtotal + subtotalItem;
                                 }
                                 <td>
                                     <div class="price-wrap">
-                                        <var class="price">@((item.Price * item.ItensKartAmount).ToString("C"))</var>
+                                        <var class="price">@((item.Price * item.ChosenUnits).ToString("C"))</var>
                                         <small class="text-muted">unid/ (@item.Price.ToString("C"))</small>
                                     </div>
                                 </td>

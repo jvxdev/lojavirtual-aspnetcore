@@ -33,10 +33,10 @@
                 </tr>
             </table>
 
-            <h3 class="display-4 text-center my-5">Endereço de entrega</h3>
+            <h3 class="display-4 text-center my-4">Endereço de entrega</h3>
             <table class="table table-bordered">
                 <tr>
-                    <td colspan="6" class="text-center"><strong>@transaction.Shipping.Name</strong></td>
+                    <td colspan="7" class="text-center"><strong>Nome do endereço:</strong> @transaction.Shipping.Name</td>
                 </tr>
                 <tr>
                     <td><strong>CEP:</strong> @transaction.Shipping.Address.Zipcode</td>
@@ -45,11 +45,12 @@
                     <td><strong>Bairro:</strong> @transaction.Shipping.Address.Neighborhood</td>
                     <td><strong>Rua:</strong> @transaction.Shipping.Address.Street</td>
                     <td><strong>N° casa/apart:</strong> @transaction.Shipping.Address.StreetNumber</td>
+                    <td><strong>Complemento:</strong> @transaction.Shipping.Address.Complementary</td>
                 </tr>
                 <tr>
-                    <td><strong>Empresa de entrega:</strong> @Model.FreteCompany</td>
-                    <td><strong>Valor do frete:</strong> @Mask.ConvertPagarMeIntToDecimal(transaction.Shipping.Fee).ToString("C")</td>
-                    <td colspan="4"><strong>Código de rastreamento:</strong> @Html.Raw(Model.NFE == null ? "-" : "<a href='https://www.linkcorreios.com.br/" + Model.FreteTrackingCod + "' target='blank'>" + Model.FreteTrackingCod + "</a>")</td>
+                    <td colspan="2"><strong>Empresa de entrega:</strong> @Model.FreteCompany</td>
+                    <td colspan="2"><strong>Valor do frete:</strong> @Mask.ConvertPagarMeIntToDecimal(transaction.Shipping.Fee).ToString("C")</td>
+                    <td colspan="2"><strong>Código de rastreamento:</strong> @Html.Raw(Model.NFE == null ? "-" : "<a href='https://www.linkcorreios.com.br/" + Model.FreteTrackingCod + "' target='blank'>" + Model.FreteTrackingCod + "</a>")</td>
                 </tr>
             </table>
 
@@ -83,7 +84,7 @@
                 </table>
             }
 
-            <h3 class="display-4 text-center my-5">Produtos do pedido</h3>
+            <h3 class="display-4 text-center my-4">Produtos</h3>
             <table class="table table-bordered">
                 <tr>
                     <th>Nome</th>
@@ -96,9 +97,9 @@
                 {
                     <tr>
                         <td>@product.Name</td>
-                        <td>@product.ItensKartAmount</td>
+                        <td>@product.ChosenUnits</td>
                         <td>@product.Price.ToString("C")</td>
-                        <td>@((product.Price * product.ItensKartAmount).ToString("C"))</td>
+                        <td>@((product.Price * product.ChosenUnits).ToString("C"))</td>
                     </tr>
                 }
 
@@ -112,7 +113,8 @@
                 </tr>
             </table>
 
-            <button class="mt-5 btn btn-dark btn-imprimir">Imprimir</button>
+            <div class="text-right"><button class="mt-5 btn btn-warning btn-imprimir p-3">Clique aqui para imprimir</button></div>
+            
 
         </div>
     </div>

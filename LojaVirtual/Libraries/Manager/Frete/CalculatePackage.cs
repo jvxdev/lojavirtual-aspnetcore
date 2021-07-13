@@ -13,7 +13,7 @@ namespace LojaVirtual.Libraries.Manager.Frete
             Package package = new Package();
             foreach (var item in products)
             {
-                for (int i = 0; i < item.ItensKartAmount; i++)
+                for (int i = 0; i < item.ChosenUnits; i++)
                 {
                     var Weight = package.Weight + item.Weight;
                     var Lenght = (package.Lenght > item.Lenght) ? package.Lenght : item.Lenght;

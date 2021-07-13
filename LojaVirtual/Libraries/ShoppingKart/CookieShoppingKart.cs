@@ -32,7 +32,7 @@ namespace LojaVirtual.Libraries.ShoppingKart
                 }
                 else
                 {
-                    itemLocation.ItensKartAmount = itemLocation.ItensKartAmount + 1;
+                    itemLocation.ChosenUnits = itemLocation.ChosenUnits + 1;
                 }
             }
             else
@@ -77,7 +77,7 @@ namespace LojaVirtual.Libraries.ShoppingKart
 
             if (itemLocation != null)
             {
-                itemLocation.ItensKartAmount = productItem.ItensKartAmount;
+                itemLocation.ChosenUnits = productItem.ChosenUnits;
                 Save(List);
             }
         }

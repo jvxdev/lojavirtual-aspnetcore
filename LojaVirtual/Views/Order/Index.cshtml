@@ -22,13 +22,13 @@
 
                 @foreach (ProductItem product in ViewBag.Products)
                 {
-                    totalValue += (product.ItensKartAmount * product.Price);
+                    totalValue += (product.ChosenUnits * product.Price);
 
                     <tr>
                         <td>@product.Name</td>
-                        <td>@product.ItensKartAmount</td>
+                        <td>@product.ChosenUnits</td>
                         <td>
-                            @((product.ItensKartAmount * product.Price).ToString("C"))
+                            @((product.ChosenUnits * product.Price).ToString("C"))
                             (@product.Price.ToString("C") unid)
                         </td>
                     </tr>

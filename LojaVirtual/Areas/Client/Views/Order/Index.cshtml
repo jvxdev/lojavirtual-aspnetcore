@@ -23,7 +23,7 @@
                         <th scope="col">Forma de pagamento</th>
                         <th scope="col">Valor total</th>
                         <th scope="col">Situação do pedido</th>
-                        <th scope="col">NF-E</th>
+                        <th scope="col">NF-e</th>
                         <th scope="col">Ações</th>
                     </tr>
                 </thead>
@@ -36,7 +36,7 @@
                             <td>@order.PaymentForm</td>
                             <td>@order.TotalValue.ToString("C")</td>
                             <td>@order.Situation</td>
-                            <td><strong>@Html.Raw(order.NFE == null ? "-" : "<a href='" + order.NFE + "' target='blank'>NOTA FISCAL ELETRÔNICA</a>")</strong></td>
+                            <td><strong>@Html.Raw(order.NFE == null ? "-" : "<a href='" + order.NFE + "' target='blank'>Visualizar</a>")</strong></td>
                             <td><a class="btn btn-dark" asp-action="Show" asp-route-id="@order.Id">Visualizar pedido</a></td>
                         </tr>
                     }
@@ -51,7 +51,7 @@
             <br />
             <div class="row">
                 <div class="col-md-12 text-center display-4">
-                    Não encontramos nenhum pedido.
+                    Desculpe, mas não encontramos nenhum pedido.
                 </div>
             </div>
         </div>

@@ -26,15 +26,15 @@
                             </div>
                             <figcaption class="text-wrap align-self-center">
                                 @{
-                                    var subtotalItem = item.Price * item.ItensKartAmount;
+                                    var subtotalItem = item.Price * item.ChosenUnits;
                                     Subtotal = Subtotal + subtotalItem;
                                 }
                                 <h6 class="title"><strong>@item.Name.ToUpper()</strong></h6>
                                 <div>
-                                    <span class="price-new">Quantidade no carrinho: <strong>@item.ItensKartAmount</strong></span>
+                                    <span class="price-new">Quantidade no carrinho: <strong>@item.ChosenUnits</strong></span>
                                 </div>
                                 <div>
-                                    <span class="price-new">unid/ @item.Price.ToString() x @item.ItensKartAmount = <strong>@subtotalItem.ToString("C")</strong></span>
+                                    <span class="price-new">unid/ @item.Price.ToString() x @item.ChosenUnits = <strong>@subtotalItem.ToString("C")</strong></span>
                                 </div>
                             </figcaption>
                         </figure>

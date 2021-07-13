@@ -77,6 +77,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
                     Neighborhood = deliveryAddress.Neighborhood,
                     Street = deliveryAddress.Street,
                     StreetNumber = deliveryAddress.HouseNumber,
+                    Complementary = deliveryAddress.Complement,
                     Zipcode = Mask.Delete(deliveryAddress.CEP)
                 }
             };
@@ -90,7 +91,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
                 {
                     Id = item.Id.ToString(),
                     Title = item.Name,
-                    Quantity = item.ItensKartAmount,
+                    Quantity = item.ChosenUnits,
                     Tangible = true,
                     UnitPrice = Mask.ConvertValuePagarMe(item.Price),
                 };
@@ -165,6 +166,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
                     Neighborhood = client.Neighborhood,
                     Street = client.Street,
                     StreetNumber = client.HouseNumber,
+                    Complementary = deliveryAddress.Complement,
                     Zipcode = Mask.Delete(client.CEP)
                 }
             };
@@ -187,6 +189,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
                     Neighborhood = deliveryAddress.Neighborhood,
                     Street = deliveryAddress.Street,
                     StreetNumber = deliveryAddress.HouseNumber,
+                    Complementary = deliveryAddress.Complement,
                     Zipcode = Mask.Delete(deliveryAddress.CEP)
                 }
             };
@@ -200,7 +203,7 @@ namespace LojaVirtual.Libraries.Manager.Payment
                 {
                     Id = item.Id.ToString(),
                     Title = item.Name,
-                    Quantity = item.ItensKartAmount,
+                    Quantity = item.ChosenUnits,
                     Tangible = true,
                     UnitPrice = Mask.ConvertValuePagarMe(item.Price),
                 };

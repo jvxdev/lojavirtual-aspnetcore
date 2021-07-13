@@ -8,7 +8,7 @@
 
     foreach (ProductItem product in products)
     {
-        decimal result = product.Price * product.ItensKartAmount;
+        decimal result = product.Price * product.ChosenUnits;
         total += result;
     }
 }
@@ -30,7 +30,7 @@
                         <td>
                             <label for="0-end">
                                 <strong>Meu endereço</strong>
-                                <p>@ViewBag.Client.CEP - @ViewBag.Client.State, @ViewBag.Client.City, @ViewBag.Client.Neighborhood, @ViewBag.Client.Street, n° @ViewBag.Client.HouseNumber</p>
+                                <p>@ViewBag.Client.CEP - @ViewBag.Client.State, @ViewBag.Client.City, @ViewBag.Client.Neighborhood, @ViewBag.Client.Street, n° @ViewBag.Client.HouseNumber. Complemento: @ViewBag.Client.Complement</p>
                             </label>
                         </td>
                     </tr>
@@ -45,7 +45,7 @@
                             <td>
                                 <label for="@deliveryAddress.Id-end">
                                     <strong>@deliveryAddress.AddressName</strong>
-                                    <p>@deliveryAddress.CEP | @deliveryAddress.State, @deliveryAddress.City, @deliveryAddress.Neighborhood, @deliveryAddress.Street, n° @deliveryAddress.HouseNumber</p>
+                                    <p>@deliveryAddress.CEP | @deliveryAddress.State, @deliveryAddress.City, @deliveryAddress.Neighborhood, @deliveryAddress.Street, n° @deliveryAddress.HouseNumber. Complemento: @ViewBag.Client.Complement</p>
                                 </label>
                             </td>
                         </tr>

@@ -85,6 +85,11 @@
                                     <span asp-validation-for="HouseNumber"></span>
                                 </div>
                                 <div class="form-group">
+                                    <label for="complement">Complemento</label>
+                                    <input type="text" asp-for="Complement" name="complement" data class="form-control" placeholder="Digite um complemento">
+                                    <span asp-validation-for="Complement"></span>
+                                </div>
+                                <div class="form-group">
                                     <label for="email">E-mail</label>
                                     <input type="email" asp-for="Email" id="email" name="email" class="form-control" placeholder="exemplo@email.com">
                                     <span asp-validation-for="Email"></span>
@@ -101,7 +106,7 @@
                                         Deve ter no mínimo <b>6 caracteres</b>.
                                     </small>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="passwordConfirmation">Confirme sua senha</label>
                                     <input type="password" asp-for="PasswordConfirmation" id="passwordConfirmation" name="passwordConfirmation" class="form-control" placeholder="**********" />

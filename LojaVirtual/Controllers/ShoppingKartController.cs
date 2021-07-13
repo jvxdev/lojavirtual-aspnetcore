@@ -47,7 +47,7 @@ namespace LojaVirtual.Controllers
             }
             else
             {
-                var Item = new ProductItem() { Id = Id, ItensKartAmount = 1 };
+                var Item = new ProductItem() { Id = Id, ChosenUnits = 1 };
                 _cookieShoppingKart.Create(Item);
 
                 return RedirectToAction(nameof(Index));
@@ -78,13 +78,13 @@ namespace LojaVirtual.Controllers
             {
                 return BadRequest(new { message = Message.MSG_E008 });
             }
-            else if (Amount > product.Amount)
+            else if (Amount > product.Stock)
             {
                 return BadRequest(new { message = Message.MSG_E009 });
             }
             else
             {
-                var Item = new ProductItem() { Id = Id, ItensKartAmount = Amount };
+                var Item = new ProductItem() { Id = Id, ChosenUnits = Amount };
 
                 _cookieShoppingKart.Update(Item);
 

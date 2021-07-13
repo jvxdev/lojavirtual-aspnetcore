@@ -37,7 +37,7 @@
                         <th scope="col">Nome</th>
                         <th scope="col">CPF</th>
                         <th scope="col">Data da compra</th>
-                        <th scope="col">Forma de pegamento</th>
+                        <th scope="col">Forma de pagamento</th>
                         <th scope="col">Valor total</th>
                         <th scope="col">Situação do pedido</th>
                         <th scope="col">NF-E</th>
@@ -55,7 +55,7 @@
                             <td>@order.PaymentForm</td>
                             <td>@order.TotalValue.ToString("C")</td>
                             <td>@order.Situation</td>
-                            <td><strong>@Html.Raw(order.NFE == null ? "-" : "<a href='" + order.NFE + "' target='blank'>NOTA FISCAL ELETRÔNICA</a>")</strong></td>
+                            <td><strong>@Html.Raw(order.NFE == null ? "-" : "<a href='" + order.NFE + "' target='blank'>Visualizar</a>")</strong></td>
                             <td><a class="btn btn-dark" asp-action="Show" asp-route-id="@order.Id">Visualizar pedido</a></td>
                         </tr>
                     }

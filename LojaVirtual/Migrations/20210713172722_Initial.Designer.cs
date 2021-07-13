@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LojaVirtual.Migrations
 {
     [DbContext(typeof(LojaVirtualContext))]
-    [Migration("20210517174022_Initial")]
+    [Migration("20210713172722_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,6 +70,10 @@ namespace LojaVirtual.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Complement")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -99,7 +103,6 @@ namespace LojaVirtual.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Situation")
-                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
@@ -163,6 +166,10 @@ namespace LojaVirtual.Migrations
 
                     b.Property<int?>("ClientId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Complement")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HouseNumber")
                         .IsRequired()
@@ -303,10 +310,6 @@ namespace LojaVirtual.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int?>("Amount")
-                        .IsRequired()
-                        .HasColumnType("int");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -326,6 +329,10 @@ namespace LojaVirtual.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("Stock")
+                        .IsRequired()
+                        .HasColumnType("int");
 
                     b.Property<double>("Weight")
                         .HasColumnType("float");

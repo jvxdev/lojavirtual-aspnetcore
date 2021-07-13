@@ -72,6 +72,11 @@ namespace LojaVirtual.Models
         public string HouseNumber { get; set; }
 
 
+        [Display(Name = "Complemento")]
+        [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
+        public string Complement { get; set; }
+
+
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
         [EmailAddress(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E004")]
         public string Email { get; set; }

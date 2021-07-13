@@ -385,7 +385,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             {
                 Product productDB = _productRepository.Read(product.Id);
 
-                productDB.Amount += product.ItensKartAmount;
+                productDB.Stock += product.ChosenUnits;
 
                 _productRepository.Update(productDB);
             }

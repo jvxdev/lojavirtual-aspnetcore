@@ -174,7 +174,7 @@ namespace LojaVirtual.Controllers
             foreach (var product in products)
             {
                 Product productDB = _productRepository.Read(product.Id);
-                productDB.Amount -= product.ItensKartAmount;
+                productDB.Stock -= product.ChosenUnits;
 
                 _productRepository.Update(productDB);
             }
@@ -255,7 +255,7 @@ namespace LojaVirtual.Controllers
 
             foreach (var product in products)
             {
-                total += product.Price * product.ItensKartAmount;
+                total += product.Price * product.ChosenUnits;
             }
 
             return total;

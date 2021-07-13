@@ -2,6 +2,6 @@
 {
     public class ProductItem : Product
     {
-        public int ItensKartAmount { get; set; }
+        public int ChosenUnits { get; set; }
     }
 }
