@@ -10,7 +10,7 @@ using X.PagedList;
 namespace LojaVirtual.Areas.Collaborator.Controllers
 {
     [Area("Collaborator")]
-    [CollaboratorAuthorizationAttribute]
+    [CollaboratorAuthorization]
     public class CategoryController : Controller
     {
         private ICategoryRepository _categoryRepository;

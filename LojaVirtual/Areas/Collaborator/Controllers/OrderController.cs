@@ -55,12 +55,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
         public IActionResult NFE([FromForm] ShowViewModel viewModel, int id)
         {
-            ModelState.Remove("Order");
-            ModelState.Remove("TrackingCod");
-            ModelState.Remove("CreditCard");
-            ModelState.Remove("BoletoBancario");
-            ModelState.Remove("Refund");
-            ModelState.Remove("RefundRejectReason");
+            FormValidate(nameof(viewModel.NFE));
 
             if (ModelState.IsValid)
             {
@@ -94,12 +89,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
         public IActionResult TrackingCod([FromForm] ShowViewModel viewModel, int id)
         {
-            ModelState.Remove("Order");
-            ModelState.Remove("NFE");
-            ModelState.Remove("CreditCard");
-            ModelState.Remove("BoletoBancario");
-            ModelState.Remove("Refund");
-            ModelState.Remove("RefundRejectReason");
+            FormValidate(nameof(viewModel.TrackingCod));
 
             if (ModelState.IsValid)
             {
@@ -134,12 +124,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
         public IActionResult CancelOrderCreditCard([FromForm] ShowViewModel viewModel, int id)
         {
-            ModelState.Remove("Order");
-            ModelState.Remove("NFE");
-            ModelState.Remove("TrackingCod");
-            ModelState.Remove("BoletoBancario");
-            ModelState.Remove("Refund");
-            ModelState.Remove("RefundRejectReason");
+            FormValidate(nameof(viewModel.CreditCard));
 
             if (ModelState.IsValid)
             {
@@ -176,12 +161,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
         public IActionResult CancelOrderBoletoBancario([FromForm] ShowViewModel viewModel, int id)
         {
-            ModelState.Remove("Order");
-            ModelState.Remove("NFE");
-            ModelState.Remove("TrackingCod");
-            ModelState.Remove("CreditCard");
-            ModelState.Remove("Refund");
-            ModelState.Remove("RefundRejectReason");
+            FormValidate(nameof(viewModel.BoletoBancario));
 
             if (ModelState.IsValid)
             {
@@ -218,12 +198,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
         public IActionResult RefundOrder([FromForm] ShowViewModel viewModel, int id)
         {
-            ModelState.Remove("Order");
-            ModelState.Remove("NFE");
-            ModelState.Remove("TrackingCod");
-            ModelState.Remove("CreditCard");
-            ModelState.Remove("BoletoBancario");
-            ModelState.Remove("RefundRejectReason");
+            FormValidate(nameof(viewModel.Refund));
 
             if (ModelState.IsValid)
             {
@@ -254,12 +229,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
         public IActionResult RefundOrderRejected([FromForm] ShowViewModel viewModel, int id)
         {
-            ModelState.Remove("Order");
-            ModelState.Remove("NFE");
-            ModelState.Remove("TrackingCod");
-            ModelState.Remove("CreditCard");
-            ModelState.Remove("BoletoBancario");
-            ModelState.Remove("Refund");
+            FormValidate(nameof(viewModel.RefundRejectReason));
 
             if (ModelState.IsValid)
             {
@@ -329,13 +299,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
         public IActionResult RefundOrderApprovedBoletoBancario([FromForm] ShowViewModel viewModel, int id)
         {
-            ModelState.Remove("Order");
-            ModelState.Remove("NFE");
-            ModelState.Remove("TrackingCod");
-            ModelState.Remove("CreditCard");
-            ModelState.Remove("Refund");
-            ModelState.Remove("RefundRejectReason");
-            ModelState.Remove("BoletoBancario.CancelReason");
+            FormValidate(nameof(viewModel.BoletoBancario), "BoletoBancario.CancelReason");
 
             Order order = _orderRepository.Read(id);
 
@@ -374,6 +338,25 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             viewModel.Order = order;
 
             return View(nameof(Show), viewModel);
+        }
+
+
+        private void FormValidate(string formValidate, params string[] removeFromForms)
+        {
+            var properties = new ShowViewModel().GetType().GetProperties();
+
+            foreach (var property in properties)
+            {
+                if (property.Name != formValidate)
+                {
+                    ModelState.Remove(property.Name);
+                }
+            }
+
+            foreach (string removeFromForm in removeFromForms)
+            {
+                ModelState.Remove(removeFromForm);
+            }
         }
     }
 }

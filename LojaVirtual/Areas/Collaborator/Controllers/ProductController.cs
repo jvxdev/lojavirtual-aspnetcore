@@ -12,7 +12,7 @@ using System.Linq;
 namespace LojaVirtual.Areas.Collaborator.Controllers
 {
     [Area("Collaborator")]
-    [CollaboratorAuthorizationAttribute]
+    [CollaboratorAuthorization]
     public class ProductController : Controller
     {
         private IProductRepository _productRepository;
