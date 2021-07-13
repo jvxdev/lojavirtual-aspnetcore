@@ -22,6 +22,9 @@ namespace LojaVirtual.Repositories.Contracts
         void Update(Product product);
 
 
+        void ProductsRefundStock(Order order);
+
+
         void Delete(int id);
     }
 }

@@ -1,9 +1,11 @@
 ﻿using LojaVirtual.Database;
+using LojaVirtual.Libraries.Json.Resolver;
 using LojaVirtual.Models;
 using LojaVirtual.Models.ProductAggregator;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using X.PagedList;
@@ -82,6 +84,21 @@ namespace LojaVirtual.Repositories
         {
             _database.Update(product);
             _database.SaveChanges();
+        }
+
+
+        public void ProductsRefundStock(Order order)
+        {
+            List<ProductItem> products = JsonConvert.DeserializeObject<List<ProductItem>>(order.ProductsData, new JsonSerializerSettings() { ContractResolver = new ProductItemResolver<List<ProductItem>>() });
+
+            foreach (var product in products)
+            {
+                Product productDB = Read(product.Id);
+
+                productDB.Stock += product.ChosenUnits;
+
+                Update(productDB);
+            }
         }
 
 

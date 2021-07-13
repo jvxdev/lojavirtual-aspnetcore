@@ -161,7 +161,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
                 _orderRepository.Update(order);
 
-                ProductsRefundStock(order);
+                _productRepository.ProductsRefundStock(order);
 
                 return RedirectToAction(nameof(Show), new { Id = id });
             }
@@ -203,7 +203,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
                 _orderRepository.Update(order);
 
-                ProductsRefundStock(order);
+                _productRepository.ProductsRefundStock(order);
 
                 return RedirectToAction(nameof(Show), new { Id = id });
             }
@@ -310,7 +310,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
                 _orderSituationRepository.Create(orderSituation);
 
-                ProductsRefundStock(order);
+                _productRepository.ProductsRefundStock(order);
 
                 order.Situation = OrderSituationConst.DEVOLUCAO_ESTORNO;
 
@@ -364,7 +364,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
                 _orderRepository.Update(order);
 
-                ProductsRefundStock(order);
+                _productRepository.ProductsRefundStock(order);
 
                 return RedirectToAction(nameof(Show), new { Id = id });
             }
@@ -374,21 +374,6 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             viewModel.Order = order;
 
             return View(nameof(Show), viewModel);
-        }
-
-
-        private void ProductsRefundStock(Order order)
-        {
-            List<ProductItem> products = JsonConvert.DeserializeObject<List<ProductItem>>(order.ProductsData, new JsonSerializerSettings() { ContractResolver = new ProductItemResolver<List<ProductItem>>() });
-
-            foreach (var product in products)
-            {
-                Product productDB = _productRepository.Read(product.Id);
-
-                productDB.Stock += product.ChosenUnits;
-
-                _productRepository.Update(productDB);
-            }
         }
     }
 }
