@@ -9,5 +9,7 @@ namespace LojaVirtual.Repositories.Contracts
 
 
         IEnumerable<NewsletterEmail> ReadAll();
+
+        int TotalNewsletters();
     }
 }

@@ -59,14 +59,14 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
                 SaveOrderSituation(id, url, OrderSituationConst.NF_EMITIDA);
 
-                SaveOrder(order, url, OrderSituationConst.NF_EMITIDA);
+                SaveOrder(order, OrderSituationConst.NF_EMITIDA, url);
                 
                 return RedirectToAction(nameof(Show), new { Id = id });
             }
 
             ViewBag.MODAL_NFE = true;
 
-            viewModel.Order = _orderRepository.Read(id);
+            viewModel.Order = order;
 
             return View(nameof(Show), viewModel);
         }
@@ -84,7 +84,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
                 SaveOrderSituation(id, trackingCod, OrderSituationConst.EM_TRANSPORTE);
 
-                SaveOrder(order, trackingCod, OrderSituationConst.EM_TRANSPORTE);
+                SaveOrder(order, OrderSituationConst.EM_TRANSPORTE, null, trackingCod);
 
                 return RedirectToAction(nameof(Show), new { Id = id });
 
@@ -92,7 +92,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
 
             ViewBag.MODAL_TRACKING_COD = true;
 
-            viewModel.Order = _orderRepository.Read(id);
+            viewModel.Order = order;
 
             return View(nameof(Show), viewModel);
         }

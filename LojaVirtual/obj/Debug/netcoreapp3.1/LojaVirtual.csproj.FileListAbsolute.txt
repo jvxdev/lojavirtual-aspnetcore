@@ -2327,7 +2327,6 @@ C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\net
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Collaborator\Views\Home\NewPassword.cshtml.g.cs
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Collaborator\Views\Home\Panel.cshtml.g.cs
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Collaborator\Views\Home\PasswordRecover.cshtml.g.cs
-C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Collaborator\Views\Home\Register.cshtml.g.cs
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Collaborator\Views\Order\Index.cshtml.g.cs
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Collaborator\Views\Order\Show.cshtml.g.cs
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Collaborator\Views\Product\Index.cshtml.g.cs

@@ -9,83 +9,88 @@
 
 @if (Model.Count > 0)
 {
-    <section class="container" id="order">
-        <h1 class="display-4 text-center my-5">Carrinho de compras</h1>
-        <div class="alert alert-danger" style="display: none;" role="alert">
-        </div>
-        <div id="code_cart">
-            <div class="card">
-                <table class="table table-hover shopping-cart-wrap">
-                    <thead class="text-muted">
-                        <tr>
-                            <th scope="col">Nome do produto</th>
-                            <th scope="col" width="120">Quantidade</th>
-                            <th scope="col" width="120">Preço</th>
-                            <th scope="col" width="200" class="text-right">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td width="55%">
-                                    <figure class="media">
-                                        <div class="img-wrap">
-                                            @if (item.Images.Count > 0)
-                                            {
-                                                <a asp-controller="Product" asp-action="Show" asp-route-id="@item.Id"><img src="@item.Images.First().Path" class="img-thumbnail img-sm" /></a>
-                                            }
-                                            else
-                                            {
-                                                <img src="~/img/img-example.png" class="img-thumbnail img-sm" />
-                                            }
-                                        </div>
-                                        <figcaption class="media-body">
-                                            <a asp-controller="Product" asp-action="Show" asp-route-id="@item.Id"><h6 class="title text-truncate">@item.Name</h6></a>
-                                            <dl class="dlist-inline small">
-                                                <dt>Descrição: </dt>
-                                                <dd>@item.Description</dd>
-                                            </dl>
-                                        </figcaption>
-                                    </figure>
-                                </td>
-                                <td>
-                                    <div>
-                                        <div class="input-group input-spinner">
-                                            <div>
-                                                <a href="#" class="btn btn-dark btn-amount btn-less" id="button-plus-less"> <i class="fa fa-minus"></i> </a>
-                                            </div>
-                                            <input type="text" class="form-control text-center input-product-amount-kart pr-1 pl-1" value="@item.ChosenUnits" readonly />
-                                            <div>
-                                                <a href="#" class="btn btn-dark btn-amount btn-more" id="button-plus-more"> <i class="fa fa-plus"></i> </a>
-                                            </div>
+<section class="container" id="order">
+    <h1 class="display-4 text-center my-5">Carrinho de compras</h1>
+    <div class="alert alert-danger" style="display: none;" role="alert">
+    </div>
 
-                                            <input type="hidden" class="input-product-id" value="@item.Id" />
-                                            <input type="hidden" class="input-product-stock" value="@item.Stock" />
-                                            <input type="hidden" class="input-product-unitary-price" value="@item.Price" />
+    @{ await Html.RenderPartialAsync("~/Views/Shared/_Message.cshtml"); }
+
+    <div id="code_cart">
+        <div class="card">
+            <table class="table table-hover shopping-cart-wrap">
+                <thead class="text-muted">
+                    <tr>
+                        <th scope="col">Nome do produto</th>
+                        <th scope="col" width="120">Quantidade</th>
+                        <th scope="col" width="120">Preço</th>
+                        <th scope="col" width="200" class="text-right">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td width="55%">
+                                <figure class="media">
+                                    <div class="img-wrap">
+                                        @if (item.Images.Count > 0)
+                                        {
+                                            <a asp-controller="Product" asp-action="Show" asp-route-id="@item.Id"><img src="@item.Images.First().Path" class="img-thumbnail img-sm" /></a>
+                                        }
+                                        else
+                                        {
+                                            <img src="~/img/img-example.png" class="img-thumbnail img-sm" />
+                                        }
+                                    </div>
+                                    <figcaption class="media-body">
+                                        <a asp-controller="Product" asp-action="Show" asp-route-id="@item.Id"><h6 class="title text-truncate">@item.Name</h6></a>
+                                        <dl class="dlist-inline small">
+                                            <dt>Descrição: </dt>
+                                            <dd>@item.Description</dd>
+                                        </dl>
+                                    </figcaption>
+                                </figure>
+                            </td>
+                            <td>
+                                <div>
+                                    <div class="input-group input-spinner">
+                                        <div>
+                                            <a href="#" class="btn btn-dark btn-amount btn-less" id="button-plus-less"> <i class="fa fa-minus"></i> </a>
                                         </div>
+                                        <input type="text" class="form-control text-center input-product-amount-kart pr-1 pl-1" value="@item.ChosenUnits" readonly />
+                                        <div>
+                                            <a href="#" class="btn btn-dark btn-amount btn-more" id="button-plus-more"> <i class="fa fa-plus"></i> </a>
+                                        </div>
+
+                                        <input type="hidden" class="input-product-id" value="@item.Id" />
+                                        <input type="hidden" class="input-product-stock" value="@item.Stock" />
+                                        <input type="hidden" class="input-product-unitary-price" value="@item.Price" />
                                     </div>
-                                </td>
-                                @{
-                                    var subtotalItem = item.Price * item.ChosenUnits;
-                                    Subtotal = Subtotal + subtotalItem;
-                                }
-                                <td>
-                                    <div class="price-wrap">
-                                        <var class="price">@((item.Price * item.ChosenUnits).ToString("C"))</var>
-                                        <small class="text-muted">unid/ (@item.Price.ToString("C"))</small>
-                                    </div>
-                                </td>
-                                <td class="text-right d-none d-md-block">
-                                    <a asp-controller="ShoppingKart" asp-action="DeleteItem" asp-route-id="@item.Id" class="btn btn-dark text-black py-2"> Remover</a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+                                </div>
+                            </td>
+                            @{
+                                var subtotalItem = item.Price * item.ChosenUnits;
+                                Subtotal = Subtotal + subtotalItem;
+                            }
+                            <td>
+                                <div class="price-wrap">
+                                    <var class="price">@((item.Price * item.ChosenUnits).ToString("C"))</var>
+                                    <small class="text-muted">unidade: <strong>@item.Price.ToString("C")</strong> </small>
+                                    <br />
+                                    <small class="text-muted">em estoque: <strong>@item.Stock</strong></small>
+                                </div>
+                            </td>
+                            <td class="text-right d-none d-md-block">
+                                <a asp-controller="ShoppingKart" asp-action="DeleteItem" asp-route-id="@item.Id" class="btn btn-dark text-black py-2"> Remover</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
-    </section>
+    </div>
+</section>
 
     <section class="container mt-3">
         <div class="row">
@@ -135,11 +140,11 @@
                     <div class="box text-center">
                         @if (_clientLogin.GetClient() == null)
                         {
-                            <a asp-action="Login" asp-controller="Home" asp-area="Client" asp-route-returnUrl="@Url.Action("DeliveryAddress", "ShoppingKart", new { area = "" })" class="btn btn-warning col-12 p-3 btn-proceed"><strong>Continuar</strong></a>
+                            <a asp-action="Login" asp-controller="Home" asp-area="Client" asp-route-returnUrl="@Url.Action("VerifyStock", "ShoppingKart", new { area = "" })" class="btn btn-warning col-12 p-3 btn-proceed"><strong>Continuar</strong></a>
                         }
                         else
                         {
-                            <a asp-action="DeliveryAddress" asp-controller="ShoppingKart" class="btn btn-warning col-12 p-3 btn-proceed"><strong>Continuar</strong></a>
+                            <a asp-action="VerifyStock" asp-controller="ShoppingKart" class="btn btn-warning col-12 p-3 btn-proceed"><strong>Continuar</strong></a>
                         }
                     </div>
                 </div>

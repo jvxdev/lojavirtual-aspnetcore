@@ -55,7 +55,7 @@ namespace LojaVirtual.Controllers
         }
 
 
-        [ClientAuthorizationAttribute]
+        [ClientAuthorization]
         public IActionResult DeliveryAddress()
         {
             Client client = _clientLogin.GetClient();
@@ -67,6 +67,31 @@ namespace LojaVirtual.Controllers
             ViewBag.Addresses = deliveryAddresses;
 
             return View();
+        }
+
+
+        public IActionResult VerifyStock ()
+        {
+            List<ProductItem> productKartItemFull = ReadProductDB();
+
+            foreach (var product in productKartItemFull)
+            {
+                if (product.Stock <= 0)
+                {
+                    ViewBag.MSG_E = Message.MSG_E009;
+
+                    return View("Index", productKartItemFull);
+                }
+
+                if (product.Stock < product.ChosenUnits)
+                {
+                    ViewBag.MSG_E = Message.MSG_E009;
+
+                    return View("Index", productKartItemFull);
+                }
+            }
+
+            return RedirectToAction(nameof(DeliveryAddress));
         }
 
 

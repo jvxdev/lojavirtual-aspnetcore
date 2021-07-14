@@ -24,5 +24,10 @@ namespace LojaVirtual.Repositories.Contracts
         {
             return _database.Newsletter.ToList();
         }
+
+        public int TotalNewsletters()
+        {
+            return _database.Newsletter.Count();
+        }
     }
 }

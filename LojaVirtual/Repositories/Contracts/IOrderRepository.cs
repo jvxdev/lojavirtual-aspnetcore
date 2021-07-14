@@ -22,5 +22,17 @@ namespace LojaVirtual.Repositories.Contracts
 
 
         void Update(Order order);
+
+
+        int TotalOrders();
+
+
+        decimal TotalValueOrders();
+
+
+        int TotalOrdersCreditCard();
+
+
+        int TotalOrdersBoletoBancario();
     }
 }

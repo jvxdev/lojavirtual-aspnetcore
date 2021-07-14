@@ -17,6 +17,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="/"><i class="fas fa-home mr-1"></i> Página Inicial <span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-action="Contact" asp-controller="Home"><i class="fas fa-phone mr-1"></i> Fale conosco</a>
+            </li>
+
             @{
                 var allCategories = Model.ToList();
             }
@@ -41,16 +45,18 @@
                     </ul>
                 </div>
             }
+
         </ul>
         <form method="get" class="form-inline my-lg-0">
             <input class="form-control mr-sm-2" type="search" name="Search" value="@Search" placeholder="Procurando algo?" aria-label="Search">
-            <button class="btn btn-danger my-2 my-sm-0" type="submit">Pesquisar</button>
-            <a class="nav-link" asp-action="Contact" asp-controller="Home"><i class="fas fa-phone mr-1"></i> Fale conosco</a>
-            <a class="nav-link" asp-controller="ShoppingKart" asp-action="Index"><i class="fas fa-shopping-cart mr-1"></i> Carrinho</a>
+            <button class="btn btn-danger" type="submit">Pesquisar</button>
+
+            <a class="nav-link mr-2" asp-controller="ShoppingKart" asp-action="Index"><i class="fas fa-shopping-cart mr-1"></i> Carrinho</a>
+
             @if (_clientLogin.GetClient() != null)
             {
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-user-alt mr-1"></i> @_clientLogin.GetClient().Name
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -62,9 +68,8 @@
             }
             else
             {
-                <a class="nav-link" asp-action="Login" asp-controller="Home" asp-area="Client"><i class="fas fa-user-alt mr-1"></i> Entrar</a>
+                <a class="btn btn-light" asp-action="Login" asp-controller="Home" asp-area="Client"><i class="fas fa-user-alt mr-1"></i> Entrar</a>
             }
-                
         </form>
     </div>
 </nav>

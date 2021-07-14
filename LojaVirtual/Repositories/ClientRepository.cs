@@ -69,5 +69,11 @@ namespace LojaVirtual.Repositories.Contracts
             Client client = _database.Clients.Where(x => x.Email == email && x.Password == password).FirstOrDefault();
             return client;
         }
+
+
+        public int TotalClients()
+        {
+            return _database.Clients.Count();
+        }
     }
 }

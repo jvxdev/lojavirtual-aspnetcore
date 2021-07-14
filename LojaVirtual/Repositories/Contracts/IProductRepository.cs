@@ -26,5 +26,8 @@ namespace LojaVirtual.Repositories.Contracts
 
 
         void Delete(int id);
+
+
+        int TotalProducts();
     }
 }

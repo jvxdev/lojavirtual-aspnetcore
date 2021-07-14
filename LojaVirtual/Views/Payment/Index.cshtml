@@ -3,6 +3,8 @@
 @{
     ViewData["Title"] = "Efetuar pagamento";
     decimal Subtotal = 0;
+
+    var products = (List<ProductItem>) ViewBag.Products;
 }
 
 <div class="container">
@@ -11,13 +13,13 @@
         <div class="col-md-6">
             <div id="code_itemside_img2">
                 <div class="box items-bordered-wrap">
-                    @foreach (var item in ViewBag.Products)
+                    @foreach (var item in products)
                     {
                         <figure class="itemside">
                             <div class="aside">
                                 @if (item.Images.Count > 0)
                                 {
-                                    <img src="@(((List<Image>)item.Images).First().Path)" class="img-sm">
+                                    <img src="@item.Images.First().Path" class="img-sm">
                                 }
                                 else
                                 {

@@ -21,5 +21,8 @@ namespace LojaVirtual.Repositories.Contracts
 
 
         Client Login(string email, string password);
+
+
+        int TotalClients();
     }
 }

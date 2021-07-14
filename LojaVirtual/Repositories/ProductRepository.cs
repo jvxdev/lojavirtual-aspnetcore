@@ -108,5 +108,11 @@ namespace LojaVirtual.Repositories
             _database.Remove(product);
             _database.SaveChanges();
         }
+
+
+        public int TotalProducts()
+        {
+            return _database.Products.Count();
+        }
     }
 }

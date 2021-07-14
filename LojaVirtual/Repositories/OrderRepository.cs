@@ -30,7 +30,6 @@ namespace LojaVirtual.Repositories
             _database.SaveChanges();
         }
 
-        
 
         public Order Read(int id)
         {
@@ -81,6 +80,30 @@ namespace LojaVirtual.Repositories
         public List<Order> GetAllOrdersBySituation(string status)
         {
             return _database.Orders.Include(a => a.OrderSituations).Include(a => a.Client).Where(a => a.Situation == status).ToList();
+        }
+
+
+        public int TotalOrders()
+        {
+            return _database.Orders.Count();
+        }
+
+
+        public decimal TotalValueOrders()
+        {
+            return _database.Orders.Sum(a => a.TotalValue);
+        }
+
+
+        public int TotalOrdersCreditCard()
+        {
+            return _database.Orders.Where(a => a.PaymentForm == PaymentMethodConst.CreditCard).Count();
+        }
+
+
+        public int TotalOrdersBoletoBancario()
+        {
+            return _database.Orders.Where(a => a.PaymentForm == PaymentMethodConst.Boleto).Count();
         }
     }
 }

@@ -74,6 +74,7 @@ namespace LojaVirtual.Models.ProductAggregator
 
 
         [ForeignKey("CategoryId")]
+        [Display(Name = "Categoria")]
         [JsonIgnore]
         public virtual Category Category { get; set; }
 
