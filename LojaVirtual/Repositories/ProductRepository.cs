@@ -80,6 +80,12 @@ namespace LojaVirtual.Repositories
         }
 
 
+        public List<Product> GetProductByCategory(int id)
+        {
+            return _database.Products.OrderBy(a => a.Name).Where(a => a.CategoryId == id).ToList();
+        }
+
+
         public void Update(Product product)
         {
             _database.Update(product);

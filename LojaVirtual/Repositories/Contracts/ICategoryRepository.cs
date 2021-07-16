@@ -25,6 +25,9 @@ namespace LojaVirtual.Repositories.Contracts
         IEnumerable<Category> ReadAll();
 
 
+        List<Category> GetCategoryByFatherCategory(int id);
+
+
         IPagedList<Category> ReadAll(int? page);
 
 

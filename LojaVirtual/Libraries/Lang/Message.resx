@@ -156,6 +156,12 @@
   <data name="MSG_E013" xml:space="preserve">
     <value>O valor informado já está registrado no banco!</value>
   </data>
+  <data name="MSG_E014" xml:space="preserve">
+    <value>Não é possível excluir Categorias que possuem outras categorias vinculadas: {0}</value>
+  </data>
+  <data name="MSG_E015" xml:space="preserve">
+    <value>Não é possível excluir Categorias que possuem produtos vinculados: {0}</value>
+  </data>
   <data name="MSG_S001" xml:space="preserve">
     <value>Registro cadastrado com sucesso!</value>
   </data>

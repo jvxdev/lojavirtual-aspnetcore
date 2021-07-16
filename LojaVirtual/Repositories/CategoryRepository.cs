@@ -92,6 +92,12 @@ namespace LojaVirtual.Repositories
         }
 
 
+        public List<Category> GetCategoryByFatherCategory(int id)
+        {
+            return _database.Categories.Where(a => a.FatherCategoryId == id).ToList();
+        }
+
+
         public void Update(Category category)
         {
             _database.Update(category);

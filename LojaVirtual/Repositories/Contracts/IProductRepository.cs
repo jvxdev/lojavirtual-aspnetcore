@@ -19,6 +19,9 @@ namespace LojaVirtual.Repositories.Contracts
         IPagedList<Product> ReadAll(int? page, string search, string ordination, IEnumerable<Category> categories);
 
 
+        List<Product> GetProductByCategory(int id);
+
+
         void Update(Product product);
 
 

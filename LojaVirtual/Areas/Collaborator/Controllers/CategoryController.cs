@@ -5,6 +5,7 @@ using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
+using System.Text;
 using X.PagedList;
 
 namespace LojaVirtual.Areas.Collaborator.Controllers
@@ -14,11 +15,13 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
     public class CategoryController : Controller
     {
         private ICategoryRepository _categoryRepository;
+        private IProductRepository _productRepository;
 
 
-        public CategoryController(ICategoryRepository categoryRepository)
+        public CategoryController(ICategoryRepository categoryRepository, IProductRepository productRepository)
         {
             _categoryRepository = categoryRepository;
+            _productRepository = productRepository;
         }
 
 
@@ -82,6 +85,38 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         [HttpReferer]
         public IActionResult Delete(int id)
         {
+            var categoriesSon = _categoryRepository.GetCategoryByFatherCategory(id);
+
+            if (categoriesSon.Count > 0)
+            {
+                StringBuilder sb = new StringBuilder();
+
+                foreach (var item in categoriesSon)
+                {
+                    sb.Append($"'{item.Name}' ");
+                }
+
+                TempData["MSG_E"] = string.Format(Message.MSG_E014, sb.ToString());
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            var productsSon = _productRepository.GetProductByCategory(id);
+
+            if (productsSon.Count > 0)
+            {
+                StringBuilder sb = new StringBuilder();
+
+                foreach (var item in productsSon)
+                {
+                    sb.Append($"'{item.Name}' ");
+                }
+
+                TempData["MSG_E"] = string.Format(Message.MSG_E015, sb.ToString());
+
+                return RedirectToAction(nameof(Index));
+            }
+
             _categoryRepository.Delete(id);
 
             TempData["MSG_S"] = Message.MSG_S002;

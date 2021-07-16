@@ -6352,3 +6352,458 @@ System.Net.Mail.SmtpException: The SMTP server requires a secure connection or t
 2021-07-16 13:31:30.093 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
 2021-07-16 13:31:30.093 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
 2021-07-16 13:31:30.093 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:12:08.263 -03:00 [INF] Iniciando o servidor web
+2021-07-16 14:12:20.681 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:12:20.690 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:12:20.693 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:12:20.856 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:12:20.857 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:12:20.858 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:12:30.622 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:12:30.622 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:12:30.623 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:12:30.623 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:12:30.623 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:12:30.623 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:12:30.726 -03:00 [ERR] Failed executing DbCommand (38ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+DELETE FROM [Categories]
+WHERE [Id] = @p0;
+SELECT @@ROWCOUNT;
+2021-07-16 14:12:30.852 -03:00 [ERR] An exception occurred in the database while saving changes for context type 'LojaVirtual.Database.LojaVirtualContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the SAME TABLE REFERENCE constraint "FK_Categories_Categories_FatherCategoryId". The conflict occurred in database "LojaVirtual", table "dbo.Categories", column 'FatherCategoryId'.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+ClientConnectionId:8dbc2db4-f852-4434-9c66-26d414298833
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the SAME TABLE REFERENCE constraint "FK_Categories_Categories_FatherCategoryId". The conflict occurred in database "LojaVirtual", table "dbo.Categories", column 'FatherCategoryId'.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+ClientConnectionId:8dbc2db4-f852-4434-9c66-26d414298833
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+2021-07-16 14:12:41.683 -03:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the SAME TABLE REFERENCE constraint "FK_Categories_Categories_FatherCategoryId". The conflict occurred in database "LojaVirtual", table "dbo.Categories", column 'FatherCategoryId'.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+ClientConnectionId:8dbc2db4-f852-4434-9c66-26d414298833
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at LojaVirtual.Repositories.CategoryRepository.Delete(Int32 id) in C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\Repositories\CategoryRepository.cs:line 106
+   at LojaVirtual.Areas.Collaborator.Controllers.CategoryController.Delete(Int32 id) in C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\Areas\Collaborator\Controllers\CategoryController.cs:line 85
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at LojaVirtual.Libraries.Middleware.AntiForgeryTokenMiddleware.Invoke(HttpContext context) in C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\Libraries\Middleware\AntiForgeryTokenMiddleware.cs:line 30
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2021-07-16 14:12:50.664 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:12:50.664 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:12:50.666 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:12:50.667 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:12:50.668 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:12:50.670 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:13:00.669 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:13:00.669 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:13:00.670 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:13:00.670 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:13:00.670 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:13:00.671 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:13:10.671 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:13:10.671 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:13:10.672 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:13:10.672 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:13:10.672 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:13:10.672 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:13:20.677 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:13:20.678 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:13:20.678 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:13:20.678 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:13:20.678 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:13:20.679 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:13:30.668 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:13:30.669 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:13:30.669 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:13:30.670 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:13:30.670 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:13:30.671 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:13:40.671 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:13:40.671 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:13:40.672 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:13:40.672 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:13:40.672 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:13:40.673 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:13:50.668 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:13:50.668 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:13:50.668 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:13:50.669 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:13:50.669 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:13:50.670 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:14:00.667 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:14:00.667 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:14:00.667 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:14:00.667 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:14:00.668 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:14:00.668 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:14:10.660 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:14:10.660 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:14:10.660 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:14:10.660 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:14:10.661 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:14:10.661 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:14:20.664 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:14:20.664 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:14:20.664 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:14:20.665 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:14:20.665 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:14:20.665 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:14:30.668 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:14:30.668 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:14:30.668 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:14:30.669 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:14:30.669 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:14:30.669 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:14:40.669 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:14:40.669 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:14:40.669 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:14:40.670 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:14:40.670 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:14:40.670 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:14:50.670 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:14:50.670 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:14:50.671 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:14:50.671 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:14:50.671 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:14:50.671 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:15:00.676 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:15:00.676 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:15:00.677 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:15:00.677 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:15:00.677 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:15:00.677 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:30:23.837 -03:00 [INF] Iniciando o servidor web
+2021-07-16 14:30:30.248 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:30:30.277 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:30:30.278 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:30:30.278 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:30:30.443 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:30:30.444 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:30:40.196 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:30:40.199 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:30:40.199 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:30:40.201 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:30:40.202 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:30:40.204 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:30:50.184 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:30:50.185 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:30:50.185 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:30:50.186 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:30:50.187 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:30:50.187 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:31:00.200 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:31:00.201 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:31:00.202 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:31:00.202 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:31:00.203 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:31:00.203 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:31:10.187 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:31:10.188 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:31:10.189 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:31:10.189 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:31:10.190 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:31:10.190 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:31:20.193 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:31:20.194 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:31:20.194 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:31:20.194 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:31:20.194 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:31:20.195 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:31:30.187 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:31:30.188 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:31:30.188 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:31:30.188 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:31:30.189 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:31:30.189 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:31:40.182 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:31:40.183 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:31:40.183 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:31:40.184 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:31:40.184 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:31:40.184 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:31:50.183 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:31:50.184 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:31:50.184 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:31:50.185 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:31:50.185 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:31:50.185 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:32:00.187 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:32:00.188 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:32:00.188 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:32:00.188 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:32:00.188 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:32:00.188 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:32:10.181 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:32:10.181 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:32:10.181 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:32:10.181 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:32:10.182 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:32:10.182 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:32:20.184 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:32:20.184 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:32:20.184 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:32:20.184 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:32:20.185 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:32:20.185 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:32:30.187 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:32:30.187 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:32:30.187 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:32:30.188 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:32:30.188 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:32:30.188 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:32:40.185 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:32:40.186 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:32:40.186 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:32:40.186 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:32:40.186 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:32:40.187 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:32:50.185 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:32:50.186 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:32:50.186 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:32:50.187 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:32:50.187 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:32:50.187 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:33:00.187 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:33:00.187 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:33:00.187 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:33:00.187 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:33:00.187 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:33:00.188 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:33:10.195 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:33:10.196 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:33:10.196 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:33:10.196 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:33:10.196 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:33:10.197 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:33:20.186 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:33:20.186 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:33:20.186 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:33:20.187 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:33:20.187 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:33:20.187 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:33:30.186 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:33:30.189 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:33:30.189 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:33:30.190 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:33:30.190 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:33:30.190 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:33:40.177 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:33:40.178 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:33:40.178 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:33:40.178 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:33:40.178 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:33:40.178 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:34:08.695 -03:00 [INF] Iniciando o servidor web
+2021-07-16 14:34:20.865 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:34:20.888 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:34:20.891 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:34:21.053 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:34:21.053 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:34:21.055 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:34:30.851 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:34:30.855 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:34:30.859 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:34:30.859 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:34:30.863 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:34:30.867 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:34:40.838 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:34:40.841 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:34:40.843 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:34:40.844 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:34:40.844 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:34:40.845 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:34:50.839 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:34:50.841 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:34:50.841 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:34:50.841 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:34:50.842 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:34:50.842 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:35:04.200 -03:00 [INF] Iniciando o servidor web
+2021-07-16 14:35:10.906 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:35:11.097 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:35:11.099 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:35:11.100 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:35:11.100 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:35:11.101 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:35:20.718 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:35:20.719 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:35:20.719 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:35:20.720 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:35:20.720 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:35:20.720 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:35:30.726 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:35:30.727 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:35:30.728 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:35:30.728 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:35:30.728 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:35:30.729 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:35:40.726 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:35:40.727 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:35:40.728 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:35:40.730 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:35:40.731 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:35:40.732 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:35:50.712 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:35:50.713 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:35:50.714 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:35:50.714 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:35:50.714 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:35:50.715 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:36:00.717 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:36:00.718 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:36:00.719 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:36:00.720 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:36:00.720 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:36:00.720 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:36:42.406 -03:00 [INF] Iniciando o servidor web
+2021-07-16 14:36:50.713 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:36:50.738 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:36:50.896 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:36:50.897 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:36:50.897 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:36:50.898 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:37:00.683 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:37:00.686 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:37:00.687 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:37:00.688 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:37:00.689 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:37:00.690 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:37:10.673 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:37:10.674 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:37:10.676 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:37:10.676 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:37:10.676 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:37:10.677 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:37:20.674 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:37:20.676 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:37:20.676 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:37:20.677 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:37:20.677 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:37:20.678 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:37:30.672 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:37:30.674 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:37:30.674 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:37:30.674 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:37:30.674 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:37:30.674 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:37:40.667 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:37:40.667 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:37:40.668 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:37:40.668 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:37:40.669 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:37:40.669 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:37:50.671 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:37:50.672 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:37:50.672 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:37:50.672 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:37:50.673 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:37:50.673 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:38:00.671 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:38:00.672 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:38:00.672 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:38:00.673 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:38:00.673 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:38:00.674 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
+2021-07-16 14:38:10.667 -03:00 [INF] > OrderDeliveredJob: Finalizado <
+2021-07-16 14:38:10.667 -03:00 [INF] > FinishedOrderJob: Finalizado <
+2021-07-16 14:38:10.667 -03:00 [INF] > OrderPaymentSituationJob: Iniciando <
+2021-07-16 14:38:10.667 -03:00 [INF] > OrderPaymentSituationJob: Finalizado <
+2021-07-16 14:38:10.668 -03:00 [INF] > OrderRefundDeliveredJob: Iniciando <
+2021-07-16 14:38:10.668 -03:00 [INF] > OrderRefundDeliveredJob: Finalizado <
