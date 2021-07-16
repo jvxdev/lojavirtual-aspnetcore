@@ -19,7 +19,7 @@
                             <div class="aside">
                                 @if (item.Images.Count > 0)
                                 {
-                                    <img src="@item.Images.First().Path" class="img-sm">
+                                    <img src="@(((List<Image>)item.Images).First().Path)" class="img-sm">
                                 }
                                 else
                                 {

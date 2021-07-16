@@ -138,8 +138,13 @@ div .left-border {
 /****** ORDER ******/
 
 .num-order {
-    color: #50b708;
-    border-bottom: 2px solid #50b708;
+    color: #0ee62d;
+    border-bottom: 2px solid #0ee62d;
+}
+
+.num-order-info {
+    color: #049adc;
+    border-bottom: 2px solid #049adc;
 }
 
 /****** ORDER END ******/

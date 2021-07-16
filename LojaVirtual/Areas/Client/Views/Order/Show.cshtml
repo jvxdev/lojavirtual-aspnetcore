@@ -18,7 +18,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <h3 class="display-4 text-center mb-5">Informações do pedido (@Model.Id-@Model.TransactionId)</h3>
+            <h3 class="display-4 text-center mb-5">Informações do pedido <strong class="num-order-info">(@Model.Id-@Model.TransactionId)</strong></h3>
             <table class="table table-bordered">
                 <tr>
                     <td colspan="6" class="text-center"><strong>SITUAÇÃO DO PEDIDO:</strong> @Model.Situation</td>
@@ -42,15 +42,17 @@
                     <td><strong>CEP:</strong> @transaction.Shipping.Address.Zipcode</td>
                     <td><strong>Estado:</strong> @transaction.Shipping.Address.State</td>
                     <td><strong>Cidade:</strong> @transaction.Shipping.Address.City</td>
-                    <td><strong>Bairro:</strong> @transaction.Shipping.Address.Neighborhood</td>
-                    <td><strong>Rua:</strong> @transaction.Shipping.Address.Street</td>
-                    <td><strong>N° casa/apart:</strong> @transaction.Shipping.Address.StreetNumber</td>
-                    <td><strong>Complemento:</strong> @transaction.Shipping.Address.Complementary</td>
+                    <td colspan="2"><strong>Bairro:</strong> @transaction.Shipping.Address.Neighborhood</td>
+                    <td colspan="2"><strong>Rua:</strong> @transaction.Shipping.Address.Street</td>
                 </tr>
                 <tr>
-                    <td colspan="2"><strong>Empresa de entrega:</strong> @Model.FreteCompany</td>
+                    <td  colspan="2"><strong>N° casa/apart:</strong> @transaction.Shipping.Address.StreetNumber</td>
+                    <td colspan="4"><strong>Complemento:</strong> @transaction.Shipping.Address.Complementary</td>
+                </tr>
+                <tr>
+                    <td colspan="3"><strong>Empresa de entrega:</strong> @Model.FreteCompany</td>
                     <td colspan="2"><strong>Valor do frete:</strong> @Mask.ConvertPagarMeIntToDecimal(transaction.Shipping.Fee).ToString("C")</td>
-                    <td colspan="2"><strong>Código de rastreamento:</strong> @Html.Raw(Model.NFE == null ? "-" : "<a href='https://www.linkcorreios.com.br/" + Model.FreteTrackingCod + "' target='blank'>" + Model.FreteTrackingCod + "</a>")</td>
+                    <td colspan="3"><strong>Código de rastreamento:</strong> @Html.Raw(Model.NFE == null ? "-" : "<a href='https://www.linkcorreios.com.br/" + Model.FreteTrackingCod + "' target='blank'>" + Model.FreteTrackingCod + "</a>")</td>
                 </tr>
             </table>
 
