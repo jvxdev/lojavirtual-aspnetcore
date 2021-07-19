@@ -15,7 +15,6 @@ namespace LojaVirtual.Areas.Client.Controllers
         ClientLogin _clientLogin;
 
 
-
         public HomeController(IClientRepository clientRepository, IDeliveryAddressRepository deliveryAddressRepository, ClientLogin clientLogin)
         {
             _clientRepository = clientRepository;
@@ -62,12 +61,56 @@ namespace LojaVirtual.Areas.Client.Controllers
             }
         }
 
+
         [HttpGet]
         public IActionResult Logout()
         {
             _clientLogin.Logout();
 
             return RedirectToAction("Index", "Home", new { area = "" });
+        }
+
+
+        [HttpGet]
+        public IActionResult RecoverPassword()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult RecoverPassword([FromForm] Models.Client client)
+        {
+            ModelState.Remove("Name");
+            ModelState.Remove("BirthDate");
+            ModelState.Remove("Sex");
+            ModelState.Remove("CPF");
+            ModelState.Remove("Phone");
+            ModelState.Remove("CEP");
+            ModelState.Remove("State");
+            ModelState.Remove("City");
+            ModelState.Remove("Neighborhood");
+            ModelState.Remove("Street");
+            ModelState.Remove("HouseNumber");
+            ModelState.Remove("Complement");
+            ModelState.Remove("Password");
+            ModelState.Remove("PasswordConfirmation");
+
+            if (ModelState.IsValid)
+            {
+                var databaseClient = _clientRepository.GetClientByEmail(client.Email);
+
+                if (databaseClient != null)
+                {
+
+                }
+                else
+                {
+                    TempData["MSG_E"] = Message.MSG_E016;
+                
+                    return View();
+                }
+            }
         }
     }
 }

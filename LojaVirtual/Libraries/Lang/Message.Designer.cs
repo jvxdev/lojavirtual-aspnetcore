@@ -196,6 +196,15 @@ namespace LojaVirtual.Libraries.Lang {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O e-mail não foi encontrado!.
+        /// </summary>
+        public static string MSG_E016 {
+            get {
+                return ResourceManager.GetString("MSG_E016", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Registro cadastrado com sucesso!.
         /// </summary>
         public static string MSG_S001 {

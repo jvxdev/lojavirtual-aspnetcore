@@ -57,7 +57,7 @@
             {
                 <div class="dropdown">
                     <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user-alt mr-1"></i> @Mask.FirstName(@_clientLogin.GetClient().Name)
+                        <i class="fas fa-user-alt mr-1"></i> @_clientLogin.GetClient().Name
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <a class="dropdown-item" asp-action="Index" asp-controller="Client" asp-area="Client" asp-route-id="@_clientLogin.GetClient().Id">Minha conta</a>

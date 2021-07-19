@@ -75,5 +75,11 @@ namespace LojaVirtual.Repositories.Contracts
         {
             return _database.Clients.Count();
         }
+
+
+        public Client GetClientByEmail(string email)
+        {
+            return _database.Clients.FirstOrDefault(a => a.Email == email);
+        }
     }
 }

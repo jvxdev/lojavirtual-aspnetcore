@@ -162,6 +162,9 @@
   <data name="MSG_E015" xml:space="preserve">
     <value>Não é possível excluir Categorias que possuem produtos vinculados: {0}</value>
   </data>
+  <data name="MSG_E016" xml:space="preserve">
+    <value>O e-mail não foi encontrado!</value>
+  </data>
   <data name="MSG_S001" xml:space="preserve">
     <value>Registro cadastrado com sucesso!</value>
   </data>
