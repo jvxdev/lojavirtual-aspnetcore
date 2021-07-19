@@ -1,4 +1,5 @@
-﻿using LojaVirtual.Libraries.Filters;
+﻿using LojaVirtual.Libraries.Email;
+using LojaVirtual.Libraries.Filters;
 using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Libraries.Login;
 using LojaVirtual.Models;
@@ -10,16 +11,18 @@ namespace LojaVirtual.Areas.Client.Controllers
     [Area("Client")]
     public class HomeController : Controller
     {
-        IClientRepository _clientRepository;
-        IDeliveryAddressRepository _deliveryAddressRepository;
-        ClientLogin _clientLogin;
+        private IClientRepository _clientRepository;
+        private IDeliveryAddressRepository _deliveryAddressRepository;
+        private ClientLogin _clientLogin;
+        private EmailManage _emailManage;
 
 
-        public HomeController(IClientRepository clientRepository, IDeliveryAddressRepository deliveryAddressRepository, ClientLogin clientLogin)
+        public HomeController(IClientRepository clientRepository, IDeliveryAddressRepository deliveryAddressRepository, ClientLogin clientLogin, EmailManage emailManage)
         {
             _clientRepository = clientRepository;
             _deliveryAddressRepository = deliveryAddressRepository;
             _clientLogin = clientLogin;
+            _emailManage = emailManage;
         }
 
 
@@ -102,7 +105,7 @@ namespace LojaVirtual.Areas.Client.Controllers
 
                 if (databaseClient != null)
                 {
-
+                    _emailManage.RecoverPasswordEmail(client);
                 }
                 else
                 {
