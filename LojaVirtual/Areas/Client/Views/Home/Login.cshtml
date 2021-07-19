@@ -14,6 +14,9 @@
                         <a class="float-right btn btn-outline-primary" asp-controller="Client" asp-action="Register" asp-route-returnUrl="@Context.Request.Query["returnUrl"]">Criar conta</a>
                         <h4 class="card-title mb-4 mt-1 font-weight-light">Entre com sua conta!</h4>
                         <form method="post">
+
+                            @{ await Html.RenderPartialAsync("~/Views/Shared/_Message.cshtml"); }
+
                             <div class="form-group">
                                 <label for="email">E-mail</label>
                                 <input asp-for="Email" id="email" class="form-control" placeholder="exemplo@email.com" type="email" required>
@@ -23,8 +26,6 @@
                                 <label for="password">Senha</label>
                                 <input asp-for="Password" id="password" class="form-control" placeholder="**********" type="password" required>
                             </div>
-
-                            @{ await Html.RenderPartialAsync("~/Views/Shared/_Message.cshtml"); }
 
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block"> Entrar </button>

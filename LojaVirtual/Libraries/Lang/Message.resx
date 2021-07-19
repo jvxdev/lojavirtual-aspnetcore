@@ -196,7 +196,7 @@
     <value>Endereço de entrega cadastrado com sucesso!</value>
   </data>
   <data name="MSG_S010" xml:space="preserve">
-    <value>Senha alterada com sucesso!</value>
+    <value>Senha alterada com sucesso! Use sua nova senha para entrar!</value>
   </data>
   <data name="MSG_S011" xml:space="preserve">
     <value>E-mail para recuperação de senha enviado com sucesso!</value>

@@ -295,7 +295,7 @@ namespace LojaVirtual.Libraries.Lang {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Senha alterada com sucesso!.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Senha alterada com sucesso! Use sua nova senha para entrar!.
         /// </summary>
         public static string MSG_S010 {
             get {

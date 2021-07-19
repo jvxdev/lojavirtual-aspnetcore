@@ -107,17 +107,17 @@ namespace LojaVirtual.Areas.Client.Controllers
 
                 if (databaseClient != null)
                 {
-                    string idCrypt = StringCipher.Encrypt(databaseClient.Id.ToString(), passPhrase);
+                    string idCrypt = Base64Crypt.Base64Encode(databaseClient.Id.ToString());
 
-                    _emailManage.RecoverPasswordEmail(client, idCrypt);
+                    _emailManage.RecoverPasswordEmail(databaseClient, idCrypt);
 
                     TempData["MSG_S"] = Message.MSG_S011;
+
+                    ModelState.Clear();
                 }
                 else
                 {
                     TempData["MSG_E"] = Message.MSG_E016;
-                
-                    return View();
                 }
             }
 
@@ -126,8 +126,23 @@ namespace LojaVirtual.Areas.Client.Controllers
 
 
         [HttpGet]
-        public IActionResult CreateNewPassword()
+        public IActionResult CreateNewPassword(string id)
         {
+            try
+            {
+                var idClientDecrypt = Base64Crypt.Base64Decode(id);
+                int idClient;
+
+                if (!int.TryParse(idClientDecrypt, out idClient))
+                {
+                    TempData["MSG_E"] = Message.MSG_E017;
+                }
+            }
+            catch (System.FormatException e)
+            {
+                TempData["MSG_E"] = Message.MSG_E017;
+            }
+
             return View();
         }
 
@@ -151,28 +166,40 @@ namespace LojaVirtual.Areas.Client.Controllers
 
             if (ModelState.IsValid)
             {
-                var idClientDecrypt = StringCipher.Decrypt(id, passPhrase);
                 int idClient;
 
-                if (int.TryParse(idClientDecrypt, out idClient))
+                try
                 {
-                    var clientDB = _clientRepository.Read(idClient);
+                    var idClientDecrypt = Base64Crypt.Base64Decode(id);
 
-                    if (clientDB != null)
+                    if (!int.TryParse(idClientDecrypt, out idClient))
                     {
-                        clientDB.Password = client.Password;
+                        TempData["MSG_E"] = Message.MSG_E017;
 
-                        _clientRepository.Update(clientDB);
-
-                        TempData["MSG_S"] = Message.MSG_S010;
+                        return View();
                     }
                 }
-                else
+                catch (System.FormatException e)
                 {
                     TempData["MSG_E"] = Message.MSG_E017;
+
+                    return View();
+                }
+
+                var clientDB = _clientRepository.Read(idClient);
+
+                if (clientDB != null)
+                {
+                    clientDB.Password = client.Password;
+
+                    _clientRepository.Update(clientDB);
+
+                    TempData["MSG_S"] = Message.MSG_S010;
+
+                    return RedirectToAction(nameof(Login));
                 }
             }
-           
+
             return View();
         }
     }
