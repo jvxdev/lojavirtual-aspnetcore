@@ -37,5 +37,11 @@
 
             return int.Parse(resultSplit[0]);
         }
+
+
+        public static string FirstName(string fullName)
+        {
+            return fullName.Split(' ')[0];
+        }
     }
 }

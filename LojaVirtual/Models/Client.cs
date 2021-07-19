@@ -15,7 +15,7 @@ namespace LojaVirtual.Models
 
         [Display(Name = "Nome e sobrenome")]
         [Required(ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E005")]
-        [MinLength(8, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E002")]
+        [MinLength(5, ErrorMessageResourceType = typeof(Message), ErrorMessageResourceName = "MSG_E002")]
         public string Name { get; set; }
 
 
