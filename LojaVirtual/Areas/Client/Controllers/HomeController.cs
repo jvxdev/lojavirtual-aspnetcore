@@ -2,6 +2,7 @@
 using LojaVirtual.Libraries.Filters;
 using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Libraries.Login;
+using LojaVirtual.Libraries.Security;
 using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,7 @@ namespace LojaVirtual.Areas.Client.Controllers
         private IDeliveryAddressRepository _deliveryAddressRepository;
         private ClientLogin _clientLogin;
         private EmailManage _emailManage;
+        private string passPhrase = "xdoskx21321Oo@@@sko443askzmkas12313";
 
 
         public HomeController(IClientRepository clientRepository, IDeliveryAddressRepository deliveryAddressRepository, ClientLogin clientLogin, EmailManage emailManage)
@@ -105,7 +107,11 @@ namespace LojaVirtual.Areas.Client.Controllers
 
                 if (databaseClient != null)
                 {
-                    _emailManage.RecoverPasswordEmail(client);
+                    string idCrypt = StringCipher.Encrypt(databaseClient.Id.ToString(), passPhrase);
+
+                    _emailManage.RecoverPasswordEmail(client, idCrypt);
+
+                    TempData["MSG_S"] = Message.MSG_S011;
                 }
                 else
                 {
@@ -114,6 +120,60 @@ namespace LojaVirtual.Areas.Client.Controllers
                     return View();
                 }
             }
+
+            return View();
+        }
+
+
+        [HttpGet]
+        public IActionResult CreateNewPassword()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult CreateNewPassword([FromForm] Models.Client client, string id)
+        {
+            ModelState.Remove("Name");
+            ModelState.Remove("BirthDate");
+            ModelState.Remove("Sex");
+            ModelState.Remove("CPF");
+            ModelState.Remove("Phone");
+            ModelState.Remove("CEP");
+            ModelState.Remove("State");
+            ModelState.Remove("City");
+            ModelState.Remove("Neighborhood");
+            ModelState.Remove("Street");
+            ModelState.Remove("HouseNumber");
+            ModelState.Remove("Complement");
+            ModelState.Remove("Email");
+
+            if (ModelState.IsValid)
+            {
+                var idClientDecrypt = StringCipher.Decrypt(id, passPhrase);
+                int idClient;
+
+                if (int.TryParse(idClientDecrypt, out idClient))
+                {
+                    var clientDB = _clientRepository.Read(idClient);
+
+                    if (clientDB != null)
+                    {
+                        clientDB.Password = client.Password;
+
+                        _clientRepository.Update(clientDB);
+
+                        TempData["MSG_S"] = Message.MSG_S010;
+                    }
+                }
+                else
+                {
+                    TempData["MSG_E"] = Message.MSG_E017;
+                }
+            }
+           
+            return View();
         }
     }
 }

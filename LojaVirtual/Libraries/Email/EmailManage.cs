@@ -11,7 +11,6 @@ namespace LojaVirtual.Libraries.Email
         private SmtpClient _smtp;
         private IConfiguration _conf;
         private IHttpContextAccessor _httpContextAccessor;
-        private string passPhrase = "xdoskx21321Oo@@@sko443askzmkas12313";
 
         public EmailManage(SmtpClient smtp, IConfiguration conf, IHttpContextAccessor httpContextAccessor)
         {
@@ -87,11 +86,9 @@ namespace LojaVirtual.Libraries.Email
         }
 
 
-        public void RecoverPasswordEmail(Client client)
+        public void RecoverPasswordEmail(Client client, string idCrip)
         {
             //Mensagem exemplo enviada para e-mail para recuperação de senha
-            string idCrip = StringCipher.Encrypt(client.Id.ToString(), passPhrase);
-
             var request = _httpContextAccessor.HttpContext.Request;
 
             string url = $"{request.Scheme}://{request.Host}/Client/Home/CreateNewPassword/{idCrip}";
@@ -99,7 +96,7 @@ namespace LojaVirtual.Libraries.Email
             string corpoMsg = string.Format(
                 "Olá <b>" + client.Name + "</b>, como vai?" +
                 "<br/>Aqui está o link para criar uma nova " +
-                "senha: <a href='{0} target='_blank'>{0}</a>'",
+                "senha: <a href='{0}' target='_blank'>{0}</a>'",
                 url
                 );
 

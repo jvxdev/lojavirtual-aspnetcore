@@ -205,6 +205,15 @@ namespace LojaVirtual.Libraries.Lang {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Link para alteração de senha é inválido!.
+        /// </summary>
+        public static string MSG_E017 {
+            get {
+                return ResourceManager.GetString("MSG_E017", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Registro cadastrado com sucesso!.
         /// </summary>
         public static string MSG_S001 {
@@ -250,7 +259,7 @@ namespace LojaVirtual.Libraries.Lang {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Dados atualizados com sucesso! ;).
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Dados atualizados com sucesso!.
         /// </summary>
         public static string MSG_S006 {
             get {
@@ -282,6 +291,24 @@ namespace LojaVirtual.Libraries.Lang {
         public static string MSG_S009 {
             get {
                 return ResourceManager.GetString("MSG_S009", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Senha alterada com sucesso!.
+        /// </summary>
+        public static string MSG_S010 {
+            get {
+                return ResourceManager.GetString("MSG_S010", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a E-mail para recuperação de senha enviado com sucesso!.
+        /// </summary>
+        public static string MSG_S011 {
+            get {
+                return ResourceManager.GetString("MSG_S011", resourceCulture);
             }
         }
     }

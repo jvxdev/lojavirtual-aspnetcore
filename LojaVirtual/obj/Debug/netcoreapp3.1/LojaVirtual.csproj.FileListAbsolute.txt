@@ -2377,3 +2377,5 @@ C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\net
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Serilog.Sinks.Console.dll
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Serilog.Sinks.Debug.dll
 C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\bin\Debug\netcoreapp3.1\Serilog.Sinks.File.dll
+C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Client\Views\Home\CreateNewPassword.cshtml.g.cs
+C:\Users\jvXvj\Documents\GitHub\lojavirtual-aspnetcore\LojaVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Client\Views\Home\RecoverPassword.cshtml.g.cs

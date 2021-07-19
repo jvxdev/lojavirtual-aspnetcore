@@ -165,6 +165,9 @@
   <data name="MSG_E016" xml:space="preserve">
     <value>O e-mail não foi encontrado!</value>
   </data>
+  <data name="MSG_E017" xml:space="preserve">
+    <value>Link para alteração de senha é inválido!</value>
+  </data>
   <data name="MSG_S001" xml:space="preserve">
     <value>Registro cadastrado com sucesso!</value>
   </data>
@@ -181,7 +184,7 @@
     <value>Cadastro realizado com sucesso!</value>
   </data>
   <data name="MSG_S006" xml:space="preserve">
-    <value>Dados atualizados com sucesso! ;)</value>
+    <value>Dados atualizados com sucesso!</value>
   </data>
   <data name="MSG_S007" xml:space="preserve">
     <value>Endereço de entrega atualizado com sucesso!</value>
@@ -191,5 +194,11 @@
   </data>
   <data name="MSG_S009" xml:space="preserve">
     <value>Endereço de entrega cadastrado com sucesso!</value>
+  </data>
+  <data name="MSG_S010" xml:space="preserve">
+    <value>Senha alterada com sucesso!</value>
+  </data>
+  <data name="MSG_S011" xml:space="preserve">
+    <value>E-mail para recuperação de senha enviado com sucesso!</value>
   </data>
 </root>
