@@ -9,11 +9,16 @@ namespace LojaVirtual.Libraries.Validation
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
+            if (value == null)
+            {
+                return new ValidationResult("Você precisa digitar um e-mail!");
+            }
+
             string Email = (value as string).Trim();
 
             ICollaboratorRepository _collaboratorRepository = (ICollaboratorRepository)validationContext.GetService(typeof(ICollaboratorRepository));
 
-            List<Collaborator> collaborators = _collaboratorRepository.GetCollaboratorEmail(Email);
+            List<Collaborator> collaborators = _collaboratorRepository.GetCollaboratorByEmail(Email);
 
             Collaborator objCollaborator = (Collaborator)validationContext.ObjectInstance;
 

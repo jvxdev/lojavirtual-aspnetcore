@@ -1,8 +1,11 @@
-﻿using LojaVirtual.Libraries.Filters;
+﻿using LojaVirtual.Libraries.Email;
+using LojaVirtual.Libraries.Filters;
 using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Libraries.Login;
+using LojaVirtual.Libraries.Security;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Text;
 
 namespace LojaVirtual.Areas.Collaborator.Controllers
@@ -16,16 +19,18 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         private IProductRepository _productRepository;
         private INewsletterRepository _newsletterRepository;
         private IOrderRepository _orderRepository;
+        private EmailManage _emailManage;
 
 
         public HomeController
             (
-            ICollaboratorRepository collaboratorRepository, 
+            ICollaboratorRepository collaboratorRepository,
             CollaboratorLogin collaboratorLogin,
             IClientRepository clientRepository,
             IProductRepository productRepository,
             INewsletterRepository newsletterRepository,
-            IOrderRepository orderRepository
+            IOrderRepository orderRepository,
+            EmailManage emailManage
             )
         {
             _collaboratorRepository = collaboratorRepository;
@@ -34,6 +39,7 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
             _productRepository = productRepository;
             _newsletterRepository = newsletterRepository;
             _orderRepository = orderRepository;
+            _emailManage = emailManage;
         }
 
 
@@ -96,21 +102,105 @@ namespace LojaVirtual.Areas.Collaborator.Controllers
         }
 
 
+        [HttpGet]
+        public IActionResult RecoverPassword()
+        {
+            return View();
+        }
 
 
         [HttpPost]
-        public IActionResult PasswordRecover()
+        public IActionResult RecoverPassword([FromForm] Models.Collaborator collaborator)
         {
+            var databaseCollaborator = _collaboratorRepository.GetCollaboratorByEmail(collaborator.Email);
+
+            if (databaseCollaborator != null && databaseCollaborator.Count > 0)
+            {
+                string idCrypt = Base64Crypt.Base64Encode(databaseCollaborator.First().Id.ToString());
+
+                _emailManage.RecoverPasswordEmail(databaseCollaborator.First(), idCrypt);
+
+                TempData["MSG_S"] = Message.MSG_S011;
+
+                ModelState.Clear();
+            }
+            else
+            {
+                TempData["MSG_E"] = Message.MSG_E016;
+            }
+
             return View();
         }
 
 
-        public IActionResult NewPassword()
+        [HttpGet]
+        public IActionResult CreateNewPassword(string id)
         {
+            try
+            {
+                var idCollaboratorDecrypt = Base64Crypt.Base64Decode(id);
+                int idCollaborator;
+
+                if (!int.TryParse(idCollaboratorDecrypt, out idCollaborator))
+                {
+                    TempData["MSG_E"] = Message.MSG_E017;
+                }
+            }
+            catch (System.FormatException e)
+            {
+                TempData["MSG_E"] = Message.MSG_E017;
+            }
+
             return View();
         }
-        
-        
+
+
+        [HttpPost]
+        public IActionResult CreateNewPassword([FromForm] Models.Collaborator collaborator, string id)
+        {
+            ModelState.Remove("Name");
+            ModelState.Remove("Email");
+
+            if (ModelState.IsValid)
+            {
+                int idCollaborator;
+
+                try
+                {
+                    var idCollaboratorDecrypt = Base64Crypt.Base64Decode(id);
+
+                    if (!int.TryParse(idCollaboratorDecrypt, out idCollaborator))
+                    {
+                        TempData["MSG_E"] = Message.MSG_E017;
+
+                        return View();
+                    }
+                }
+                catch (System.FormatException e)
+                {
+                    TempData["MSG_E"] = Message.MSG_E017;
+
+                    return View();
+                }
+
+                var collaboratorDB = _collaboratorRepository.Read(idCollaborator);
+
+                if (collaboratorDB != null)
+                {
+                    collaboratorDB.Password = collaborator.Password;
+
+                    _collaboratorRepository.UpdatePassword(collaboratorDB);
+
+                    TempData["MSG_S"] = Message.MSG_S010;
+
+                    return RedirectToAction(nameof(Login));
+                }
+            }
+
+            return View();
+        }
+
+
         [CollaboratorAuthorization]
         public IActionResult Panel()
         {

@@ -86,23 +86,32 @@ namespace LojaVirtual.Libraries.Email
         }
 
 
-        public void RecoverPasswordEmail(Client client, string idCrip)
+        public void RecoverPasswordEmail(dynamic user, string idCrypt)
         {
             //Mensagem exemplo enviada para e-mail para recuperação de senha
             var request = _httpContextAccessor.HttpContext.Request;
 
-            string url = $"{request.Scheme}://{request.Host}/Client/Home/CreateNewPassword/{idCrip}";
+            string url = "";
 
+            if (user.GetType() == typeof(Client))
+            {
+                url = $"{request.Scheme}://{request.Host}/Client/Home/CreateNewPassword/{idCrypt}";
+            }
+            else
+            {
+                url = $"{request.Scheme}://{request.Host}/Collaborator/Home/CreateNewPassword/{idCrypt}";
+            }
+            
             string corpoMsg = string.Format(
-                "Olá <b>" + client.Name + "</b>, como vai?" +
+                "Olá <b>" + user.Name + "</b>, como vai?" +
                 "<br/>Aqui está o link para criar uma nova " +
-                "senha: <a href='{0}' target='_blank'>{0}</a>'",
+                "senha: <a href='{0}' target='_blank'>{0}</a>",
                 url
                 );
 
             MailMessage message = new MailMessage();
             message.From = new MailAddress(_conf.GetValue<string>("Email:Username"));
-            message.To.Add(client.Email);
+            message.To.Add(user.Email);
             message.Subject = "Recuperação de senha - LojaVirtual";
             message.Body = corpoMsg;
             message.IsBodyHtml = true;

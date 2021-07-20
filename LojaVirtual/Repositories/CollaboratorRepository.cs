@@ -36,7 +36,7 @@ namespace LojaVirtual.Repositories
         }
 
 
-        public List<Collaborator> GetCollaboratorEmail(string email)
+        public List<Collaborator> GetCollaboratorByEmail(string email)
         {
             return _database.Collaborators.Where(a => a.Email == email).ToList();
         }
