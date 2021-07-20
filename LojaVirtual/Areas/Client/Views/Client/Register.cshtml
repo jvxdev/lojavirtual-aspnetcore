@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="birthdate">Data de nascimento</label>
-                                    <input type="date" asp-for="BirthDate" id="birthdate" name="birthdate" class="form-control" placeholder="">
+                                    <input type="text" asp-for="BirthDate" id="birthdate" name="birthdate" class="form-control birthdate" placeholder="10/10/2010">
                                     <span asp-validation-for="BirthDate"></span>
                                 </div>
                                 <div class="form-group mb-0">
@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Telefone</label>
-                                    <input type="text" asp-for="Phone" class="form-control" placeholder="Seu melhor número" maxlength="15">
+                                    <input type="text" asp-for="Phone" class="form-control tel" placeholder="Seu melhor número" maxlength="15">
                                     <span asp-validation-for="Phone"></span>
                                 </div>
 

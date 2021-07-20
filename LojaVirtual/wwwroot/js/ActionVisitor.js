@@ -175,6 +175,8 @@ function AjaxBuscarCEP() {
 
 function Mask() {
     $(".cep").mask("00.000-000");
+    $(".birthdate").mask("00/00/0000");
+    $(".tel").mask("(00) 0000-00009");
     $(".cpf").mask("000.000.000-00");
     $(".card-number").mask("0000-0000-0000-0000");
 }
