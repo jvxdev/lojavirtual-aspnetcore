@@ -29,7 +29,7 @@ namespace LojaVirtual.Areas.Client.Controllers
         {
             Models.Client client = _clientLogin.GetClient();
 
-            var orders = _orderRepository.ReadAll(page, client.Id);
+            var orders = _orderRepository.GetAllClientOrders(page, client.Id);
 
             return View(orders);
         }

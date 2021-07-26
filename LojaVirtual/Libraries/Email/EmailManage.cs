@@ -38,7 +38,7 @@ namespace LojaVirtual.Libraries.Email
             message.IsBodyHtml = true;
 
             //Enviar mensagem via Smtp
-            _smtp.Send(message);
+            //_smtp.Send(message);
         }
 
 
@@ -57,7 +57,7 @@ namespace LojaVirtual.Libraries.Email
             message.IsBodyHtml = true;
 
             //Enviar mensagem via Smtp
-            _smtp.Send(message);
+            //_smtp.Send(message);
         }
 
 
@@ -82,7 +82,7 @@ namespace LojaVirtual.Libraries.Email
             message.IsBodyHtml = true;
 
             //Enviar mensagem via Smtp
-            _smtp.Send(message);
+            //_smtp.Send(message);
         }
 
 
@@ -117,7 +117,7 @@ namespace LojaVirtual.Libraries.Email
             message.IsBodyHtml = true;
 
             //Enviar mensagem via Smtp
-            _smtp.Send(message);
+            //_smtp.Send(message);
         }
     }
 }

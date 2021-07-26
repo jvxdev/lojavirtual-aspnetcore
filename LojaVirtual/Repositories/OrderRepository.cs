@@ -82,6 +82,14 @@ namespace LojaVirtual.Repositories
             return _database.Orders.Include(a => a.OrderSituations).Include(a => a.Client).Where(a => a.Situation == status).ToList();
         }
 
+        public IPagedList<Order> GetAllClientOrders(int? page, int clientId)
+        {
+            int registryPerPage = _conf.GetValue<int>("registryPerPage");
+            int pageNumber = page ?? 1;
+
+            return _database.Orders.Include(a => a.OrderSituations).Where(a => a.ClientId == clientId).ToPagedList<Order>(pageNumber, registryPerPage);
+        }
+
 
         public int TotalOrders()
         {

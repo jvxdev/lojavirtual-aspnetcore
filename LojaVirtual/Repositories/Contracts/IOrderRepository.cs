@@ -21,6 +21,9 @@ namespace LojaVirtual.Repositories.Contracts
         List<Order> GetAllOrdersBySituation(string status);
 
 
+        IPagedList<Order> GetAllClientOrders(int? page, int clientId);
+
+
         void Update(Order order);
 
 
